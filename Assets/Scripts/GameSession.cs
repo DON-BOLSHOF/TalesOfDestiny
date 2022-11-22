@@ -6,7 +6,7 @@ public class GameSession : MonoBehaviour
 {
     [SerializeField] private PlayerData _playerData;
 
-    public PlayerData Data => _playerData;
+    public PlayerData Data => _playerData; //Check
     
     private void Awake()
     {
