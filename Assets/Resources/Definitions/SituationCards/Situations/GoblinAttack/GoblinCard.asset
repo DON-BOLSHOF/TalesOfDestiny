@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: GoblinCard
   m_EditorClassIdentifier: 
   _id: GoblinAttack
-  _icon: {fileID: -3122987317393838555, guid: c1008334832250b4f8457b0990ef9b99, type: 3}
+  _cardView: {fileID: 11400000, guid: 241978936ce6edd4a8136f9a28d1d3c9, type: 2}
   _situation: {fileID: 11400000, guid: 9fc15d6cebad3a041a467d896049ed59, type: 2}

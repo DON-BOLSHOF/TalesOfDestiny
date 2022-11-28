@@ -18,8 +18,8 @@ MonoBehaviour:
     \u043D\u0430\u0448\u0435\u0439 \u0435\u0434\u044B"
   _buttons:
   - _name: "\u0413\u0440\u0443\u0441\u0442\u043D\u043E..."
-    buttonInteraction:
-      _type: 2
+    _buttonInteraction:
+      _type: 18
       _propertyEvent:
       - _mode: 1
         _data:
@@ -28,3 +28,4 @@ MonoBehaviour:
           _prestige: 0
         _def: {fileID: 11400000, guid: add74ff5367cd8e4e96c9c814d1b2878, type: 2}
       _armyEvent: []
+      _panel: {fileID: 0}

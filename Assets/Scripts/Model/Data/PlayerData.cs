@@ -8,7 +8,7 @@ namespace Model.Data
     [Serializable]
     public class PlayerData
     {
-        [SerializeField]private HeroPropertyData _heroData;
+        [SerializeField] private HeroPropertyData _heroData;
 
         public HeroPropertyData HeroData => _heroData;
     }

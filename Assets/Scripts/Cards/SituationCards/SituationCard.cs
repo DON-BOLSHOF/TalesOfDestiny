@@ -1,14 +1,15 @@
-﻿using UnityEngine;
+﻿using Cards.SituationCards.PhysicalCard;
+using UnityEngine;
 
 namespace Cards.SituationCards
 {
     [CreateAssetMenu(menuName = "Cards/SituationCard", fileName = "SituationCard")]
     public class SituationCard : LevelCard
     {
-        [SerializeField] private Sprite _icon;
+        [SerializeField] private PhysicalCardView _cardView;
         [SerializeField] private Situation _situation;
 
-        public Sprite Icon => _icon;
+        public PhysicalCardView CardView => _cardView;
         public Situation Situation => _situation;
         
         public SituationCard() : base(CardType.Situation)

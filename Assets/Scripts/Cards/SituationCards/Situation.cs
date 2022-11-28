@@ -1,6 +1,7 @@
 ﻿using System;
 using Cards.SituationCards.Event;
 using UnityEngine;
+using Widgets;
 
 namespace Cards.SituationCards
 {
@@ -18,6 +19,9 @@ namespace Cards.SituationCards
     public class CustomButton
     {
         [SerializeField] private string _name;
-        [SerializeField] private ButtonInteraction buttonInteraction;
+        [SerializeField] private ButtonInteraction _buttonInteraction;
+
+        public string Name => _name;
+        public ButtonInteraction ButtonInteraction => _buttonInteraction;
     }
 }

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: PoisonCard
   m_EditorClassIdentifier: 
   _id: Poisoning
-  _icon: {fileID: 21300000, guid: 07cec93d061797343829d6e60ecfb75b, type: 3}
+  _cardView: {fileID: 11400000, guid: 5ac9748b2e4a73e49ace6d9428245b1e, type: 2}
   _situation: {fileID: 11400000, guid: 91267698d00ffc6418cf91b0352490f4, type: 2}

@@ -53,9 +53,12 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Definitions\DefsFacade.cs" />
+     <Compile Include="Assets\Scripts\Cards\SituationCards\PhysicalCard\PhysicalCard.cs" />
      <Compile Include="Assets\Scripts\Model\Properties\ObservableProperty.cs" />
      <Compile Include="Assets\Scripts\UI\View\PropertyView.cs" />
+     <Compile Include="Assets\Scripts\Widgets\DataGroup.cs" />
      <Compile Include="Assets\Scripts\Cards\EnemyCard.cs" />
+     <Compile Include="Assets\Scripts\Widgets\PredefinedDataGroup.cs" />
      <Compile Include="Assets\Scripts\Definitions\LevelDefs\SituationCardDefs.cs" />
      <Compile Include="Assets\Scripts\CodeAnimation\RotateCard.cs" />
      <Compile Include="Assets\Scripts\Cards\LevelCard.cs" />
@@ -63,13 +66,17 @@
      <Compile Include="Assets\Scripts\Widgets\ItemWidget.cs" />
      <Compile Include="Assets\Scripts\Controllers\BaseController.cs" />
      <Compile Include="Assets\Scripts\Cards\SituationCards\Event\PropertyEvents\PoisonEvent.cs" />
+     <Compile Include="Assets\Scripts\Widgets\CardPropertyWidget.cs" />
+     <Compile Include="Assets\Scripts\Widgets\CustomButtonWidget.cs" />
      <Compile Include="Assets\Scripts\Cards\LevelCardFactory.cs" />
+     <Compile Include="Assets\Scripts\Cards\SituationCards\PhysicalCard\PhysicalCardView.cs" />
      <Compile Include="Assets\Scripts\PanelUtil.cs" />
      <Compile Include="Assets\Scripts\Cards\SituationCards\Event\PropertyEvents\PropertyEvent.cs" />
      <Compile Include="Assets\Scripts\LevelManipulation\FieldFormer.cs" />
      <Compile Include="Assets\Scripts\Cards\SituationCards\Event\ButtonInteraction.cs" />
      <Compile Include="Assets\Scripts\Widgets\PropertyWidget.cs" />
      <Compile Include="Assets\Scripts\LevelManipulation\ClickBlocker.cs" />
+     <Compile Include="Assets\Scripts\Cards\CardView.cs" />
      <Compile Include="Assets\Scripts\Cards\Card.cs" />
      <Compile Include="Assets\Scripts\Definitions\LevelDefs\EnemyCardDefs.cs" />
      <Compile Include="Assets\Scripts\Model\Data\PlayerData.cs" />
