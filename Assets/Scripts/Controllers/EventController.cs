@@ -1,21 +1,22 @@
 using System;
 using Cards;
 using Cards.SituationCards;
-using Cards.SituationCards.PhysicalCard;
+using Cards.SituationCards.EventCard;
 using UnityEngine;
 using UnityEngine.UI;
+using View;
 using Widgets;
 
 namespace Controllers
 {
     [Serializable]
-    public class EventController : BaseController
+    public class EventController : LevelController
     {
         [SerializeField] private Text _contents;
         [SerializeField] private Text _eventText;
         [SerializeField] private CustomButtonWidget _customButtonPrefab;
         [SerializeField] private Transform _buttonContainer;
-        [SerializeField] private PhysicalCard _physicalCard;
+        [SerializeField] private EventCard _eventCard;
 
         private DataGroup<CustomButtonWidget, CustomButton> _dataGroup;
 
@@ -30,7 +31,7 @@ namespace Controllers
             _contents.text = situationCard.Id;
             _eventText.text = situationCard.Situation.Description;
             _dataGroup.SetData(situationCard.Situation.Buttons);
-            _physicalCard.CardViewWidget.SetWidgetData(situationCard.CardView);
+            _eventCard.EventCardViewWidget.SetViewData((EventCardView)situationCard.View);
             
             base.Show(card);
         }

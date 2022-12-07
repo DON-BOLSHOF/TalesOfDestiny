@@ -11,5 +11,6 @@ public class GameSession : MonoBehaviour
     private void Awake()
     {
         SceneManager.LoadScene("HUD", LoadSceneMode.Additive);
+        SceneManager.LoadScene("Services", LoadSceneMode.Additive);
     }
 }

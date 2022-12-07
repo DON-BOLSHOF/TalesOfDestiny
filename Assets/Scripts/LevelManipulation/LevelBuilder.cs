@@ -5,7 +5,7 @@ using Widgets;
 
 namespace LevelManipulation
 {
-    public class LevelBuilder : MonoBehaviour
+    public sealed class LevelBuilder : MonoBehaviour
     {
         [SerializeField] private FieldFormer _fieldFormer;
         [SerializeField] private FieldBuilder _fieldBuilder;

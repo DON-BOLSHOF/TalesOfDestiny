@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cc3982a1b8647c18ee0ca7b50cb5a9a, type: 3}
   m_Name: GoblinCard
   m_EditorClassIdentifier: 
-  _id: GoblinAttack
+  _id: Goblin Attack
   _cardView: {fileID: 11400000, guid: 241978936ce6edd4a8136f9a28d1d3c9, type: 2}
   _situation: {fileID: 11400000, guid: 9fc15d6cebad3a041a467d896049ed59, type: 2}

@@ -1,6 +1,6 @@
 ﻿namespace Controllers
 {
-    public class BattleController : BaseController
+    public class BattleController : LevelController
     {
         
     }

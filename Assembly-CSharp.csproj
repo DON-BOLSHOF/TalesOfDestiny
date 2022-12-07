@@ -53,38 +53,42 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Definitions\DefsFacade.cs" />
-     <Compile Include="Assets\Scripts\Cards\SituationCards\PhysicalCard\PhysicalCard.cs" />
+     <Compile Include="Assets\Scripts\Cards\SituationCards\EventCard\EventCard.cs" />
      <Compile Include="Assets\Scripts\Model\Properties\ObservableProperty.cs" />
      <Compile Include="Assets\Scripts\UI\View\PropertyView.cs" />
      <Compile Include="Assets\Scripts\Widgets\DataGroup.cs" />
      <Compile Include="Assets\Scripts\Cards\EnemyCard.cs" />
      <Compile Include="Assets\Scripts\Widgets\PredefinedDataGroup.cs" />
      <Compile Include="Assets\Scripts\Definitions\LevelDefs\SituationCardDefs.cs" />
+     <Compile Include="Assets\Scripts\View\ItemWidgetView.cs" />
      <Compile Include="Assets\Scripts\CodeAnimation\RotateCard.cs" />
      <Compile Include="Assets\Scripts\Cards\LevelCard.cs" />
      <Compile Include="Assets\Scripts\Controllers\EventController.cs" />
      <Compile Include="Assets\Scripts\Widgets\ItemWidget.cs" />
-     <Compile Include="Assets\Scripts\Controllers\BaseController.cs" />
+     <Compile Include="Assets\Scripts\Controllers\LevelController.cs" />
      <Compile Include="Assets\Scripts\Cards\SituationCards\Event\PropertyEvents\PoisonEvent.cs" />
      <Compile Include="Assets\Scripts\Widgets\CardPropertyWidget.cs" />
      <Compile Include="Assets\Scripts\Widgets\CustomButtonWidget.cs" />
      <Compile Include="Assets\Scripts\Cards\LevelCardFactory.cs" />
-     <Compile Include="Assets\Scripts\Cards\SituationCards\PhysicalCard\PhysicalCardView.cs" />
+     <Compile Include="Assets\Scripts\Components\Audio\PlaySFXSound.cs" />
+     <Compile Include="Assets\Scripts\View\EventCardView.cs" />
      <Compile Include="Assets\Scripts\PanelUtil.cs" />
      <Compile Include="Assets\Scripts\Cards\SituationCards\Event\PropertyEvents\PropertyEvent.cs" />
      <Compile Include="Assets\Scripts\LevelManipulation\FieldFormer.cs" />
      <Compile Include="Assets\Scripts\Cards\SituationCards\Event\ButtonInteraction.cs" />
      <Compile Include="Assets\Scripts\Widgets\PropertyWidget.cs" />
      <Compile Include="Assets\Scripts\LevelManipulation\ClickBlocker.cs" />
-     <Compile Include="Assets\Scripts\Cards\CardView.cs" />
+     <Compile Include="Assets\Scripts\View\CardView.cs" />
      <Compile Include="Assets\Scripts\Cards\Card.cs" />
      <Compile Include="Assets\Scripts\Definitions\LevelDefs\EnemyCardDefs.cs" />
      <Compile Include="Assets\Scripts\Model\Data\PlayerData.cs" />
      <Compile Include="Assets\Scripts\Definitions\CardDefs.cs" />
      <Compile Include="Assets\Scripts\Cards\SituationCards\Event\ArmyEvents\ArmyEvent.cs" />
+     <Compile Include="Assets\Scripts\Utils\AudioUtils.cs" />
      <Compile Include="Assets\Scripts\Definitions\EventDefs\PropertyEventDef.cs" />
      <Compile Include="Assets\Scripts\CodeAnimation\BlightOnMouseCard.cs" />
      <Compile Include="Assets\Scripts\Cards\SituationCards\SituationCard.cs" />
+     <Compile Include="Assets\Scripts\View\EventCardViewWidget.cs" />
      <Compile Include="Assets\Scripts\LevelManipulation\FieldBuilder.cs" />
      <Compile Include="Assets\Scripts\Utils\Disposables\ActionDisposable.cs" />
      <Compile Include="Assets\Scripts\LevelManipulation\CellInfo.cs" />
@@ -94,6 +98,7 @@
      <Compile Include="Assets\Scripts\Cards\SituationCards\Situation.cs" />
      <Compile Include="Assets\Scripts\GameSession.cs" />
      <Compile Include="Assets\Scripts\Utils\Disposables\DisposeHolder.cs" />
+     <None Include="Assets\Shaders\DissolveShaderWithMask.shader" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity 2020.3.38f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>

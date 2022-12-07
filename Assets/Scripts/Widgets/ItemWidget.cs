@@ -1,31 +1,34 @@
-using System;
 using Cards;
-using Cards.SituationCards;
 using Controllers;
 using UnityEngine;
+using View;
 
 namespace Widgets
 {
-    public class ItemWidget : MonoBehaviour
+    public sealed class ItemWidget : MonoBehaviour
     {
+        [SerializeField] private Animator _animator;
+        [SerializeField] private ItemWidgetView _view;
+        
         private LevelCard _card;
-        private BaseController _controller;
-    
+        private LevelController _controller;
+        
+        private static readonly int Swap = Animator.StringToHash("Swap");
+
         public void SetData(LevelCard card)
         {
             _card = card;
+            _view.SetViewData(_card.View);
         }
         public void Click()
         {
-            LevelCard card = default;
-            
             if (_card.Type == CardType.Situation)
             {
                 _controller = FindObjectOfType<EventController>();
-                card = (SituationCard)_card;
             }
             
-            _controller.Show(card);
+            _animator.SetTrigger(Swap);
+            _controller.Show(_card);
         }
     }
 }
