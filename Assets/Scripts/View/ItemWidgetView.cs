@@ -11,7 +11,7 @@ namespace View
         public Image BackgroundIcon => _background;
         public Image ItemIcon => _itemIcon;
         
-        public void SetViewData(CardView view)
+        public virtual void SetViewData(CardView view)
         {
             _background.sprite = view.BackgroundView;
             _itemIcon.sprite = view.MainView;

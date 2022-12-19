@@ -13,7 +13,12 @@ namespace View
         [Header("Banners")]
         [SerializeField] private Text _nameBanner;
         [SerializeField] private Text _descriptionBanner;
-        
+
+        [Space] [Header("OffSet")]
+        [SerializeField] private float widgetOffsetCorrection; //Здесь уж точно нужен комментарий. 
+                                                           //В общем, у разных иконок разные offset-ы(они в самих view лежат)
+                                                           //=> widget-ы сами по себе разных размеров, так что нужна поправка
+                                                           //у самого виджета   
         public Transform PropertiesPosition => _propertiesIconsPosition;
 
         public Text NameBanner => _nameBanner;
@@ -21,16 +26,17 @@ namespace View
 
         private PredefinedDataGroup<CardPropertyWidget, Sprite> _dataGroup; 
         
-        public void SetViewData(EventCardView cardView)
+        public override void SetViewData(CardView cardView)
         {
             base.SetViewData(cardView);
+            var eventCardView = (EventCardView)cardView;
             _dataGroup ??= new PredefinedDataGroup<CardPropertyWidget, Sprite>(PropertiesPosition);
 
-            ItemIcon.rectTransform.anchoredPosition = Vector3.zero + cardView.IconOffset; // Ну по идее это так же относится к дате, так что вроде нормально сюда вставлять
+            ItemIcon.rectTransform.anchoredPosition = Vector3.zero + eventCardView.IconOffset * widgetOffsetCorrection ; // Ну по идее это так же относится к дате, так что вроде нормально сюда вставлять
             
-            _dataGroup.SetData(cardView.PropertyIcons);
+            _dataGroup.SetData(eventCardView.PropertyIcons);
             NameBanner.text = cardView.Id;
-            DescriptionBanner.text = cardView.Wisecrack;
+            DescriptionBanner.text = eventCardView.Wisecrack;
         }
     }
 }

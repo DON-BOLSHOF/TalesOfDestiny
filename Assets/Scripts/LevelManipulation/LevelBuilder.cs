@@ -10,7 +10,7 @@ namespace LevelManipulation
         [SerializeField] private FieldFormer _fieldFormer;
         [SerializeField] private FieldBuilder _fieldBuilder;
 
-        private readonly List<List<GameObject>> _field = new List<List<GameObject>>();
+        private readonly List<List<GameObject>> _fieldPull = new List<List<GameObject>>();
         private Vector2 _tableSize;
         
         private void Awake()
@@ -32,8 +32,8 @@ namespace LevelManipulation
                 for (var x = 0; x < info[0].Count; x++)
                 {
                     if ((int)info[y][x].CurrentCellState <= 1) continue;
-                    _field[y][x].SetActive(true);
-                    FulFillCard(_field[y][x]);
+                    _fieldPull[y][x].SetActive(true);
+                    FulFillCard(_fieldPull[y][x]);
                 }
             }
         }
@@ -46,12 +46,11 @@ namespace LevelManipulation
                 var rowInstance = new List<GameObject>();
                 foreach (var row in rows)
                 {
-                    var instantiate = Instantiate(row.Prefab, _fieldFormer.Field);
-                    instantiate.GetComponent<RectTransform>().anchoredPosition = row.Position;
+                    var instantiate = ItemWidgetFactory.CreateInstance(row.Prefab, _fieldFormer.Field, row.Position);
                     rowInstance.Add(instantiate);
                 }
                 
-                _field.Add(rowInstance);
+                _fieldPull.Add(rowInstance);
             }
 
             _tableSize = new Vector2(field.Count, field[0].Count);
@@ -59,8 +58,9 @@ namespace LevelManipulation
 
         private void FulFillCard(GameObject go)
         {
-            var card = LevelCardFactory.GetLevelCardRandomly(); 
-            go.GetComponent<ItemWidget>().SetData(card);
+            var cardWidget = go.GetComponent<ItemWidget>();
+            
+            ItemWidgetFactory.FulFillItemWidget(cardWidget);
         }
     }
 }

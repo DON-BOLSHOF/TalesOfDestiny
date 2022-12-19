@@ -62,6 +62,7 @@
      <Compile Include="Assets\Scripts\Definitions\LevelDefs\SituationCardDefs.cs" />
      <Compile Include="Assets\Scripts\View\ItemWidgetView.cs" />
      <Compile Include="Assets\Scripts\CodeAnimation\RotateCard.cs" />
+     <Compile Include="Assets\Scripts\Cards\ItemWidgetFactory.cs" />
      <Compile Include="Assets\Scripts\Cards\LevelCard.cs" />
      <Compile Include="Assets\Scripts\Controllers\EventController.cs" />
      <Compile Include="Assets\Scripts\Widgets\ItemWidget.cs" />
@@ -80,11 +81,13 @@
      <Compile Include="Assets\Scripts\LevelManipulation\ClickBlocker.cs" />
      <Compile Include="Assets\Scripts\View\CardView.cs" />
      <Compile Include="Assets\Scripts\Cards\Card.cs" />
+     <Compile Include="Assets\Scripts\Components\TimerComponent.cs" />
      <Compile Include="Assets\Scripts\Definitions\LevelDefs\EnemyCardDefs.cs" />
      <Compile Include="Assets\Scripts\Model\Data\PlayerData.cs" />
      <Compile Include="Assets\Scripts\Definitions\CardDefs.cs" />
      <Compile Include="Assets\Scripts\Cards\SituationCards\Event\ArmyEvents\ArmyEvent.cs" />
      <Compile Include="Assets\Scripts\Utils\AudioUtils.cs" />
+     <Compile Include="Assets\Scripts\CodeAnimation\SpriteFrameAnimation.cs" />
      <Compile Include="Assets\Scripts\Definitions\EventDefs\PropertyEventDef.cs" />
      <Compile Include="Assets\Scripts\CodeAnimation\BlightOnMouseCard.cs" />
      <Compile Include="Assets\Scripts\Cards\SituationCards\SituationCard.cs" />

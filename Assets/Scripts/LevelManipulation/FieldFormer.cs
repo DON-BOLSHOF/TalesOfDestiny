@@ -10,6 +10,8 @@ namespace LevelManipulation
     {
         [SerializeField] private GameObject _prefab;
         [SerializeField] private RectTransform _field;
+
+        [SerializeField] private int _prefabOffset = 25;
         public RectTransform Field => _field;
 
         private List<List<FieldItem>> _fieldItems = new List<List<FieldItem>>();
@@ -20,8 +22,8 @@ namespace LevelManipulation
             var prefabSize = sizTransform.sizeDelta;
 
             var sizeDelta = _field.sizeDelta;
-            var newX = (int)sizeDelta.x / (int)(prefabSize.x+5);
-            var newY = (int)sizeDelta.y / (int)(prefabSize.y+5);
+            var newX = (int)sizeDelta.x / (int)(prefabSize.x+_prefabOffset);
+            var newY = (int)sizeDelta.y / (int)(prefabSize.y+_prefabOffset);
 
             var neededMatrix = new Vector2(newX, newY);
             for (int i = 0; i < neededMatrix.y; i++)
@@ -30,7 +32,7 @@ namespace LevelManipulation
                 
                 for (int j = 0; j < neededMatrix.x; j++)
                 {
-                    var delta = new Vector2(j * (prefabSize.x + 5), -i* (prefabSize.y+5));
+                    var delta = new Vector2(j * (prefabSize.x + _prefabOffset), -i* (prefabSize.y+_prefabOffset));
                     var pos = _field.GetComponent<RectTransform>().anchoredPosition + delta;
 
                     var item = new FieldItem(_prefab, pos);

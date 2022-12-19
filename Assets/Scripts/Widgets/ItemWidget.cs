@@ -7,18 +7,25 @@ namespace Widgets
 {
     public sealed class ItemWidget : MonoBehaviour
     {
-        [SerializeField] private Animator _animator;
-        [SerializeField] private ItemWidgetView _view;
-        
         private LevelCard _card;
         private LevelController _controller;
-        
+      
+        private ItemWidgetView _view;
+        private Animator _viewAnimator;
+
         private static readonly int Swap = Animator.StringToHash("Swap");
+
+        private void SetViewData(CardView cardView)
+        {
+            _view = GetComponentInChildren<ItemWidgetView>();
+            _viewAnimator = _view.GetComponent<Animator>();
+            _view.SetViewData(cardView);
+        }
 
         public void SetData(LevelCard card)
         {
             _card = card;
-            _view.SetViewData(_card.View);
+            SetViewData(card.View);
         }
         public void Click()
         {
@@ -27,7 +34,7 @@ namespace Widgets
                 _controller = FindObjectOfType<EventController>();
             }
             
-            _animator.SetTrigger(Swap);
+            _viewAnimator.SetTrigger(Swap);
             _controller.Show(_card);
         }
     }
