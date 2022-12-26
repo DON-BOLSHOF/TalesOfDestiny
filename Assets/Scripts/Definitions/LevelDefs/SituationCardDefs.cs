@@ -1,5 +1,4 @@
-﻿using Cards;
-using Cards.SituationCards;
+﻿using Cards.SituationCards;
 using UnityEngine;
 
 namespace Definitions.LevelDefs

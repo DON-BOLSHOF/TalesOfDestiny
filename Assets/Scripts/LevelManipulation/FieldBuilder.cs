@@ -6,11 +6,10 @@ using Random = System.Random;
 
 namespace LevelManipulation
 {
-    [Serializable]
     public class FieldBuilder
     {
+        private int _maxCardAmount = 10;
         private List<List<CellInfo>> _field = new List<List<CellInfo>>();
-        [SerializeField] private int _maxCardAmount = 10;
 
         private Vector2 _currentPosition;
         private Vector2 _heroPosition;
@@ -34,7 +33,7 @@ namespace LevelManipulation
             return SpawnLevel();
         }
 
-        private List<List<CellInfo>> ReloadLevel()
+        public List<List<CellInfo>> ReloadLevel()
         {
             _currentCardAmount = 0;
             _field.ForEach(delegate(List<CellInfo> list) { list.ForEach(delegate(CellInfo field)
@@ -107,7 +106,7 @@ namespace LevelManipulation
                 return true;
             }
 
-            _field[(int)pos.x][(int)pos.y].Visit(CellState.Checked);
+            _field[(int)pos.x][(int)pos.y].Check();
             return false;
         }
 
@@ -116,22 +115,22 @@ namespace LevelManipulation
             AroundPosition result = AroundPosition.None;
 
             var leftPos = IsInTable(new Vector2(pos.x, pos.y - 1)) &&
-                          _field[(int)(pos.x)][(int)pos.y - 1].CurrentCellState == CellState.UnChecked;
+                          !_field[(int)(pos.x)][(int)pos.y - 1].IsChecked;
             if (leftPos)
                 result |= AroundPosition.Left;
 
             var topPos = IsInTable(new Vector2(pos.x - 1, pos.y)) && //Y сверху вниз идет
-                         _field[(int)(pos.x - 1)][(int)pos.y].CurrentCellState == CellState.UnChecked;
+                         !_field[(int)(pos.x - 1)][(int)pos.y].IsChecked;
             if (topPos)
                 result |= AroundPosition.Top;
 
             var rightPos = IsInTable(new Vector2(pos.x, pos.y + 1)) &&
-                           _field[(int)(pos.x)][(int)pos.y + 1].CurrentCellState == CellState.UnChecked;
+                           !_field[(int)(pos.x)][(int)pos.y + 1].IsChecked;
             if (rightPos)
                 result |= AroundPosition.Right;
 
             var bottomPos = IsInTable(new Vector2(pos.x + 1, pos.y)) &&
-                            _field[(int)(pos.x + 1)][(int)pos.y].CurrentCellState == CellState.UnChecked;
+                            !_field[(int)(pos.x + 1)][(int)pos.y].IsChecked;
             if (bottomPos)
                 result |= AroundPosition.Bottom;
 

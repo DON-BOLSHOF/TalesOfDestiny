@@ -1,5 +1,6 @@
 ﻿using Cards.SituationCards;
 using Cards.SituationCards.Event;
+using LevelManipulation;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,6 +23,7 @@ namespace Widgets
         {
             _interaction.SetPlayerData(FindObjectOfType<GameSession>().Data).OnClick();
             _interaction.SetPanelButton(_panelUtil).OnClick();
+            _interaction.SetLevelManagerButton(FindObjectOfType<LevelManager>()).OnClick();
         }
     }
 }

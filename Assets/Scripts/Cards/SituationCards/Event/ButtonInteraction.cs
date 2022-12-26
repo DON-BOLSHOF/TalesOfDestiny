@@ -1,6 +1,7 @@
 ﻿using System;
 using Cards.SituationCards.Event.ArmyEvents;
 using Cards.SituationCards.Event.PropertyEvents;
+using LevelManipulation;
 using Model.Data;
 using UnityEngine;
 
@@ -21,6 +22,11 @@ namespace Cards.SituationCards.Event
         public PanelUtilButton SetPanelButton(PanelUtil panelUtil)
         {
             return new PanelUtilButton(panelUtil, this);
+        }
+
+        public LevelManagerButton SetLevelManagerButton(LevelManager manager)
+        {
+            return new LevelManagerButton(manager, this);
         }
 
         public class PlayerDataButton
@@ -44,7 +50,7 @@ namespace Cards.SituationCards.Event
             }
         }
         
-        public class PanelUtilButton
+        public class PanelUtilButton // В дальнейшем выдели базовый класс и все переопредели при рефакторинге!
         {
             private PanelUtil _util;
             private ButtonInteraction _interaction;
@@ -57,8 +63,26 @@ namespace Cards.SituationCards.Event
 
             public void OnClick()//Ну кнопка вообще не должна знать о playerData игрока, но ...
             {
-                if ((_interaction._type & EventType.Close) == EventType.Close)
+                if ((_interaction._type & EventType.ClosePanel) == EventType.ClosePanel)
                     _util.Dissolve();
+            }
+        }
+        
+        public class LevelManagerButton
+        {
+            private LevelManager _manager;
+            private ButtonInteraction _interaction;
+
+            public LevelManagerButton(LevelManager manager, ButtonInteraction interaction)
+            {
+                _manager = manager;
+                _interaction = interaction;
+            }
+
+            public void OnClick()
+            {
+                if ((_interaction._type & EventType.EndJourney) == EventType.EndJourney)
+                    _manager.Reload();
             }
         }
     }
@@ -70,8 +94,9 @@ namespace Cards.SituationCards.Event
         ArmyVisitor = 1,
         PropertyVisitor = 2,
         EquipVisitor = 4,
-        Continue = 8,
-        Close = 16,
-        Everything = 31
+        ContinueEvent = 8,
+        ClosePanel = 16,
+        EndJourney = 32, 
+        Everything = 63
     }
 }

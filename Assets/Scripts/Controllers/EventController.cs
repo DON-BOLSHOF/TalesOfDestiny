@@ -5,6 +5,7 @@ using Cards.SituationCards.EventCard;
 using UnityEngine;
 using UnityEngine.UI;
 using View;
+using View.EventCardView;
 using Widgets;
 
 namespace Controllers

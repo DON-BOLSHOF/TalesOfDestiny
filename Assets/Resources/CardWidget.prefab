@@ -17,6 +17,8 @@ GameObject:
   - component: {fileID: 6040469146460954934}
   - component: {fileID: 4007267668940272353}
   - component: {fileID: 6257387432271017093}
+  - component: {fileID: -1363878243064053824}
+  - component: {fileID: 1618577961910973648}
   m_Layer: 0
   m_Name: CardWidget
   m_TagString: Untagged
@@ -234,6 +236,48 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &-1363878243064053824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 17940878376319565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3def252c72434a72b247daa9be3123b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _behaviours:
+  - {fileID: 6040469146460954934}
+  - {fileID: 5642897669455626342}
+--- !u!114 &1618577961910973648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 17940878376319565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 283103e8351944bb976f159388158305, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnPositionChanged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -1363878243064053824}
+        m_TargetAssemblyTypeName: Components.BehaviorsSwitcherComponent, Assembly-CSharp
+        m_MethodName: Switch
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8116553376135259898
 GameObject:
   m_ObjectHideFlags: 0

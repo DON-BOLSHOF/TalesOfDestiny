@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using Widgets;
 
-namespace View
+namespace View.EventCardView
 {
     public sealed class EventCardViewWidget : ItemWidgetView
     {

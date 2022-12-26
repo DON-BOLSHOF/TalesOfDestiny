@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace View
 {
-    public class ItemWidgetView : MonoBehaviour
+    public class ItemWidgetView : MonoBehaviour // Вообще можно абстрактным сделать, но пусть на CardView лучше весит
     {
         [SerializeField] private Image _background;
         [SerializeField] private Image _itemIcon;

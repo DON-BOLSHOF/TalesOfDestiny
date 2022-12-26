@@ -4,20 +4,28 @@ namespace LevelManipulation
 {
     public class CellInfo
     {
+        private Vector2 _pos;
+        public Vector2 Position => _pos;
+        
+
+        private CellState _cellState = CellState.None;
+        public CellState CurrentCellState => _cellState;
+
+        private bool _isChecked;
+        public bool IsChecked => _isChecked;
+
         public CellInfo(Vector2 pos)
         {
             _pos = pos;
         }
 
-        private Vector2 _pos;
-        public Vector2 Position => _pos;
-
-        private CellState _cellState = CellState.UnChecked;
-        public CellState CurrentCellState => _cellState;
-
+        public void Check()
+        {
+            _isChecked = true;
+        }
         public void SetDefaultState()
         {
-            _cellState = CellState.UnChecked;
+            _cellState = CellState.None;
         }
 
         public void Visit(CellState cellState)
@@ -28,8 +36,7 @@ namespace LevelManipulation
 
     public enum CellState
     {
-        UnChecked,
-        Checked,
+        None,
         CardPosition,
         HeroPosition,
         EndJourneyPosition

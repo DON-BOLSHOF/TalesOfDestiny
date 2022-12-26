@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace View
+namespace View.EventCardView
 {
     [CreateAssetMenu(menuName = "CardView/EventCardView", fileName = "EventCardView")]
     public class EventCardView : CardView

@@ -9,10 +9,10 @@ namespace Widgets
     {
         private LevelCard _card;
         private LevelController _controller;
-      
+
         private ItemWidgetView _view;
         private Animator _viewAnimator;
-
+        
         private static readonly int Swap = Animator.StringToHash("Swap");
 
         private void SetViewData(CardView cardView)
@@ -27,13 +27,14 @@ namespace Widgets
             _card = card;
             SetViewData(card.View);
         }
+
         public void Click()
         {
             if (_card.Type == CardType.Situation)
             {
                 _controller = FindObjectOfType<EventController>();
             }
-            
+
             _viewAnimator.SetTrigger(Swap);
             _controller.Show(_card);
         }

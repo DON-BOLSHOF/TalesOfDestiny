@@ -19,7 +19,7 @@ namespace Cards
         public static void FulFillItemWidget(ItemWidget cardWidget)
         {
             DeactivatePossibleView(cardWidget);
-            
+
             var card = LevelCardFactory.GetLevelCardRandomly();
 
             ItemWidgetView cardView = default;
@@ -34,14 +34,13 @@ namespace Cards
                 default:
                 {
                     throw new ArgumentException($"Invalid type of card: {card.Type}");
-                    break;
                 }
             }
 
-           var instantiate =  Object.Instantiate(cardView, cardWidget.transform, false);
-           instantiate.transform.SetSiblingIndex(1);
-           
-           cardWidget.GetComponent<ItemWidget>().SetData(card);
+            var instantiate = Object.Instantiate(cardView, cardWidget.transform, false);
+            instantiate.transform.SetSiblingIndex(1);
+
+            cardWidget.GetComponent<ItemWidget>().SetData(card);
         }
 
         private static void DeactivatePossibleView(ItemWidget cardWidget)

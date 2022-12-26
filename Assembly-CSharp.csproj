@@ -54,6 +54,9 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Definitions\DefsFacade.cs" />
      <Compile Include="Assets\Scripts\Cards\SituationCards\EventCard\EventCard.cs" />
+     <Compile Include="Assets\Scripts\HeroScript.cs" />
+     <Compile Include="Assets\Scripts\Cards\SituationCards\EndJourneyCards\EndJourneyCard.cs" />
+     <Compile Include="Assets\Scripts\View\EndJourneyView\EndJourneyCardViewWidget.cs" />
      <Compile Include="Assets\Scripts\Model\Properties\ObservableProperty.cs" />
      <Compile Include="Assets\Scripts\UI\View\PropertyView.cs" />
      <Compile Include="Assets\Scripts\Widgets\DataGroup.cs" />
@@ -65,6 +68,7 @@
      <Compile Include="Assets\Scripts\Cards\ItemWidgetFactory.cs" />
      <Compile Include="Assets\Scripts\Cards\LevelCard.cs" />
      <Compile Include="Assets\Scripts\Controllers\EventController.cs" />
+     <Compile Include="Assets\Scripts\Components\HeroPositionBeholderComponent.cs" />
      <Compile Include="Assets\Scripts\Widgets\ItemWidget.cs" />
      <Compile Include="Assets\Scripts\Controllers\LevelController.cs" />
      <Compile Include="Assets\Scripts\Cards\SituationCards\Event\PropertyEvents\PoisonEvent.cs" />
@@ -72,10 +76,12 @@
      <Compile Include="Assets\Scripts\Widgets\CustomButtonWidget.cs" />
      <Compile Include="Assets\Scripts\Cards\LevelCardFactory.cs" />
      <Compile Include="Assets\Scripts\Components\Audio\PlaySFXSound.cs" />
-     <Compile Include="Assets\Scripts\View\EventCardView.cs" />
+     <Compile Include="Assets\Scripts\View\EventCardView\EventCardView.cs" />
+     <Compile Include="Assets\Scripts\LevelManipulation\CellWidget.cs" />
      <Compile Include="Assets\Scripts\PanelUtil.cs" />
      <Compile Include="Assets\Scripts\Cards\SituationCards\Event\PropertyEvents\PropertyEvent.cs" />
      <Compile Include="Assets\Scripts\LevelManipulation\FieldFormer.cs" />
+     <Compile Include="Assets\Scripts\Components\BehaviorsSwitcherComponent.cs" />
      <Compile Include="Assets\Scripts\Cards\SituationCards\Event\ButtonInteraction.cs" />
      <Compile Include="Assets\Scripts\Widgets\PropertyWidget.cs" />
      <Compile Include="Assets\Scripts\LevelManipulation\ClickBlocker.cs" />
@@ -83,20 +89,23 @@
      <Compile Include="Assets\Scripts\Cards\Card.cs" />
      <Compile Include="Assets\Scripts\Components\TimerComponent.cs" />
      <Compile Include="Assets\Scripts\Definitions\LevelDefs\EnemyCardDefs.cs" />
+     <Compile Include="Assets\Scripts\View\EndJourneyView\EndJourneyCardView.cs" />
      <Compile Include="Assets\Scripts\Model\Data\PlayerData.cs" />
      <Compile Include="Assets\Scripts\Definitions\CardDefs.cs" />
      <Compile Include="Assets\Scripts\Cards\SituationCards\Event\ArmyEvents\ArmyEvent.cs" />
+     <Compile Include="Assets\Scripts\LevelManipulation\LevelManager.cs" />
      <Compile Include="Assets\Scripts\Utils\AudioUtils.cs" />
      <Compile Include="Assets\Scripts\CodeAnimation\SpriteFrameAnimation.cs" />
      <Compile Include="Assets\Scripts\Definitions\EventDefs\PropertyEventDef.cs" />
      <Compile Include="Assets\Scripts\CodeAnimation\BlightOnMouseCard.cs" />
      <Compile Include="Assets\Scripts\Cards\SituationCards\SituationCard.cs" />
-     <Compile Include="Assets\Scripts\View\EventCardViewWidget.cs" />
+     <Compile Include="Assets\Scripts\View\EventCardView\EventCardViewWidget.cs" />
      <Compile Include="Assets\Scripts\LevelManipulation\FieldBuilder.cs" />
      <Compile Include="Assets\Scripts\Utils\Disposables\ActionDisposable.cs" />
      <Compile Include="Assets\Scripts\LevelManipulation\CellInfo.cs" />
      <Compile Include="Assets\Scripts\LevelManipulation\LevelBuilder.cs" />
      <Compile Include="Assets\Scripts\UI\HUDController.cs" />
+     <Compile Include="Assets\Scripts\Definitions\LevelDefs\EndJourneyCardDefs.cs" />
      <Compile Include="Assets\Scripts\Controllers\BattleController.cs" />
      <Compile Include="Assets\Scripts\Cards\SituationCards\Situation.cs" />
      <Compile Include="Assets\Scripts\GameSession.cs" />

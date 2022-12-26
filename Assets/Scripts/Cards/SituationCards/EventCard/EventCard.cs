@@ -1,5 +1,6 @@
 using UnityEngine;
 using View;
+using View.EventCardView;
 using Widgets;
 
 namespace Cards.SituationCards.EventCard
