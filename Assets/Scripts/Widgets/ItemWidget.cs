@@ -1,24 +1,19 @@
-using Cards;
-using Controllers;
+﻿using Cards;
 using UnityEngine;
 using View;
 
 namespace Widgets
 {
-    public sealed class ItemWidget : MonoBehaviour
+    public abstract class ItemWidget : MonoBehaviour
     {
-        private LevelCard _card;
-        private LevelController _controller;
+        protected ItemWidgetView _view;
+        protected LevelCard _card;
 
-        private ItemWidgetView _view;
-        private Animator _viewAnimator;
+        public ItemWidgetView View => _view;
         
-        private static readonly int Swap = Animator.StringToHash("Swap");
-
         private void SetViewData(CardView cardView)
         {
             _view = GetComponentInChildren<ItemWidgetView>();
-            _viewAnimator = _view.GetComponent<Animator>();
             _view.SetViewData(cardView);
         }
 
@@ -26,17 +21,6 @@ namespace Widgets
         {
             _card = card;
             SetViewData(card.View);
-        }
-
-        public void Click()
-        {
-            if (_card.Type == CardType.Situation)
-            {
-                _controller = FindObjectOfType<EventController>();
-            }
-
-            _viewAnimator.SetTrigger(Swap);
-            _controller.Show(_card);
         }
     }
 }

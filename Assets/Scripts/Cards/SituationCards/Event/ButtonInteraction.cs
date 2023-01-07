@@ -24,9 +24,9 @@ namespace Cards.SituationCards.Event
             return new PanelUtilButton(panelUtil, this);
         }
 
-        public LevelManagerButton SetLevelManagerButton(LevelManager manager)
+        public LevelManagerButton SetLevelManagerButton(LevelBoard board)
         {
-            return new LevelManagerButton(manager, this);
+            return new LevelManagerButton(board, this);
         }
 
         public class PlayerDataButton
@@ -70,19 +70,19 @@ namespace Cards.SituationCards.Event
         
         public class LevelManagerButton
         {
-            private LevelManager _manager;
+            private LevelBoard _board;
             private ButtonInteraction _interaction;
 
-            public LevelManagerButton(LevelManager manager, ButtonInteraction interaction)
+            public LevelManagerButton(LevelBoard board, ButtonInteraction interaction)
             {
-                _manager = manager;
+                _board = board;
                 _interaction = interaction;
             }
 
             public void OnClick()
             {
                 if ((_interaction._type & EventType.EndJourney) == EventType.EndJourney)
-                    _manager.Reload();
+                    _board.Reload();
             }
         }
     }
@@ -97,6 +97,6 @@ namespace Cards.SituationCards.Event
         ContinueEvent = 8,
         ClosePanel = 16,
         EndJourney = 32, 
-        Everything = 63
+        Battle = 64
     }
 }

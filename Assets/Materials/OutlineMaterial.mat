@@ -40,5 +40,5 @@ Material:
     - _OutlineThickness: 5
     m_Colors:
     - Color_6c092d36608f4faca3006d98bc5d1412: {r: 14.556863, g: 2.7607844, b: 10.792157, a: 1}
-    - _OutlineGlow: {r: 0.40784314, g: 0.45490196, b: 1.7019608, a: 0}
+    - _OutlineGlow: {r: 0.22397178, g: 0.19370532, b: 1.1561786, a: 0}
   m_BuildTextureStacks: []

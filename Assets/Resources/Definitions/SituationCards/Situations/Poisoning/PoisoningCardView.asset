@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: PoisoningCardView
   m_EditorClassIdentifier: 
   _id: Poisoning
-  _cardView: {fileID: 21300000, guid: 07cec93d061797343829d6e60ecfb75b, type: 3}
   _backgroundView: {fileID: -2911543735414889503, guid: 1923bcea0e5d7e04fb8d7cf84c1a97db, type: 3}
+  _mainView: {fileID: 21300000, guid: 07cec93d061797343829d6e60ecfb75b, type: 3}
   _iconOffset: {x: 0, y: -8, z: 0}
   _propertyIcons:
   - {fileID: 21300000, guid: 2a579ca4992e567498939208b582b0ae, type: 3}

@@ -10,7 +10,7 @@ namespace Components
         [SerializeField] private UnityEvent<bool> OnPositionChanged;
         
         private Vector2 _myPosition;
-        private LevelManager _manager;
+        private LevelBoard _board;
 
         private readonly DisposeHolder _trash = new DisposeHolder();
 
@@ -19,7 +19,7 @@ namespace Components
             _myPosition = position;
         }
 
-        private void OnHeroPositionChanged(Vector2 heroPosition)
+        private void OnHeroPositionChanged(Vector2Int heroPosition)
         {
             var delta = _myPosition - heroPosition;
             var inside = Vector2.Dot(delta, delta) <= 1;
@@ -29,10 +29,10 @@ namespace Components
 
         private void OnEnable()
         {
-            if (_manager == null)
-                _manager = FindObjectOfType<LevelManager>();
+            if (_board == null)
+                _board = FindObjectOfType<LevelBoard>();
 
-            _trash.Retain(_manager.HeroPosition.Subscribe(OnHeroPositionChanged));
+            _trash.Retain(_board.HeroPosition.Subscribe(OnHeroPositionChanged));
         }
 
         private void OnDisable()

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: GoblinCardView
   m_EditorClassIdentifier: 
   _id: Goblins
-  _cardView: {fileID: 21300000, guid: 303b6462f44d62d41bbff906c56e303b, type: 3}
   _backgroundView: {fileID: -32110578518799540, guid: 1923bcea0e5d7e04fb8d7cf84c1a97db, type: 3}
+  _mainView: {fileID: 21300000, guid: 303b6462f44d62d41bbff906c56e303b, type: 3}
   _iconOffset: {x: 0, y: -65, z: 0}
   _propertyIcons:
   - {fileID: 21300000, guid: 90efa78420f4241479fc157811be5672, type: 3}

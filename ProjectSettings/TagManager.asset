@@ -8,6 +8,7 @@ TagManager:
   - EventController
   - BattleController
   - SFXAudioSource
+  - PanelUtil
   layers:
   - Default
   - TransparentFX

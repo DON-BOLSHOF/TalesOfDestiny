@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8445785019880809223}
   - component: {fileID: 8445785019880809222}
-  - component: {fileID: 8445785019880809220}
   - component: {fileID: 8445785019880809242}
   - component: {fileID: 8445785019880809221}
   - component: {fileID: 5481881075372202037}
@@ -86,30 +85,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8445785019880809220
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8445785019880809217}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d794920204e7d514eada3f33c4f87e2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _frameTime: 0.07
-  _sprites:
-  - {fileID: 3204480812468917802, guid: 67c03aab567bf3643a5f84eaf5c61888, type: 3}
-  - {fileID: 3522011133049882637, guid: 67c03aab567bf3643a5f84eaf5c61888, type: 3}
-  - {fileID: -2907624155043114565, guid: 67c03aab567bf3643a5f84eaf5c61888, type: 3}
-  - {fileID: -970496918810939563, guid: 67c03aab567bf3643a5f84eaf5c61888, type: 3}
-  - {fileID: -6943447523856610506, guid: 67c03aab567bf3643a5f84eaf5c61888, type: 3}
-  - {fileID: -7487436801176157817, guid: 67c03aab567bf3643a5f84eaf5c61888, type: 3}
-  - {fileID: 8706567805487113664, guid: 67c03aab567bf3643a5f84eaf5c61888, type: 3}
-  - {fileID: 4588736447598766473, guid: 67c03aab567bf3643a5f84eaf5c61888, type: 3}
-  - {fileID: -436730644578740556, guid: 67c03aab567bf3643a5f84eaf5c61888, type: 3}
-  - {fileID: 6042557600975065454, guid: 67c03aab567bf3643a5f84eaf5c61888, type: 3}
 --- !u!50 &8445785019880809242
 Rigidbody2D:
   serializedVersion: 4
@@ -143,10 +118,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb24ff7a3d2a2d948a6fc91f51a5a0dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _velocity: 0.5
+  _curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.16460115
+      value: 0.08737397
+      inSlope: 0.8950957
+      outSlope: 0.8950957
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.11773969
+    - serializedVersion: 3
+      time: 0.8887836
+      value: 0.95375574
+      inSlope: 0.48096213
+      outSlope: 0.48096213
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.24459863
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1.033905
+      value: 1
+      inSlope: -0.048925646
+      outSlope: -0.048925646
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.22500001
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _velocity: 1.2
+  _animator: {fileID: 5481881075372202037}
+  _inversed: 0
 --- !u!95 &5481881075372202037
 Animator:
-  serializedVersion: 3
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -159,7 +178,8 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0

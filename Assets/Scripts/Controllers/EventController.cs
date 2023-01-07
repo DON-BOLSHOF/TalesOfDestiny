@@ -1,11 +1,9 @@
 using System;
 using Cards;
 using Cards.SituationCards;
-using Cards.SituationCards.EventCard;
+using Cards.SituationCards.PhysicalCard;
 using UnityEngine;
 using UnityEngine.UI;
-using View;
-using View.EventCardView;
 using Widgets;
 
 namespace Controllers
@@ -17,24 +15,33 @@ namespace Controllers
         [SerializeField] private Text _eventText;
         [SerializeField] private CustomButtonWidget _customButtonPrefab;
         [SerializeField] private Transform _buttonContainer;
-        [SerializeField] private EventCard _eventCard;
+        [SerializeField] private PanelUtilItemWidget _panelUtilItemWidget;
 
         private DataGroup<CustomButtonWidget, CustomButton> _dataGroup;
 
-        private void Start()
+        protected virtual void Start()
         {
             _dataGroup = new DataGroup<CustomButtonWidget, CustomButton>(_customButtonPrefab,_buttonContainer);
         }
 
         public override void Show(LevelCard card)
         {
-            var situationCard = (SituationCard)card;
-            _contents.text = situationCard.Id;
-            _eventText.text = situationCard.Situation.Description;
-            _dataGroup.SetData(situationCard.Situation.Buttons);
-            _eventCard.EventCardViewWidget.SetViewData((EventCardView)situationCard.View);
+            DynamicInitialization(card);
             
             base.Show(card);
+        }
+
+        private void DynamicInitialization(LevelCard card)
+        {
+            var eventCard = (EventCard)card;
+            if (eventCard == null) throw new ArgumentException("Was sent not EventCard!!!");
+            
+            ItemWidgetFactory.FulFillItemWidget(_panelUtilItemWidget, WidgetType.PanelUtil, card);
+            
+            _contents.text = eventCard.Id;
+            _eventText.text = eventCard.Situation.Description;
+            _dataGroup.SetData(eventCard.Situation.Buttons);
+            _panelUtilItemWidget.View.SetViewData(eventCard.View);
         }
     }
 }

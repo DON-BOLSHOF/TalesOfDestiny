@@ -4,9 +4,8 @@ namespace LevelManipulation
 {
     public class CellInfo
     {
-        private Vector2 _pos;
-        public Vector2 Position => _pos;
-        
+        private Vector2Int _pos;
+        public Vector2Int Position => _pos;
 
         private CellState _cellState = CellState.None;
         public CellState CurrentCellState => _cellState;
@@ -14,7 +13,7 @@ namespace LevelManipulation
         private bool _isChecked;
         public bool IsChecked => _isChecked;
 
-        public CellInfo(Vector2 pos)
+        public CellInfo(Vector2Int pos)
         {
             _pos = pos;
         }
@@ -25,12 +24,16 @@ namespace LevelManipulation
         }
         public void SetDefaultState()
         {
+            _isChecked = false;
             _cellState = CellState.None;
         }
 
         public void Visit(CellState cellState)
         {
             _cellState = cellState;
+            
+            if(cellState != CellState.None) Check(); //Ну вообще логично(+Нельзя сделать просто свойство от _cellState
+                                                     //!= CellState.None, тк в коде напрямую будут Check позиции.)
         }
     }
 

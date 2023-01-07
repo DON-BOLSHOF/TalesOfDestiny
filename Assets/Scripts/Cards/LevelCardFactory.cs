@@ -15,7 +15,7 @@ namespace Cards
                 case LevelCardType.Enemy:
                     return DefsFacade.I.EnemyCards.Get(id);
                 case LevelCardType.EndJourney:
-                    return default;
+                    return DefsFacade.I.EndJourneyCards.Get(id);
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type, null);
             }
@@ -30,7 +30,7 @@ namespace Cards
             return card;
         }
 
-        private static LevelCard GetFromListRandomly(LevelCardType type) //Честно хз как это еще назвать
+        public static LevelCard GetFromListRandomly(LevelCardType type) //Честно хз как это еще назвать
         {
             LevelCard card = default;
             
@@ -52,10 +52,16 @@ namespace Cards
                 }
                 case LevelCardType.EndJourney:
                 {
-                    /*var length = DefsFacade.I.SituationCards.CardsCount;
+                    var length = DefsFacade.I.EndJourneyCards.CardsCount;
                     var res = Random.Range(0, length);
-                    card = DefsFacade.I.SituationCards.Get(res);*/
-                    card = default;
+                    card = DefsFacade.I.EndJourneyCards.Get(res);
+                    break;
+                }
+                case LevelCardType.HeroPosition:
+                {
+                    var length = DefsFacade.I.EndJourneyCards.CardsCount;
+                    var res = Random.Range(0, length);
+                    card = DefsFacade.I.HeroCardDefs.Get(res);
                     break;
                 }
             }

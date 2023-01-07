@@ -1,18 +1,18 @@
-﻿using UnityEngine;
+﻿using Widgets;
 
 namespace LevelManipulation
 {
     public class CellWidget
     {
-        private GameObject _item;
+        private BoardItemWidget _boardItem;
         private CellInfo _info;
 
-        public GameObject Item => _item;
+        public BoardItemWidget BoardItem => _boardItem;
         public CellInfo Info => _info;
 
-        public CellWidget(GameObject widget, CellInfo info)
+        public CellWidget(BoardItemWidget widget, CellInfo info)
         {
-            _item = widget;
+            _boardItem = widget;
             _info = info;
         }
     }
