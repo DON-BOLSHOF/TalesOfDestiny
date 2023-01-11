@@ -27,17 +27,15 @@ public class HeroScript : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _board = FindObjectOfType<LevelBoard>();
-        _trash.Retain(_board.HeroPosition.SubscribeAndInvoke(OnHeroPositionChanged));
+        _trash.Retain(_board.GlobalHeroPosition.SubscribeAndInvoke(OnHeroPositionChanged));
     }
     
-    private void OnHeroPositionChanged(Vector2Int heroPosition)
+    private void OnHeroPositionChanged(Vector2 heroPosition)
     {
-        Vector2 globalPosition = _board.Cells[heroPosition.x][heroPosition.y].BoardItem.transform.position;
-
-        var distance = Vector2.Distance(globalPosition, _rigidbody.position);
+        var distance = Vector2.Distance(heroPosition, _rigidbody.position);
         
-        UpgradeSpriteDirection(globalPosition - _rigidbody.position);
-        StartRoutine(MoveToPosition(globalPosition, distance/_velocity)); 
+        UpgradeSpriteDirection(heroPosition - _rigidbody.position);
+        StartRoutine(MoveToPosition(heroPosition, distance/_velocity)); 
     }
 
     private void StartRoutine(IEnumerator coroutine)

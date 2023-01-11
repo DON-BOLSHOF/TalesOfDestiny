@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Panels;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Components
@@ -10,15 +11,15 @@ namespace Components
 
         private void OnEnable()
         {
-            var util = GetComponentInParent(typeof(PanelUtil)) as PanelUtil;
+            var util = GetComponentInParent(typeof(EventPanelUtil)) as EventPanelUtil;
             Image = GetComponent<Image>();
             
             Accept(util);
         }
 
-        private void Accept(PanelUtil panelUtil)
+        private void Accept(EventPanelUtil eventPanelUtil)
         {
-            panelUtil.DissolveAnimation.AddDynamicImage(Image); //Да нарушение DIP-a
+            eventPanelUtil.DissolveAnimation.AddDynamicImage(Image); //Да нарушение DIP-a
         }
     }
 }

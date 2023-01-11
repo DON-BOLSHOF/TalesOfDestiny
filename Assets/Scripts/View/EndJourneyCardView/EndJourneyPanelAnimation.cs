@@ -1,4 +1,5 @@
 ﻿using System;
+using Panels;
 using UnityEngine;
 
 namespace View.EndJourneyView
@@ -7,12 +8,12 @@ namespace View.EndJourneyView
     public class EndJourneyPanelAnimation : MonoBehaviour
     {
         private Animator _animator;
-        private PanelUtil _util; // Да низкий уровень напрямую знает о более высоком, но я чет подзаколебался прописывать прослойки.
+        private EventPanelUtil _util; // Да низкий уровень напрямую знает о более высоком, но я чет подзаколебался прописывать прослойки.
         private static readonly int IsEmerged = Animator.StringToHash("IsEmerged");
 
         private void Start()
         {
-            _util = GetComponentInParent(typeof(PanelUtil)) as PanelUtil; //Да нарушение DIP-a
+            _util = GetComponentInParent(typeof(EventPanelUtil)) as EventPanelUtil; //Да нарушение DIP-a
             _animator = GetComponent<Animator>();
 
             if (_util == null) throw new ArgumentException("PanelUtil wasn't found");

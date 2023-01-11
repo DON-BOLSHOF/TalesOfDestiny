@@ -49,10 +49,11 @@ namespace Widgets
 
         private void DynamicalInitialization()
         {
-            _controller = _card.Type switch
+            _controller = _card.LevelCardType switch
             {
-                CardType.Event => FindObjectOfType<EventController>(),
-                CardType.Enemy => FindObjectOfType<BattleController>(),
+                LevelCardType.Situation=> GameObject.FindWithTag("EventController").GetComponent<EventController>(),
+                LevelCardType.EndJourney=> GameObject.FindWithTag("EventController").GetComponent<EventController>(),
+                LevelCardType.Enemy => GameObject.FindWithTag("BattleController").GetComponent<BattleController>(),
                 _ => _controller
             };
 

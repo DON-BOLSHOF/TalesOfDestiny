@@ -41,11 +41,13 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Panels\EnemyPanelUtil.cs" />
      <Compile Include="Assets\Scripts\Definitions\DefsFacade.cs" />
      <Compile Include="Assets\Scripts\Cards\SituationCards\PhysicalCard\PanelUtilItemWidget.cs" />
      <Compile Include="Assets\Scripts\HeroScript.cs" />
      <Compile Include="Assets\Scripts\CodeAnimation\IntensitySpikeAnimation.cs" />
      <Compile Include="Assets\Scripts\Definitions\LevelDefs\HeroCardDefs.cs" />
+     <Compile Include="Assets\Scripts\Utils\Interfaces\ITypingText.cs" />
      <Compile Include="Assets\Scripts\View\HeroCardView\HeroCardView.cs" />
      <Compile Include="Assets\Scripts\Cards\EndJourneyCards\EndJourneyCard.cs" />
      <Compile Include="Assets\Scripts\View\EndJourneyCardView\EndJourneyCardViewWidget.cs" />
@@ -55,17 +57,21 @@
      <Compile Include="Assets\Scripts\UI\View\PropertyView.cs" />
      <Compile Include="Assets\Scripts\Widgets\DataGroup.cs" />
      <Compile Include="Assets\Scripts\View\EnemyCardView\EnemyCardView.cs" />
+     <Compile Include="Assets\Scripts\Components\SelectComponent\SelectedGameObject.cs" />
      <Compile Include="Assets\Scripts\Utils\Interfaces\IClickable.cs" />
      <Compile Include="Assets\Scripts\Cards\EnemyCard.cs" />
      <Compile Include="Assets\Scripts\Utils\CellConverter.cs" />
      <Compile Include="Assets\Scripts\Widgets\PredefinedDataGroup.cs" />
      <Compile Include="Assets\Scripts\Definitions\LevelDefs\SituationCardDefs.cs" />
      <Compile Include="Assets\Scripts\View\ItemWidgetView.cs" />
+     <Compile Include="Assets\Scripts\CodeAnimation\ParalaxEffect.cs" />
      <Compile Include="Assets\Scripts\CodeAnimation\RotateCard.cs" />
+     <Compile Include="Assets\Scripts\CodeAnimation\TypingAnimation.cs" />
      <Compile Include="Assets\Scripts\Cards\ItemWidgetFactory.cs" />
      <Compile Include="Assets\Scripts\Cards\LevelCard.cs" />
      <Compile Include="Assets\Scripts\Widgets\ItemWidget.cs" />
      <Compile Include="Assets\Scripts\Controllers\EventController.cs" />
+     <Compile Include="Assets\Scripts\Components\SelectComponent\SelectionContainer.cs" />
      <Compile Include="Assets\Scripts\Components\HeroPositionBeholderComponent.cs" />
      <Compile Include="Assets\Scripts\Widgets\BoardItemWidget.cs" />
      <Compile Include="Assets\Scripts\View\EnemyView\EnemyView.cs" />
@@ -80,7 +86,7 @@
      <Compile Include="Assets\Scripts\View\EndJourneyCardView\EndJourneyPanelAnimation.cs" />
      <Compile Include="Assets\Scripts\View\SituationCardView\SituationCardView.cs" />
      <Compile Include="Assets\Scripts\LevelManipulation\CellWidget.cs" />
-     <Compile Include="Assets\Scripts\PanelUtil.cs" />
+     <Compile Include="Assets\Scripts\Panels\EventPanelUtil.cs" />
      <Compile Include="Assets\Scripts\Cards\SituationCards\Event\PropertyEvents\PropertyEvent.cs" />
      <Compile Include="Assets\Scripts\LevelManipulation\FieldFormer.cs" />
      <Compile Include="Assets\Scripts\Components\BehaviorsSwitcherComponent.cs" />
@@ -98,12 +104,15 @@
      <Compile Include="Assets\Scripts\Cards\SituationCards\Event\ArmyEvents\ArmyEvent.cs" />
      <Compile Include="Assets\Scripts\LevelManipulation\LevelBoard.cs" />
      <Compile Include="Assets\Scripts\Utils\AudioUtils.cs" />
+     <Compile Include="Assets\Scripts\CodeAnimation\RepetativeMovingObject.cs" />
      <Compile Include="Assets\Scripts\Cards\HeroCard\HeroCard.cs" />
+     <Compile Include="Assets\Scripts\Panels\AbstractPanelUtil.cs" />
      <Compile Include="Assets\Scripts\Components\SpawnObjectComponent.cs" />
      <Compile Include="Assets\Scripts\CodeAnimation\SpriteFrameAnimation.cs" />
      <Compile Include="Assets\Scripts\Definitions\EventDefs\PropertyEventDef.cs" />
      <Compile Include="Assets\Scripts\View\EnemyCardView\EnemyCardViewWidget.cs" />
      <Compile Include="Assets\Scripts\CodeAnimation\BlightOnMouseCard.cs" />
+     <Compile Include="Assets\Scripts\CodeAnimation\RotateAnimation.cs" />
      <Compile Include="Assets\Scripts\CodeAnimation\DissolveAnimation.cs" />
      <Compile Include="Assets\Scripts\Cards\SituationCards\SituationCard.cs" />
      <Compile Include="Assets\Scripts\View\SituationCardView\SituationCardViewWidget.cs" />
@@ -128,19 +137,23 @@
      <None Include="Assets\Shaders\DissolveShaderWithMask.shader" />
      <Folder Include="Assets\Sprites\River\River_Top_Left" />
      <Folder Include="Assets\Sprites\SituationsSprites\Poisons" />
+     <Folder Include="Assets\VFXAssets\Procedural fire\Materials" />
      <Folder Include="Assets\Resources\Definitions\SituationCards\Situations" />
-     <Folder Include="Assets\Prefabs\PhysicalCard\EndJourneyAnimation" />
+     <Folder Include="Assets\UI\BattleController\EnemyEventContainer" />
+     <Folder Include="Assets\PrefabsAnimation\PhysicalCard\EndJourneyAnimation" />
      <Folder Include="Assets\Sprites\Cards\CardFrames" />
      <Folder Include="Assets\Resources\Definitions\EnemyCards\Enemies" />
      <Folder Include="Assets\Scripts\View" />
      <Folder Include="Assets\Scripts\Definitions\EventDefs" />
      <Folder Include="Assets\Resources\Definitions\SituationCards\Situations\GoblinAttack" />
-     <Folder Include="Assets\Prefabs\Hero\Animation" />
+     <Folder Include="Assets\PrefabsAnimation\Hero\Animation" />
+     <Folder Include="Assets\Scripts\Components\SelectComponent" />
      <Folder Include="Assets\Sprites\River\River_Bottom_Middle" />
      <Folder Include="Assets\Scripts\LevelManipulation" />
      <Folder Include="Assets\Scripts\View\EndJourneyCardView" />
+     <Folder Include="Assets\Scripts\Panels" />
      <Folder Include="Assets\Sprites\River\River_Top_Middle" />
-     <Folder Include="Assets\Prefabs\PhysicalCard\EndJourneyAnimation\PanelUtilAnimations" />
+     <Folder Include="Assets\PrefabsAnimation\PhysicalCard\EndJourneyAnimation\PanelUtilAnimations" />
      <Folder Include="Assets\Sprites\HUD" />
      <Folder Include="Assets\Resources\Definitions" />
      <Folder Include="Assets\Sprites\River" />
@@ -148,10 +161,12 @@
      <Folder Include="Assets\Sprites\Life Bars\Big Bars" />
      <Folder Include="Assets\Scripts\Definitions\LevelDefs" />
      <Folder Include="Assets\Sprites\Life Bars" />
-     <Folder Include="Assets\Prefabs\Hero" />
-     <Folder Include="Assets\Prefabs\PhysicalCard\EndJourneyAnimation\BorderAnimations" />
+     <Folder Include="Assets\VFXAssets\Procedural fire\Shaders" />
+     <Folder Include="Assets\PrefabsAnimation\Hero" />
+     <Folder Include="Assets\PrefabsAnimation\PhysicalCard\EndJourneyAnimation\BorderAnimations" />
      <Folder Include="Assets\Scripts\Utils" />
-     <Folder Include="Assets\Prefabs\CardView" />
+     <Folder Include="Assets\VFXAssets\Procedural fire\URP and HDRP" />
+     <Folder Include="Assets\PrefabsAnimation\CardView" />
      <Folder Include="Assets\Scripts\Cards\SituationCards\PhysicalCard" />
      <Folder Include="Assets\Scripts\Model\Properties" />
      <Folder Include="Assets\Scripts\Cards\EndJourneyCards" />
@@ -160,24 +175,28 @@
      <Folder Include="Assets\Scripts\UI\View" />
      <Folder Include="Assets\Resources\PanelUtilCardView" />
      <Folder Include="Assets\Sprites\SituationsSprites\Goblins" />
+     <Folder Include="Assets\VFXAssets" />
      <Folder Include="Assets\Sprites\Cards\CardAssets" />
      <Folder Include="Assets\Sprites\Life Bars\Medium Bars" />
+     <Folder Include="Assets\VFXAssets\Procedural fire\Textures" />
      <Folder Include="Assets\Sprites\Tiles\Grass" />
-     <Folder Include="Assets\Prefabs\CardView\EventCardView" />
+     <Folder Include="Assets\PrefabsAnimation\CardView\EventCardView" />
      <Folder Include="Assets\Scripts\View\HeroCardView" />
      <Folder Include="Assets\Scripts\Model" />
      <Folder Include="Assets\UI\EventController\Container" />
      <Folder Include="Assets\Scripts\Cards\HeroCard" />
      <Folder Include="Assets\Scripts\Components\Audio" />
      <Folder Include="Assets\Scripts\Cards\SituationCards\Event\PropertyEvents" />
+     <Folder Include="Assets\Sprites\ParalaxSpace" />
      <Folder Include="Assets\Resources\Definitions\EnemyCards\Cards" />
      <Folder Include="Assets\Scenes\HUD" />
      <Folder Include="Assets\Sprites\Prefabs" />
      <Folder Include="Assets\Sprites\Life Bars\Colors" />
-     <Folder Include="Assets\Prefabs" />
+     <Folder Include="Assets\PrefabsAnimation" />
      <Folder Include="Assets\Scripts\Controllers" />
-     <Folder Include="Assets\Prefabs\PhysicalCard" />
+     <Folder Include="Assets\PrefabsAnimation\PhysicalCard" />
      <Folder Include="Assets\Shaders" />
+     <Folder Include="Assets\VFXAssets\Procedural fire\Prefabs" />
      <Folder Include="Assets\Scripts\Definitions" />
      <Folder Include="Assets\Scripts" />
      <Folder Include="Assets\Resources\Definitions\EnemyCards\Cards\GoblinCard" />
@@ -199,9 +218,12 @@
      <Folder Include="Assets\Scripts\Components" />
      <Folder Include="Assets\Scripts\Definitions\Enemies" />
      <Folder Include="Assets\UI" />
+     <Folder Include="Assets\VFXAssets\Procedural fire" />
      <Folder Include="Assets\Render" />
-     <Folder Include="Assets\Prefabs\CardWidget" />
+     <None Include="Assets\VFXAssets\Procedural fire\Shaders\FireSphere.shader" />
+     <Folder Include="Assets\PrefabsAnimation\CardWidget" />
      <Folder Include="Assets\Fonts" />
+     <Folder Include="Assets\UI\BattleController" />
      <Folder Include="Assets\Resources\Definitions\EnemyCards" />
      <Folder Include="Assets\Scripts\View\EnemyView" />
      <Folder Include="Assets\Resources\Definitions\SituationCards\Situations\Poisoning" />
@@ -213,10 +235,12 @@
      <Folder Include="Assets\Sprites\River\River_Bottom_Left" />
      <Folder Include="Assets\Scripts\Cards" />
      <Folder Include="Assets\Scripts\View\SituationCardView" />
+     <None Include="Assets\VFXAssets\Procedural fire\Demo scene\Readme.txt" />
      <Folder Include="Assets\Scripts\UI" />
      <Folder Include="Assets\Resources\Definitions\SituationCards\Situations\Events" />
      <Folder Include="Assets\UI\EventController" />
      <Folder Include="Assets\Scripts\Cards\SituationCards\Event" />
+     <Folder Include="Assets\VFXAssets\Procedural fire\Demo scene" />
      <Folder Include="Assets\Sprites\SituationsSprites" />
      <Reference Include="UnityEngine">
      <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.43f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
@@ -791,6 +815,9 @@
      <Reference Include="Unity.2D.Animation.Editor">
      <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\Unity.2D.Animation.Editor.dll</HintPath>
      </Reference>
+     <Reference Include="Unity.VisualEffectGraph.Editor">
+     <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\Unity.VisualEffectGraph.Editor.dll</HintPath>
+     </Reference>
      <Reference Include="Unity.InternalAPIEngineBridge.001">
      <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\Unity.InternalAPIEngineBridge.001.dll</HintPath>
      </Reference>
@@ -820,6 +847,9 @@
      </Reference>
      <Reference Include="Unity.VisualStudio.Editor">
      <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.VisualEffectGraph.Runtime">
+     <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\Unity.VisualEffectGraph.Runtime.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Timeline">
      <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
@@ -919,12 +949,6 @@
      </Reference>
      <Reference Include="Unity.2D.SpriteShape.Runtime">
      <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\Unity.2D.SpriteShape.Runtime.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.VisualEffectGraph.Editor">
-     <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\Unity.VisualEffectGraph.Editor.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.VisualEffectGraph.Runtime">
-     <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\Unity.VisualEffectGraph.Runtime.dll</HintPath>
      </Reference>
   </ItemGroup>
   <ItemGroup>

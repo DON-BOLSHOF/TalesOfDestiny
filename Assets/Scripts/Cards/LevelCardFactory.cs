@@ -8,17 +8,13 @@ namespace Cards
     {
         public static LevelCard GetLevelCard(LevelCardType type, string id)
         {
-            switch (type)
+            return type switch
             {
-                case LevelCardType.Situation:
-                    return DefsFacade.I.SituationCards.Get(id);
-                case LevelCardType.Enemy:
-                    return DefsFacade.I.EnemyCards.Get(id);
-                case LevelCardType.EndJourney:
-                    return DefsFacade.I.EndJourneyCards.Get(id);
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(type), type, null);
-            }
+                LevelCardType.Situation => DefsFacade.I.SituationCards.Get(id),
+                LevelCardType.Enemy => DefsFacade.I.EnemyCards.Get(id),
+                LevelCardType.EndJourney => DefsFacade.I.EndJourneyCards.Get(id),
+                _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
+            };
         }
 
         public static LevelCard GetLevelCardRandomly()
@@ -64,6 +60,8 @@ namespace Cards
                     card = DefsFacade.I.HeroCardDefs.Get(res);
                     break;
                 }
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(type), type, null);
             }
 
             return card;

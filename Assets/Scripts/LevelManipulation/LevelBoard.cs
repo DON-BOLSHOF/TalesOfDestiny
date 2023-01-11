@@ -15,11 +15,12 @@ namespace LevelManipulation
         [SerializeField] private LevelBuilder _levelBuilder;
 
         private List<List<CellWidget>> _cells = new List<List<CellWidget>>();
-        public ObservableProperty<Vector2Int> HeroPosition = new ObservableProperty<Vector2Int>();
+        [HideInInspector] public ObservableProperty<Vector2Int> HeroPosition = new ObservableProperty<Vector2Int>(); //Локальное изменение
+        [HideInInspector] public ObservableProperty<Vector2> GlobalHeroPosition = new ObservableProperty<Vector2>(); //Честно не думал, что придется использовать этот атрибут
 
         private LevelBoardAnimations _animations = new LevelBoardAnimations();
-        private Coroutine _coroutine; 
-            
+        private Coroutine _coroutine;
+
         private readonly DisposeHolder _trash = new DisposeHolder();
 
         public List<List<CellWidget>> Cells => _cells;
@@ -30,8 +31,8 @@ namespace LevelManipulation
             _cells = _levelBuilder.FirstSpawn();
 
             SubscribeWidgets();
-            
-            HeroPosition.Value = FindHeroPosition();
+
+            ChangeHeroPosition(FindHeroPosition());
 
             _coroutine = StartCoroutine(_animations.Appearance(CellConverter.GetItemWidgets(_cells)));
         }
@@ -46,16 +47,16 @@ namespace LevelManipulation
             if (_coroutine != null)
                 StopCoroutine(_coroutine);
             yield return _animations.Exiting(CellConverter.GetItemWidgets(_cells));
-            
+
             _cells = _levelBuilder.Reload();
 
             SubscribeWidgets();
 
-            HeroPosition.Value = FindHeroPosition();
+            ChangeHeroPosition(FindHeroPosition());
             
             _coroutine = StartCoroutine(_animations.Appearance(CellConverter.GetItemWidgets(_cells)));
         }
-        
+
         private Vector2Int FindHeroPosition()
         {
             Vector2Int result = default;
@@ -87,8 +88,16 @@ namespace LevelManipulation
             for (var j = 0; j < _cells[i].Count; j++)
             {
                 if (Equals(_cells[i][j].BoardItem, widgetStep))
-                    HeroPosition.Value = new Vector2Int(i, j);
+                {
+                    ChangeHeroPosition(new Vector2Int(i, j));
+                }
             }
+        }
+
+        private void ChangeHeroPosition(Vector2Int value)
+        {
+            HeroPosition.Value = value;
+            GlobalHeroPosition.Value = Cells[HeroPosition.Value.x][HeroPosition.Value.y].BoardItem.transform.position;
         }
 
         private void OnDestroy()

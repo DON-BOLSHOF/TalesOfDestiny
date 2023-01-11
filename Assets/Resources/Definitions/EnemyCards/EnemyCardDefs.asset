@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e1936b08d1340208eb5860c500397d5, type: 3}
   m_Name: EnemyCardDefs
   m_EditorClassIdentifier: 
-  _cards: []
+  _cards:
+  - {fileID: 11400000, guid: 1a313ba4a81d651409fa12e07c6b554b, type: 2}

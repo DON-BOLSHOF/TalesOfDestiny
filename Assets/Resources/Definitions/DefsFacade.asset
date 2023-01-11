@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _situationCards: {fileID: 11400000, guid: d75fe624de5cc8944b6bb56d1063004c, type: 2}
   _heroCards: {fileID: 11400000, guid: 6ea75dec73d69174b86c32ee3831e424, type: 2}
-  _enemyCards: {fileID: 0}
+  _enemyCards: {fileID: 11400000, guid: b7995dcb9250c574fb45c2fda2a8f2d9, type: 2}
   _endJourneyCards: {fileID: 11400000, guid: 097e5a37e23de1a4ea7e007eee2e8dc6, type: 2}
