@@ -1,4 +1,4 @@
-﻿using Cards.SituationCards.EndJourneyCards;
+﻿using Cards.EndJourneyCards;
 using UnityEngine;
 
 namespace Definitions.LevelDefs

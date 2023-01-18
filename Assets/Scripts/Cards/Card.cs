@@ -23,9 +23,9 @@ namespace Cards
     public enum CardType
     {
         Army,
-        HeroEquip,
-        ArmyEquip,
-        Situation,
-        Enemy
+        Equip,
+        Event,
+        Enemy,
+        General //Как функция общего вида, ни рыба, ни мясо.
     }
 }

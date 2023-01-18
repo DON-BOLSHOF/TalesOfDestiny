@@ -3,6 +3,7 @@ using Cards.SituationCards.Event.ArmyEvents;
 using Cards.SituationCards.Event.PropertyEvents;
 using LevelManipulation;
 using Model.Data;
+using Panels;
 using UnityEngine;
 
 namespace Cards.SituationCards.Event
@@ -19,14 +20,14 @@ namespace Cards.SituationCards.Event
             return new PlayerDataButton(data, this);
         }
 
-        public PanelUtilButton SetPanelButton(PanelUtil panelUtil)
+        public PanelUtilButton SetPanelButton(AbstractPanelUtil panelUtil)
         {
             return new PanelUtilButton(panelUtil, this);
         }
 
-        public LevelManagerButton SetLevelManagerButton(LevelManager manager)
+        public LevelManagerButton SetLevelManagerButton(LevelBoard board)
         {
-            return new LevelManagerButton(manager, this);
+            return new LevelManagerButton(board, this);
         }
 
         public class PlayerDataButton
@@ -52,37 +53,37 @@ namespace Cards.SituationCards.Event
         
         public class PanelUtilButton // В дальнейшем выдели базовый класс и все переопредели при рефакторинге!
         {
-            private PanelUtil _util;
+            private AbstractPanelUtil _util;
             private ButtonInteraction _interaction;
             
-            public PanelUtilButton(PanelUtil panelUtil, ButtonInteraction interaction)
+            public PanelUtilButton(AbstractPanelUtil eventPanelUtil, ButtonInteraction interaction)
             {
-                _util = panelUtil;
+                _util = eventPanelUtil;
                 _interaction = interaction;
             }
 
             public void OnClick()//Ну кнопка вообще не должна знать о playerData игрока, но ...
             {
                 if ((_interaction._type & EventType.ClosePanel) == EventType.ClosePanel)
-                    _util.Dissolve();
+                    _util.Exit();
             }
         }
         
         public class LevelManagerButton
         {
-            private LevelManager _manager;
+            private LevelBoard _board;
             private ButtonInteraction _interaction;
 
-            public LevelManagerButton(LevelManager manager, ButtonInteraction interaction)
+            public LevelManagerButton(LevelBoard board, ButtonInteraction interaction)
             {
-                _manager = manager;
+                _board = board;
                 _interaction = interaction;
             }
 
             public void OnClick()
             {
                 if ((_interaction._type & EventType.EndJourney) == EventType.EndJourney)
-                    _manager.Reload();
+                    _board.Reload();
             }
         }
     }
@@ -97,6 +98,6 @@ namespace Cards.SituationCards.Event
         ContinueEvent = 8,
         ClosePanel = 16,
         EndJourney = 32, 
-        Everything = 63
+        Battle = 64
     }
 }

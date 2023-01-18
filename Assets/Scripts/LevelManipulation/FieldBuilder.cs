@@ -17,14 +17,14 @@ namespace LevelManipulation
         private float _branchPerCent; //Чтобы по одной ветке не шел
         private float CurrentSpawnPerCent => (1 - (float)_currentCardAmount / _maxCardAmount) * 100;
 
-        private Vector2 _tableSize;
+        private Vector2Int _tableSize;
 
-        public FieldBuilder(Vector2 tableSize)
+        public FieldBuilder(Vector2Int tableSize)
         {
             _tableSize = tableSize;
             
-            _field = Enumerable.Range(0, (int)_tableSize.x)
-                .Select(f => Enumerable.Range(0, (int)_tableSize.y).Select(fa => new CellInfo(new Vector2(f, fa))).ToList()).ToList();
+            _field = Enumerable.Range(0, _tableSize.x)
+                .Select(f => Enumerable.Range(0, _tableSize.y).Select(fa => new CellInfo(new Vector2Int(f, fa))).ToList()).ToList();
         }
 
         public List<List<CellInfo>> FirstSpawn()
@@ -36,11 +36,13 @@ namespace LevelManipulation
         public List<List<CellInfo>> ReloadLevel()
         {
             _currentCardAmount = 0;
+            _branchPerCent = 0f; 
             _field.ForEach(delegate(List<CellInfo> list) { list.ForEach(delegate(CellInfo field)
             {
                 field.SetDefaultState(); }); });
-            _currentPosition = _heroPosition = new Vector2((int)_tableSize.x / 2, (int) _tableSize.y/2);
+            _currentPosition = _heroPosition = new Vector2(_tableSize.x / 2, _tableSize.y/2);
             _field[(int)_currentPosition.x][(int)_currentPosition.y].Visit(CellState.HeroPosition);
+            
             return SpawnLevel();
         }
 
@@ -97,17 +99,15 @@ namespace LevelManipulation
 
         private bool FieldStep(Vector2 pos)
         {
-            if (Probability(CurrentSpawnPerCent - _branchPerCent))
-            {
-                _field[(int)pos.x][(int)pos.y].Visit(CellState.CardPosition);
-                _currentCardAmount++;
-                _branchPerCent += 5;
-                _currentPosition = pos;
-                return true;
-            }
-
             _field[(int)pos.x][(int)pos.y].Check();
-            return false;
+
+            if (!Probability(CurrentSpawnPerCent - _branchPerCent)) return false;
+            
+            _field[(int)pos.x][(int)pos.y].Visit(CellState.CardPosition);
+            _currentCardAmount++;
+            _branchPerCent += 5;
+            _currentPosition = pos;
+            return true;
         }
 
         private AroundPosition AroundPlace(Vector2 pos)
@@ -172,8 +172,7 @@ namespace LevelManipulation
                     if (Probability(iterator * 100 / threshold))
                     {
                         _field[0][x].Visit(CellState.HeroPosition);
-                        _heroPosition = _field[0][x].Position;
-                        _currentPosition = _heroPosition;
+                        _currentPosition =_heroPosition = _field[0][x].Position;
                         return;
                     }
 
@@ -185,8 +184,7 @@ namespace LevelManipulation
                     if (Probability(iterator * 100 / threshold))
                     {
                         _field[y][_field[0].Count - 1].Visit(CellState.HeroPosition);
-                        _heroPosition = _field[y][_field[0].Count - 1].Position;
-                        _currentPosition = _heroPosition;
+                        _currentPosition = _heroPosition = _field[y][_field[0].Count - 1].Position;
                         return;
                     }
 
@@ -198,8 +196,7 @@ namespace LevelManipulation
                     if (Probability(iterator * 100 / threshold))
                     {
                         _field[_field.Count - 1][x].Visit(CellState.HeroPosition);
-                        _heroPosition = _field[_field.Count - 1][x].Position;
-                        _currentPosition = _heroPosition;
+                        _currentPosition =_heroPosition = _field[_field.Count - 1][x].Position;
                         return;
                     }
 
@@ -211,14 +208,16 @@ namespace LevelManipulation
                     if (Probability(iterator * 100 / threshold))
                     {
                         _field[y][0].Visit(CellState.HeroPosition);
-                        _heroPosition = _field[y][0].Position;
-                        _currentPosition = _heroPosition;
+                        _currentPosition = _heroPosition = _field[y][0].Position;
                         return;
                     }
 
                     iterator++;
                 }
             }
+            
+            _field[0][0].Visit(CellState.HeroPosition);
+            _currentPosition = _heroPosition = _field[0][0].Position;
         }
 
         private bool Probability(float percent)

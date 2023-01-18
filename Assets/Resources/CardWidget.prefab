@@ -57,7 +57,7 @@ CanvasRenderer:
   m_CullTransparentMesh: 1
 --- !u!95 &5642897669455626342
 Animator:
-  serializedVersion: 3
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -67,13 +67,14 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: ce768ba2b7453c1418f7a08fd3df8b0c, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!114 &5911370510405218372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,6 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 972e0401d4f8b7c409bf7b8fb82c58fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _backGroundImage: {fileID: 621349694666862343}
 --- !u!114 &6040469146460954934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,6 +252,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _behaviours:
   - {fileID: 6040469146460954934}
+  - {fileID: 6677423310408563147}
   - {fileID: 5642897669455626342}
 --- !u!114 &1618577961910973648
 MonoBehaviour:

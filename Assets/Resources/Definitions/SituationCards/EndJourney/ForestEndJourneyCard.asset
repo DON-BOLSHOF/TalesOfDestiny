@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: ForestEndJourneyCard
   m_EditorClassIdentifier: 
   _id: ForestLock
-  _cardView: {fileID: 0}
+  _cardView: {fileID: 11400000, guid: 8785e10dcda13984db6035544c3510e8, type: 2}
   _situation: {fileID: 11400000, guid: daf54c58cdda4174cb42a3c648103853, type: 2}

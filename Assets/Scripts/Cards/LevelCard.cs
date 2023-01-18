@@ -2,13 +2,19 @@
 {
     public abstract class LevelCard : Card
     {
-        protected LevelCard(CardType type) : base(type)
+        private LevelCardType _levelCardType;
+
+        public LevelCardType LevelCardType => _levelCardType;
+        
+        protected LevelCard(CardType type, LevelCardType levelLevelCardType) : base(type)
         {
+            _levelCardType = levelLevelCardType;
         }
     }
 
     public enum LevelCardType
     {
+        HeroPosition,
         Situation,
         Enemy,
         EndJourney

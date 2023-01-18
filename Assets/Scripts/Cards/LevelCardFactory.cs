@@ -8,17 +8,13 @@ namespace Cards
     {
         public static LevelCard GetLevelCard(LevelCardType type, string id)
         {
-            switch (type)
+            return type switch
             {
-                case LevelCardType.Situation:
-                    return DefsFacade.I.SituationCards.Get(id);
-                case LevelCardType.Enemy:
-                    return DefsFacade.I.EnemyCards.Get(id);
-                case LevelCardType.EndJourney:
-                    return default;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(type), type, null);
-            }
+                LevelCardType.Situation => DefsFacade.I.SituationCards.Get(id),
+                LevelCardType.Enemy => DefsFacade.I.EnemyCards.Get(id),
+                LevelCardType.EndJourney => DefsFacade.I.EndJourneyCards.Get(id),
+                _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
+            };
         }
 
         public static LevelCard GetLevelCardRandomly()
@@ -30,7 +26,7 @@ namespace Cards
             return card;
         }
 
-        private static LevelCard GetFromListRandomly(LevelCardType type) //Честно хз как это еще назвать
+        public static LevelCard GetFromListRandomly(LevelCardType type) //Честно хз как это еще назвать
         {
             LevelCard card = default;
             
@@ -52,12 +48,20 @@ namespace Cards
                 }
                 case LevelCardType.EndJourney:
                 {
-                    /*var length = DefsFacade.I.SituationCards.CardsCount;
+                    var length = DefsFacade.I.EndJourneyCards.CardsCount;
                     var res = Random.Range(0, length);
-                    card = DefsFacade.I.SituationCards.Get(res);*/
-                    card = default;
+                    card = DefsFacade.I.EndJourneyCards.Get(res);
                     break;
                 }
+                case LevelCardType.HeroPosition:
+                {
+                    var length = DefsFacade.I.EndJourneyCards.CardsCount;
+                    var res = Random.Range(0, length);
+                    card = DefsFacade.I.HeroCardDefs.Get(res);
+                    break;
+                }
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(type), type, null);
             }
 
             return card;

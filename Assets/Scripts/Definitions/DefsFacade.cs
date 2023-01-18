@@ -7,10 +7,16 @@ namespace Definitions
     public class DefsFacade: ScriptableObject
     {
         [SerializeField] private SituationCardDefs _situationCards;
+        [SerializeField] private HeroCardDefs _heroCards;
         [SerializeField] private EnemyCardDefs _enemyCards;
+        [SerializeField] private EndJourneyCardDefs _endJourneyCards;
         
         public SituationCardDefs SituationCards => _situationCards;
         public EnemyCardDefs EnemyCards => _enemyCards;
+
+        public EndJourneyCardDefs EndJourneyCards => _endJourneyCards;
+
+        public HeroCardDefs HeroCardDefs => _heroCards;
         
         private static DefsFacade _instance;
 
