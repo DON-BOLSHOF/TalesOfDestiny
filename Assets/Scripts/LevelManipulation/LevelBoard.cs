@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using CodeAnimation;
@@ -14,7 +15,6 @@ namespace LevelManipulation
     {
         [SerializeField] private LevelBuilder _levelBuilder;
 
-        private List<List<CellWidget>> _cells = new List<List<CellWidget>>();
         [HideInInspector] public ObservableProperty<Vector2Int> HeroPosition = new ObservableProperty<Vector2Int>(); //Локальное изменение
         [HideInInspector] public ObservableProperty<Vector2> GlobalHeroPosition = new ObservableProperty<Vector2>(); //Честно не думал, что придется использовать этот атрибут
 
@@ -23,44 +23,46 @@ namespace LevelManipulation
 
         private readonly DisposeHolder _trash = new DisposeHolder();
 
-        public List<List<CellWidget>> Cells => _cells;
+        public List<List<CellWidget>> Cells { get; private set; } = new List<List<CellWidget>>();
 
+        public event Action OnNextTurn;
 
         private void Start()
         {
-            _cells = _levelBuilder.FirstSpawn();
+            Cells = _levelBuilder.FirstSpawn();
 
             SubscribeWidgets();
 
             ChangeHeroPosition(FindHeroPosition());
 
-            _coroutine = StartCoroutine(_animations.Appearance(CellConverter.GetItemWidgets(_cells)));
+            _coroutine = StartCoroutine(_animations.Appearance(CellConverter.GetItemWidgets(Cells)));
         }
 
         public void Reload()
         {
             StartCoroutine(ReloadCorotine());
+            OnNextTurn?.Invoke();
         }
 
         private IEnumerator ReloadCorotine() //без анимаций код покрасивее выглядел, конечно...
         {
             if (_coroutine != null)
                 StopCoroutine(_coroutine);
-            yield return _animations.Exiting(CellConverter.GetItemWidgets(_cells));
+            yield return _animations.Exiting(CellConverter.GetItemWidgets(Cells));
 
-            _cells = _levelBuilder.Reload();
+            Cells = _levelBuilder.Reload();
 
             SubscribeWidgets();
 
             ChangeHeroPosition(FindHeroPosition());
             
-            _coroutine = StartCoroutine(_animations.Appearance(CellConverter.GetItemWidgets(_cells)));
+            _coroutine = StartCoroutine(_animations.Appearance(CellConverter.GetItemWidgets(Cells)));
         }
 
         private Vector2Int FindHeroPosition()
         {
             Vector2Int result = default;
-            foreach (var cell in from row in _cells
+            foreach (var cell in from row in Cells
                      from cell in row
                      where cell.Info.CurrentCellState == CellState.HeroPosition
                      select cell)
@@ -73,7 +75,7 @@ namespace LevelManipulation
 
         private void SubscribeWidgets()
         {
-            foreach (var row in _cells)
+            foreach (var row in Cells)
             {
                 foreach (var cell in row)
                 {
@@ -84,10 +86,10 @@ namespace LevelManipulation
 
         private void HeroStep(BoardItemWidget widgetStep)
         {
-            for (var i = 0; i < _cells.Count; i++)
-            for (var j = 0; j < _cells[i].Count; j++)
+            for (var i = 0; i < Cells.Count; i++)
+            for (var j = 0; j < Cells[i].Count; j++)
             {
-                if (Equals(_cells[i][j].BoardItem, widgetStep))
+                if (Equals(Cells[i][j].BoardItem, widgetStep))
                 {
                     ChangeHeroPosition(new Vector2Int(i, j));
                 }

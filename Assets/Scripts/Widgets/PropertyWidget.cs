@@ -1,5 +1,4 @@
-﻿using System.Globalization;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 namespace Widgets
@@ -8,7 +7,7 @@ namespace Widgets
     {
         [SerializeField] private Text _value;
 
-        public void OnValueChange(float value)
+        public void OnValueChange(int value)
         {
             _value.text = value.ToString();
         }

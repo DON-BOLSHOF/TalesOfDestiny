@@ -11,7 +11,7 @@ namespace Cards
             return type switch
             {
                 LevelCardType.Situation => DefsFacade.I.SituationCards.Get(id),
-                LevelCardType.Enemy => DefsFacade.I.EnemyCards.Get(id),
+                LevelCardType.Battle => DefsFacade.I.BattleCards.Get(id),
                 LevelCardType.EndJourney => DefsFacade.I.EndJourneyCards.Get(id),
                 _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
             };
@@ -39,11 +39,11 @@ namespace Cards
                     card = DefsFacade.I.SituationCards.Get(res);
                     break;
                 }
-                case LevelCardType.Enemy:
+                case LevelCardType.Battle:
                 {
-                    var length = DefsFacade.I.EnemyCards.CardsCount;
+                    var length = DefsFacade.I.BattleCards.CardsCount;
                     var res = Random.Range(0, length);
-                    card = DefsFacade.I.EnemyCards.Get(res);
+                    card = DefsFacade.I.BattleCards.Get(res);
                     break;
                 }
                 case LevelCardType.EndJourney:

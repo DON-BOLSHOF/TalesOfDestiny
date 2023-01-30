@@ -3,8 +3,8 @@ using Cards.SituationCards.Event;
 using LevelManipulation;
 using Panels;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
+using Utils;
 
 namespace Widgets
 { 
@@ -15,10 +15,10 @@ namespace Widgets
 
         private ButtonInteraction _interaction;
 
-        public void SetData(CustomButton data)
+        public void SetData(CustomButton pack)
         {
-            _text.text = data.Name;
-            _interaction = data.ButtonInteraction;
+            _text.text = pack.Name;
+            _interaction = pack.ButtonInteraction;
         }
 
         public void OnClick()

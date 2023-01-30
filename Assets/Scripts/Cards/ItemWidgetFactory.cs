@@ -62,7 +62,7 @@ namespace Cards
             {
                 case LevelCardType.Situation:
                 case LevelCardType.EndJourney:
-                case LevelCardType.Enemy:
+                case LevelCardType.Battle:
                 case LevelCardType.HeroPosition:
                 {
                     card = LevelCardFactory.GetFromListRandomly(type);
@@ -87,7 +87,7 @@ namespace Cards
                 }
                 case CellState.CardPosition:
                 {
-                    var cardType = (LevelCardType)Random.Range((int)LevelCardType.Situation, (int)LevelCardType.Enemy+1);
+                    var cardType = (LevelCardType)Random.Range((int)LevelCardType.Situation, (int)LevelCardType.Battle+1);
                     card = GetLevelCardRandomlyFromDefs(cardType);
                     break;
                 }
@@ -149,8 +149,8 @@ namespace Cards
                 case LevelCardType.HeroPosition:
                     path += "HeroCardView";
                     break;
-                case LevelCardType.Enemy:
-                    path += "EnemyCardView";
+                case LevelCardType.Battle:
+                    path += "BattleCardView";
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(cardType), cardType, null);

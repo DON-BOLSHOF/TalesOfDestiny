@@ -41,7 +41,7 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\Panels\EnemyPanelUtil.cs" />
+     <Compile Include="Assets\Scripts\Panels\BattleEventPanelUtil.cs" />
      <Compile Include="Assets\Scripts\Definitions\DefsFacade.cs" />
      <Compile Include="Assets\Scripts\Cards\SituationCards\PhysicalCard\PanelUtilItemWidget.cs" />
      <Compile Include="Assets\Scripts\HeroScript.cs" />
@@ -51,17 +51,18 @@
      <Compile Include="Assets\Scripts\View\HeroCardView\HeroCardView.cs" />
      <Compile Include="Assets\Scripts\Cards\EndJourneyCards\EndJourneyCard.cs" />
      <Compile Include="Assets\Scripts\View\EndJourneyCardView\EndJourneyCardViewWidget.cs" />
-     <Compile Include="Assets\Scripts\Definitions\Enemies\Enemy.cs" />
-     <Compile Include="Assets\Scripts\View\EnemyView\EnemyViewWidget.cs" />
+     <Compile Include="Assets\Scripts\Definitions\Enemies\EnemyCard.cs" />
+     <Compile Include="Assets\Scripts\View\EnemyCardView\EnemyCardViewWidget.cs" />
      <Compile Include="Assets\Scripts\Model\Properties\ObservableProperty.cs" />
      <Compile Include="Assets\Scripts\UI\View\PropertyView.cs" />
-     <Compile Include="Assets\Scripts\Widgets\DataGroup.cs" />
-     <Compile Include="Assets\Scripts\View\EnemyCardView\EnemyCardView.cs" />
+     <Compile Include="Assets\Scripts\Components\SceneLoadAdditiveComponent.cs" />
+     <Compile Include="Assets\Scripts\Utils\DataGroup.cs" />
+     <Compile Include="Assets\Scripts\View\BattleCardView\BattleCardView.cs" />
      <Compile Include="Assets\Scripts\Components\SelectComponent\SelectedGameObject.cs" />
      <Compile Include="Assets\Scripts\Utils\Interfaces\IClickable.cs" />
-     <Compile Include="Assets\Scripts\Cards\EnemyCard.cs" />
+     <Compile Include="Assets\Scripts\Cards\BattleCard.cs" />
      <Compile Include="Assets\Scripts\Utils\CellConverter.cs" />
-     <Compile Include="Assets\Scripts\Widgets\PredefinedDataGroup.cs" />
+     <Compile Include="Assets\Scripts\Utils\PredefinedDataGroup.cs" />
      <Compile Include="Assets\Scripts\Definitions\LevelDefs\SituationCardDefs.cs" />
      <Compile Include="Assets\Scripts\View\ItemWidgetView.cs" />
      <Compile Include="Assets\Scripts\CodeAnimation\ParalaxEffect.cs" />
@@ -70,12 +71,14 @@
      <Compile Include="Assets\Scripts\Cards\ItemWidgetFactory.cs" />
      <Compile Include="Assets\Scripts\Cards\LevelCard.cs" />
      <Compile Include="Assets\Scripts\Widgets\ItemWidget.cs" />
-     <Compile Include="Assets\Scripts\Controllers\EventController.cs" />
+     <Compile Include="Assets\Scripts\Controllers\EventManager.cs" />
+     <Compile Include="Assets\Scripts\System\Installers\LevelBoardInstaller.cs" />
      <Compile Include="Assets\Scripts\Components\SelectComponent\SelectionContainer.cs" />
      <Compile Include="Assets\Scripts\Components\HeroPositionBeholderComponent.cs" />
+     <Compile Include="Assets\Scripts\Cards\EnemyCardFactory.cs" />
      <Compile Include="Assets\Scripts\Widgets\BoardItemWidget.cs" />
-     <Compile Include="Assets\Scripts\View\EnemyView\EnemyView.cs" />
-     <Compile Include="Assets\Scripts\Controllers\LevelController.cs" />
+     <Compile Include="Assets\Scripts\View\EnemyCardView\EnemyCardView.cs" />
+     <Compile Include="Assets\Scripts\Controllers\LevelManager.cs" />
      <Compile Include="Assets\Scripts\Cards\SituationCards\Event\PropertyEvents\PoisonEvent.cs" />
      <Compile Include="Assets\Scripts\Widgets\CardPropertyWidget.cs" />
      <Compile Include="Assets\Scripts\Widgets\CustomButtonWidget.cs" />
@@ -85,6 +88,7 @@
      <Compile Include="Assets\Scripts\Components\Audio\PlaySFXSound.cs" />
      <Compile Include="Assets\Scripts\View\EndJourneyCardView\EndJourneyPanelAnimation.cs" />
      <Compile Include="Assets\Scripts\View\SituationCardView\SituationCardView.cs" />
+     <Compile Include="Assets\Scripts\Controllers\BattleEventManager.cs" />
      <Compile Include="Assets\Scripts\LevelManipulation\CellWidget.cs" />
      <Compile Include="Assets\Scripts\Panels\EventPanelUtil.cs" />
      <Compile Include="Assets\Scripts\Cards\SituationCards\Event\PropertyEvents\PropertyEvent.cs" />
@@ -97,11 +101,13 @@
      <Compile Include="Assets\Scripts\View\CardView.cs" />
      <Compile Include="Assets\Scripts\Cards\Card.cs" />
      <Compile Include="Assets\Scripts\Components\TimerComponent.cs" />
-     <Compile Include="Assets\Scripts\Definitions\LevelDefs\EnemyCardDefs.cs" />
+     <Compile Include="Assets\Scripts\Definitions\LevelDefs\BattleCardDefs.cs" />
      <Compile Include="Assets\Scripts\View\EndJourneyCardView\EndJourneyCardView.cs" />
      <Compile Include="Assets\Scripts\Model\Data\PlayerData.cs" />
+     <Compile Include="Assets\Scripts\System\Installers\GameSessionInstaller.cs" />
      <Compile Include="Assets\Scripts\Definitions\CardDefs.cs" />
      <Compile Include="Assets\Scripts\Cards\SituationCards\Event\ArmyEvents\ArmyEvent.cs" />
+     <Compile Include="Assets\Scripts\Definitions\Enemies\EnemyDefs.cs" />
      <Compile Include="Assets\Scripts\LevelManipulation\LevelBoard.cs" />
      <Compile Include="Assets\Scripts\Utils\AudioUtils.cs" />
      <Compile Include="Assets\Scripts\CodeAnimation\RepetativeMovingObject.cs" />
@@ -110,7 +116,7 @@
      <Compile Include="Assets\Scripts\Components\SpawnObjectComponent.cs" />
      <Compile Include="Assets\Scripts\CodeAnimation\SpriteFrameAnimation.cs" />
      <Compile Include="Assets\Scripts\Definitions\EventDefs\PropertyEventDef.cs" />
-     <Compile Include="Assets\Scripts\View\EnemyCardView\EnemyCardViewWidget.cs" />
+     <Compile Include="Assets\Scripts\View\BattleCardView\BattleCardViewWidget.cs" />
      <Compile Include="Assets\Scripts\CodeAnimation\BlightOnMouseCard.cs" />
      <Compile Include="Assets\Scripts\CodeAnimation\RotateAnimation.cs" />
      <Compile Include="Assets\Scripts\CodeAnimation\DissolveAnimation.cs" />
@@ -130,10 +136,12 @@
      <Compile Include="Assets\Scripts\Utils\Disposables\DisposeHolder.cs" />
      <Folder Include="Assets" />
      <Folder Include="Assets\Scripts\Widgets" />
+     <Folder Include="Assets\PrefabsAnimation\TurnWidget" />
      <Folder Include="Assets\Resources\Definitions\SituationCards\EndJourney" />
      <Folder Include="Assets\Materials" />
      <Folder Include="Assets\Scripts\Cards\SituationCards" />
      <Folder Include="Assets\Resources\BoarderCardView" />
+     <Folder Include="Assets\Resources\Definitions\EnemyCards\Enemies\RatWarrior" />
      <None Include="Assets\Shaders\DissolveShaderWithMask.shader" />
      <Folder Include="Assets\Sprites\River\River_Top_Left" />
      <Folder Include="Assets\Sprites\SituationsSprites\Poisons" />
@@ -157,6 +165,7 @@
      <Folder Include="Assets\Sprites\HUD" />
      <Folder Include="Assets\Resources\Definitions" />
      <Folder Include="Assets\Sprites\River" />
+     <Folder Include="Assets\Scripts\System" />
      <Folder Include="Assets\Sprites\Banners" />
      <Folder Include="Assets\Sprites\Life Bars\Big Bars" />
      <Folder Include="Assets\Scripts\Definitions\LevelDefs" />
@@ -188,7 +197,7 @@
      <Folder Include="Assets\Scripts\Components\Audio" />
      <Folder Include="Assets\Scripts\Cards\SituationCards\Event\PropertyEvents" />
      <Folder Include="Assets\Sprites\ParalaxSpace" />
-     <Folder Include="Assets\Resources\Definitions\EnemyCards\Cards" />
+     <Folder Include="Assets\Resources\Definitions\BattleCards\Cards" />
      <Folder Include="Assets\Scenes\HUD" />
      <Folder Include="Assets\Sprites\Prefabs" />
      <Folder Include="Assets\Sprites\Life Bars\Colors" />
@@ -199,7 +208,7 @@
      <Folder Include="Assets\VFXAssets\Procedural fire\Prefabs" />
      <Folder Include="Assets\Scripts\Definitions" />
      <Folder Include="Assets\Scripts" />
-     <Folder Include="Assets\Resources\Definitions\EnemyCards\Cards\GoblinCard" />
+     <Folder Include="Assets\Resources\Definitions\BattleCards\Cards\GoblinAmbush" />
      <Folder Include="Assets\Sprites\Life Bars\Small Bars" />
      <Folder Include="Assets\Resources\Definitions\HeroCards" />
      <Folder Include="Assets\Sprites\Background" />
@@ -207,13 +216,13 @@
      <Folder Include="Assets\Sprites\Cards\Sheen" />
      <Folder Include="Assets\Scenes" />
      <Folder Include="Assets\Sprites\SituationsSprites\PropertiesIcons" />
-     <Folder Include="Assets\Scripts\View\EnemyCardView" />
+     <Folder Include="Assets\Scripts\View\BattleCardView" />
      <Folder Include="Assets\Scripts\CodeAnimation" />
      <Folder Include="Assets\Sprites\Tiles" />
      <Folder Include="Assets\Scripts\Utils\Interfaces" />
      <Folder Include="Assets\Scripts\Model\Data" />
      <Folder Include="Assets\Scripts\Utils\Disposables" />
-     <Folder Include="Assets\Resources\Definitions\EnemyCards\Situations" />
+     <Folder Include="Assets\Resources\Definitions\BattleCards\Situations" />
      <Folder Include="Assets\Sprites\Cards" />
      <Folder Include="Assets\Scripts\Components" />
      <Folder Include="Assets\Scripts\Definitions\Enemies" />
@@ -224,13 +233,15 @@
      <Folder Include="Assets\PrefabsAnimation\CardWidget" />
      <Folder Include="Assets\Fonts" />
      <Folder Include="Assets\UI\BattleController" />
-     <Folder Include="Assets\Resources\Definitions\EnemyCards" />
-     <Folder Include="Assets\Scripts\View\EnemyView" />
+     <Folder Include="Assets\Resources\Definitions\BattleCards" />
+     <Folder Include="Assets\Scripts\View\EnemyCardView" />
      <Folder Include="Assets\Resources\Definitions\SituationCards\Situations\Poisoning" />
      <Folder Include="Assets\Resources" />
+     <Folder Include="Assets\Resources\Definitions\EnemyCards" />
      <Folder Include="Assets\Resources\Definitions\EnemyCards\Enemies\Goblin" />
      <Folder Include="Assets\Resources\Definitions\HeroCards\Cards" />
      <Folder Include="Assets\Sprites\SituationsSprites\Poisons\PoisonMagicEffect" />
+     <Folder Include="Assets\Sprites\SituationsSprites\Rats" />
      <Folder Include="Assets\Scripts\Cards\SituationCards\Event\ArmyEvents" />
      <Folder Include="Assets\Sprites\River\River_Bottom_Left" />
      <Folder Include="Assets\Scripts\Cards" />
@@ -239,6 +250,7 @@
      <Folder Include="Assets\Scripts\UI" />
      <Folder Include="Assets\Resources\Definitions\SituationCards\Situations\Events" />
      <Folder Include="Assets\UI\EventController" />
+     <Folder Include="Assets\Scripts\System\Installers" />
      <Folder Include="Assets\Scripts\Cards\SituationCards\Event" />
      <Folder Include="Assets\VFXAssets\Procedural fire\Demo scene" />
      <Folder Include="Assets\Sprites\SituationsSprites" />
@@ -466,6 +478,21 @@
      </Reference>
      <Reference Include="UnityEditor.UnityConnectModule">
      <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.43f1\Editor\Data\Managed\UnityEngine\UnityEditor.UnityConnectModule.dll</HintPath>
+     </Reference>
+     <Reference Include="Zenject-usage">
+     <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Assets\Plugins\Zenject\Source\Usage\Zenject-usage.dll</HintPath>
+     </Reference>
+     <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Pdb">
+     <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.Pdb.dll</HintPath>
+     </Reference>
+     <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Rocks">
+     <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.Rocks.dll</HintPath>
+     </Reference>
+     <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Mdb">
+     <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.Mdb.dll</HintPath>
+     </Reference>
+     <Reference Include="Zenject.ReflectionBaking.Mono.Cecil">
+     <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.dll</HintPath>
      </Reference>
      <Reference Include="netstandard">
      <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.43f1\Editor\Data\NetStandard\ref\2.0.0\netstandard.dll</HintPath>
@@ -812,12 +839,6 @@
      <Reference Include="System.Xml.Serialization">
      <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.43f1\Editor\Data\NetStandard\compat\2.0.0\shims\netfx\System.Xml.Serialization.dll</HintPath>
      </Reference>
-     <Reference Include="Unity.2D.Animation.Editor">
-     <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\Unity.2D.Animation.Editor.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.VisualEffectGraph.Editor">
-     <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\Unity.VisualEffectGraph.Editor.dll</HintPath>
-     </Reference>
      <Reference Include="Unity.InternalAPIEngineBridge.001">
      <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\Unity.InternalAPIEngineBridge.001.dll</HintPath>
      </Reference>
@@ -833,17 +854,68 @@
      <Reference Include="Unity.Notifications">
      <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\Unity.Notifications.dll</HintPath>
      </Reference>
-     <Reference Include="Unity.RenderPipelines.Universal.Runtime">
-     <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
-     </Reference>
      <Reference Include="PsdPlugin">
      <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\PsdPlugin.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.TextMeshPro.Editor">
+     <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.Searcher.Editor">
+     <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\Unity.Searcher.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.2D.IK.Editor">
+     <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\Unity.2D.IK.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.2D.Path.Editor">
+     <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\Unity.2D.Path.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEditor.UI">
+     <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.Rider.Editor">
+     <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
+     <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.UI">
+     <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.Notifications.iOS">
+     <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\Unity.Notifications.iOS.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.2D.IK.Runtime">
+     <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\Unity.2D.IK.Runtime.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.ShaderGraph.Editor">
+     <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\Unity.ShaderGraph.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.2D.Animation.Triangle.Editor">
+     <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\Unity.2D.Animation.Triangle.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
+     <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.Mathematics.Editor">
+     <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\Unity.Mathematics.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.Notifications.Android">
+     <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\Unity.Notifications.Android.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.2D.Common.Editor">
+     <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\Unity.2D.Common.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.2D.Animation.Editor">
+     <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\Unity.2D.Animation.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.VisualEffectGraph.Editor">
+     <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\Unity.VisualEffectGraph.Editor.dll</HintPath>
      </Reference>
      <Reference Include="Unity.2D.Tilemap.Editor">
      <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\Unity.2D.Tilemap.Editor.dll</HintPath>
      </Reference>
-     <Reference Include="Unity.TextMeshPro.Editor">
-     <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
+     <Reference Include="Unity.RenderPipelines.Universal.Runtime">
+     <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
      </Reference>
      <Reference Include="Unity.VisualStudio.Editor">
      <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll</HintPath>
@@ -857,59 +929,26 @@
      <Reference Include="Unity.TextMeshPro">
      <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
      </Reference>
-     <Reference Include="Unity.Searcher.Editor">
-     <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\Unity.Searcher.Editor.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.2D.IK.Editor">
-     <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\Unity.2D.IK.Editor.dll</HintPath>
+     <Reference Include="Unity.2D.Sprite.Editor">
+     <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
      </Reference>
      <Reference Include="Unity.2D.Psdimporter.Editor">
      <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\Unity.2D.Psdimporter.Editor.dll</HintPath>
      </Reference>
-     <Reference Include="Unity.2D.Path.Editor">
-     <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\Unity.2D.Path.Editor.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.2D.Sprite.Editor">
-     <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
-     </Reference>
-     <Reference Include="UnityEditor.UI">
-     <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.PlasticSCM.Editor">
-     <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.Rider.Editor">
-     <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
-     </Reference>
-     <Reference Include="UnityEngine.UI">
-     <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
-     <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
-     </Reference>
      <Reference Include="Unity.InternalAPIEditorBridge.001">
      <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\Unity.InternalAPIEditorBridge.001.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.Notifications.iOS">
-     <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\Unity.Notifications.iOS.dll</HintPath>
      </Reference>
      <Reference Include="Unity.RenderPipelines.Core.Runtime">
      <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
      </Reference>
+     <Reference Include="Unity.PlasticSCM.Editor">
+     <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>
+     </Reference>
      <Reference Include="Unity.Mathematics">
      <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\Unity.Mathematics.dll</HintPath>
      </Reference>
-     <Reference Include="Unity.2D.IK.Runtime">
-     <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\Unity.2D.IK.Runtime.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.ShaderGraph.Editor">
-     <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\Unity.ShaderGraph.Editor.dll</HintPath>
-     </Reference>
      <Reference Include="Unity.RenderPipelines.Universal.Editor">
      <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Editor.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.2D.Animation.Triangle.Editor">
-     <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\Unity.2D.Animation.Triangle.Editor.dll</HintPath>
      </Reference>
      <Reference Include="Unity.2D.Animation.Runtime">
      <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\Unity.2D.Animation.Runtime.dll</HintPath>
@@ -920,29 +959,17 @@
      <Reference Include="Unity.Mobile.AndroidLogcat.Editor">
      <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\Unity.Mobile.AndroidLogcat.Editor.dll</HintPath>
      </Reference>
-     <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
-     <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
-     </Reference>
      <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
      <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Timeline.Editor">
      <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
      </Reference>
-     <Reference Include="Unity.Mathematics.Editor">
-     <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\Unity.Mathematics.Editor.dll</HintPath>
-     </Reference>
      <Reference Include="Unity.2D.Common.Runtime">
      <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\Unity.2D.Common.Runtime.dll</HintPath>
      </Reference>
      <Reference Include="Unity.2D.SpriteShape.Editor">
      <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\Unity.2D.SpriteShape.Editor.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.Notifications.Android">
-     <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\Unity.Notifications.Android.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.2D.Common.Editor">
-     <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\Unity.2D.Common.Editor.dll</HintPath>
      </Reference>
      <Reference Include="Unity.RenderPipelines.Core.Editor">
      <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.dll</HintPath>
@@ -952,6 +979,22 @@
      </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Zenject-Editor.csproj">
+      <Project>{2d072da0-5a71-b879-41e2-7aad5811ab4e}</Project>
+      <Name>Zenject-Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Zenject-ReflectionBaking-Editor.csproj">
+      <Project>{23f69a01-87a2-12cf-6632-f0af3da39306}</Project>
+      <Name>Zenject-ReflectionBaking-Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Zenject.csproj">
+      <Project>{2bcb0f0d-25ad-74e2-3316-fa5402520caa}</Project>
+      <Name>Zenject</Name>
+    </ProjectReference>
+    <ProjectReference Include="Zenject-PoolMonitor-Editor.csproj">
+      <Project>{7d8b1c84-fcb6-94e8-69c1-cebab1ce6a4f}</Project>
+      <Name>Zenject-PoolMonitor-Editor</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

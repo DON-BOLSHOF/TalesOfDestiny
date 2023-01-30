@@ -16,9 +16,9 @@ namespace Model.Data
     [Serializable]
     public class HeroPropertyData : IPropertyVisitor
     {
-        public ObservableProperty<float> Food = new ObservableProperty<float>();
-        public ObservableProperty<float> Coins = new ObservableProperty<float>();
-        public ObservableProperty<float> Prestige = new ObservableProperty<float>();
+        public ObservableProperty<int> Food = new ObservableProperty<int>();
+        public ObservableProperty<int> Coins = new ObservableProperty<int>();
+        public ObservableProperty<int> Prestige = new ObservableProperty<int>();
 
         public HeroPropertyData Clone()
         {
