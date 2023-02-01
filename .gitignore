@@ -3,6 +3,7 @@
 .log
 .bin
 .apk
+.sln
 /Library/
 /Temp/
 /Assets/VSCode
