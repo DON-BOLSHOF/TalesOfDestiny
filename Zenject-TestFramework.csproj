@@ -12,7 +12,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{83fea9f3-6866-42a4-7c71-9e19951f4e99}</ProjectGuid>
+    <ProjectGuid>{a38f7ffe-8711-8d19-0ac9-502f732cba05}</ProjectGuid>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -281,7 +281,7 @@
      <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.43f1\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
      </Reference>
      <Reference Include="nunit.framework">
-     <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\PackageCache\com.unity.ext.nunit@1.0.6\net35\unity-custom\nunit.framework.dll</HintPath>
+     <HintPath>C:\Users\Acer\workspace\TalesOfDestiny\TalesOfDestiny\TOD\Library\PackageCache\com.unity.ext.nunit@1.0.6\net35\unity-custom\nunit.framework.dll</HintPath>
      </Reference>
      <Reference Include="mscorlib">
      <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.43f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\mscorlib.dll</HintPath>
@@ -632,21 +632,21 @@
      <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.43f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Xml.XPath.XDocument.dll</HintPath>
      </Reference>
      <Reference Include="UnityEngine.TestRunner">
-     <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\UnityEngine.TestRunner.dll</HintPath>
+     <HintPath>C:\Users\Acer\workspace\TalesOfDestiny\TalesOfDestiny\TOD\Library\ScriptAssemblies\UnityEngine.TestRunner.dll</HintPath>
      </Reference>
      <Reference Include="UnityEditor.TestRunner">
-     <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\UnityEditor.TestRunner.dll</HintPath>
+     <HintPath>C:\Users\Acer\workspace\TalesOfDestiny\TalesOfDestiny\TOD\Library\ScriptAssemblies\UnityEditor.TestRunner.dll</HintPath>
      </Reference>
      <Reference Include="UnityEditor.UI">
-     <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
+     <HintPath>C:\Users\Acer\workspace\TalesOfDestiny\TalesOfDestiny\TOD\Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
      </Reference>
      <Reference Include="UnityEngine.UI">
-     <HintPath>C:\Users\DONBOLSHOFF\Desktop\TalesOfDestiny-main\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
+     <HintPath>C:\Users\Acer\workspace\TalesOfDestiny\TalesOfDestiny\TOD\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
      </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Zenject.csproj">
-      <Project>{2bcb0f0d-25ad-74e2-3316-fa5402520caa}</Project>
+      <Project>{76273ec3-566a-776a-d48b-5d9633ca5a88}</Project>
       <Name>Zenject</Name>
     </ProjectReference>
   </ItemGroup>
