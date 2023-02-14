@@ -102,6 +102,11 @@ namespace Cards.SituationCards.Event.Editor
                 {
                     SetNewField(property.FindPropertyRelative("_propertyEvent"), position, ref level);
                 }
+                
+                if ((flagEnum & EventType.Continue) == EventType.Continue)
+                {
+                    SetNewField(property.FindPropertyRelative("_futureSituation"), position, ref level);
+                }
             }
 
             EditorGUI.indentLevel -= 1;

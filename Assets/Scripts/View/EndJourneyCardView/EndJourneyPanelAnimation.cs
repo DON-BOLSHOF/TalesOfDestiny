@@ -2,7 +2,7 @@
 using Panels;
 using UnityEngine;
 
-namespace View.EndJourneyView
+namespace View.EndJourneyCardView
 {
     [RequireComponent(typeof(Animator))]
     public class EndJourneyPanelAnimation : MonoBehaviour
@@ -18,8 +18,8 @@ namespace View.EndJourneyView
 
             if (_util == null) throw new ArgumentException("PanelUtil wasn't found");
             
-            _util.DissolveAnimation.IEmerged += Enlight;
-            _util.DissolveAnimation.IStartDissolving += ToAbsoluteBlack;
+            _util.DissolveAnimation.OnEmerged += Enlight;
+            _util.DissolveAnimation.OnStartDissolving += ToAbsoluteBlack;
         }
 
         private void ToAbsoluteBlack()

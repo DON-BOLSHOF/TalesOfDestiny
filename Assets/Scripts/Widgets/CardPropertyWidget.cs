@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using Utils;
 
 namespace Widgets
 {
@@ -7,9 +8,9 @@ namespace Widgets
     {
         [SerializeField] private Image _image; 
         
-        public void SetData(Sprite data)
+        public void SetData(Sprite pack)
         {
-            _image.sprite = data;
+            _image.sprite = pack;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using Cards.SituationCards;
 using CodeAnimation;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,6 +18,7 @@ namespace Panels
         protected Coroutine _typingRoutine;
         
         public Action<bool> OnChangeState;
+        public Action<CustomButton[]> OnReloadButtons;//В панели в любом случае будут кнопки(по крайней мере выхода)
 
         private void Start()
         {
@@ -37,7 +39,7 @@ namespace Panels
 
             coroutine = StartCoroutine(routine);
         }
-        
+
         public void OnSkipText()
         {
             if (_typingRoutine == null) return;
@@ -48,5 +50,19 @@ namespace Panels
         }
 
         public abstract void Exit();
+
+        public abstract void ReloadSituation(Situation situation);
+
+        protected void UpdateStrings()
+        {
+            
+        }
+
+        protected void ReloadStrings(string[] strings)
+        {
+            _typingAnimation.HideText();
+            _typingAnimation.SetStrings(strings);
+            StartRoutine(_typingAnimation.TypeText(), ref _typingRoutine);
+        }
     }
 }

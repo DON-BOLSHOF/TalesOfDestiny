@@ -14,6 +14,7 @@ namespace Cards.SituationCards.Event
         [SerializeField] private EventType _type;
         [SerializeField] private PropertyEvent[] _propertyEvent;
         [SerializeField] private ArmyEvent[] _armyEvent;
+        [SerializeField] private Situation _futureSituation;
 
         public PlayerDataButton SetPlayerData(PlayerData data)
         {
@@ -25,9 +26,9 @@ namespace Cards.SituationCards.Event
             return new PanelUtilButton(panelUtil, this);
         }
 
-        public LevelManagerButton SetLevelManagerButton(LevelBoard board)
+        public LevelBoardButton SetLevelBoardButton(LevelBoard board)
         {
-            return new LevelManagerButton(board, this);
+            return new LevelBoardButton(board, this);
         }
 
         public class PlayerDataButton
@@ -64,17 +65,19 @@ namespace Cards.SituationCards.Event
 
             public void OnClick()//Ну кнопка вообще не должна знать о playerData игрока, но ...
             {
+                if ((_interaction._type & EventType.Continue) == EventType.Continue)
+                    _util.ReloadSituation(_interaction._futureSituation);
                 if ((_interaction._type & EventType.ClosePanel) == EventType.ClosePanel)
                     _util.Exit();
             }
         }
         
-        public class LevelManagerButton
+        public class LevelBoardButton
         {
             private LevelBoard _board;
             private ButtonInteraction _interaction;
 
-            public LevelManagerButton(LevelBoard board, ButtonInteraction interaction)
+            public LevelBoardButton(LevelBoard board, ButtonInteraction interaction)
             {
                 _board = board;
                 _interaction = interaction;
@@ -95,7 +98,7 @@ namespace Cards.SituationCards.Event
         ArmyVisitor = 1,
         PropertyVisitor = 2,
         EquipVisitor = 4,
-        ContinueEvent = 8,
+        Continue = 8,
         ClosePanel = 16,
         EndJourney = 32, 
         Battle = 64

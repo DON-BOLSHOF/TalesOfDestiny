@@ -12,13 +12,13 @@ namespace Widgets
         [SerializeField] private Image _backGroundImage;
         public Image BackGroundImage => _backGroundImage;
         
-        private LevelController _controller;
+        private LevelManager _manager;
 
         private Animator _viewAnimator;
 
         public event Action<BoardItemWidget> IClicked;
         public event Action OnClick;
-
+        
         private bool _clicked;
 
         private static readonly int Swap = Animator.StringToHash("Swap");
@@ -33,7 +33,7 @@ namespace Widgets
             if (!_clicked || isEndJourney)
             {
                 _viewAnimator.SetTrigger(Swap);
-                if (_controller != null) _controller.Show(_card); //Ну если этот контроллер нужен будет не нулл
+                if (_manager != null) _manager.ShowEventContainer(_card); //Ну если этот контроллер нужен будет не нулл
                 _clicked = true;
             }
 
@@ -49,12 +49,12 @@ namespace Widgets
 
         private void DynamicalInitialization()
         {
-            _controller = _card.LevelCardType switch
+            _manager = _card.LevelCardType switch
             {
-                LevelCardType.Situation=> GameObject.FindWithTag("EventController").GetComponent<EventController>(),
-                LevelCardType.EndJourney=> GameObject.FindWithTag("EventController").GetComponent<EventController>(),
-                LevelCardType.Enemy => GameObject.FindWithTag("BattleController").GetComponent<BattleController>(),
-                _ => _controller
+                LevelCardType.Situation=> GameObject.FindWithTag("EventController").GetComponent<EventManager>(),
+                LevelCardType.EndJourney=> GameObject.FindWithTag("EventController").GetComponent<EventManager>(),
+                LevelCardType.Battle => GameObject.FindWithTag("BattleController").GetComponent<BattleEventManager>(),
+                _ => _manager
             };
 
             _viewAnimator = _view.GetComponent<Animator>();

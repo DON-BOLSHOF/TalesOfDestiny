@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using Utils;
 using Widgets;
 
 namespace View.SituationCardView
@@ -8,15 +9,16 @@ namespace View.SituationCardView
     {
         [Header("Icons")]
         [SerializeField] private Transform _propertiesIconsPosition;
-        [SerializeField] private Image _itemIcon;
+        [SerializeField] protected Image _itemIcon;
         
         [Space]
         [Header("Banners")]
-        [SerializeField] private Text _nameBanner;
-        [SerializeField] private Text _descriptionBanner;
+        [SerializeField]
+        protected Text _nameBanner;
+        [SerializeField] protected Text _descriptionBanner;
 
         [Space] [Header("OffSet")]
-        [SerializeField] private float widgetOffsetCorrection; //Здесь уж точно нужен комментарий. 
+        [SerializeField] protected float widgetOffsetCorrection; //Здесь уж точно нужен комментарий. 
                                                            //В общем, у разных иконок разные offset-ы(они в самих view лежат)
                                                            //=> widget-ы сами по себе разных размеров, так что нужна поправка
                                                            //у самого виджета   

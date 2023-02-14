@@ -1,6 +1,10 @@
 using System.Collections;
+using System.Collections.Generic;
+using Cards.SituationCards;
 using CodeAnimation;
 using UnityEngine;
+using UnityEngine.UI;
+using Widgets;
 
 namespace Panels
 {
@@ -16,6 +20,7 @@ namespace Panels
 
         public override void Show()
         {
+            _typingAnimation.TakeText();
             _typingAnimation.HideText();
 
             _dissolveAnimation.SetImagesDissolve();
@@ -39,7 +44,7 @@ namespace Panels
             StartRoutine(_outLineAnimation.OutLiningOn(), ref _shaderRoutine);
             StartRoutine(_typingAnimation.TypeText(), ref _typingRoutine);
         }
-    
+
         private IEnumerator Dissolving()
         {
             _typingAnimation.HideText();
@@ -60,6 +65,38 @@ namespace Panels
         public override void Exit()
         {
             Dissolve();
+        }
+
+        public override void
+            ReloadSituation(Situation situation) //Код начинает в спагетти превращаться с кусочками говна...
+        {
+            var graphics = FindButtonWidgets();
+
+            StartRoutine(
+                _dissolveAnimation.ReloadSpecialObjects(graphics, () => ReloadButton(situation.Buttons),
+                    FindButtonWidgets), ref _shaderRoutine); //Это или слишком тупо или гениально
+            ReloadStrings(new[]
+                { situation.name, situation.Description });
+        }
+
+        private List<Graphic> FindButtonWidgets()
+        {
+            var widgets = GetComponentsInChildren<CustomButtonWidget>();
+            var graphics = new List<Graphic>();
+
+            foreach (var widget in widgets)
+            {
+                graphics.AddRange(widget.GetComponentsInChildren<Graphic>());
+            }
+
+            return graphics;
+        }
+
+        private int ReloadButton(CustomButton[] buttons)
+        {
+            OnReloadButtons.Invoke(buttons);
+
+            return 0; //Сделано лишь потому что Func<void> не берется... Нет времени щас разбираться, потом
         }
     }
 }

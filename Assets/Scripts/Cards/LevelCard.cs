@@ -16,7 +16,7 @@
     {
         HeroPosition,
         Situation,
-        Enemy,
+        Battle,
         EndJourney
     }
 }

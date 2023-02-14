@@ -23,6 +23,11 @@ namespace CodeAnimation
             TakeText();
         }
 
+        public void SetStrings(string[] strings)
+        {
+            _stringToTyping = strings;
+        }
+
         public IEnumerator TypeText()
         {
             for (int i = 0; i < _texts.Length; i++)
@@ -35,7 +40,7 @@ namespace CodeAnimation
             }
         }
 
-        private void TakeText()
+        public void TakeText()
         {
             for (int i = 0; i < _texts.Length; i++)
                 _stringToTyping[i] = _texts[i].text;
