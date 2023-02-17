@@ -25,9 +25,11 @@ namespace Panels
             _animator.SetTrigger(ExitKey);
         }
 
-        public override void ReloadSituation(Situation situation)
+        public override void ReloadSituation(Situation situation)//Пригодится может, иначе удали!
         {
-            throw new System.NotImplementedException();
+            ReloadStrings(new[]
+                { situation.name, situation.Description });
+            OnReloadButtons?.Invoke(situation.Buttons);
         }
 
         public void OnExited()//В аниматоре вызовется

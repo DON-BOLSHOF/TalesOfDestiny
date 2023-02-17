@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -7,10 +8,13 @@ using Random = UnityEngine.Random;
 
 namespace CodeAnimation
 {
+    [Serializable]
     public class LevelBoardAnimations
     {
-        private Vector2[,] _randomPositions;
+        [SerializeField] private int _outLevelOffset = 250;
+        
         private Vector2[,] _boardPositions;
+        private Vector2[,] _randomPositions;
 
         public IEnumerator Appearance(List<List<BoardItemWidget>> board)
         {
@@ -21,6 +25,8 @@ namespace CodeAnimation
             GetBoardPosition(board);
 
             SetBoardPosition(board, _randomPositions);
+
+            SetBackImageActive(board, true);
 
             for (float k = 0.1f, i = 0.2f; i <= 4 || k <= 1f; i += 0.2f, k += 0.035f)
             {
@@ -68,6 +74,14 @@ namespace CodeAnimation
             }
         }
 
+        private void SetBackImageActive(List<List<BoardItemWidget>> board, bool value)
+        {
+            foreach (var boardItemWidget in board.SelectMany(b => b))
+            {
+                boardItemWidget.BackGroundImage.gameObject.SetActive(value);
+            }
+        }
+
         private void GetBoardPosition(List<List<BoardItemWidget>> board)
         {
             for (int i = 0; i < _boardPositions.GetLength(0); i++)
@@ -107,23 +121,28 @@ namespace CodeAnimation
 
                         if (board[j][z].View != null)
                             board[j][z].View.GetComponent<RectTransform>().anchoredPosition = //Ну а как иначе?)
-                                new Vector2(Mathf.SmoothStep(_boardPositions[j, z].x, _randomPositions[j, z].x, EaseInOutQuint(k)),
-                                    Mathf.SmoothStep(_boardPositions[j, z].y, _randomPositions[j, z].y, EaseInOutQuint(k)));
+                                new Vector2(
+                                    Mathf.SmoothStep(_boardPositions[j, z].x, _randomPositions[j, z].x,
+                                        EaseInOutQuint(k)),
+                                    Mathf.SmoothStep(_boardPositions[j, z].y, _randomPositions[j, z].y,
+                                        EaseInOutQuint(k)));
                     }
                 }
 
                 yield return new WaitForSeconds(0.07f);
             }
+            
+            SetBackImageActive(board, false);
         }
 
         private Vector2 GetRandomPosition() //Все относительно => эти позиции выбираются относительно нашей сцены,
             //расширять функционал этого не требуется на самом деле
         {
             var isPositive = Random.Range(0, 101) > 50 ? 1 : -1;
-            var x = Random.Range(250, 500) * isPositive;
+            var x = Random.Range(_outLevelOffset, _outLevelOffset * 2) * isPositive;
 
             isPositive = Random.Range(0, 101) > 50 ? 1 : -1;
-            var y = Random.Range(250, 500) * isPositive;
+            var y = Random.Range(_outLevelOffset, _outLevelOffset * 2) * isPositive;
 
             return new Vector2(x, y);
         }

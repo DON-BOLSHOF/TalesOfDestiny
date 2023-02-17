@@ -12,7 +12,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{7c62a77a-638c-36a0-78e9-12a5c4df69a8}</ProjectGuid>
+    <ProjectGuid>{d857682c-5f73-bbbb-d4eb-e7c1f6a7ce62}</ProjectGuid>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -342,10 +342,10 @@
      <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.43f1\Editor\Data\Managed\UnityEngine\UnityEditor.UnityConnectModule.dll</HintPath>
      </Reference>
      <Reference Include="Zenject-usage">
-     <HintPath>C:\Users\Acer\Desktop\TalesOfDestiny-5b7589da800ff9d24b9a6b7e159af79ed0dba929\Assets\Plugins\Zenject\Source\Usage\Zenject-usage.dll</HintPath>
+     <HintPath>C:\Users\Acer\workspace\TalesOfDestiny\TalesOfDestiny\Assets\Plugins\Zenject\Source\Usage\Zenject-usage.dll</HintPath>
      </Reference>
      <Reference Include="nunit.framework">
-     <HintPath>C:\Users\Acer\Desktop\TalesOfDestiny-5b7589da800ff9d24b9a6b7e159af79ed0dba929\Library\PackageCache\com.unity.ext.nunit@1.0.6\net35\unity-custom\nunit.framework.dll</HintPath>
+     <HintPath>C:\Users\Acer\workspace\TalesOfDestiny\TalesOfDestiny\Library\PackageCache\com.unity.ext.nunit@1.0.6\net35\unity-custom\nunit.framework.dll</HintPath>
      </Reference>
      <Reference Include="netstandard">
      <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.43f1\Editor\Data\NetStandard\ref\2.0.0\netstandard.dll</HintPath>
@@ -693,29 +693,29 @@
      <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.43f1\Editor\Data\NetStandard\compat\2.0.0\shims\netfx\System.Xml.Serialization.dll</HintPath>
      </Reference>
      <Reference Include="UnityEngine.TestRunner">
-     <HintPath>C:\Users\Acer\Desktop\TalesOfDestiny-5b7589da800ff9d24b9a6b7e159af79ed0dba929\Library\ScriptAssemblies\UnityEngine.TestRunner.dll</HintPath>
+     <HintPath>C:\Users\Acer\workspace\TalesOfDestiny\TalesOfDestiny\Library\ScriptAssemblies\UnityEngine.TestRunner.dll</HintPath>
      </Reference>
      <Reference Include="UnityEditor.TestRunner">
-     <HintPath>C:\Users\Acer\Desktop\TalesOfDestiny-5b7589da800ff9d24b9a6b7e159af79ed0dba929\Library\ScriptAssemblies\UnityEditor.TestRunner.dll</HintPath>
+     <HintPath>C:\Users\Acer\workspace\TalesOfDestiny\TalesOfDestiny\Library\ScriptAssemblies\UnityEditor.TestRunner.dll</HintPath>
      </Reference>
      <Reference Include="UnityEditor.UI">
-     <HintPath>C:\Users\Acer\Desktop\TalesOfDestiny-5b7589da800ff9d24b9a6b7e159af79ed0dba929\Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
+     <HintPath>C:\Users\Acer\workspace\TalesOfDestiny\TalesOfDestiny\Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
      </Reference>
      <Reference Include="UnityEngine.UI">
-     <HintPath>C:\Users\Acer\Desktop\TalesOfDestiny-5b7589da800ff9d24b9a6b7e159af79ed0dba929\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
+     <HintPath>C:\Users\Acer\workspace\TalesOfDestiny\TalesOfDestiny\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
      </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Zenject-TestFramework.csproj">
-      <Project>{2f4a6818-5552-c44a-b80d-0110f8ee8e8b}</Project>
+      <Project>{75c1c815-ddbb-23a5-472a-3124008c6472}</Project>
       <Name>Zenject-TestFramework</Name>
     </ProjectReference>
     <ProjectReference Include="Zenject.csproj">
-      <Project>{86ef38ea-e6d6-dfe6-6ab7-4c58b5298d8f}</Project>
+      <Project>{0959ba13-b4b8-484f-f927-626ef18ea02d}</Project>
       <Name>Zenject</Name>
     </ProjectReference>
     <ProjectReference Include="Zenject-IntegrationTests.csproj">
-      <Project>{a2b55d1e-85b5-fa3a-8bba-b45b136a9421}</Project>
+      <Project>{0a19aaa6-e3e7-de9a-87f8-4346fa390c64}</Project>
       <Name>Zenject-IntegrationTests</Name>
     </ProjectReference>
   </ItemGroup>

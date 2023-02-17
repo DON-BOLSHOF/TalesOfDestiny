@@ -12,7 +12,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{3c0a097b-3f21-2107-2464-2fbf1a80f35a}</ProjectGuid>
+    <ProjectGuid>{36951c27-df58-4742-ff99-aea0e9f0a50a}</ProjectGuid>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -287,37 +287,37 @@
      <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.43f1\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
      </Reference>
      <Reference Include="Zenject-usage">
-     <HintPath>C:\Users\Acer\Desktop\TalesOfDestiny-5b7589da800ff9d24b9a6b7e159af79ed0dba929\Assets\Plugins\Zenject\Source\Usage\Zenject-usage.dll</HintPath>
+     <HintPath>C:\Users\Acer\workspace\TalesOfDestiny\TalesOfDestiny\Assets\Plugins\Zenject\Source\Usage\Zenject-usage.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Plastic.Newtonsoft.Json">
-     <HintPath>C:\Users\Acer\Desktop\TalesOfDestiny-5b7589da800ff9d24b9a6b7e159af79ed0dba929\Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\Unity.Plastic.Newtonsoft.Json.dll</HintPath>
+     <HintPath>C:\Users\Acer\workspace\TalesOfDestiny\TalesOfDestiny\Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\Unity.Plastic.Newtonsoft.Json.dll</HintPath>
      </Reference>
      <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Pdb">
-     <HintPath>C:\Users\Acer\Desktop\TalesOfDestiny-5b7589da800ff9d24b9a6b7e159af79ed0dba929\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.Pdb.dll</HintPath>
+     <HintPath>C:\Users\Acer\workspace\TalesOfDestiny\TalesOfDestiny\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.Pdb.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Plastic.Antlr3.Runtime">
-     <HintPath>C:\Users\Acer\Desktop\TalesOfDestiny-5b7589da800ff9d24b9a6b7e159af79ed0dba929\Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\Unity.Plastic.Antlr3.Runtime.dll</HintPath>
+     <HintPath>C:\Users\Acer\workspace\TalesOfDestiny\TalesOfDestiny\Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\Unity.Plastic.Antlr3.Runtime.dll</HintPath>
      </Reference>
      <Reference Include="unityplastic">
-     <HintPath>C:\Users\Acer\Desktop\TalesOfDestiny-5b7589da800ff9d24b9a6b7e159af79ed0dba929\Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\unityplastic.dll</HintPath>
+     <HintPath>C:\Users\Acer\workspace\TalesOfDestiny\TalesOfDestiny\Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\unityplastic.dll</HintPath>
      </Reference>
      <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Rocks">
-     <HintPath>C:\Users\Acer\Desktop\TalesOfDestiny-5b7589da800ff9d24b9a6b7e159af79ed0dba929\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.Rocks.dll</HintPath>
+     <HintPath>C:\Users\Acer\workspace\TalesOfDestiny\TalesOfDestiny\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.Rocks.dll</HintPath>
      </Reference>
      <Reference Include="log4netPlastic">
-     <HintPath>C:\Users\Acer\Desktop\TalesOfDestiny-5b7589da800ff9d24b9a6b7e159af79ed0dba929\Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\log4netPlastic.dll</HintPath>
+     <HintPath>C:\Users\Acer\workspace\TalesOfDestiny\TalesOfDestiny\Library\PackageCache\com.unity.collab-proxy@1.17.7\Lib\Editor\PlasticSCM\log4netPlastic.dll</HintPath>
      </Reference>
      <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Mdb">
-     <HintPath>C:\Users\Acer\Desktop\TalesOfDestiny-5b7589da800ff9d24b9a6b7e159af79ed0dba929\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.Mdb.dll</HintPath>
+     <HintPath>C:\Users\Acer\workspace\TalesOfDestiny\TalesOfDestiny\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.Mdb.dll</HintPath>
      </Reference>
      <Reference Include="ICSharpCode.NRefactory">
-     <HintPath>C:\Users\Acer\Desktop\TalesOfDestiny-5b7589da800ff9d24b9a6b7e159af79ed0dba929\Library\PackageCache\com.unity.render-pipelines.core@10.10.1\Editor\ShaderGenerator\ICSharpCode.NRefactory.dll</HintPath>
+     <HintPath>C:\Users\Acer\workspace\TalesOfDestiny\TalesOfDestiny\Library\PackageCache\com.unity.render-pipelines.core@10.10.1\Editor\ShaderGenerator\ICSharpCode.NRefactory.dll</HintPath>
      </Reference>
      <Reference Include="Zenject.ReflectionBaking.Mono.Cecil">
-     <HintPath>C:\Users\Acer\Desktop\TalesOfDestiny-5b7589da800ff9d24b9a6b7e159af79ed0dba929\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.dll</HintPath>
+     <HintPath>C:\Users\Acer\workspace\TalesOfDestiny\TalesOfDestiny\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.dll</HintPath>
      </Reference>
      <Reference Include="nunit.framework">
-     <HintPath>C:\Users\Acer\Desktop\TalesOfDestiny-5b7589da800ff9d24b9a6b7e159af79ed0dba929\Library\PackageCache\com.unity.ext.nunit@1.0.6\net35\unity-custom\nunit.framework.dll</HintPath>
+     <HintPath>C:\Users\Acer\workspace\TalesOfDestiny\TalesOfDestiny\Library\PackageCache\com.unity.ext.nunit@1.0.6\net35\unity-custom\nunit.framework.dll</HintPath>
      </Reference>
      <Reference Include="mscorlib">
      <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.43f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\mscorlib.dll</HintPath>
@@ -668,25 +668,25 @@
      <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.43f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Xml.XPath.XDocument.dll</HintPath>
      </Reference>
      <Reference Include="UnityEditor.UI">
-     <HintPath>C:\Users\Acer\Desktop\TalesOfDestiny-5b7589da800ff9d24b9a6b7e159af79ed0dba929\Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
+     <HintPath>C:\Users\Acer\workspace\TalesOfDestiny\TalesOfDestiny\Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
      </Reference>
      <Reference Include="UnityEngine.UI">
-     <HintPath>C:\Users\Acer\Desktop\TalesOfDestiny-5b7589da800ff9d24b9a6b7e159af79ed0dba929\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
+     <HintPath>C:\Users\Acer\workspace\TalesOfDestiny\TalesOfDestiny\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
      </Reference>
      <Reference Include="UnityEditor.TestRunner">
-     <HintPath>C:\Users\Acer\Desktop\TalesOfDestiny-5b7589da800ff9d24b9a6b7e159af79ed0dba929\Library\ScriptAssemblies\UnityEditor.TestRunner.dll</HintPath>
+     <HintPath>C:\Users\Acer\workspace\TalesOfDestiny\TalesOfDestiny\Library\ScriptAssemblies\UnityEditor.TestRunner.dll</HintPath>
      </Reference>
      <Reference Include="UnityEngine.TestRunner">
-     <HintPath>C:\Users\Acer\Desktop\TalesOfDestiny-5b7589da800ff9d24b9a6b7e159af79ed0dba929\Library\ScriptAssemblies\UnityEngine.TestRunner.dll</HintPath>
+     <HintPath>C:\Users\Acer\workspace\TalesOfDestiny\TalesOfDestiny\Library\ScriptAssemblies\UnityEngine.TestRunner.dll</HintPath>
      </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Zenject.csproj">
-      <Project>{86ef38ea-e6d6-dfe6-6ab7-4c58b5298d8f}</Project>
+      <Project>{0959ba13-b4b8-484f-f927-626ef18ea02d}</Project>
       <Name>Zenject</Name>
     </ProjectReference>
     <ProjectReference Include="Zenject-Editor.csproj">
-      <Project>{d14694c9-4e62-3074-8cb2-ba7298a04ed9}</Project>
+      <Project>{4186f678-2488-04f6-deba-0099ae2069d6}</Project>
       <Name>Zenject-Editor</Name>
     </ProjectReference>
   </ItemGroup>

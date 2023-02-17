@@ -79746,6 +79746,8 @@ MonoBehaviour:
       _prefab: {fileID: 17940878376319565, guid: ddc212e51317f1e4faffe1dc5861e54d, type: 3}
       _field: {fileID: 1718940969}
       _prefabOffset: 25
+  _animations:
+    _outLevelOffset: 250
   HeroPosition:
     _value: {x: 0, y: 0}
   GlobalHeroPosition:

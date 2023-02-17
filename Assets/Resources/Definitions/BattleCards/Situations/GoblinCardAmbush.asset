@@ -17,16 +17,18 @@ MonoBehaviour:
   - _name: Attack!
     _buttonInteraction:
       _type: 64
-      _propertyEvent: []
-      _armyEvent: []
+      _propertyEvents: []
+      _armyEvents: []
+      _futureSituation: {fileID: 0}
   - _name: Flee.
     _buttonInteraction:
       _type: 18
-      _propertyEvent:
+      _propertyEvents:
       - _mode: 0
         _data:
-          _food: 2
-          _coin: 4
-          _prestige: 5
+          _food: 5
+          _coin: 8
+          _prestige: 10
         _def: {fileID: 0}
-      _armyEvent: []
+      _armyEvents: []
+      _futureSituation: {fileID: 0}

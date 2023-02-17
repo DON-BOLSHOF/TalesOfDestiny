@@ -17,16 +17,18 @@ MonoBehaviour:
   - _name: "\u0417\u0430\u0449\u0438\u0449\u0430\u0442\u044C\u0441\u044F"
     _buttonInteraction:
       _type: 16
-      _propertyEvent: []
-      _armyEvent: []
+      _propertyEvents: []
+      _armyEvents: []
+      _futureSituation: {fileID: 0}
   - _name: "\u041A\u043E\u043D\u0442\u0440\u0430\u0442\u0430\u043A\u043E\u0432\u0430\u0442\u044C"
     _buttonInteraction:
       _type: 18
-      _propertyEvent:
+      _propertyEvents:
       - _mode: 0
         _data:
-          _food: 2
-          _coin: 4
-          _prestige: 0
+          _food: 3
+          _coin: 5
+          _prestige: 2
         _def: {fileID: 0}
-      _armyEvent: []
+      _armyEvents: []
+      _futureSituation: {fileID: 0}

@@ -95,12 +95,12 @@ namespace Cards.SituationCards.Event.Editor
 
                 if ((flagEnum & EventType.ArmyVisitor) == EventType.ArmyVisitor)
                 {
-                    SetNewField(property.FindPropertyRelative("_armyEvent"), position, ref level);
+                    SetNewField(property.FindPropertyRelative("_armyEvents"), position, ref level);
                 }
 
                 if ((flagEnum & EventType.PropertyVisitor) == EventType.PropertyVisitor)
                 {
-                    SetNewField(property.FindPropertyRelative("_propertyEvent"), position, ref level);
+                    SetNewField(property.FindPropertyRelative("_propertyEvents"), position, ref level);
                 }
                 
                 if ((flagEnum & EventType.Continue) == EventType.Continue)
@@ -167,14 +167,14 @@ namespace Cards.SituationCards.Event.Editor
                     .Cast<Enum>()
                     .Count(flagEnum.HasFlag) - 1;
 
-                var subProperty = property.FindPropertyRelative("_armyEvent");
+                var subProperty = property.FindPropertyRelative("_armyEvents");
                 if ((flagEnum & EventType.ArmyVisitor) == EventType.ArmyVisitor &&
                     subProperty.isExpanded)
                 {
                     ExpandHeight(subProperty, ref totalLines);
                 }
 
-                subProperty = property.FindPropertyRelative("_propertyEvent");
+                subProperty = property.FindPropertyRelative("_propertyEvents");
                 if ((flagEnum & EventType.PropertyVisitor) == EventType.PropertyVisitor &&
                     subProperty.isExpanded)
                 {

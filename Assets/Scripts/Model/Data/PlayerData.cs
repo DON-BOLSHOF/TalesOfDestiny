@@ -1,16 +1,27 @@
 ﻿using System;
+using Cards.SituationCards.Event;
 using Cards.SituationCards.Event.PropertyEvents;
 using Model.Properties;
 using UnityEngine;
+using EventType = Cards.SituationCards.Event.EventType;
 
 namespace Model.Data
 {
     [Serializable]
-    public class PlayerData
+    public class PlayerData : ICustomButtonVisitor
     {
         [SerializeField] private HeroPropertyData _heroData;
 
         public HeroPropertyData HeroData => _heroData;
+
+        public void Visit(ButtonInteraction interaction)
+        {
+            if ((interaction.Type & EventType.PropertyVisitor) != EventType.PropertyVisitor) return;
+            foreach (var propertyEvent in interaction.PropertyEvents)
+            {
+                propertyEvent.Accept(HeroData);
+            }
+        }
     }
 
     [Serializable]

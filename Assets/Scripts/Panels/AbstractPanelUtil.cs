@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections;
 using Cards.SituationCards;
+using Cards.SituationCards.Event;
 using CodeAnimation;
 using UnityEngine;
 using UnityEngine.UI;
 using Utils;
 using Utils.Interfaces;
+using EventType = Cards.SituationCards.Event.EventType;
 
 namespace Panels
 {
-    public abstract class AbstractPanelUtil: MonoBehaviour, ITypingText
+    public abstract class AbstractPanelUtil: MonoBehaviour, ITypingText, ICustomButtonVisitor
     {
         [field: SerializeField] public Text[] _texts { get; private set; } //Ебать я гени''й (Как в ребусе)
         [field: SerializeField] public AudioClip _typingClip { get; private set; }
@@ -63,6 +65,14 @@ namespace Panels
             _typingAnimation.HideText();
             _typingAnimation.SetStrings(strings);
             StartRoutine(_typingAnimation.TypeText(), ref _typingRoutine);
+        }
+
+        public void Visit(ButtonInteraction interaction)
+        {
+            if ((interaction.Type & EventType.Continue) == EventType.Continue)
+                ReloadSituation(interaction.FutureSituation);
+            if ((interaction.Type & EventType.ClosePanel) == EventType.ClosePanel)
+                Exit();
         }
     }
 }

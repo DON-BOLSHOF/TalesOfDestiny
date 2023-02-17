@@ -1,5 +1,6 @@
 ﻿using Cards.SituationCards;
 using Cards.SituationCards.Event;
+using Controllers;
 using LevelManipulation;
 using Panels;
 using UnityEngine;
@@ -23,9 +24,10 @@ namespace Widgets
 
         public void OnClick()
         {
-            _interaction.SetPlayerData(FindObjectOfType<GameSession>().Data).OnClick();
-            _interaction.SetPanelButton(_panelUtil).OnClick();
-            _interaction.SetLevelBoardButton(FindObjectOfType<LevelBoard>()).OnClick();
+            _interaction.SetButtonVisitor(FindObjectOfType<GameSession>().Data).OnClick();//Ну с натяжкой он может знать об этом)))
+            _interaction.SetButtonVisitor(_panelUtil).OnClick();
+            _interaction.SetButtonVisitor(FindObjectOfType<LevelBoard>()).OnClick();
+            _interaction.SetButtonVisitor(FindObjectOfType<BattleController>()).OnClick();
         }
     }
 }

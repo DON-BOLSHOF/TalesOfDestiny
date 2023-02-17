@@ -5,7 +5,7 @@ using Utils.Disposables;
 using Vector2 = UnityEngine.Vector2;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class HeroScript : MonoBehaviour
+public class HeroBehaviour : MonoBehaviour
 {
     [SerializeField] private AnimationCurve _curve;
     [SerializeField] private float _velocity = 0.5f;

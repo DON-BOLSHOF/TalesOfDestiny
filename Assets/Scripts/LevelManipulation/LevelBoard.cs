@@ -2,28 +2,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using Cards.SituationCards.Event;
 using CodeAnimation;
 using Model.Properties;
 using UnityEngine;
 using Utils;
 using Utils.Disposables;
 using Widgets;
+using EventType = Cards.SituationCards.Event.EventType;
 
 namespace LevelManipulation
 {
-    public class LevelBoard : MonoBehaviour
+    public class LevelBoard : MonoBehaviour, ICustomButtonVisitor
     {
         [SerializeField] private LevelBuilder _levelBuilder;
+        [SerializeField] private LevelBoardAnimations _animations;
 
-        [HideInInspector] public ObservableProperty<Vector2Int> HeroPosition = new ObservableProperty<Vector2Int>(); //Локальное изменение
-        [HideInInspector] public ObservableProperty<Vector2> GlobalHeroPosition = new ObservableProperty<Vector2>(); //Честно не думал, что придется использовать этот атрибут
+        [HideInInspector]
+        public ObservableProperty<Vector2Int> HeroPosition = new ObservableProperty<Vector2Int>(); //Локальное изменение
 
-        private LevelBoardAnimations _animations = new LevelBoardAnimations();
+        [HideInInspector] public ObservableProperty<Vector2>
+            GlobalHeroPosition =
+                new ObservableProperty<Vector2>(); //Честно не думал, что придется использовать этот атрибут
+
         private Coroutine _coroutine;
 
         private readonly DisposeHolder _trash = new DisposeHolder();
 
-        public List<List<CellWidget>> Cells { get; private set; } = new List<List<CellWidget>>();
+        private List<List<CellWidget>> Cells { get; set; } = new List<List<CellWidget>>();
 
         public event Action OnNextTurn;
 
@@ -38,25 +45,48 @@ namespace LevelManipulation
             _coroutine = StartCoroutine(_animations.Appearance(CellConverter.GetItemWidgets(Cells)));
         }
 
-        public void Reload()
+        private void Reload()
         {
-            StartCoroutine(ReloadCorotine());
+            StartRoutine(ReloadCorotine());
             OnNextTurn?.Invoke();
+        }
+
+        public async void StartBattle()
+        { 
+            TakeOutCards();
+        }
+
+        private void TakeOutCards()
+        {
+            StartRoutine(_animations.Exiting(CellConverter.GetItemWidgets(Cells)));
+        }
+
+        private void ReturnCards()
+        {
+            StartRoutine(_animations.Appearance(CellConverter.GetItemWidgets(Cells)));
+        }
+
+        private void StartRoutine(IEnumerator coroutine)
+        {
+            if (_coroutine != null)
+                StopCoroutine(_coroutine);
+
+            _coroutine = StartCoroutine(coroutine);
         }
 
         private IEnumerator ReloadCorotine() //без анимаций код покрасивее выглядел, конечно...
         {
             if (_coroutine != null)
                 StopCoroutine(_coroutine);
-            yield return _animations.Exiting(CellConverter.GetItemWidgets(Cells));
+            yield return _coroutine = StartCoroutine(_animations.Exiting(CellConverter.GetItemWidgets(Cells)));
 
             Cells = _levelBuilder.Reload();
 
             SubscribeWidgets();
 
             ChangeHeroPosition(FindHeroPosition());
-            
-            _coroutine = StartCoroutine(_animations.Appearance(CellConverter.GetItemWidgets(Cells)));
+
+            ReturnCards();
         }
 
         private Vector2Int FindHeroPosition()
@@ -100,6 +130,12 @@ namespace LevelManipulation
         {
             HeroPosition.Value = value;
             GlobalHeroPosition.Value = Cells[HeroPosition.Value.x][HeroPosition.Value.y].BoardItem.transform.position;
+        }
+
+        public void Visit(ButtonInteraction interaction)
+        {
+            if ((interaction.Type & EventType.EndJourney) == EventType.EndJourney)
+                Reload();
         }
 
         private void OnDestroy()
