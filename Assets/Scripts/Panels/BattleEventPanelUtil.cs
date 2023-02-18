@@ -1,13 +1,15 @@
-﻿using Cards.SituationCards;
+﻿using System;
+using Cards.SituationCards;
 using UnityEngine;
 
 namespace Panels
 {
-    public class BattleEventPanelUtil : AbstractPanelUtil //Чисто за анимацию будешь отвечать другалек
+    public class BattleEventPanelUtil : AbstractTextPanelUtil //Чисто за анимацию будешь отвечать другалек
     {
         [SerializeField] private Animator _animator;
         
         private static readonly int ExitKey = Animator.StringToHash("Exit");
+        private static readonly int PrepareBattle = Animator.StringToHash("PrepareBattle");
 
         public override void Show()
         {
@@ -36,6 +38,11 @@ namespace Panels
         {
             OnChangeState?.Invoke(false);
             gameObject.SetActive(false);
+        }
+
+        public void PrepareToBattle(AbstractPanelUtil panel)
+        {
+            _animator.SetTrigger(PrepareBattle);
         }
     }
 }

@@ -46,6 +46,7 @@
      <Compile Include="Assets\Scripts\Cards\SituationCards\PhysicalCard\PanelUtilItemWidget.cs" />
      <Compile Include="Assets\Scripts\HeroBehaviour.cs" />
      <Compile Include="Assets\Scripts\CodeAnimation\IntensitySpikeAnimation.cs" />
+     <Compile Include="Assets\Scripts\Panels\AbstractPanelUtil.cs" />
      <Compile Include="Assets\Scripts\Definitions\LevelDefs\HeroCardDefs.cs" />
      <Compile Include="Assets\Scripts\Utils\Interfaces\ITypingText.cs" />
      <Compile Include="Assets\Scripts\View\HeroCardView\HeroCardView.cs" />
@@ -113,7 +114,8 @@
      <Compile Include="Assets\Scripts\Utils\AudioUtils.cs" />
      <Compile Include="Assets\Scripts\CodeAnimation\RepetativeMovingObject.cs" />
      <Compile Include="Assets\Scripts\Cards\HeroCard\HeroCard.cs" />
-     <Compile Include="Assets\Scripts\Panels\AbstractPanelUtil.cs" />
+     <Compile Include="Assets\Scripts\Panels\AbstractTextPanelUtil.cs" />
+     <Compile Include="Assets\Scripts\Panels\BattlePanel.cs" />
      <Compile Include="Assets\Scripts\Components\SpawnObjectComponent.cs" />
      <Compile Include="Assets\Scripts\CodeAnimation\SpriteFrameAnimation.cs" />
      <Compile Include="Assets\Scripts\Definitions\EventDefs\PropertyEventDef.cs" />
@@ -136,6 +138,8 @@
      <Compile Include="Assets\Scripts\Cards\SituationCards\Situation.cs" />
      <Compile Include="Assets\Scripts\GameSession.cs" />
      <Compile Include="Assets\Scripts\Utils\Disposables\DisposeHolder.cs" />
+     <Compile Include="Assets\LevelBoardSubscriber.cs" />
+     <Compile Include="Assets\Scripts\Utils\Interfaces\ISubscriber.cs" />
      <Folder Include="Assets" />
      <Folder Include="Assets\Scripts\Widgets" />
      <Folder Include="Assets\PrefabsAnimation\TurnWidget" />

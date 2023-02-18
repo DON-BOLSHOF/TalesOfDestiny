@@ -2,13 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Cards.SituationCards.Event;
 using CodeAnimation;
 using Model.Properties;
+using Panels;
 using UnityEngine;
 using Utils;
 using Utils.Disposables;
+using Utils.Interfaces;
 using Widgets;
 using EventType = Cards.SituationCards.Event.EventType;
 
@@ -18,6 +19,7 @@ namespace LevelManipulation
     {
         [SerializeField] private LevelBuilder _levelBuilder;
         [SerializeField] private LevelBoardAnimations _animations;
+        [SerializeField] private LevelBoardSubscriber _subscriber;
 
         [HideInInspector]
         public ObservableProperty<Vector2Int> HeroPosition = new ObservableProperty<Vector2Int>(); //Локальное изменение
@@ -39,6 +41,9 @@ namespace LevelManipulation
             Cells = _levelBuilder.FirstSpawn();
 
             SubscribeWidgets();
+            _subscriber.BoundPanelsUtil(Resources
+                .FindObjectsOfTypeAll<
+                    AbstractTextPanelUtil>(),GetComponentsInChildren<ISubscriber>(true).ToList()); //Ну борд с контроллерами +- на одном уровне, так что он может о них знать
 
             ChangeHeroPosition(FindHeroPosition());
 
@@ -51,9 +56,14 @@ namespace LevelManipulation
             OnNextTurn?.Invoke();
         }
 
-        public async void StartBattle()
-        { 
+        public void StartBattle()
+        {
             TakeOutCards();
+        }
+
+        public void EndBattle()
+        {
+            ReturnCards();
         }
 
         private void TakeOutCards()

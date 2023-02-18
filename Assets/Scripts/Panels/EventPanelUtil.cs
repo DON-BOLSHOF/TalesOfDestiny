@@ -8,7 +8,7 @@ using Widgets;
 
 namespace Panels
 {
-    public class EventPanelUtil : AbstractPanelUtil
+    public class EventPanelUtil : AbstractTextPanelUtil
     {
         [SerializeField] private OutLineAnimation _outLineAnimation;
         [SerializeField] private DissolveAnimation _dissolveAnimation;

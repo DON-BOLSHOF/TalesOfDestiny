@@ -12,7 +12,7 @@ namespace Widgets
     public class CustomButtonWidget : MonoBehaviour, IItemInstance<CustomButton>
     {
         [SerializeField] private Text _text;
-        [SerializeField] private AbstractPanelUtil _panelUtil;
+        [SerializeField] private AbstractTextPanelUtil textPanelUtil;
 
         private ButtonInteraction _interaction;
 
@@ -25,7 +25,7 @@ namespace Widgets
         public void OnClick()
         {
             _interaction.SetButtonVisitor(FindObjectOfType<GameSession>().Data).OnClick();//Ну с натяжкой он может знать об этом)))
-            _interaction.SetButtonVisitor(_panelUtil).OnClick();
+            _interaction.SetButtonVisitor(textPanelUtil).OnClick();
             _interaction.SetButtonVisitor(FindObjectOfType<LevelBoard>()).OnClick();
             _interaction.SetButtonVisitor(FindObjectOfType<BattleController>()).OnClick();
         }

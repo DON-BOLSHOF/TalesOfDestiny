@@ -16,7 +16,7 @@ namespace Controllers
         [SerializeField] private Text _eventText;
         [SerializeField] private CustomButtonWidget _customButtonPrefab;
         [SerializeField] private Transform _buttonContainer;
-        [SerializeField] private PanelUtilItemWidget _panelUtilItemWidget;
+        [SerializeField] private PanelUtilItemWidget _panelUtilItemWidget; //Что это? Пойми, название смени!
 
         private DataGroup<CustomButtonWidget, CustomButton> _dataGroup;
 
@@ -24,7 +24,7 @@ namespace Controllers
         {
             _dataGroup = new DataGroup<CustomButtonWidget, CustomButton>(_customButtonPrefab, _buttonContainer);
             
-            _panelUtil.OnReloadButtons += UpdateButtons;
+            textPanelUtil.OnReloadButtons += UpdateButtons;
         }
 
         public override void ShowEventContainer(LevelCard card)

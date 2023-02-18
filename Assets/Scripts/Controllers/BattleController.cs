@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Cards.SituationCards.Event;
 using Definitions.Enemies;
 using LevelManipulation;
+using Panels;
 using UnityEngine;
 using EventType = Cards.SituationCards.Event.EventType;
 
@@ -11,6 +12,7 @@ namespace Controllers
     public class BattleController : MonoBehaviour, ICustomButtonVisitor
     {
         [SerializeField] private BattleEventManager _eventManager; //Разделим обязанности
+        [SerializeField] private BattlePanel _battlePanel;
 
         private LevelBoard _levelBoard;
 
@@ -23,12 +25,19 @@ namespace Controllers
 
         private async void StartBattle()
         {
-            _enemies = new List<EnemyPack>(_eventManager.EnemyPacks);
+            _enemies = _eventManager.TakeEnemyPacks();
             _levelBoard.StartBattle();
-            _eventManager.Attack();
-            await Task.Delay(2000);
+            await _eventManager.PrepareToBattle(_battlePanel);//Передаем панель на уровень ниже для синхронизации с предыдущей панелькой.
             
             Debug.Log("Battle Started!!!");
+        }
+
+        
+        [ContextMenu("Exit")]
+        public void EndBattle()
+        {
+            _levelBoard.EndBattle();
+            _battlePanel.Exit();
         }
 
         public void Visit(ButtonInteraction interaction)

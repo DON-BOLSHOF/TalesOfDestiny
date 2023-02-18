@@ -38169,6 +38169,7 @@ MonoBehaviour:
   _sceneNames:
   - HUD
   - Services
+  - ControllersScene
 --- !u!1 &859807081
 GameObject:
   m_ObjectHideFlags: 0
@@ -79707,6 +79708,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1805380773}
   - component: {fileID: 1805380774}
+  - component: {fileID: 1805380772}
   m_Layer: 0
   m_Name: Board
   m_TagString: Untagged
@@ -79714,6 +79716,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1805380772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1805380771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7564496c5a646474082f47ca11e2b2a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1805380773
 Transform:
   m_ObjectHideFlags: 0
@@ -79747,7 +79761,8 @@ MonoBehaviour:
       _field: {fileID: 1718940969}
       _prefabOffset: 25
   _animations:
-    _outLevelOffset: 250
+    _outLevelOffset: 325
+  _subscriber: {fileID: 1805380772}
   HeroPosition:
     _value: {x: 0, y: 0}
   GlobalHeroPosition:

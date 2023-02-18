@@ -7,7 +7,7 @@ namespace Controllers
     public abstract class LevelManager : MonoBehaviour
     {
         [SerializeField] protected GameObject _container;
-        [SerializeField] protected AbstractPanelUtil _panelUtil;
+        [SerializeField] protected AbstractTextPanelUtil textPanelUtil;
 
         public virtual void ShowEventContainer(LevelCard card)
         {
