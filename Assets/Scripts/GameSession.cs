@@ -7,16 +7,16 @@ public class GameSession : MonoBehaviour
 {
     [SerializeField] private PlayerData _playerData;
 
-    private LevelBoard _levelBoard;
+    private EventLevelBoard _eventLevelBoard;
 
     public PlayerData Data => _playerData;
     public ObservableProperty<int> LevelTurn { get; } = new ObservableProperty<int>(1);
 
     private void Awake()
     {
-        _levelBoard = FindObjectOfType<LevelBoard>();
+        _eventLevelBoard = FindObjectOfType<EventLevelBoard>();
         
-        _levelBoard.OnNextTurn += OnNextTurn;
+        _eventLevelBoard.OnNextTurn += OnNextTurn;
     }
 
     private void OnNextTurn()
@@ -25,6 +25,6 @@ public class GameSession : MonoBehaviour
     }
     private void OnDestroy()
     {
-        _levelBoard.OnNextTurn -= OnNextTurn;
+        _eventLevelBoard.OnNextTurn -= OnNextTurn;
     }
 }

@@ -14,7 +14,7 @@ public class HeroBehaviour : MonoBehaviour
     [SerializeField] private bool _inversed;
     
     private Rigidbody2D _rigidbody;
-    private LevelBoard _board;
+    private EventLevelBoard _board;
 
     private Coroutine _routine;
 
@@ -26,7 +26,7 @@ public class HeroBehaviour : MonoBehaviour
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
-        _board = FindObjectOfType<LevelBoard>();
+        _board = FindObjectOfType<EventLevelBoard>();
         _trash.Retain(_board.GlobalHeroPosition.SubscribeAndInvoke(OnHeroPositionChanged));
     }
     

@@ -26,7 +26,7 @@ namespace Widgets
         {
             _interaction.SetButtonVisitor(FindObjectOfType<GameSession>().Data).OnClick();//Ну с натяжкой он может знать об этом)))
             _interaction.SetButtonVisitor(textPanelUtil).OnClick();
-            _interaction.SetButtonVisitor(FindObjectOfType<LevelBoard>()).OnClick();
+            _interaction.SetButtonVisitor(FindObjectOfType<EventLevelBoard>()).OnClick();
             _interaction.SetButtonVisitor(FindObjectOfType<BattleController>()).OnClick();
         }
     }

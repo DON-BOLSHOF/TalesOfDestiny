@@ -10,7 +10,7 @@ namespace Components
         [SerializeField] private UnityEvent<bool> OnPositionChanged;
         
         private Vector2 _myPosition;
-        private LevelBoard _board;
+        private EventLevelBoard _board;
 
         private readonly DisposeHolder _trash = new DisposeHolder();
 
@@ -30,7 +30,7 @@ namespace Components
         private void OnEnable()
         {
             if (_board == null)
-                _board = FindObjectOfType<LevelBoard>();
+                _board = FindObjectOfType<EventLevelBoard>();
 
             _trash.Retain(_board.HeroPosition.Subscribe(OnHeroPositionChanged));
         }

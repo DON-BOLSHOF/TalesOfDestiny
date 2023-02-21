@@ -39,9 +39,9 @@ namespace Model.Data
 
         public void VisitCommonPropEvent(CommonPropEvent propEvent)
         {
-            Food.Value -= propEvent.Data.Food;
-            Prestige.Value -= propEvent.Data.Prestige;
-            Coins.Value -= propEvent.Data.Coin;
+            Food.Value = Food.Value - propEvent.Data.Food >=0? Food.Value - propEvent.Data.Food: 0;
+            Prestige.Value = Prestige.Value - propEvent.Data.Prestige >=0? Prestige.Value - propEvent.Data.Prestige: 0;
+            Coins.Value = Coins.Value - propEvent.Data.Coin >=0? Coins.Value - propEvent.Data.Coin: 0;
         }
 
         public void VisitPoisonEvent(PoisonEvent poisonEvent)

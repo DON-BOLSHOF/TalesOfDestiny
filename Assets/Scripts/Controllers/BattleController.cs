@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-using System.Threading.Tasks;
 using Cards.SituationCards.Event;
 using Definitions.Enemies;
 using LevelManipulation;
 using Panels;
 using UnityEngine;
+using Zenject;
 using EventType = Cards.SituationCards.Event.EventType;
 
 namespace Controllers
@@ -12,22 +12,17 @@ namespace Controllers
     public class BattleController : MonoBehaviour, ICustomButtonVisitor
     {
         [SerializeField] private BattleEventManager _eventManager; //Разделим обязанности
-        [SerializeField] private BattlePanel _battlePanel;
-
-        private LevelBoard _levelBoard;
+        
+        [Inject] private BattleBoard _battleBoard;
+        [Inject] private EventLevelBoard _eventLevelBoard;
 
         private List<EnemyPack> _enemies;
-
-        private void Start()
-        {
-            _levelBoard = FindObjectOfType<LevelBoard>();
-        }
 
         private async void StartBattle()
         {
             _enemies = _eventManager.TakeEnemyPacks();
-            _levelBoard.StartBattle();
-            await _eventManager.PrepareToBattle(_battlePanel);//Передаем панель на уровень ниже для синхронизации с предыдущей панелькой.
+            _eventLevelBoard.StartBattle();
+            await _eventManager.PrepareToBattle(_battleBoard);//Передаем панель на уровень ниже для синхронизации с предыдущей панелькой.
             
             Debug.Log("Battle Started!!!");
         }
@@ -36,8 +31,8 @@ namespace Controllers
         [ContextMenu("Exit")]
         public void EndBattle()
         {
-            _levelBoard.EndBattle();
-            _battlePanel.Exit();
+            _eventLevelBoard.EndBattle();
+            _battleBoard.Exit();
         }
 
         public void Visit(ButtonInteraction interaction)

@@ -5,11 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - BackGround
-  - EventController
   - BattleController
   - SFXAudioSource
   - PanelUtil
   - TestTag
+  - EventManager
   layers:
   - Default
   - TransparentFX

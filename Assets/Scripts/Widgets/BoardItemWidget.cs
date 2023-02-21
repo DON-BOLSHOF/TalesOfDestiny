@@ -51,8 +51,8 @@ namespace Widgets
         {
             _manager = _card.LevelCardType switch
             {
-                LevelCardType.Situation=> GameObject.FindWithTag("EventController").GetComponent<EventManager>(),
-                LevelCardType.EndJourney=> GameObject.FindWithTag("EventController").GetComponent<EventManager>(),
+                LevelCardType.Situation=> GameObject.FindWithTag("EventManager").GetComponent<EventManager>(),
+                LevelCardType.EndJourney=> GameObject.FindWithTag("EventManager").GetComponent<EventManager>(),
                 LevelCardType.Battle => GameObject.FindWithTag("BattleController").GetComponent<BattleEventManager>(),
                 _ => _manager
             };

@@ -93,7 +93,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4156127658282194971, guid: de265793d9f6a8545be2a1ab01e057ad, type: 3}
       propertyPath: m_Name
-      value: EnemyCardView
+      value: BattleCardView
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8534830113095075810, guid: de265793d9f6a8545be2a1ab01e057ad, type: 3}
