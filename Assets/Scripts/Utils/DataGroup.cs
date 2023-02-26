@@ -5,8 +5,8 @@ namespace Utils
 {
     public class DataGroup<TPrefab, TItemData> where TPrefab : MonoBehaviour, IItemInstance<TItemData>
     {
-        private Transform _container;
-        private TPrefab _prefab;
+        protected Transform _container;
+        protected TPrefab _prefab;
 
         protected List<TPrefab> CreatedInstances = new List<TPrefab>();
 
@@ -18,11 +18,7 @@ namespace Utils
 
         public virtual void SetData(IList<TItemData> list)
         {
-            for (int i = CreatedInstances.Count; i < list.Count; i++)
-            {
-                var instantiate =  Object.Instantiate(_prefab, _container);
-                CreatedInstances.Add(instantiate);
-            }
+            Instantiate(list);
 
             for (int i = 0; i < list.Count; i++)
             {
@@ -33,6 +29,15 @@ namespace Utils
             for (int i = list.Count; i < CreatedInstances.Count; i++)
             {
                 CreatedInstances[i].gameObject.SetActive(false);
+            }
+        }
+
+        protected virtual void Instantiate(IList<TItemData> list)
+        {
+            for (var i = CreatedInstances.Count; i < list.Count; i++)
+            {
+                var instantiate = Object.Instantiate(_prefab, _container);
+                CreatedInstances.Add(instantiate);
             }
         }
     }

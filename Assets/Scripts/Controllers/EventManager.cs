@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Utils;
 using Widgets;
+using Zenject;
 
 namespace Controllers
 {
@@ -18,11 +19,13 @@ namespace Controllers
         [SerializeField] private Transform _buttonContainer;
         [SerializeField] private PanelUtilItemWidget _panelUtilItemWidget; //Что это? Пойми, название смени!
 
-        private DataGroup<CustomButtonWidget, CustomButton> _dataGroup;
+        [Inject] private DiContainer _diContainer;
+        
+        private ForwardDiDataGroup<CustomButtonWidget, CustomButton> _dataGroup;
 
         protected virtual void Start()
         {
-            _dataGroup = new DataGroup<CustomButtonWidget, CustomButton>(_customButtonPrefab, _buttonContainer);
+            _dataGroup = new ForwardDiDataGroup<CustomButtonWidget, CustomButton>(_customButtonPrefab, _buttonContainer, _diContainer);
             
             textPanelUtil.OnReloadButtons += UpdateButtons;
         }

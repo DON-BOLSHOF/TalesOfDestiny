@@ -1,14 +1,20 @@
 using UnityEngine;
+using Utils.Interfaces;
 
 namespace Components
 {
-    public class SpawnObjectComponent : MonoBehaviour
+    public class SpawnObjectComponent : MonoBehaviour, ISpawner<GameObject>
     {
         [SerializeField] private GameObject _gameObject;
 
         private void Start()
         {
-            Instantiate(_gameObject, transform.position, Quaternion.identity);
+            Spawn();
+        }
+
+        public GameObject Spawn()
+        {
+            return Instantiate(_gameObject, transform.position, Quaternion.identity);
         }
     }
 }

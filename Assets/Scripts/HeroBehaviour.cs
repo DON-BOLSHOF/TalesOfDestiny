@@ -2,10 +2,11 @@ using System.Collections;
 using LevelManipulation;
 using UnityEngine;
 using Utils.Disposables;
+using Zenject;
 using Vector2 = UnityEngine.Vector2;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class HeroBehaviour : MonoBehaviour
+public class HeroBehaviour : ZenjectDynamicObject<HeroBehaviour>
 {
     [SerializeField] private AnimationCurve _curve;
     [SerializeField] private float _velocity = 0.5f;
@@ -13,8 +14,8 @@ public class HeroBehaviour : MonoBehaviour
 
     [SerializeField] private bool _inversed;
     
+    [Inject] private EventLevelBoard _board;
     private Rigidbody2D _rigidbody;
-    private EventLevelBoard _board;
 
     private Coroutine _routine;
 
@@ -26,7 +27,6 @@ public class HeroBehaviour : MonoBehaviour
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
-        _board = FindObjectOfType<EventLevelBoard>();
         _trash.Retain(_board.GlobalHeroPosition.SubscribeAndInvoke(OnHeroPositionChanged));
     }
     

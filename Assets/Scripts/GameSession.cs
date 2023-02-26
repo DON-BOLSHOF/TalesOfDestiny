@@ -2,6 +2,7 @@ using LevelManipulation;
 using Model.Data;
 using Model.Properties;
 using UnityEngine;
+using Zenject;
 
 public class GameSession : MonoBehaviour
 {

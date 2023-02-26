@@ -6,15 +6,25 @@ using Panels;
 using UnityEngine;
 using UnityEngine.UI;
 using Utils;
+using Zenject;
 
 namespace Widgets
 { 
     public class CustomButtonWidget : MonoBehaviour, IItemInstance<CustomButton>
     {
         [SerializeField] private Text _text;
-        [SerializeField] private AbstractTextPanelUtil textPanelUtil;
 
+        [Inject] private GameSession _session;
+        [Inject] private EventLevelBoard _levelBoard;
+        [Inject] private BattleController _battleController;
+        
+        private AbstractTextPanelUtil textPanelUtil;
         private ButtonInteraction _interaction;
+
+        private void Start()
+        {
+            textPanelUtil = GetComponentInParent<AbstractTextPanelUtil>();
+        }
 
         public void SetData(CustomButton pack)
         {
@@ -24,10 +34,10 @@ namespace Widgets
 
         public void OnClick()
         {
-            _interaction.SetButtonVisitor(FindObjectOfType<GameSession>().Data).OnClick();//Ну с натяжкой он может знать об этом)))
+            _interaction.SetButtonVisitor(_session.Data).OnClick();//Ну с натяжкой он может знать об этом)))
             _interaction.SetButtonVisitor(textPanelUtil).OnClick();
-            _interaction.SetButtonVisitor(FindObjectOfType<EventLevelBoard>()).OnClick();
-            _interaction.SetButtonVisitor(FindObjectOfType<BattleController>()).OnClick();
+            _interaction.SetButtonVisitor(_levelBoard).OnClick();
+            _interaction.SetButtonVisitor(_battleController).OnClick();
         }
     }
 }

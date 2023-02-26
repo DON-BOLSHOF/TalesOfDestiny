@@ -27,7 +27,6 @@ namespace Controllers
             Debug.Log("Battle Started!!!");
         }
 
-        
         [ContextMenu("Exit")]
         public void EndBattle()
         {
