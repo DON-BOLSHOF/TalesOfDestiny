@@ -2048,6 +2048,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2528319832676679393, guid: f5381817995f44b48bd4f5f74f36f832, type: 3}
+    - {fileID: 7271198965212978439, guid: f5381817995f44b48bd4f5f74f36f832, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f5381817995f44b48bd4f5f74f36f832, type: 3}
 --- !u!114 &3324820792743671720 stripped
 MonoBehaviour:
@@ -2083,7 +2084,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _background: {fileID: 3324820792743671720}
+  widgetOffsetCorrection: 1
+  _turnThesholdValue: {fileID: 7409451457065507861}
+  _enemyAmountValue: {fileID: 7689951212526641610}
+  _attackValue: {fileID: 2360950982253597525}
+  _healthValue: {fileID: 4402687252826155389}
   _itemIcon: {fileID: 3767324874188787531}
+  _nameBanner: {fileID: 1420509586}
+  _descriptionBanner: {fileID: 6558794738162463250}
   _attackType: {fileID: 5916680555499168721}
   _armorType: {fileID: 1163189923505701792}
   _attackSprites:
@@ -2094,10 +2102,3 @@ MonoBehaviour:
   - {fileID: 7411294679705114530, guid: 72fbaf5dad660464c9771010040867d4, type: 3}
   - {fileID: 3032754894183032622, guid: 72fbaf5dad660464c9771010040867d4, type: 3}
   - {fileID: -8495095762304946840, guid: 72fbaf5dad660464c9771010040867d4, type: 3}
-  _nameBanner: {fileID: 1420509586}
-  _descriptionBanner: {fileID: 6558794738162463250}
-  _turnThesholdValue: {fileID: 7409451457065507861}
-  _enemyAmountValue: {fileID: 7689951212526641610}
-  _attackValue: {fileID: 2360950982253597525}
-  _healthValue: {fileID: 4402687252826155389}
-  widgetOffsetCorrection: 1

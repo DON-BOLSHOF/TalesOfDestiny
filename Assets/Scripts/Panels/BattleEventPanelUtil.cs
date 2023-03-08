@@ -1,5 +1,4 @@
-﻿using System;
-using Cards.SituationCards;
+﻿using Cards.SituationCards;
 using UnityEngine;
 
 namespace Panels
@@ -25,6 +24,7 @@ namespace Panels
             _typingAnimation.HideText();
             
             _animator.SetTrigger(ExitKey);
+            OnChangeState?.Invoke(false);
         }
 
         public override void ReloadSituation(Situation situation)//Пригодится может, иначе удали!
@@ -36,12 +36,13 @@ namespace Panels
 
         public void OnExited()//В аниматоре вызовется
         {
-            OnChangeState?.Invoke(false);
             gameObject.SetActive(false);
         }
 
-        public void PrepareToBattle(AbstractPanelUtil panel)
+        public void PrepareToBattle()
         {
+            OnSkipText();
+            _typingAnimation.HideText();
             _animator.SetTrigger(PrepareBattle);
         }
     }

@@ -24,6 +24,7 @@ namespace Controllers
             _eventLevelBoard.StartBattle();
             await _eventManager.PrepareToBattle(_battleBoard);//Передаем панель на уровень ниже для синхронизации с предыдущей панелькой.
             
+            _battleBoard.Show();
             Debug.Log("Battle Started!!!");
         }
 

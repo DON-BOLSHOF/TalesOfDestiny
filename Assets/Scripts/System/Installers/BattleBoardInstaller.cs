@@ -6,12 +6,12 @@ namespace System.Installers
 {
     public class BattleBoardInstaller : MonoInstaller
     {
-        [SerializeField] private BattleBoard _levelBoard;
+        [SerializeField] private BattleBoard levelBoard;
 
         public override void InstallBindings()
         {
-            Container.Bind<BattleBoard>().FromInstance(_levelBoard).AsSingle().NonLazy();
-            Container.QueueForInject(_levelBoard);
+            Container.Bind<BattleBoard>().FromInstance(levelBoard).AsSingle().NonLazy();
+            Container.QueueForInject(levelBoard);
         }
     }
 }

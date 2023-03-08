@@ -30,7 +30,7 @@ namespace Controllers
         private List<EnemyPack> _enemyPacks = new List<EnemyPack>();
 
         private Camera _mainCamera;//Выдели анимацию...
-        private Coroutine _rotateRoutine;
+        private Coroutine _routine;
 
         
         private void Awake()
@@ -60,9 +60,9 @@ namespace Controllers
 
         public async Task PrepareToBattle(AbstractPanelUtil battlePanel)
         {
-            await PutDownCamera();
-            _eventPanelUtil.PrepareToBattle(battlePanel);//анимация переходящая с ивентовой панельки на панельку боевую
             battlePanel.TakePanelSubscribes(_eventPanelUtil);
+            _eventPanelUtil.PrepareToBattle();//анимация переходящая с ивентовой панельки на панельку боевую
+            await PutDownCamera();
         }
 
         public List<EnemyPack> TakeEnemyPacks()
@@ -78,10 +78,10 @@ namespace Controllers
 
         private void StartRoutine(IEnumerator coroutine)
         {
-            if (_rotateRoutine != null)
-                StopCoroutine(_rotateRoutine);
+            if (_routine != null)
+                StopCoroutine(_routine);
 
-            _rotateRoutine = StartCoroutine(coroutine);
+            _routine = StartCoroutine(coroutine);
         }
 
         private void CloseEventContainer(bool active)
