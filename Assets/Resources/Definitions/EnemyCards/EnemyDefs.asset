@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1726129f445a45d99879957e6aa8367b, type: 3}
   m_Name: EnemyDefs
   m_EditorClassIdentifier: 
-  _enemies:
+  _cards:
   - {fileID: 11400000, guid: 92f5b8f4d6b56844290a0941ce0b11c2, type: 2}
+  - {fileID: 11400000, guid: 0959d4a4bdcfc5a49925769fbc92f733, type: 2}
   - {fileID: 11400000, guid: a01ab5ee0de48064aa9c1b6fa48f4da2, type: 2}
   - {fileID: 11400000, guid: 527a49402ef8d224d85499bb5c0bd1d1, type: 2}
-  - {fileID: 11400000, guid: 0959d4a4bdcfc5a49925769fbc92f733, type: 2}
+  - {fileID: 11400000, guid: 6a00f4fffa846924d8c9c8bb8e684386, type: 2}

@@ -56,7 +56,7 @@ namespace LevelManipulation
             OnNextTurn?.Invoke();
         }
 
-        public void StartBattle()
+        public void PrepareToBattle()
         {
             TakeOutCards();
         }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
-using Definitions.Enemies;
+using Definitions.Creatures;
+using Definitions.Creatures.Enemies;
 using UnityEngine;
 using Utils;
 using View.EnemyCardView;

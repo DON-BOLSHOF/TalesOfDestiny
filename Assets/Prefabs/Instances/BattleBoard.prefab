@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 94116294}
   - component: {fileID: 94116296}
+  - component: {fileID: 590449266}
   m_Layer: 0
   m_Name: EnemyPanel
   m_TagString: Untagged
@@ -31,7 +32,7 @@ RectTransform:
   - {fileID: 8749305816553797936}
   - {fileID: 8749305816294902300}
   - {fileID: 8749305816979977056}
-  - {fileID: 1667261434484136546}
+  - {fileID: 3688171431821216546}
   - {fileID: 8749305816282167566}
   m_Father: {fileID: 1667261433131198948}
   m_RootOrder: 0
@@ -49,6 +50,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 94116293}
   m_CullTransparentMesh: 1
+--- !u!114 &590449266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 94116293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41f06b2faecb4e7aaed6852f8593ebb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _creaturesBehaviours: []
 --- !u!1 &1275812647
 GameObject:
   m_ObjectHideFlags: 0
@@ -59,6 +73,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1275812648}
   - component: {fileID: 1275812650}
+  - component: {fileID: 702476193}
   m_Layer: 0
   m_Name: HeroAllyPanel
   m_TagString: Untagged
@@ -98,6 +113,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1275812647}
   m_CullTransparentMesh: 1
+--- !u!114 &702476193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1275812647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41f06b2faecb4e7aaed6852f8593ebb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _creaturesBehaviours: []
 --- !u!1 &1667261433131198947
 GameObject:
   m_ObjectHideFlags: 0
@@ -246,7 +274,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 1667261434550500262}
-  _panels: {fileID: 1667261433131198947}
+  _enemyPanel: {fileID: 590449266}
+  _heroAllyPanel: {fileID: 702476193}
 --- !u!95 &1667261434550500262
 Animator:
   serializedVersion: 5
@@ -561,6 +590,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyCrowdView
       objectReference: {fileID: 0}
+    - target: {fileID: 8663008209728582754, guid: c08533152c24d4043a1ae9f5dacd5b56, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9194169637734518510, guid: c08533152c24d4043a1ae9f5dacd5b56, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -675,6 +708,10 @@ PrefabInstance:
     - target: {fileID: 7946753516820447619, guid: 3fdf349c4605fbb488a73d2af99fef2c, type: 3}
       propertyPath: m_Name
       value: Creature (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7946753516820447619, guid: 3fdf349c4605fbb488a73d2af99fef2c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fdf349c4605fbb488a73d2af99fef2c, type: 3}
@@ -798,6 +835,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Creature (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 7946753516820447619, guid: 3fdf349c4605fbb488a73d2af99fef2c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fdf349c4605fbb488a73d2af99fef2c, type: 3}
 --- !u!224 &8749305816979977056 stripped
@@ -899,6 +940,10 @@ PrefabInstance:
     - target: {fileID: 7946753516820447619, guid: 3fdf349c4605fbb488a73d2af99fef2c, type: 3}
       propertyPath: m_Name
       value: Creature (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7946753516820447619, guid: 3fdf349c4605fbb488a73d2af99fef2c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fdf349c4605fbb488a73d2af99fef2c, type: 3}
@@ -1002,6 +1047,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Creature (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 7946753516820447619, guid: 3fdf349c4605fbb488a73d2af99fef2c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fdf349c4605fbb488a73d2af99fef2c, type: 3}
 --- !u!224 &8749305815815289747 stripped
@@ -1104,6 +1153,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Creature (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 7946753516820447619, guid: 3fdf349c4605fbb488a73d2af99fef2c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fdf349c4605fbb488a73d2af99fef2c, type: 3}
 --- !u!224 &8749305816081800237 stripped
@@ -1205,6 +1258,10 @@ PrefabInstance:
     - target: {fileID: 7946753516820447619, guid: 3fdf349c4605fbb488a73d2af99fef2c, type: 3}
       propertyPath: m_Name
       value: Creature (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7946753516820447619, guid: 3fdf349c4605fbb488a73d2af99fef2c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fdf349c4605fbb488a73d2af99fef2c, type: 3}
@@ -1312,6 +1369,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Creature (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 7946753516820447619, guid: 3fdf349c4605fbb488a73d2af99fef2c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fdf349c4605fbb488a73d2af99fef2c, type: 3}
 --- !u!224 &8749305816282167566 stripped
@@ -1413,6 +1474,10 @@ PrefabInstance:
     - target: {fileID: 7946753516820447619, guid: 3fdf349c4605fbb488a73d2af99fef2c, type: 3}
       propertyPath: m_Name
       value: Creature (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7946753516820447619, guid: 3fdf349c4605fbb488a73d2af99fef2c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fdf349c4605fbb488a73d2af99fef2c, type: 3}
@@ -1516,6 +1581,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Creature (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 7946753516820447619, guid: 3fdf349c4605fbb488a73d2af99fef2c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fdf349c4605fbb488a73d2af99fef2c, type: 3}
 --- !u!224 &4623545356955925326 stripped
@@ -1523,13 +1592,33 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7946753516820447616, guid: 3fdf349c4605fbb488a73d2af99fef2c, type: 3}
   m_PrefabInstance: {fileID: 3342418836965620430}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &8749305815993277410
+--- !u!1001 &6730504677405346466
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 94116294}
     m_Modifications:
+    - target: {fileID: 692679634, guid: 3fdf349c4605fbb488a73d2af99fef2c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 692679634, guid: 3fdf349c4605fbb488a73d2af99fef2c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 692679634, guid: 3fdf349c4605fbb488a73d2af99fef2c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 692679634, guid: 3fdf349c4605fbb488a73d2af99fef2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7353827642932676031, guid: 3fdf349c4605fbb488a73d2af99fef2c, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c647d76f06319d042b359b7f8d6a5200, type: 3}
     - target: {fileID: 7946753516820447616, guid: 3fdf349c4605fbb488a73d2af99fef2c, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1618,10 +1707,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Creature
       objectReference: {fileID: 0}
+    - target: {fileID: 7946753516820447619, guid: 3fdf349c4605fbb488a73d2af99fef2c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fdf349c4605fbb488a73d2af99fef2c, type: 3}
---- !u!224 &1667261434484136546 stripped
+--- !u!224 &3688171431821216546 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7946753516820447616, guid: 3fdf349c4605fbb488a73d2af99fef2c, type: 3}
-  m_PrefabInstance: {fileID: 8749305815993277410}
+  m_PrefabInstance: {fileID: 6730504677405346466}
   m_PrefabAsset: {fileID: 0}

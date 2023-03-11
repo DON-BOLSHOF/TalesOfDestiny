@@ -22,7 +22,7 @@ namespace Cards
 
     public enum CardType
     {
-        Army,
+        Company, // Армия героя.
         Equip,
         Event,
         Enemy,

@@ -1,4 +1,4 @@
-﻿using Definitions.Enemies;
+﻿using Definitions.Creatures.Enemies;
 using UnityEngine;
 
 namespace Cards

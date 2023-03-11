@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Definitions;
-using Definitions.Enemies;
+using Definitions.Creatures;
+using Definitions.Creatures.Enemies;
 using UnityEngine;
 
 namespace Cards
@@ -14,20 +15,20 @@ namespace Cards
 
             if (obligatoryEnemies != null) result.AddRange(obligatoryEnemies.Select(pack => new EnemyPack(pack)));
        
-            var enemies = DefsFacade.I.EnemyDefs.Enemies;
+            var enemies = DefsFacade.I.EnemyDefs.GetAllCardsDefs();
             foreach (var enemy in enemies)
             {
-                EnemyPack enemyPack = null;
-                if (!GenerateRandomPack(enemy, turnThreshold, ref enemyPack)) continue;
+                EnemyPack creaturePack = null;
+                if (!GenerateRandomPack(enemy, turnThreshold, ref creaturePack)) continue;
 
-                var existedPack = result.Find(card => card.EnemyCard.Equals(enemy));
+                var existedPack = result.Find(card => card.CreatureCard.Equals(enemy));
                 if (existedPack != null)
                 {
-                    existedPack.ModifyCount(enemyPack.Count);
+                    existedPack.ModifyCount(creaturePack.Count);
                 }
                 else
                 {
-                    result.Add(enemyPack);
+                    result.Add(creaturePack);
                 }
             }
 

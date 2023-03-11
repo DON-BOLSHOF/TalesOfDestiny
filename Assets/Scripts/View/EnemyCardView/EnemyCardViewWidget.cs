@@ -1,4 +1,4 @@
-﻿using Definitions.Enemies;
+﻿using Definitions.Creatures.Enemies;
 using UnityEngine;
 using UnityEngine.UI;
 using Utils;
@@ -34,15 +34,16 @@ namespace View.EnemyCardView
 
         public void SetData(EnemyPack pack)
         {
-            SetViewData(pack.EnemyCard.View);
+            var packEnemyCard = pack.CreatureCard;
+            SetViewData(packEnemyCard.View);
 
-            _turnThesholdValue.text = pack.EnemyCard.TurnThreshold.ToString();
+            _turnThesholdValue.text = ((EnemyCard)packEnemyCard).TurnThreshold.ToString();
             _enemyAmountValue.text = pack.Count.ToString();
-            _attackValue.text = pack.EnemyCard.Attack.ToString();
-            _healthValue.text = pack.EnemyCard.Health.ToString();
+            _attackValue.text = packEnemyCard.Attack.ToString();
+            _healthValue.text = packEnemyCard.Health.ToString();
 
-            _attackType.sprite = _attackSprites[(int)pack.EnemyCard.AttackType];
-            _armorType.sprite = _armorSprites[(int)pack.EnemyCard.ArmorType];
+            _attackType.sprite = _attackSprites[(int)packEnemyCard.AttackType];
+            _armorType.sprite = _armorSprites[(int)packEnemyCard.ArmorType];
         }
 
         public override void SetViewData(CardView view)

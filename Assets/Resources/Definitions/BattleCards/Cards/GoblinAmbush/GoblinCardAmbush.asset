@@ -16,11 +16,13 @@ MonoBehaviour:
   _cardView: {fileID: 11400000, guid: 0fd2ce444da52c4458ed99f341083020, type: 2}
   _situation: {fileID: 11400000, guid: 862f847ae868f1f44a70f17368b27a11, type: 2}
   _enemyPacks:
-  - _enemyCard: {fileID: 11400000, guid: 92f5b8f4d6b56844290a0941ce0b11c2, type: 2}
-    _count: 2
-  - _enemyCard: {fileID: 11400000, guid: 0959d4a4bdcfc5a49925769fbc92f733, type: 2}
-    _count: 4
-  - _enemyCard: {fileID: 11400000, guid: a01ab5ee0de48064aa9c1b6fa48f4da2, type: 2}
-    _count: 1
-  - _enemyCard: {fileID: 11400000, guid: 527a49402ef8d224d85499bb5c0bd1d1, type: 2}
-    _count: 3
+  - _count: 5
+    creatureCard: {fileID: 11400000, guid: 92f5b8f4d6b56844290a0941ce0b11c2, type: 2}
+  - _count: 1
+    creatureCard: {fileID: 11400000, guid: 0959d4a4bdcfc5a49925769fbc92f733, type: 2}
+  - _count: 4
+    creatureCard: {fileID: 11400000, guid: a01ab5ee0de48064aa9c1b6fa48f4da2, type: 2}
+  - _count: 2
+    creatureCard: {fileID: 11400000, guid: 6a00f4fffa846924d8c9c8bb8e684386, type: 2}
+  - _count: 2
+    creatureCard: {fileID: 11400000, guid: 527a49402ef8d224d85499bb5c0bd1d1, type: 2}

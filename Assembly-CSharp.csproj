@@ -53,10 +53,11 @@
      <Compile Include="Assets\Scripts\ZenjectDynamicObject.cs" />
      <Compile Include="Assets\Scripts\Definitions\LevelDefs\HeroCardDefs.cs" />
      <Compile Include="Assets\Scripts\Utils\Interfaces\ITypingText.cs" />
+     <Compile Include="Assets\Scripts\CreatureBehaviour.cs" />
      <Compile Include="Assets\Scripts\View\HeroCardView\HeroCardView.cs" />
      <Compile Include="Assets\Scripts\Cards\EndJourneyCards\EndJourneyCard.cs" />
      <Compile Include="Assets\Scripts\View\EndJourneyCardView\EndJourneyCardViewWidget.cs" />
-     <Compile Include="Assets\Scripts\Definitions\Enemies\EnemyCard.cs" />
+     <Compile Include="Assets\Scripts\Definitions\Creatures\Enemies\EnemyCard.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
      <Compile Include="Assets\Scripts\View\EnemyCardView\EnemyCardViewWidget.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
@@ -70,6 +71,7 @@
      <Compile Include="Assets\Scripts\Utils\Interfaces\IZenjectSpawner.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
      <Compile Include="Assets\Scripts\Utils\Interfaces\IClickable.cs" />
+     <Compile Include="Assets\Scripts\Utils\MathUtils.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
      <Compile Include="Assets\Scripts\Cards\BattleCard.cs" />
      <Compile Include="Assets\Scripts\Utils\CellConverter.cs" />
@@ -91,6 +93,7 @@
      <Compile Include="Assets\Scripts\LevelManipulation\LevelBoardSubscriber.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_UiFrameRateCounter.cs" />
+     <Compile Include="Assets\Scripts\Definitions\Creatures\Company\CompanyCard.cs" />
      <Compile Include="Assets\Scripts\Components\HeroPositionBeholderComponent.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\Cards\EnemyCardFactory.cs" />
@@ -103,6 +106,7 @@
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextConsoleSimulator.cs" />
      <Compile Include="Assets\Scripts\Cards\SituationCards\Event\PropertyEvents\PoisonEvent.cs" />
      <Compile Include="Assets\Scripts\Utils\ForwardDIDataGroup.cs" />
+     <Compile Include="Assets\Scripts\Panels\CreaturePanel.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ObjectSpin.cs" />
      <Compile Include="Assets\Scripts\Widgets\CardPropertyWidget.cs" />
      <Compile Include="Assets\Scripts\Widgets\CustomButtonWidget.cs" />
@@ -118,14 +122,17 @@
      <Compile Include="Assets\Scripts\Controllers\BattleEventManager.cs" />
      <Compile Include="Assets\Scripts\LevelManipulation\CellWidget.cs" />
      <Compile Include="Assets\Scripts\Panels\EventPanelUtil.cs" />
+     <Compile Include="Assets\Scripts\Definitions\Creatures\Company\CompanyDefs.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
      <Compile Include="Assets\Scripts\Cards\SituationCards\Event\PropertyEvents\PropertyEvent.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />
      <Compile Include="Assets\Scripts\LevelManipulation\FieldFormer.cs" />
      <Compile Include="Assets\Scripts\Components\BehaviorsSwitcherComponent.cs" />
      <Compile Include="Assets\Scripts\Cards\SituationCards\Event\ICustomButtonVisitor.cs" />
+     <Compile Include="Assets\Scripts\Definitions\Creatures\CreaturePack.cs" />
      <Compile Include="Assets\Scripts\Cards\SituationCards\Event\ButtonInteraction.cs" />
      <Compile Include="Assets\Scripts\CodeAnimation\LevelBoardAnimations.cs" />
+     <Compile Include="Assets\Scripts\Definitions\Creatures\Enemies\EnemyPack.cs" />
      <Compile Include="Assets\Scripts\Widgets\PropertyWidget.cs" />
      <Compile Include="Assets\Scripts\LevelManipulation\ClickBlocker.cs" />
      <Compile Include="Assets\Scripts\View\CardView.cs" />
@@ -140,7 +147,7 @@
      <Compile Include="Assets\Scripts\Definitions\CardDefs.cs" />
      <Compile Include="Assets\Scripts\Cards\SituationCards\Event\ArmyEvents\ArmyEvent.cs" />
      <Compile Include="Assets\Scripts\Components\ZenjectSpawnComponents\HeroSpawnerComponent.cs" />
-     <Compile Include="Assets\Scripts\Definitions\Enemies\EnemyDefs.cs" />
+     <Compile Include="Assets\Scripts\Definitions\Creatures\Enemies\EnemyDefs.cs" />
      <Compile Include="Assets\Scripts\LevelManipulation\EventLevelBoard.cs" />
      <Compile Include="Assets\Scripts\Utils\AudioUtils.cs" />
      <Compile Include="Assets\Scripts\CodeAnimation\RepetativeMovingObject.cs" />
@@ -160,7 +167,7 @@
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
      <Compile Include="Assets\Scripts\CodeAnimation\DissolveAnimation.cs" />
      <Compile Include="Assets\Scripts\Cards\SituationCards\SituationCard.cs" />
-     <Compile Include="Assets\Scripts\CreatureBehaviour.cs" />
+     <Compile Include="Assets\Scripts\Definitions\Creatures\CreatureCard.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
      <Compile Include="Assets\Scripts\View\SituationCardView\SituationCardViewWidget.cs" />
      <Compile Include="Assets\Scripts\LevelManipulation\FieldBuilder.cs" />
@@ -225,6 +232,7 @@
      <Folder Include="Assets\Scripts\View\EndJourneyCardView" />
      <Folder Include="Assets\Scripts\Panels" />
      <Folder Include="Assets\Sprites\River\River_Top_Middle" />
+     <Folder Include="Assets\Scripts\Definitions\Creatures\Company" />
      <Folder Include="Assets\Prefabs\PrefabsAnimation\PhysicalCard\EndJourneyAnimation\PanelUtilAnimations" />
      <Folder Include="Assets\Resources\Definitions\EnemyCards\Enemies\WinterWolf" />
      <Folder Include="Assets\Sprites\HUD" />
@@ -235,6 +243,7 @@
      <Folder Include="Assets\Scripts\Components\ZenjectSpawnComponents" />
      <Folder Include="Assets\Sprites\Banners" />
      <Folder Include="Assets\Sprites\Life Bars\Big Bars" />
+     <Folder Include="Assets\Resources\Definitions\EnemyCards\Enemies\SkeletonSlinger" />
      <Folder Include="Assets\Scripts\Definitions\LevelDefs" />
      <Folder Include="Assets\Sprites\Life Bars" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
@@ -270,6 +279,7 @@
      <Folder Include="Assets\Scripts\Model" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF.shader" />
      <Folder Include="Assets\UI\EventController\Container" />
+     <Folder Include="Assets\Resources\Definitions\CompanyCards" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
      <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
      <Folder Include="Assets\Scripts\Cards\HeroCard" />
@@ -292,6 +302,7 @@
      <Folder Include="Assets\TextMesh Pro\Examples &amp; Extras\Resources\Sprite Assets" />
      <Folder Include="Assets\Shaders" />
      <Folder Include="Assets\TextMesh Pro\Resources\Style Sheets" />
+     <Folder Include="Assets\Resources\Definitions\CompanyCards\Companions" />
      <Folder Include="Assets\TextMesh Pro\Fonts" />
      <Folder Include="Assets\VFXAssets\Procedural fire\Prefabs" />
      <Folder Include="Assets\Scripts\Definitions" />
@@ -321,7 +332,7 @@
      <Folder Include="Assets\Scripts\Components" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
      <Folder Include="Assets\Prefabs\Instances" />
-     <Folder Include="Assets\Scripts\Definitions\Enemies" />
+     <Folder Include="Assets\Scripts\Definitions\Creatures\Enemies" />
      <Folder Include="Assets\UI" />
      <Folder Include="Assets\Resources\Definitions\SituationCards\Situations\Poisoning\Situation" />
      <Folder Include="Assets\VFXAssets\Procedural fire" />
@@ -360,6 +371,7 @@
      <Folder Include="Assets\UI\EventController" />
      <None Include="Assets\TextMesh Pro\Sprites\EmojiOne.json" />
      <Folder Include="Assets\Prefabs\PrefabsAnimation\Crowd\EventPanelCrowd" />
+     <Folder Include="Assets\Scripts\Definitions\Creatures" />
      <Folder Include="Assets\Scripts\System\Installers" />
      <Folder Include="Assets\Scripts\Cards\SituationCards\Event" />
      <Folder Include="Assets\VFXAssets\Procedural fire\Demo scene" />

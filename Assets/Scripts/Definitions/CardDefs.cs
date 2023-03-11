@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Cards;
 using UnityEngine;
 
 namespace Definitions
 {
-    public abstract class CardDefs<T> : ScriptableObject where T:LevelCard
+    public abstract class CardDefs<T> : ScriptableObject where T:Card
     {
         [SerializeField] private List<T> _cards;
 
@@ -14,21 +15,18 @@ namespace Definitions
         {
             if (id == null)
                 return default;
-            
-            foreach (var itemDef in _cards)
-            {
-                if (itemDef.Id == id)
-                {
-                    return itemDef;
-                }
-            }
 
-            return default;
+            return _cards.FirstOrDefault(itemDef => itemDef.Id == id);
         }
 
         public T Get(int id)
         {
             return _cards[id];
+        }
+
+        public List<T> GetAllCardsDefs()
+        {
+            return new List<T>(_cards);
         }
     }
 }

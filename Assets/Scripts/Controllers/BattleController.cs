@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Cards.SituationCards.Event;
-using Definitions.Enemies;
+using Definitions.Creatures.Enemies;
 using LevelManipulation;
 using Panels;
 using UnityEngine;
@@ -21,10 +21,10 @@ namespace Controllers
         private async void StartBattle()
         {
             _enemies = _eventManager.TakeEnemyPacks();
-            _eventLevelBoard.StartBattle();
+            _eventLevelBoard.PrepareToBattle();
             await _eventManager.PrepareToBattle(_battleBoard);//Передаем панель на уровень ниже для синхронизации с предыдущей панелькой.
             
-            _battleBoard.Show();
+            _battleBoard.StartBattle(_enemies);
             Debug.Log("Battle Started!!!");
         }
 

@@ -1,4 +1,5 @@
-﻿using Definitions.Enemies;
+﻿using Definitions.Creatures.Company;
+using Definitions.Creatures.Enemies;
 using Definitions.LevelDefs;
 using UnityEngine;
 
@@ -9,15 +10,18 @@ namespace Definitions
     {
         [SerializeField] private SituationCardDefs _situationCards;
         [SerializeField] private HeroCardDefs _heroCards;
-        [SerializeField] private BattleCardDefs battleCards;
+        [SerializeField] private BattleCardDefs _battleCards;
         [SerializeField] private EndJourneyCardDefs _endJourneyCards;
         [SerializeField] private EnemyDefs _enemyDefs;
+        [SerializeField] private CompanyDefs _companyDefs;
 
         public SituationCardDefs SituationCards => _situationCards;
-        public BattleCardDefs BattleCards => battleCards;
+        public BattleCardDefs BattleCards => _battleCards;
         public EndJourneyCardDefs EndJourneyCards => _endJourneyCards;
         public HeroCardDefs HeroCardDefs => _heroCards;
         public EnemyDefs EnemyDefs => _enemyDefs;
+        public CompanyDefs CompanyDefs => _companyDefs;
+        
 
         private static DefsFacade _instance;
 

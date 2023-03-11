@@ -1263,8 +1263,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7946753516820447616}
-  - component: {fileID: 5699486399970404793}
   - component: {fileID: 6757841600075723941}
+  - component: {fileID: 2755464191006681022}
   m_Layer: 0
   m_Name: Creature
   m_TagString: Untagged
@@ -1293,22 +1293,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 88, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &5699486399970404793
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7946753516820447619}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e65375243dce4f23bb7ced984d7778a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _health: 0
-  _attack: 0
-  _amount: 0
-  _animator: {fileID: 6757841600075723941}
 --- !u!95 &6757841600075723941
 Animator:
   serializedVersion: 5
@@ -1329,6 +1313,34 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &2755464191006681022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7946753516820447619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 105a1cf87beb453a820a69715da81f48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _creatureWidget:
+    widgetOffsetCorrection: 0
+    _enemyAmountValue: {fileID: 247187528}
+    _attackValue: {fileID: 1633061850}
+    _healthValue: {fileID: 1086828981}
+    _itemIcon: {fileID: 7946753517298955389}
+    _attackIcon: {fileID: 7946753517390352876}
+    _armorType: {fileID: 7353827642932676031}
+    _armorSprites:
+    - {fileID: 21300000, guid: c647d76f06319d042b359b7f8d6a5200, type: 3}
+    - {fileID: 21300000, guid: aa3a5076a1a1de94f817494eafa0471d, type: 3}
+    - {fileID: 21300000, guid: c03712283343682489ca58c6ed849418, type: 3}
+    _attackColors:
+    - {r: 0.9339623, g: 0.16300285, b: 0.16300285, a: 1}
+    - {r: 0.24240963, g: 0.8584906, b: 0.23082057, a: 1}
+    - {r: 0.19624424, g: 0.36010808, b: 0.9245283, a: 1}
 --- !u!1 &7946753517121019297
 GameObject:
   m_ObjectHideFlags: 0
