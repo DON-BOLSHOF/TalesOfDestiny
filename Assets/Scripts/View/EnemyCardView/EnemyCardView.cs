@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using View.SituationCardView;
 
 namespace View.EnemyCardView
 {

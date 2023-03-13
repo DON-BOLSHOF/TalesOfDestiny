@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Cards.SituationCards;
 using CodeAnimation;
 using UnityEngine;
@@ -48,6 +49,7 @@ namespace Panels
         private IEnumerator Dissolving()
         {
             _typingAnimation.HideText();
+            _dissolveAnimation.SetBaseMaterials();
 
             yield return _dissolveAnimation.Dissolving();
 
@@ -70,10 +72,14 @@ namespace Panels
         public override void
             ReloadSituation(Situation situation) //Код начинает в спагетти превращаться с кусочками говна...
         {
-            var graphics = FindButtonWidgets();
+            var buttonWidgets = FindButtonWidgets();
 
             StartRoutine(
-                _dissolveAnimation.ReloadSpecialObjects(graphics, () => ReloadButton(situation.Buttons),
+                _dissolveAnimation.ReloadSpecialObjects(buttonWidgets, () =>
+                    {
+                        GetComponentsInChildren<CustomButtonWidget>().ToList().ForEach(x => x.ActivateButton());
+                        return ReloadButton(situation.Buttons);
+                    },
                     FindButtonWidgets), ref _shaderRoutine); //Это или слишком тупо или гениально
             ReloadStrings(new[]
                 { situation.name, situation.Description });

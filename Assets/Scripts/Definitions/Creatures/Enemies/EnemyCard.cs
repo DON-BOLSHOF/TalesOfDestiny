@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Definitions.Creatures.Enemies
 {
-    [CreateAssetMenu(menuName = "Defs/Enemy", fileName = "Enemy")]
+    [CreateAssetMenu(menuName = "Defs/Creature/Enemy", fileName = "Enemy")]
     public class EnemyCard : CreatureCard
     {
         [SerializeField] private int _turnThreshold;

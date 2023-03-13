@@ -147,6 +147,7 @@
      <Compile Include="Assets\Scripts\Definitions\CardDefs.cs" />
      <Compile Include="Assets\Scripts\Cards\SituationCards\Event\ArmyEvents\ArmyEvent.cs" />
      <Compile Include="Assets\Scripts\Components\ZenjectSpawnComponents\HeroSpawnerComponent.cs" />
+     <Compile Include="Assets\Scripts\View\CreatureCardView\CreatureViewWidget.cs" />
      <Compile Include="Assets\Scripts\Definitions\Creatures\Enemies\EnemyDefs.cs" />
      <Compile Include="Assets\Scripts\LevelManipulation\EventLevelBoard.cs" />
      <Compile Include="Assets\Scripts\Utils\AudioUtils.cs" />
@@ -178,6 +179,7 @@
      <Compile Include="Assets\Scripts\LevelManipulation\LevelBuilder.cs" />
      <Compile Include="Assets\Scripts\UI\HUDController.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs" />
+     <Compile Include="Assets\Scripts\Panels\CrowdPanel.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_PhoneNumberValidator.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexColorCycler.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TeleType.cs" />
@@ -337,6 +339,7 @@
      <Folder Include="Assets\Resources\Definitions\SituationCards\Situations\Poisoning\Situation" />
      <Folder Include="Assets\VFXAssets\Procedural fire" />
      <Folder Include="Assets\Render" />
+     <Folder Include="Assets\Scripts\View\CreatureCardView" />
      <None Include="Assets\VFXAssets\Procedural fire\Shaders\FireSphere.shader" />
      <Folder Include="Assets\Prefabs\PrefabsAnimation\CardWidget" />
      <Folder Include="Assets\Fonts" />
@@ -374,6 +377,7 @@
      <Folder Include="Assets\Scripts\Definitions\Creatures" />
      <Folder Include="Assets\Scripts\System\Installers" />
      <Folder Include="Assets\Scripts\Cards\SituationCards\Event" />
+     <Folder Include="Assets\Resources\Definitions\EnemyCards\Enemies\SkeletonWarrior" />
      <Folder Include="Assets\VFXAssets\Procedural fire\Demo scene" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
      <Folder Include="Assets\Sprites\SituationsSprites" />

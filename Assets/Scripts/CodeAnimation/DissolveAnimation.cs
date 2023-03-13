@@ -8,13 +8,15 @@ namespace CodeAnimation
 {
     public class DissolveAnimation : MonoBehaviour
     {
-       [SerializeField] private List<Image> _images; //Здесь все нужные для dissolv-a
+        [SerializeField] private List<Graphic> _images; //Здесь все нужные для dissolv-a(Будет в дальнейшем заменяться поэтому нужны инстансы)
         [SerializeField] private Material _dissolve;
 
         [SerializeField] private Material _specialDissolveMaterial; //Там ебатория с ссылками
 
         public event Action OnEmerged;
         public event Action OnStartDissolving;
+
+        private List<Graphic> _specialObjects;
 
         private static readonly int DissolveAmount = Shader.PropertyToID("_DissolveAmount");
 
@@ -28,10 +30,15 @@ namespace CodeAnimation
 
         public void SetImagesDissolve()
         {
-            _images.ForEach(image => image.material = _dissolve);
+            ChangeMaterial(_images, _dissolve);
             _dissolve.SetFloat(DissolveAmount, 0f);
             _dynamicMaskImages?.ForEach(image =>
                 image.GetModifiedMaterial(image.material).SetFloat(DissolveAmount, 0f));
+        }
+
+        private void ChangeMaterial(List<Graphic> images, Material material)
+        {
+            images.ForEach(image => image.material = material);
         }
 
         public IEnumerator Emerging()
@@ -50,7 +57,7 @@ namespace CodeAnimation
         public IEnumerator Dissolving()
         {
             OnStartDissolving?.Invoke();
-            _images.ForEach(image => image.material = _dissolve);
+            ChangeMaterial(_images, _dissolve);
 
             for (float i = 1; i >= 0; i -= 0.05f)
             {
@@ -66,7 +73,9 @@ namespace CodeAnimation
             Func<List<Graphic>> onCheckNewObject =
                 null) //В принципе, отбросив все доп переменные нормально, но адекватно ли так доп. переменные вводить? Макаронина...  
         {
-            specialObjects.ForEach(image => image.material = _specialDissolveMaterial);
+            _specialObjects = specialObjects;
+            
+            ChangeMaterial(_specialObjects, _specialDissolveMaterial);
 
             for (float i = 1; i >= 0; i -= 0.05f)
             {
@@ -76,8 +85,8 @@ namespace CodeAnimation
 
             onDissolved?.Invoke();
             if (onCheckNewObject != null)
-                specialObjects = onCheckNewObject?.Invoke();
-            specialObjects.ForEach(image => image.material = _specialDissolveMaterial);
+                _specialObjects = onCheckNewObject?.Invoke();
+            ChangeMaterial(_specialObjects, _specialDissolveMaterial);
             _specialDissolveMaterial.SetFloat(DissolveAmount, 0f);
 
             for (float i = 0; i <= 1; i += 0.05f)
@@ -86,7 +95,13 @@ namespace CodeAnimation
                 yield return new WaitForSeconds(0.07f);
             }
 
-            specialObjects.ForEach(image => image.material = _dissolve);
+            SetBaseMaterials();
+        }
+
+        public void SetBaseMaterials()
+        {
+            if(_specialObjects != null)
+                ChangeMaterial(_specialObjects, _dissolve);
         }
 
         private void OnDisable()

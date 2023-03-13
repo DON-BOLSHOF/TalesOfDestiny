@@ -5,7 +5,7 @@ using Widgets;
 
 namespace Cards.SituationCards
 {
-    [CreateAssetMenu(fileName = "Situation", menuName = "Defs/Situation")]
+    [CreateAssetMenu(fileName = "Situation", menuName = "Defs/Other/Situation")]
     public class Situation : ScriptableObject
     {
         [SerializeField] private string _situationDescription;

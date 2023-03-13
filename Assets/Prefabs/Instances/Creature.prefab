@@ -1265,6 +1265,7 @@ GameObject:
   - component: {fileID: 7946753516820447616}
   - component: {fileID: 6757841600075723941}
   - component: {fileID: 2755464191006681022}
+  - component: {fileID: 332269734677059360}
   m_Layer: 0
   m_Name: Creature
   m_TagString: Untagged
@@ -1325,22 +1326,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 105a1cf87beb453a820a69715da81f48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _creatureWidget:
-    widgetOffsetCorrection: 0
-    _enemyAmountValue: {fileID: 247187528}
-    _attackValue: {fileID: 1633061850}
-    _healthValue: {fileID: 1086828981}
-    _itemIcon: {fileID: 7946753517298955389}
-    _attackIcon: {fileID: 7946753517390352876}
-    _armorType: {fileID: 7353827642932676031}
-    _armorSprites:
-    - {fileID: 21300000, guid: c647d76f06319d042b359b7f8d6a5200, type: 3}
-    - {fileID: 21300000, guid: aa3a5076a1a1de94f817494eafa0471d, type: 3}
-    - {fileID: 21300000, guid: c03712283343682489ca58c6ed849418, type: 3}
-    _attackColors:
-    - {r: 0.9339623, g: 0.16300285, b: 0.16300285, a: 1}
-    - {r: 0.24240963, g: 0.8584906, b: 0.23082057, a: 1}
-    - {r: 0.19624424, g: 0.36010808, b: 0.9245283, a: 1}
+  creatureViewWidget: {fileID: 332269734677059360}
+--- !u!114 &332269734677059360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7946753516820447619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69936e14e8b94eb7b2de93745e1ba4d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _widgetOffsetCorrection: 0.2
+  _amountValue: {fileID: 247187528}
+  _attackValue: {fileID: 1633061850}
+  _healthValue: {fileID: 1086828981}
+  _itemIcon: {fileID: 7946753517298955389}
+  _attackIcon: {fileID: 7946753517390352876}
+  _armorType: {fileID: 7353827642932676031}
+  _armorSprites:
+  - {fileID: 21300000, guid: c647d76f06319d042b359b7f8d6a5200, type: 3}
+  - {fileID: 21300000, guid: aa3a5076a1a1de94f817494eafa0471d, type: 3}
+  - {fileID: 21300000, guid: c03712283343682489ca58c6ed849418, type: 3}
+  _attackColors:
+  - {r: 0.9339623, g: 0.16300285, b: 0.16300285, a: 1}
+  - {r: 0.24240963, g: 0.8584906, b: 0.23082057, a: 1}
+  - {r: 0.19624424, g: 0.36010808, b: 0.9245283, a: 1}
 --- !u!1 &7946753517121019297
 GameObject:
   m_ObjectHideFlags: 0

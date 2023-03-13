@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Definitions.Creatures;
 using Definitions.Creatures.Enemies;
 using UnityEngine;
 
@@ -12,6 +11,7 @@ namespace Panels
         
         [SerializeField] private CreaturePanel _enemyPanel;
         [SerializeField] private CreaturePanel _heroAllyPanel;
+        [SerializeField] private CrowdPanel _crowdPanel;
 
         public override void Show()
         {
@@ -29,10 +29,13 @@ namespace Panels
             OnChangeState?.Invoke(false);
         }
 
-        public void StartBattle(IEnumerable<EnemyPack> enemies)
+        public void StartBattle(IList<EnemyPack> enemies)
         {
-            _enemyPanel.DynamicInitialization(enemies);
-            _heroAllyPanel.DynamicInitialization(enemies);
+            _enemyPanel.DynamicInitialization(enemies.Take(5));
+            _heroAllyPanel.DynamicInitialization(enemies.Take(5));
+
+            if(enemies.Count > 5)
+                _crowdPanel.Activate(enemies.Skip(5).ToList());
             
             Show();
         }
