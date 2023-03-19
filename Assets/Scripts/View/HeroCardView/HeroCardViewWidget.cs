@@ -4,15 +4,15 @@ using UnityEngine.UI;
 namespace View.HeroCardView
 {
     [RequireComponent(typeof(Animator))]
-    public class HeroCardViewWidget : ItemWidgetView
+    public class HeroCardViewWidget : CardViewWidget
     {
+        [SerializeField] private Image _background;
+
         [SerializeField] private Text _wiseCrackText;
 
-        private Animator _animator;
-        
         private static readonly int Swap = Animator.StringToHash("Swap");
         private Animator _viewAnimator;
-
+        
         private void Start()
         {
             _viewAnimator = GetComponent<Animator>();
@@ -21,7 +21,7 @@ namespace View.HeroCardView
 
         public override void SetViewData(CardView cardView)
         {
-            base.SetViewData(cardView);
+            _background.sprite = cardView.BackgroundView;
 
             var heroCardView = (HeroCardView)cardView;
 

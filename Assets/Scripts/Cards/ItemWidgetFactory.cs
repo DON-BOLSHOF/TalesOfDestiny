@@ -111,7 +111,7 @@ namespace Cards
 
             DeactivatePossibleView(cardWidget);
 
-            var cardView = Resources.Load<ItemWidgetView>(path);
+            var cardView = Resources.Load<CardViewWidget>(path);
             if (cardView == null) throw new ArgumentException($"Invalid path: {path}");
 
             var instantiate = Object.Instantiate(cardView, cardWidget.transform, false);
@@ -161,7 +161,7 @@ namespace Cards
 
         private static void DeactivatePossibleView(ItemWidget cardWidget)
         {
-            var activeView = cardWidget.GetComponentInChildren<ItemWidgetView>();
+            var activeView = cardWidget.GetComponentInChildren<CardViewWidget>();
             if (activeView != null)
                 activeView.gameObject.SetActive(false);
         }

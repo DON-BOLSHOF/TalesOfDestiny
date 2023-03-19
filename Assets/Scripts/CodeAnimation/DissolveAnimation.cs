@@ -100,8 +100,9 @@ namespace CodeAnimation
 
         public void SetBaseMaterials()
         {
-            if(_specialObjects != null)
-                ChangeMaterial(_specialObjects, _dissolve);
+            if (_specialObjects == null) return;
+            _specialDissolveMaterial.SetFloat(DissolveAmount, 1f);
+            ChangeMaterial(_specialObjects, _dissolve);
         }
 
         private void OnDisable()

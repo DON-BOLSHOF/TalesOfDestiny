@@ -77,7 +77,7 @@
      <Compile Include="Assets\Scripts\Utils\CellConverter.cs" />
      <Compile Include="Assets\Scripts\Utils\PredefinedDataGroup.cs" />
      <Compile Include="Assets\Scripts\Definitions\LevelDefs\SituationCardDefs.cs" />
-     <Compile Include="Assets\Scripts\View\ItemWidgetView.cs" />
+     <Compile Include="Assets\Scripts\View\CardViewWidget.cs" />
      <Compile Include="Assets\Scripts\CodeAnimation\ParalaxEffect.cs" />
      <Compile Include="Assets\Scripts\CodeAnimation\RotateCard.cs" />
      <Compile Include="Assets\Scripts\CodeAnimation\TypingAnimation.cs" />
@@ -125,8 +125,10 @@
      <Compile Include="Assets\Scripts\Definitions\Creatures\Company\CompanyDefs.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
      <Compile Include="Assets\Scripts\Cards\SituationCards\Event\PropertyEvents\PropertyEvent.cs" />
+     <Compile Include="Assets\Scripts\CodeAnimation\CreatureAnimations.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />
      <Compile Include="Assets\Scripts\LevelManipulation\FieldFormer.cs" />
+     <Compile Include="Assets\Scripts\Components\HealthComponent.cs" />
      <Compile Include="Assets\Scripts\Components\BehaviorsSwitcherComponent.cs" />
      <Compile Include="Assets\Scripts\Cards\SituationCards\Event\ICustomButtonVisitor.cs" />
      <Compile Include="Assets\Scripts\Definitions\Creatures\CreaturePack.cs" />
@@ -193,6 +195,7 @@
      <Compile Include="Assets\Scripts\GameSession.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
      <Compile Include="Assets\Scripts\Utils\Disposables\DisposeHolder.cs" />
+     <Compile Include="Assets\Scripts\Components\Audio\PlaySoundComponent.cs" />
      <Folder Include="Assets" />
      <Folder Include="Assets\Scripts\Widgets" />
      <Folder Include="Assets\Sprites\Cards\CardAssets\Icons" />
@@ -317,6 +320,7 @@
      <Folder Include="Assets\TextMesh Pro\Examples &amp; Extras\Prefabs" />
      <Folder Include="Assets\AudioMaterials" />
      <Folder Include="Assets\Sprites\Cards\Sheen" />
+     <Folder Include="Assets\Prefabs\PrefabsAnimation\Creature\DownCreature" />
      <Folder Include="Assets\Scenes" />
      <Folder Include="Assets\Sprites\Cards\CardAssets\BackGrounds" />
      <Folder Include="Assets\TextMesh Pro\Examples &amp; Extras\Scenes" />
@@ -327,6 +331,7 @@
      <Folder Include="Assets\Sprites\Tiles" />
      <Folder Include="Assets\Scripts\Utils\Interfaces" />
      <Folder Include="Assets\Scripts\Model\Data" />
+     <Folder Include="Assets\Prefabs\PrefabsAnimation\Creature\UpCreature" />
      <Folder Include="Assets\Scripts\Utils\Disposables" />
      <Folder Include="Assets\Resources\Definitions\BattleCards\Situations" />
      <Folder Include="Assets\Sprites\Cards" />

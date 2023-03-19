@@ -5,23 +5,25 @@ using Widgets;
 
 namespace View.SituationCardView
 {
-    public class SituationCardViewWidget : ItemWidgetView
+    public class SituationCardViewWidget : CardViewWidget
     {
         [Header("Icons")]
-        [SerializeField] private Transform _propertiesIconsPosition;
+        [SerializeField] private Image _background;
         [SerializeField] protected Image _itemIcon;
         
         [Space]
         [Header("Banners")]
-        [SerializeField]
-        protected Text _nameBanner;
+        [SerializeField] protected Text _nameBanner;
         [SerializeField] protected Text _descriptionBanner;
 
         [Space] [Header("OffSet")]
         [SerializeField] protected float widgetOffsetCorrection; //Здесь уж точно нужен комментарий. 
                                                            //В общем, у разных иконок разные offset-ы(они в самих view лежат)
                                                            //=> widget-ы сами по себе разных размеров, так что нужна поправка
-                                                           //у самого виджета   
+                                                           //у самого виджета
+        [Space] [Header("Properties")]                                                   
+        [SerializeField] private Transform _propertiesIconsPosition;
+        
         public Transform PropertiesPosition => _propertiesIconsPosition;
 
         public Text NameBanner => _nameBanner;
@@ -31,7 +33,8 @@ namespace View.SituationCardView
         
         public override void SetViewData(CardView cardView)
         {
-            base.SetViewData(cardView);
+            _background.sprite = cardView.BackgroundView;
+
             var eventCardView = (SituationCardView)cardView;
             _itemIcon.sprite = eventCardView.MainView;
             _dataGroup ??= new PredefinedDataGroup<CardPropertyWidget, Sprite>(PropertiesPosition);

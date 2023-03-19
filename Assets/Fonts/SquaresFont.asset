@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
   m_Name: SquaresFont
   m_EditorClassIdentifier: 
-  hashCode: 1542133276
+  hashCode: -609179583
   material: {fileID: 3245066501152469872}
-  materialHashCode: -327704772
+  materialHashCode: 1781177793
   m_Version: 1.1.0
   m_SourceFontFileGUID: 117baeea823158141b4fbabcf359b110
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: 117baeea823158141b4fbabcf359b110, type: 3}
@@ -2582,7 +2582,7 @@ Material:
     - _FaceUVSpeedX: 0
     - _FaceUVSpeedY: 0
     - _GlowInner: 0.05
-    - _GlowOffset: 0
+    - _GlowOffset: 0.486
     - _GlowOuter: 0.05
     - _GlowPower: 0.75
     - _GradientScale: 6

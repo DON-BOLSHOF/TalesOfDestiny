@@ -1,10 +1,15 @@
-﻿namespace View.EndJourneyView
+﻿using UnityEngine;
+using UnityEngine.UI;
+
+namespace View.EndJourneyCardView
 {
-    public sealed class EndJourneyCardViewWidget : ItemWidgetView
+    public sealed class EndJourneyCardViewWidget : CardViewWidget
     {
+        [SerializeField] private Image _background;
+        
          public override void SetViewData(CardView cardView)
          {
-             base.SetViewData(cardView);
+             _background.sprite = cardView.BackgroundView;
          }
     }
 }

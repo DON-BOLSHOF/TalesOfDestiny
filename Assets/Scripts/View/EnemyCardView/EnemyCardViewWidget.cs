@@ -5,7 +5,7 @@ using Utils;
 
 namespace View.EnemyCardView
 {
-    public class EnemyCardViewWidget : ItemWidgetView, IItemInstance<EnemyPack>
+    public class EnemyCardViewWidget : CardViewWidget, IItemInstance<EnemyPack>
     {
         [Space][Header("OffSet")]
         [SerializeField] private float widgetOffsetCorrection;
@@ -17,6 +17,7 @@ namespace View.EnemyCardView
         [SerializeField] private Text _healthValue;
         
         [Space][Header("Icons")]
+        [SerializeField] private Image _background;
         [SerializeField] protected Image _itemIcon;
         
         [Space] [Header("Banners")]
@@ -48,7 +49,7 @@ namespace View.EnemyCardView
 
         public override void SetViewData(CardView view)
         {
-            base.SetViewData(view);
+            _background.sprite = view.BackgroundView;
             var enemyCardView = (EnemyCardView)view;
 
             _itemIcon.sprite = enemyCardView.MainView;

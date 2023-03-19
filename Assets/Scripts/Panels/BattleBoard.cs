@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Definitions.Creatures.Enemies;
 using UnityEngine;
 
@@ -38,6 +39,21 @@ namespace Panels
                 _crowdPanel.Activate(enemies.Skip(5).ToList());
             
             Show();
+            
+            Attack();
+        }
+
+        private async void Attack()
+        {
+            await Task.Delay(500);
+
+            _enemyPanel.Attack(_heroAllyPanel.RandomCreature);
+            //_heroAllyPanel.Attack(_enemyPanel.Creatures[Random.Range(0,_enemyPanel.Creatures.Length)]);
+        }
+
+        private void Update() //Тест
+        {
+            if(Input.GetKeyDown(KeyCode.Q)) Attack();
         }
     }
 }

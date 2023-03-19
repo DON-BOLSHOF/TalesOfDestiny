@@ -394,7 +394,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4604045449695687509
 RectTransform:
   m_ObjectHideFlags: 0
@@ -603,7 +603,7 @@ MonoBehaviour:
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 500
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -768,8 +768,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 105
-  m_fontSizeBase: 105
+  m_fontSize: 114.4
+  m_fontSizeBase: 114.4
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1266,6 +1266,7 @@ GameObject:
   - component: {fileID: 6757841600075723941}
   - component: {fileID: 2755464191006681022}
   - component: {fileID: 332269734677059360}
+  - component: {fileID: 3064044451097884566}
   m_Layer: 0
   m_Name: Creature
   m_TagString: Untagged
@@ -1326,7 +1327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 105a1cf87beb453a820a69715da81f48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  creatureViewWidget: {fileID: 332269734677059360}
+  _creatureViewWidget: {fileID: 332269734677059360}
 --- !u!114 &332269734677059360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1345,6 +1346,7 @@ MonoBehaviour:
   _healthValue: {fileID: 1086828981}
   _itemIcon: {fileID: 7946753517298955389}
   _attackIcon: {fileID: 7946753517390352876}
+  _healthIcon: {fileID: 7946753516211160394}
   _armorType: {fileID: 7353827642932676031}
   _armorSprites:
   - {fileID: 21300000, guid: c647d76f06319d042b359b7f8d6a5200, type: 3}
@@ -1354,6 +1356,23 @@ MonoBehaviour:
   - {r: 0.9339623, g: 0.16300285, b: 0.16300285, a: 1}
   - {r: 0.24240963, g: 0.8584906, b: 0.23082057, a: 1}
   - {r: 0.19624424, g: 0.36010808, b: 0.9245283, a: 1}
+--- !u!114 &3064044451097884566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7946753516820447619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c44a8207ba714a92a2d5e47f7a0e2b15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sounds:
+  - _id: Harassing
+    _clip: {fileID: 8300000, guid: 4450acf13b5c0f349adec7e284d8e59e, type: 3}
+  - _id: Death
+    _clip: {fileID: 8300000, guid: 750dbd11385062849b0266c2249a4b15, type: 3}
 --- !u!1 &7946753517121019297
 GameObject:
   m_ObjectHideFlags: 0
@@ -1515,7 +1534,6 @@ GameObject:
   - component: {fileID: 7946753517298955391}
   - component: {fileID: 7946753517298955362}
   - component: {fileID: 7946753517298955389}
-  - component: {fileID: 7946753517298955388}
   m_Layer: 0
   m_Name: SituationIcon
   m_TagString: Untagged
@@ -1580,26 +1598,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 1
   m_PixelsPerUnitMultiplier: 1
---- !u!95 &7946753517298955388
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7946753517298955390}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &7946753517329840901
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,14 +6,14 @@ namespace Widgets
 {
     public abstract class ItemWidget : MonoBehaviour
     {
-        protected ItemWidgetView _view;
+        protected CardViewWidget _view;
         protected LevelCard _card;
 
-        public ItemWidgetView View => _view;
+        public CardViewWidget View => _view;
         
         private void SetViewData(CardView cardView)
         {
-            _view = GetComponentInChildren<ItemWidgetView>();
+            _view = GetComponentInChildren<CardViewWidget>();
             _view.SetViewData(cardView);
         }
 
