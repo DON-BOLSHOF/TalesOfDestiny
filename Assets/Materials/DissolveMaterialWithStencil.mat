@@ -50,7 +50,7 @@ Material:
     m_Floats:
     - Vector1_fe78bfe4c54f4d1aa9910ad6501bd55c: 2
     - _ColorMask: 15
-    - _DissolveAmount: 0.95000017
+    - _DissolveAmount: 0.049999844
     - _EnableExternalAlpha: 0
     - _Stencil: 0
     - _StencilComp: 8

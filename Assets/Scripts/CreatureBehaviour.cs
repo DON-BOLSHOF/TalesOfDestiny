@@ -1,4 +1,6 @@
-﻿using CodeAnimation;
+﻿using System;
+using System.Threading.Tasks;
+using CodeAnimation;
 using Components;
 using Components.Audio;
 using Definitions.Creatures;
@@ -6,42 +8,49 @@ using UnityEngine;
 using Utils.Disposables;
 using View.CreatureCardView;
 
-[RequireComponent(typeof(Animator), typeof(PlaySoundComponent))]
+[RequireComponent(typeof(PlaySoundComponent))]
 public class CreatureBehaviour : MonoBehaviour
 {
-    [SerializeField] private CreatureViewWidget _creatureViewWidget;//View
-    
-    private CreatureCard _creature;//Data
+    [SerializeField] private CreatureViewWidget _creatureViewWidget; //View
+
+    public CreaturePack CreaturePack { get; private set; } //Data
     private HealthComponent _healthComponent;
-    
-    private Animator _animator;// SubClasses
-    private PlaySoundComponent _sound;
+
+    private PlaySoundComponent _sound;// SubClasses
 
     private readonly DisposeHolder _trash = new DisposeHolder();
-    
-    private static readonly int Damaged = Animator.StringToHash("Damaged");
-    private static readonly int Die = Animator.StringToHash("Die");
+
+    private Action<CreatureBehaviour> _onDying;
 
     private void Awake()
     {
-        _animator = GetComponent<Animator>();
         _sound = GetComponent<PlaySoundComponent>();
-        
+
         _healthComponent = new HealthComponent();
+        
+        _trash.Retain(_healthComponent.Health.Subscribe(_creatureViewWidget.ModifyHealth));
+        _trash.Retain(_healthComponent.Health.Subscribe(OnDamaged));
+        _trash.Retain(new Func<IDisposable>(()=>
+        {
+            _creatureViewWidget.OnDeathAnimation += OnDeath;
+            return new ActionDisposable(() => _creatureViewWidget.OnDeathAnimation -= OnDeath);
+        })());
     }
 
     public void Activate(CreaturePack creaturePack)
     {
-        gameObject.SetActive(true);
-        _creatureViewWidget.SetData(creaturePack);
-        _creature = creaturePack.CreatureCard;
-        _healthComponent.SetValue(_creature.Health);
-        
-        _trash.Retain(_healthComponent.Health.Subscribe(_creatureViewWidget.ModifyHealth));
-        _trash.Retain(_healthComponent.Health.Subscribe(OnDamaged));
+        _creatureViewWidget.gameObject.SetActive(true);
+        CreaturePack = creaturePack;
+        _creatureViewWidget.SetData(CreaturePack);
+        _healthComponent.SetBaseValue(CreaturePack.CreatureCard.Health);
     }
 
-    public async void Attack(CreatureBehaviour creature)
+    public void Deactivate()
+    {
+        _creatureViewWidget.Deactivate();
+    }
+
+    public async Task Attack(CreatureBehaviour creature)
     {
         var basePosition = transform.position;
 
@@ -55,13 +64,13 @@ public class CreatureBehaviour : MonoBehaviour
 
     private void Visit(CreatureBehaviour creatureBehaviour)
     {
-        _healthComponent.TakeDamage(creatureBehaviour._creature.Attack, creatureBehaviour._creature.AttackType,
-            _creature.ArmorType);
+        _healthComponent.TakeDamage(creatureBehaviour.CreaturePack.CreatureCard.Attack, creatureBehaviour.CreaturePack.CreatureCard.AttackType,
+            CreaturePack.CreatureCard.ArmorType);
     }
-    
+
     private void OnDamaged(int newHealthValue)
     {
-        _animator.SetTrigger(Damaged);
+        _creatureViewWidget.SetState(CreatureViewWidgetStates.Damaged);
         _sound.PlayClip("Harassing");
 
         CheckDeath(newHealthValue);
@@ -70,15 +79,23 @@ public class CreatureBehaviour : MonoBehaviour
     private void CheckDeath(int newHealthValue)
     {
         if (newHealthValue > 0) return;
-        _animator.SetBool(Die, true);
+        
+        _creatureViewWidget.SetState(CreatureViewWidgetStates.Dying);
     }
 
-    public void OnDeath()
+    private void OnDeath()//В аниматоре
     {
         _sound.PlayClip("Death");
+        _onDying?.Invoke(this);
     }
 
-    private void OnDisable()
+    public IDisposable SubscribeDying(Action<CreatureBehaviour> call)
+    {
+        _onDying += call;
+        return new ActionDisposable(() => _onDying -= call);
+    }
+
+    private void OnDestroy()
     {
         _trash.Dispose();
     }

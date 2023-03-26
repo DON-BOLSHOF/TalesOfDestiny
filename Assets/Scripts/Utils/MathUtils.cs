@@ -1,4 +1,4 @@
-﻿using System;
+﻿using UnityEngine;
 
 namespace Utils
 {
@@ -8,11 +8,9 @@ namespace Utils
         {
             var n = array.Length;
 
-            var rand = new Random();
-
             for (var i = 0; i < n; i++)
             {
-                Swap(array, i, i + rand.Next(n - i));
+                Swap(array, i, i + Random.Range(0, n - i));
             }
         }
 

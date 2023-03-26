@@ -10,8 +10,8 @@ namespace Utils.Disposables
         public void Retain(IDisposable disposable)
         {
             _disposables.Add(disposable);
-        } 
-        
+        }
+
         public void Dispose()
         {
             foreach (var dispose in _disposables)

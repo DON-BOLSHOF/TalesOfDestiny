@@ -150,6 +150,7 @@
      <Compile Include="Assets\Scripts\Cards\SituationCards\Event\ArmyEvents\ArmyEvent.cs" />
      <Compile Include="Assets\Scripts\Components\ZenjectSpawnComponents\HeroSpawnerComponent.cs" />
      <Compile Include="Assets\Scripts\View\CreatureCardView\CreatureViewWidget.cs" />
+     <Compile Include="Assets\Scripts\Components\Audio\PlaySoundComponent.cs" />
      <Compile Include="Assets\Scripts\Definitions\Creatures\Enemies\EnemyDefs.cs" />
      <Compile Include="Assets\Scripts\LevelManipulation\EventLevelBoard.cs" />
      <Compile Include="Assets\Scripts\Utils\AudioUtils.cs" />
@@ -180,6 +181,7 @@
      <Compile Include="Assets\Scripts\LevelManipulation\CellInfo.cs" />
      <Compile Include="Assets\Scripts\LevelManipulation\LevelBuilder.cs" />
      <Compile Include="Assets\Scripts\UI\HUDController.cs" />
+     <Compile Include="Assets\Scripts\LevelManipulation\CreaturePanelManipulation.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs" />
      <Compile Include="Assets\Scripts\Panels\CrowdPanel.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_PhoneNumberValidator.cs" />
@@ -195,7 +197,7 @@
      <Compile Include="Assets\Scripts\GameSession.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
      <Compile Include="Assets\Scripts\Utils\Disposables\DisposeHolder.cs" />
-     <Compile Include="Assets\Scripts\Components\Audio\PlaySoundComponent.cs" />
+     <Compile Include="Assets\Scripts\Model\FightMechanism.cs" />
      <Folder Include="Assets" />
      <Folder Include="Assets\Scripts\Widgets" />
      <Folder Include="Assets\Sprites\Cards\CardAssets\Icons" />

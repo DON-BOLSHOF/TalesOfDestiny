@@ -1,7 +1,6 @@
 ﻿using System;
 using Definitions.Creatures;
 using Model.Properties;
-using UnityEngine;
 
 namespace Components
 {
@@ -9,9 +8,9 @@ namespace Components
     {
         public ObservableProperty<int> Health { get; } = new ObservableProperty<int>();
 
-        public void SetValue(int health)
+        public void SetBaseValue(int health)
         {
-            Health.Value = health;
+            Health.SetBaseValue(health);
         }
 
         public void TakeDamage(int creatureAttack, AttackType creatureAttackType, ArmorType myArmorType)
@@ -41,8 +40,6 @@ namespace Components
                 },
                 _ => throw new ArgumentOutOfRangeException(nameof(creatureAttackType), creatureAttackType, null)
             };
-            
-            Debug.Log(Health.Value);
         }
     }
 }

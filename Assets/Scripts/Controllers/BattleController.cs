@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Cards.SituationCards.Event;
 using Definitions.Creatures.Enemies;
 using LevelManipulation;
 using Panels;
 using UnityEngine;
+using Utils.Disposables;
 using Zenject;
 using EventType = Cards.SituationCards.Event.EventType;
 
@@ -18,6 +20,17 @@ namespace Controllers
 
         private List<EnemyPack> _enemies;
 
+        private DisposeHolder _trash = new DisposeHolder();
+
+        private void Start()
+        {
+            _trash.Retain(new Func<IDisposable>(() =>
+            {
+                _battleBoard.OnChangeState += EndBattle;
+                return new ActionDisposable(() => _battleBoard.OnChangeState -= EndBattle);
+            })());
+        }
+
         private async void StartBattle()
         {
             _enemies = _eventManager.TakeEnemyPacks();
@@ -25,20 +38,25 @@ namespace Controllers
             await _eventManager.PrepareToBattle(_battleBoard);//Передаем панель на уровень ниже для синхронизации с предыдущей панелькой.
             
             _battleBoard.StartBattle(_enemies);
-            Debug.Log("Battle Started!!!");
         }
-
-        [ContextMenu("Exit")]
-        public void EndBattle()
+        
+        private void EndBattle(bool value)
         {
+            if(value) return;
+            
             _eventLevelBoard.EndBattle();
-            _battleBoard.Exit();
+            Debug.Log("End of Battle");
         }
-
+        
         public void Visit(ButtonInteraction interaction)
         {
             if ((interaction.Type & EventType.Battle) == EventType.Battle)
                 StartBattle();
+        }
+
+        private void OnDestroy()
+        {
+            _trash.Dispose();
         }
     }
 }

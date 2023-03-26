@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Panels
@@ -8,12 +9,12 @@ namespace Panels
         public Action<bool> OnChangeState;
         
         public abstract void Show();
-        
+
         public abstract void Exit();
 
-        public void TakePanelSubscribes(AbstractPanelUtil panel)
+        public void TakeAdditivelyPanelSubscribes(AbstractPanelUtil panel)
         {
-            OnChangeState = panel.OnChangeState;
+            OnChangeState += panel.OnChangeState;
         }
     }
 }

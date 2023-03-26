@@ -10,7 +10,7 @@ namespace Components.Audio
         
         private AudioSource _source;
 
-        private void Awake()
+        private void Start()
         {
             _source = AudioUtils.FindSfxSource();
         }

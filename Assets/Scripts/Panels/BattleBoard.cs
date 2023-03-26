@@ -1,59 +1,77 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Definitions.Creatures.Enemies;
+using Model;
 using UnityEngine;
+using Utils.Disposables;
 
 namespace Panels
 {
-    public class BattleBoard : AbstractPanelUtil
+    public class BattleBoard : MonoBehaviour
     {
-        [SerializeField] private Animator _animator;
-        
         [SerializeField] private CreaturePanel _enemyPanel;
         [SerializeField] private CreaturePanel _heroAllyPanel;
         [SerializeField] private CrowdPanel _crowdPanel;
 
-        public override void Show()
+        [SerializeField] private FightMechanism _fightMechanism;
+        
+        private DisposeHolder _trash = new DisposeHolder();
+
+        public event Action<bool> OnChangeState;
+
+        private void Awake()
+        {
+            _trash.Retain(new Func<IDisposable>(() =>
+            {
+                _heroAllyPanel.OnExit += Exit;
+                return new ActionDisposable(() => _heroAllyPanel.OnExit -= Exit);
+            })());
+            _trash.Retain(new Func<IDisposable>(() =>
+            {
+                _enemyPanel.OnExit += Exit;
+                return new ActionDisposable(() => _enemyPanel.OnExit -= Exit);
+            })());
+        }
+
+        private async Task Show() //Нарушил принцип Лисков!
         {
             OnChangeState?.Invoke(true);
-            
-            _enemyPanel.Show();
-            _heroAllyPanel.Show();
+
+            await _enemyPanel.Show();
+            await _heroAllyPanel.Show();
         }
 
-        public override void Exit()
+        private void Exit()
         {
-            _enemyPanel.Exit();
-            _heroAllyPanel.Exit();
-            
+            _fightMechanism.StopBattle();
             OnChangeState?.Invoke(false);
+
+            _enemyPanel.Deactivate();
+            _heroAllyPanel.Deactivate();
         }
 
-        public void StartBattle(IList<EnemyPack> enemies)
+        public async void StartBattle(IList<EnemyPack> enemies)
         {
             _enemyPanel.DynamicInitialization(enemies.Take(5));
             _heroAllyPanel.DynamicInitialization(enemies.Take(5));
 
-            if(enemies.Count > 5)
+            if (enemies.Count > 5)
                 _crowdPanel.Activate(enemies.Skip(5).ToList());
-            
-            Show();
-            
-            Attack();
+
+            await Show();
+            _fightMechanism.StartBattle(_enemyPanel, _heroAllyPanel);
+        }
+        
+        public void TakeAdditivelyPanelSubscribes(AbstractPanelUtil panel)
+        {
+            OnChangeState += panel.OnChangeState;
         }
 
-        private async void Attack()
+        private void OnDestroy()
         {
-            await Task.Delay(500);
-
-            _enemyPanel.Attack(_heroAllyPanel.RandomCreature);
-            //_heroAllyPanel.Attack(_enemyPanel.Creatures[Random.Range(0,_enemyPanel.Creatures.Length)]);
-        }
-
-        private void Update() //Тест
-        {
-            if(Input.GetKeyDown(KeyCode.Q)) Attack();
+            _trash.Dispose();
         }
     }
 }

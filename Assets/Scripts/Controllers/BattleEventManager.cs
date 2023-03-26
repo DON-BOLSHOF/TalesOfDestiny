@@ -58,9 +58,9 @@ namespace Controllers
                 Quaternion.Euler(-15, 0, 0), _cameraRotationTime)); //Подобную сексуальную анимацию не остановить...
         }
 
-        public async Task PrepareToBattle(AbstractPanelUtil battlePanel)
+        public async Task PrepareToBattle(BattleBoard battlePanel)
         {
-            battlePanel.TakePanelSubscribes(_eventPanelUtil);
+            battlePanel.TakeAdditivelyPanelSubscribes(_eventPanelUtil);
             _eventPanelUtil.PrepareToBattle();//анимация переходящая с ивентовой панельки на панельку боевую
             await PutDownCamera();
         }

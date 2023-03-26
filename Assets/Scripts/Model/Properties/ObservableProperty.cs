@@ -21,6 +21,11 @@ namespace Model.Properties
         public ObservableProperty()
         {
         }
+        
+        public void SetBaseValue(TPropertyType value)//Если новое базовое значение, не надо прокидывать подписки.
+        {
+            _value = value;
+        }
 
         public TPropertyType Value
         {
@@ -34,7 +39,7 @@ namespace Model.Properties
                 OnChanged?.Invoke(value);
             }
         }
-
+        
         public IDisposable Subscribe(OnPropertyChanged call)
         {
             OnChanged += call;

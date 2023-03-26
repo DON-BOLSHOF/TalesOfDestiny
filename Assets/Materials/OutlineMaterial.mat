@@ -37,7 +37,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - Vector1_2df9e887be6d4e3b97ee45081ff5a7f4: 6.3
-    - _OutlineThickness: 1.75
+    - _OutlineThickness: 0
     m_Colors:
     - Color_6c092d36608f4faca3006d98bc5d1412: {r: 14.556863, g: 2.7607844, b: 10.792157, a: 1}
     - _OutlineGlow: {r: 0.22397178, g: 0.19370532, b: 1.1561786, a: 0}
