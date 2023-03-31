@@ -47,7 +47,7 @@ public class CreatureBehaviour : MonoBehaviour
 
     public void Deactivate()
     {
-        _creatureViewWidget.Deactivate();
+        _creatureViewWidget.SetState(CreatureViewWidgetStates.Deactivating);
     }
 
     public async Task Attack(CreatureBehaviour creature)

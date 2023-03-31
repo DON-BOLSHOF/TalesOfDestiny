@@ -16,7 +16,8 @@ namespace Panels
         [SerializeField] private CrowdPanel _crowdPanel;
 
         [SerializeField] private FightMechanism _fightMechanism;
-        
+        [SerializeField] private int _spawnDelay = 50;
+
         private DisposeHolder _trash = new DisposeHolder();
 
         public event Action<bool> OnChangeState;
@@ -43,19 +44,22 @@ namespace Panels
             await _heroAllyPanel.Show();
         }
 
-        private void Exit()
+        private async void Exit()
         {
             _fightMechanism.StopBattle();
-            OnChangeState?.Invoke(false);
 
-            _enemyPanel.Deactivate();
-            _heroAllyPanel.Deactivate();
+            var enemyDeactivate = _enemyPanel.Deactivate();
+            var heroAllyDeactivate = _heroAllyPanel.Deactivate();
+
+            await Task.WhenAll(enemyDeactivate, heroAllyDeactivate);
+
+            OnChangeState?.Invoke(false);
         }
 
         public async void StartBattle(IList<EnemyPack> enemies)
         {
-            _enemyPanel.DynamicInitialization(enemies.Take(5));
-            _heroAllyPanel.DynamicInitialization(enemies.Take(5));
+            _enemyPanel.DynamicInitialization(enemies.Take(5), _spawnDelay);
+            _heroAllyPanel.DynamicInitialization(enemies.Take(5), _spawnDelay);
 
             if (enemies.Count > 5)
                 _crowdPanel.Activate(enemies.Skip(5).ToList());
@@ -63,7 +67,7 @@ namespace Panels
             await Show();
             _fightMechanism.StartBattle(_enemyPanel, _heroAllyPanel);
         }
-        
+
         public void TakeAdditivelyPanelSubscribes(AbstractPanelUtil panel)
         {
             OnChangeState += panel.OnChangeState;

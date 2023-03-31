@@ -1,23 +1,23 @@
-﻿using Panels;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
+using Utils.Interfaces;
 
 namespace Components
 {
     [RequireComponent(typeof(Image))]
     public class PanelUtilMaskImagesVisitor: MonoBehaviour
     {
-        public Image Image { get; set; }
+        private Image Image { get; set; }
 
         private void OnEnable()
         {
-            var util = GetComponentInParent(typeof(EventPanelUtil)) as EventPanelUtil;
+            var util = GetComponentInParent(typeof(IDissolving)) as IDissolving;
             Image = GetComponent<Image>();
             
             Accept(util);
         }
 
-        private void Accept(EventPanelUtil eventPanelUtil)
+        private void Accept(IDissolving eventPanelUtil)
         {
             eventPanelUtil.DissolveAnimation.AddDynamicImage(Image); //Да нарушение DIP-a
         }

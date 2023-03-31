@@ -17,6 +17,12 @@ namespace Widgets
 
         private static readonly int ShowKey = Animator.StringToHash("Show");
         private static readonly int VelocityKey = Animator.StringToHash("Velocity");
+        private static readonly int PrepareToBattleKey = Animator.StringToHash("PrepareToBattle");
+
+        public void Activate(bool value)
+        {
+            gameObject.SetActive(value);
+        }
 
         private void OnMouseEnter()
         {
@@ -28,10 +34,6 @@ namespace Widgets
             Show(false);
         }
 
-        public void Activate(bool value)
-        {
-            gameObject.SetActive(value);
-        }
 
         private void Show(bool value)
         {
@@ -43,6 +45,11 @@ namespace Widgets
         {
             _dataGroup ??= new PredefinedDataGroup<EnemyCardViewWidget, EnemyPack>(_enemyCardContainer, true);
             _dataGroup.SetData(packs);
+        }
+
+        public void PrepareToBattle()//На будущее, если рассинхрон между аниматорами интерфейса будет: Делай через твины... 
+        {
+            _animator.SetTrigger(PrepareToBattleKey);
         }
     }
 }

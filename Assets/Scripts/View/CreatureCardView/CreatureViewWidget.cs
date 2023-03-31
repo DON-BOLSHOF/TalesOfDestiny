@@ -36,8 +36,9 @@ namespace View.CreatureCardView
         [Space][Header("Colors")]
         [SerializeField] private Color[] _attackColors;
         
-        private static readonly int Damaged = Animator.StringToHash("Damaged");
-        private static readonly int Die = Animator.StringToHash("Die");
+        private static readonly int DamagedKey = Animator.StringToHash("Damaged");
+        private static readonly int DieKey = Animator.StringToHash("Die");
+        private static readonly int DeactivateKey = Animator.StringToHash("Deactivate");
 
         public void SetData(CreaturePack pack)
         {
@@ -65,10 +66,13 @@ namespace View.CreatureCardView
             switch (state)
             {
                 case CreatureViewWidgetStates.Damaged:
-                    _animator.SetTrigger(Damaged);
+                    _animator.SetTrigger(DamagedKey);
                     break;
                 case CreatureViewWidgetStates.Dying:
-                    _animator.SetBool(Die, true);
+                    _animator.SetBool(DieKey, true);
+                    break;
+                case CreatureViewWidgetStates.Deactivating:
+                    _animator.SetTrigger(DeactivateKey);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(state), state, "Undefined state");
@@ -95,5 +99,6 @@ namespace View.CreatureCardView
 public enum CreatureViewWidgetStates
 {
     Damaged,
-    Dying
+    Dying,
+    Deactivating
 }

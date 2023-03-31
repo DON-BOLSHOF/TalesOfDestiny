@@ -62,6 +62,7 @@ namespace Controllers
         {
             battlePanel.TakeAdditivelyPanelSubscribes(_eventPanelUtil);
             _eventPanelUtil.PrepareToBattle();//анимация переходящая с ивентовой панельки на панельку боевую
+            _crowdWidget.PrepareToBattle();
             await PutDownCamera();
         }
 

@@ -21,6 +21,7 @@ namespace Panels
         private List<CreaturePack> _creaturePacks; //Data
 
         private int[] _spawnIndexArray; //В хаотичном порядке заспавнятся, сначала генерится их индексы.
+        private int _spawnDelay = 50;
 
         private CreaturePanelManipulation _creaturePanelManipulation;
         private readonly DisposeHolder _trash = new DisposeHolder();
@@ -45,11 +46,12 @@ namespace Panels
             await ActivateCreatures();
         }
 
-        public void DynamicInitialization(IEnumerable<CreaturePack> creatures)
+        public void DynamicInitialization(IEnumerable<CreaturePack> creatures, int spawnDelay)
         {
             _creaturePacks = creatures.ToList();
             _activeCreatures = _allCreature.Take(creatures.Count()).ToList();
             RandomizeSpawnIndexes(creatures.Count());
+            _spawnDelay = spawnDelay;
         }
 
 
@@ -65,7 +67,7 @@ namespace Panels
             for (var i = 0; i < _creaturePacks.Count; i++)
             {
                 _activeCreatures[_spawnIndexArray[i]].Activate(_creaturePacks[i]);
-                await Task.Delay(50);
+                await Task.Delay(_spawnDelay);
             }
         }
 
@@ -136,11 +138,12 @@ namespace Panels
             OnExit?.Invoke();
         }
 
-        public void Deactivate()
+        public async Task Deactivate()
         {
             foreach (var creature in _allCreature)
             {
                 creature.Deactivate();
+                await Task.Delay(_spawnDelay);
             }
         }
 

@@ -1,31 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Cards.SituationCards;
 using CodeAnimation;
 using UnityEngine;
 using UnityEngine.UI;
+using Utils.Interfaces;
 using Widgets;
 
 namespace Panels
 {
-    public class EventPanelUtil : AbstractTextPanelUtil
+    public class EventPanelUtil : AbstractTextPanelUtil, IDissolving, IOutLining
     {
-        [SerializeField] private OutLineAnimation _outLineAnimation;
-        [SerializeField] private DissolveAnimation _dissolveAnimation;
+        [field: SerializeField] public OutLineAnimation OutLineAnimation { get; private set; }
+        [field: SerializeField] public DissolveAnimation DissolveAnimation { get; private set; }
 
         private Coroutine _shaderRoutine;
-
-        public DissolveAnimation DissolveAnimation => _dissolveAnimation;
-        public OutLineAnimation OutLineAnimation => _outLineAnimation;
 
         public override void Show()
         {
             _typingAnimation.TakeText();
             _typingAnimation.HideText();
 
-            _dissolveAnimation.SetImagesDissolve();
+            DissolveAnimation.SetDeactiveDissolve();
 
             StartRoutine(Showing(), ref _shaderRoutine);
 
@@ -41,18 +38,18 @@ namespace Panels
 
         private IEnumerator Showing()
         {
-            yield return _dissolveAnimation.Emerging();
+            yield return DissolveAnimation.Emerging();
 
-            StartRoutine(_outLineAnimation.OutLiningOn(), ref _shaderRoutine);
+            StartRoutine(OutLineAnimation.OutLiningOn(), ref _shaderRoutine);
             StartRoutine(_typingAnimation.TypeText(), ref _typingRoutine);
         }
 
         private IEnumerator Dissolving()
         {
             _typingAnimation.HideText();
-            _dissolveAnimation.SetBaseMaterials();
-
-            yield return _dissolveAnimation.Dissolving();
+            DissolveAnimation.SetBaseMaterials();
+            
+            yield return DissolveAnimation.Dissolving();
 
             OnChangeState?.Invoke(false);
             gameObject.SetActive(false);
@@ -60,7 +57,7 @@ namespace Panels
 
         private IEnumerator OutLiningOff()
         {
-            yield return _outLineAnimation.OutLiningOff();
+            yield return OutLineAnimation.OutLiningOff();
 
             StartRoutine(Dissolving(), ref _shaderRoutine);
         }
@@ -76,7 +73,7 @@ namespace Panels
             var buttonWidgets = FindButtonWidgets();
 
             StartRoutine(
-                _dissolveAnimation.ReloadSpecialObjects(buttonWidgets, () =>
+                DissolveAnimation.ReloadSpecialObjects(buttonWidgets, () =>
                     {
                         GetComponentsInChildren<CustomButtonWidget>().ToList().ForEach(x => x.ActivateButton());
                         return ReloadButton(situation.Buttons);

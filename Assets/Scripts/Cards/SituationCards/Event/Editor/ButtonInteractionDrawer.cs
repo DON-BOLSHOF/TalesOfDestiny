@@ -9,6 +9,8 @@ using Utils.Editor;
 
 namespace Cards.SituationCards.Event.Editor
 {
+    //На будущее пользуйся фреймворком https://github.com/dbrizov/NaughtyAttributes, всю эту дичь со скрытиями
+    //можно будет скрыть в пару атрибутов!!!
     [CustomPropertyDrawer(typeof(ButtonInteraction))]
     public class ButtonInteractionDrawer : PropertyDrawer
     {

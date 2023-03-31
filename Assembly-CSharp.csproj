@@ -118,12 +118,14 @@
      <Compile Include="Assets\Scripts\Components\Audio\PlaySFXSound.cs" />
      <Compile Include="Assets\Scripts\View\EndJourneyCardView\EndJourneyPanelAnimation.cs" />
      <Compile Include="Assets\Scripts\View\SituationCardView\SituationCardView.cs" />
+     <Compile Include="Assets\Scripts\Model\FightMechanism.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ShaderPropAnimator.cs" />
      <Compile Include="Assets\Scripts\Controllers\BattleEventManager.cs" />
      <Compile Include="Assets\Scripts\LevelManipulation\CellWidget.cs" />
      <Compile Include="Assets\Scripts\Panels\EventPanelUtil.cs" />
      <Compile Include="Assets\Scripts\Definitions\Creatures\Company\CompanyDefs.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
+     <Compile Include="Assets\Scripts\Utils\Interfaces\IOutLining.cs" />
      <Compile Include="Assets\Scripts\Cards\SituationCards\Event\PropertyEvents\PropertyEvent.cs" />
      <Compile Include="Assets\Scripts\CodeAnimation\CreatureAnimations.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />
@@ -182,6 +184,7 @@
      <Compile Include="Assets\Scripts\LevelManipulation\LevelBuilder.cs" />
      <Compile Include="Assets\Scripts\UI\HUDController.cs" />
      <Compile Include="Assets\Scripts\LevelManipulation\CreaturePanelManipulation.cs" />
+     <Compile Include="Assets\Scripts\Utils\Interfaces\IDissolving.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs" />
      <Compile Include="Assets\Scripts\Panels\CrowdPanel.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_PhoneNumberValidator.cs" />
@@ -197,7 +200,6 @@
      <Compile Include="Assets\Scripts\GameSession.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
      <Compile Include="Assets\Scripts\Utils\Disposables\DisposeHolder.cs" />
-     <Compile Include="Assets\Scripts\Model\FightMechanism.cs" />
      <Folder Include="Assets" />
      <Folder Include="Assets\Scripts\Widgets" />
      <Folder Include="Assets\Sprites\Cards\CardAssets\Icons" />
@@ -245,7 +247,6 @@
      <Folder Include="Assets\Sprites\HUD" />
      <Folder Include="Assets\Resources\Definitions" />
      <Folder Include="Assets\Sprites\River" />
-     <Folder Include="Assets\UI\BattleController\BattleBoard" />
      <Folder Include="Assets\Scripts\System" />
      <Folder Include="Assets\Scripts\Components\ZenjectSpawnComponents" />
      <Folder Include="Assets\Sprites\Banners" />

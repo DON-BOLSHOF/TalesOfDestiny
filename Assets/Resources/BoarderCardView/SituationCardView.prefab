@@ -1468,8 +1468,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _background: {fileID: 7836194321006728213}
-  _propertiesIconsPosition: {fileID: 2165594328247229449}
   _itemIcon: {fileID: 2618414960140187051}
   _nameBanner: {fileID: 4745822973835221696}
   _descriptionBanner: {fileID: 7084860863091084968}
   widgetOffsetCorrection: 0.3
+  _propertiesIconsPosition: {fileID: 2165594328247229449}

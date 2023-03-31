@@ -57,7 +57,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 03a61d53209daf547bc2f761fff00620, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 03a61d53209daf547bc2f761fff00620, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -207,7 +207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 03a61d53209daf547bc2f761fff00620, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -260,6 +260,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 621660c90f93b9948a13c725b417eaab, type: 3}
+    - target: {fileID: 3916800504886864773, guid: 62ee560f91b287c4bbda49960fa5ecd5, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 2100000, guid: 03a61d53209daf547bc2f761fff00620, type: 2}
     - target: {fileID: 4949208277018798876, guid: 62ee560f91b287c4bbda49960fa5ecd5, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -360,7 +364,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7271198965212978439, guid: 62ee560f91b287c4bbda49960fa5ecd5, type: 3}
+    - {fileID: 5498607754503841472, guid: 62ee560f91b287c4bbda49960fa5ecd5, type: 3}
+    - {fileID: 4949208277018798876, guid: 62ee560f91b287c4bbda49960fa5ecd5, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 62ee560f91b287c4bbda49960fa5ecd5, type: 3}
 --- !u!224 &2647595231984555282 stripped
 RectTransform:

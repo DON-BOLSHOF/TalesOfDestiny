@@ -8,47 +8,32 @@ namespace CodeAnimation
 {
     public class DissolveAnimation : MonoBehaviour
     {
-        [SerializeField] private List<Graphic> _images; //Здесь все нужные для dissolv-a(Будет в дальнейшем заменяться поэтому нужны инстансы)
+        [SerializeField] private float _dissolveTime = 0.07f;
+        
         [SerializeField] private Material _dissolve;
 
-        [SerializeField] private Material _specialDissolveMaterial; //Там ебатория с ссылками
+        [SerializeField] private Material _specialDissolveMaterial; //Если какие-то инстансы отдельно задизолвить надо будет, понадобится это
+
+        [SerializeField] private List<Graphic> _changesGraphicElements; //Здесь все нужные для dissolv-a(Будет в дальнейшем заменяться поэтому нужны инстансы)
 
         public event Action OnEmerged;
         public event Action OnStartDissolving;
 
-        private List<Graphic> _specialObjects;
-
-        private static readonly int DissolveAmount = Shader.PropertyToID("_DissolveAmount");
-
+        private List<Graphic> _specialObjects;//Сейчас это пока кнопки. Задаются в скрипте. Ниже прокидываются из нижестоящих в йерархии элементов.
         private readonly List<Image>
             _dynamicMaskImages = new List<Image>(); // Оказалось придется еще динамично заполнять иконки ヽ(°□° )ノ
 
-        public void AddDynamicImage(Image image)
-        {
-            _dynamicMaskImages.Add(image);
-        }
-
-        public void SetImagesDissolve()
-        {
-            ChangeMaterial(_images, _dissolve);
-            _dissolve.SetFloat(DissolveAmount, 0f);
-            _dynamicMaskImages?.ForEach(image =>
-                image.GetModifiedMaterial(image.material).SetFloat(DissolveAmount, 0f));
-        }
-
-        private void ChangeMaterial(List<Graphic> images, Material material)
-        {
-            images.ForEach(image => image.material = material);
-        }
+        private static readonly int DissolveAmount = Shader.PropertyToID("_DissolveAmount");
 
         public IEnumerator Emerging()
         {
+            ChangeMaterial(_changesGraphicElements, _dissolve);
+            SetDeactiveDissolve();
+
             for (float i = 0; i <= 1; i += 0.05f)
             {
-                _dissolve.SetFloat(DissolveAmount, i);
-                _dynamicMaskImages?.ForEach(image =>
-                    image.GetModifiedMaterial(image.material).SetFloat(DissolveAmount, i));
-                yield return new WaitForSeconds(0.07f);
+                SetDissolveValue(i);
+                yield return new WaitForSeconds(_dissolveTime);
             }
 
             OnEmerged?.Invoke();
@@ -56,31 +41,45 @@ namespace CodeAnimation
 
         public IEnumerator Dissolving()
         {
+            ChangeMaterial(_changesGraphicElements, _dissolve);
             OnStartDissolving?.Invoke();
-            ChangeMaterial(_images, _dissolve);
+            SetActiveDissolve();
 
             for (float i = 1; i >= 0; i -= 0.05f)
             {
-                _dissolve.SetFloat(DissolveAmount, i);
-                _dynamicMaskImages?.ForEach(image =>
-                    image.GetModifiedMaterial(image.material).SetFloat(DissolveAmount, i));
-
-                yield return new WaitForSeconds(0.07f);
+                SetDissolveValue(i);
+                yield return new WaitForSeconds(_dissolveTime);
             }
+        }
+        
+        public void AddDynamicImage(Image image)
+        {
+            _dynamicMaskImages.Add(image);
+        }
+
+        private void SetDissolveValue(float value)
+        {
+            _dissolve.SetFloat(DissolveAmount, value);
+            _dynamicMaskImages?.ForEach(image =>
+                image.GetModifiedMaterial(image.material).SetFloat(DissolveAmount, value));
+        }
+
+        private static void ChangeMaterial(List<Graphic> images, Material material)
+        {
+            images?.ForEach(image => image.material = material);
         }
 
         public IEnumerator ReloadSpecialObjects(List<Graphic> specialObjects, Func<int> onDissolved = null,
-            Func<List<Graphic>> onCheckNewObject =
-                null) //В принципе, отбросив все доп переменные нормально, но адекватно ли так доп. переменные вводить? Макаронина...  
+            Func<List<Graphic>> onCheckNewObject = null) //В принципе, отбросив все доп переменные нормально, но адекватно ли так доп. переменные вводить? Макаронина...  
         {
             _specialObjects = specialObjects;
-            
+
             ChangeMaterial(_specialObjects, _specialDissolveMaterial);
 
             for (float i = 1; i >= 0; i -= 0.05f)
             {
                 _specialDissolveMaterial.SetFloat(DissolveAmount, i);
-                yield return new WaitForSeconds(0.07f);
+                yield return new WaitForSeconds(_dissolveTime);
             }
 
             onDissolved?.Invoke();
@@ -92,10 +91,24 @@ namespace CodeAnimation
             for (float i = 0; i <= 1; i += 0.05f)
             {
                 _specialDissolveMaterial.SetFloat(DissolveAmount, i);
-                yield return new WaitForSeconds(0.07f);
+                yield return new WaitForSeconds(_dissolveTime);
             }
 
             SetBaseMaterials();
+        }
+
+        public void SetActiveDissolve()
+        {
+            SetDissolveValue(1);
+            _dynamicMaskImages?.ForEach(image =>
+                image.GetModifiedMaterial(image.material).SetFloat(DissolveAmount, 1f));
+        }
+
+        public void SetDeactiveDissolve()
+        {
+            SetDissolveValue(0);
+            _dynamicMaskImages?.ForEach(image =>
+                image.GetModifiedMaterial(image.material).SetFloat(DissolveAmount, 0f));
         }
 
         public void SetBaseMaterials()

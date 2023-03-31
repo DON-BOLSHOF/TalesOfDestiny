@@ -36,6 +36,8 @@ namespace CodeAnimation
         
         public IEnumerator OutLiningOff()
         {
+            _images.ForEach(image => image.material = _outline);
+
             for (float i = 5; i >= 0; i -= 0.25f)
             {
                 _images.ForEach(image => image.material.SetColor(OutlineGlow, _glow * (i + 9)));
