@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6282d6878b1a4e0f84a060f24ca46105, type: 3}
-  m_Name: Companion
+  m_Name: Militia
   m_EditorClassIdentifier: 
-  _id: 
-  _cardView: {fileID: 0}
+  _id: Militia
+  _cardView: {fileID: 11400000, guid: 95c5b86534c008e41aea2be63016e5e0, type: 2}
   _armorType: 0
   _attackType: 0
-  _attack: 0
-  _health: 0
+  _attack: 2
+  _health: 3

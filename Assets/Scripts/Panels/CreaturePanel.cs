@@ -17,7 +17,7 @@ namespace Panels
 
         private List<CreatureBehaviour> _activeCreatures; //Активные существа
         public int ActiveCreaturesAmount => _activeCreatures.Count;
-        
+
         private List<CreaturePack> _creaturePacks; //Data
 
         private int[] _spawnIndexArray; //В хаотичном порядке заспавнятся, сначала генерится их индексы.
@@ -37,7 +37,11 @@ namespace Panels
 
             foreach (var creaturesBehaviour in _allCreature)
             {
-                _trash.Retain(creaturesBehaviour.SubscribeDying(OnCreatureDeath));
+                _trash.Retain(new Func<IDisposable>(() =>
+                {
+                    creaturesBehaviour.OnDying += OnCreatureDeath;
+                    return new ActionDisposable(() =>creaturesBehaviour.OnDying -= OnCreatureDeath);
+                })());
             }
         }
 
@@ -53,7 +57,6 @@ namespace Panels
             RandomizeSpawnIndexes(creatures.Count());
             _spawnDelay = spawnDelay;
         }
-
 
         public async Task ForceToAttack(CreatureBehaviour creature)
         {
@@ -131,6 +134,11 @@ namespace Panels
             _spawnIndexArray = new int[limit];
             for (var i = 0; i < _spawnIndexArray.Length; i++) _spawnIndexArray[i] = i;
             MathUtils.SnuffleArray(_spawnIndexArray);
+        }
+
+        public List<CreaturePack> TakeActivePacks()
+        {
+            return _activeCreatures.Select(creature => creature.CreaturePack).ToList();
         }
 
         private void Exit()

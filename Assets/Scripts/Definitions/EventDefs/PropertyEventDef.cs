@@ -1,5 +1,6 @@
 ﻿using Model.Data;
 using UnityEngine;
+using Utils.Interfaces;
 
 namespace Definitions.EventDefs
 {

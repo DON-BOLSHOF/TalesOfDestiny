@@ -1,9 +1,11 @@
+using Controllers;
 using LevelManipulation;
 using Model.Data;
 using Model.Properties;
 using UnityEngine;
+using Utils.Interfaces;
 
-public class GameSession : MonoBehaviour
+public class GameSession : MonoBehaviour, IBattleControllerVisitor
 {
     [SerializeField] private PlayerData _playerData;
 
@@ -19,10 +21,16 @@ public class GameSession : MonoBehaviour
         _eventLevelBoard.OnNextTurn += OnNextTurn;
     }
 
+    public void Visit(BattleController battleController)
+    {
+        _playerData.CompanionsData.ReloadCompanions(battleController.Companions);
+    }
+
     private void OnNextTurn()
     {
         LevelTurn.Value++;
     }
+
     private void OnDestroy()
     {
         _eventLevelBoard.OnNextTurn -= OnNextTurn;

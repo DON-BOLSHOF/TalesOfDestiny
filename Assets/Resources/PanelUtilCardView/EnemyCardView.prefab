@@ -1619,7 +1619,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.06273806, y: 0.029000001}
   m_AnchorMax: {x: 0.9482662, y: 0.9554442}
-  m_AnchoredPosition: {x: -3.8764992, y: 0}
+  m_AnchoredPosition: {x: -3.8764954, y: 0}
   m_SizeDelta: {x: -10.3376, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4431289978683586961
@@ -2085,8 +2085,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   widgetOffsetCorrection: 1
-  _turnThesholdValue: {fileID: 7409451457065507861}
-  _enemyAmountValue: {fileID: 7689951212526641610}
+  _amountValue: {fileID: 7689951212526641610}
   _attackValue: {fileID: 2360950982253597525}
   _healthValue: {fileID: 4402687252826155389}
   _background: {fileID: 3324820792743671720}
@@ -2103,3 +2102,4 @@ MonoBehaviour:
   - {fileID: 7411294679705114530, guid: 72fbaf5dad660464c9771010040867d4, type: 3}
   - {fileID: 3032754894183032622, guid: 72fbaf5dad660464c9771010040867d4, type: 3}
   - {fileID: -8495095762304946840, guid: 72fbaf5dad660464c9771010040867d4, type: 3}
+  _turnThesholdValue: {fileID: 7409451457065507861}

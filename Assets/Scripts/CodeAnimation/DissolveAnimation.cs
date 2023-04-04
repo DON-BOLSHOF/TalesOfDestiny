@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace CodeAnimation
 {
-    public class DissolveAnimation : MonoBehaviour
+    public class DissolveAnimation : SoundedAnimation
     {
         [SerializeField] private float _dissolveTime = 0.07f;
         
@@ -25,7 +25,19 @@ namespace CodeAnimation
 
         private static readonly int DissolveAmount = Shader.PropertyToID("_DissolveAmount");
 
-        public IEnumerator Emerging()
+        public override IEnumerator StartAnimation()
+        {
+            PlayClip();
+            yield return Emerging();
+        }
+
+        public override IEnumerator EndAnimation()
+        {
+            PlayClip();
+            yield return Dissolving();
+        }
+        
+        private IEnumerator Emerging()
         {
             ChangeMaterial(_changesGraphicElements, _dissolve);
             SetDeactiveDissolve();
@@ -39,7 +51,7 @@ namespace CodeAnimation
             OnEmerged?.Invoke();
         }
 
-        public IEnumerator Dissolving()
+        private IEnumerator Dissolving()
         {
             ChangeMaterial(_changesGraphicElements, _dissolve);
             OnStartDissolving?.Invoke();
@@ -75,7 +87,8 @@ namespace CodeAnimation
             _specialObjects = specialObjects;
 
             ChangeMaterial(_specialObjects, _specialDissolveMaterial);
-
+            
+            PlayClip();
             for (float i = 1; i >= 0; i -= 0.05f)
             {
                 _specialDissolveMaterial.SetFloat(DissolveAmount, i);
@@ -88,6 +101,7 @@ namespace CodeAnimation
             ChangeMaterial(_specialObjects, _specialDissolveMaterial);
             _specialDissolveMaterial.SetFloat(DissolveAmount, 0f);
 
+            PlayClip();
             for (float i = 0; i <= 1; i += 0.05f)
             {
                 _specialDissolveMaterial.SetFloat(DissolveAmount, i);

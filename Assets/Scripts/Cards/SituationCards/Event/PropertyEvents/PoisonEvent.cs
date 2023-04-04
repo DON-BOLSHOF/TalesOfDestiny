@@ -1,6 +1,7 @@
 ﻿using Definitions.EventDefs;
 using Model.Data;
 using UnityEngine;
+using Utils.Interfaces;
 
 namespace Cards.SituationCards.Event.PropertyEvents
 {

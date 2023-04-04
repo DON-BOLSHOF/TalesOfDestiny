@@ -12,21 +12,21 @@ namespace Model
 
         private bool _enable;
 
-        public async void StartBattle(CreaturePanel enemyPanel, CreaturePanel heroAllyPanel)
+        public async void StartBattle(CreaturePanel enemyPanel, CreaturePanel companyPanel)
         {
             _enable = true;
             var i = 0;
 
-            while (_enable && enemyPanel.ActiveCreaturesAmount > 0 && heroAllyPanel.ActiveCreaturesAmount > 0)
+            while (_enable && enemyPanel.ActiveCreaturesAmount > 0 && companyPanel.ActiveCreaturesAmount > 0)
             {
                 if (i % 2 == 0)
                 {
-                    await enemyPanel.ForceToAttack(heroAllyPanel.RandomCreature);
+                    await enemyPanel.ForceToAttack(companyPanel.RandomCreature);
                     i = 1;
                 }
                 else
                 {
-                    await heroAllyPanel.ForceToAttack(enemyPanel.RandomCreature);
+                    await companyPanel.ForceToAttack(enemyPanel.RandomCreature);
                     i = 0;
                 }
                 await Task.Delay((int)(attackDelay*1000));

@@ -9,7 +9,7 @@ using Definitions.Creatures.Enemies;
 using Panels;
 using UnityEngine;
 using Utils;
-using View.EnemyCardView;
+using View.CreaturesCardView.EnemyCardView;
 using Widgets;
 using Zenject;
 
@@ -58,7 +58,7 @@ namespace Controllers
                 Quaternion.Euler(-15, 0, 0), _cameraRotationTime)); //Подобную сексуальную анимацию не остановить...
         }
 
-        public async Task PrepareToBattle(BattleBoard battlePanel)
+        public async Task PrepareToBattle(AbstractStateUtil battlePanel)
         {
             battlePanel.TakeAdditivelyPanelSubscribes(_eventPanelUtil);
             _eventPanelUtil.PrepareToBattle();//анимация переходящая с ивентовой панельки на панельку боевую

@@ -14,10 +14,10 @@ namespace UI
 
         private void Start()
         {
-            _trash.Retain(_gameSession.Data.HeroData.Food.SubscribeAndInvoke(_propertyView.FoodValue.OnValueChange));
+            _trash.Retain(_gameSession.Data.PropertyData.Food.SubscribeAndInvoke(_propertyView.FoodValue.OnValueChange));
             _trash.Retain(
-                _gameSession.Data.HeroData.Prestige.SubscribeAndInvoke(_propertyView.PrestigeValue.OnValueChange));
-            _trash.Retain(_gameSession.Data.HeroData.Coins.SubscribeAndInvoke(_propertyView.CoinValue.OnValueChange));
+                _gameSession.Data.PropertyData.Prestige.SubscribeAndInvoke(_propertyView.PrestigeValue.OnValueChange));
+            _trash.Retain(_gameSession.Data.PropertyData.Coins.SubscribeAndInvoke(_propertyView.CoinValue.OnValueChange));
             _trash.Retain(_gameSession.LevelTurn.SubscribeAndInvoke(_propertyView.TurnValue.OnValueChange));
         }
 

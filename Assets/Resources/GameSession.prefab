@@ -44,10 +44,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerData:
-    _heroData:
+    _propertyData:
       Food:
-        _value: 33
+        _value: 15
       Coins:
-        _value: 0
+        _value: 5
       Prestige:
-        _value: 12
+        _value: 5
+    _companionsData:
+      _companionPacks:
+      - _count: 30
+        creatureCard: {fileID: 11400000, guid: 38b58d4e38cf9e64ebd5e659fc729a5d, type: 2}
+      - _count: 2
+        creatureCard: {fileID: 11400000, guid: 339b828f57025e146817d73efd23fd84, type: 2}

@@ -38,7 +38,7 @@ namespace Panels
 
         private IEnumerator Showing()
         {
-            yield return DissolveAnimation.Emerging();
+            yield return DissolveAnimation.StartAnimation();
 
             StartRoutine(OutLineAnimation.OutLiningOn(), ref _shaderRoutine);
             StartRoutine(_typingAnimation.TypeText(), ref _typingRoutine);
@@ -49,7 +49,7 @@ namespace Panels
             _typingAnimation.HideText();
             DissolveAnimation.SetBaseMaterials();
             
-            yield return DissolveAnimation.Dissolving();
+            yield return DissolveAnimation.EndAnimation();
 
             OnChangeState?.Invoke(false);
             gameObject.SetActive(false);

@@ -1,18 +1,17 @@
-﻿using Definitions.Creatures.Enemies;
+﻿using Definitions.Creatures;
 using UnityEngine;
 using UnityEngine.UI;
 using Utils;
 
-namespace View.EnemyCardView
+namespace View.CreaturesCardView
 {
-    public class EnemyCardViewWidget : CardViewWidget, IItemInstance<EnemyPack>
+    public abstract class CreatureCardViewWidget<TCreaturePack> : CardViewWidget, IItemInstance<TCreaturePack>  where TCreaturePack: CreaturePack
     {
         [Space][Header("OffSet")]
         [SerializeField] private float widgetOffsetCorrection;
 
         [Space] [Header("Texts")]
-        [SerializeField] private Text _turnThesholdValue;
-        [SerializeField] private Text _enemyAmountValue;
+        [SerializeField] private Text _amountValue;
         [SerializeField] private Text _attackValue;
         [SerializeField] private Text _healthValue;
         
@@ -33,13 +32,12 @@ namespace View.EnemyCardView
         [SerializeField] private Sprite[] _armorSprites;
         
 
-        public void SetData(EnemyPack pack)
+        public virtual void SetData(TCreaturePack pack)
         {
             var packEnemyCard = pack.CreatureCard;
             SetViewData(packEnemyCard.View);
 
-            _turnThesholdValue.text = ((EnemyCard)packEnemyCard).TurnThreshold.ToString();
-            _enemyAmountValue.text = pack.Count.ToString();
+            _amountValue.text = pack.Count.ToString();
             _attackValue.text = packEnemyCard.Attack.ToString();
             _healthValue.text = packEnemyCard.Health.ToString();
 
@@ -50,7 +48,7 @@ namespace View.EnemyCardView
         public override void SetViewData(CardView view)
         {
             _background.sprite = view.BackgroundView;
-            var enemyCardView = (EnemyCardView)view;
+            var enemyCardView = (CreatureCardView)view;
 
             _itemIcon.sprite = enemyCardView.MainView;
             _itemIcon.rectTransform.anchoredPosition = Vector3.zero + enemyCardView.IconOffset * widgetOffsetCorrection ; // Ну по идее это так же относится к дате, так что вроде нормально сюда вставлять

@@ -17,9 +17,9 @@ namespace Components
             Accept(util);
         }
 
-        private void Accept(IDissolving eventPanelUtil)
+        private void Accept(IDissolving iDissolving)
         {
-            eventPanelUtil.DissolveAnimation.AddDynamicImage(Image); //Да нарушение DIP-a
+            iDissolving.DissolveAnimation.AddDynamicImage(Image); //Да нарушение DIP-a
         }
     }
 }

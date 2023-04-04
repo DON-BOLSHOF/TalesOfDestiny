@@ -1,5 +1,4 @@
 ﻿using CodeAnimation;
-using UnityEngine;
 
 namespace Utils.Interfaces
 {

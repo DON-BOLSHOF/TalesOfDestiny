@@ -50,7 +50,7 @@ namespace Panels
             OnSkipText();
             _typingAnimation.HideText();
             _animator.SetTrigger(PrepareBattle);
-            StartRoutine(DissolveAnimation.Dissolving(), ref _shaderRoutine);
+            StartRoutine(DissolveAnimation.EndAnimation(), ref _shaderRoutine);
         }
     }
 }

@@ -4,11 +4,11 @@ using UnityEngine;
 namespace Definitions.Creatures
 {
     [Serializable]
-    public abstract class CreaturePack
+    public class CreaturePack//Не абстрактный только потому что нужно сериализовать class.
     {
         [SerializeField] private int _count;
 
-        [SerializeField]protected CreatureCard creatureCard;
+        [SerializeField] protected CreatureCard creatureCard;
         public CreatureCard CreatureCard => creatureCard;
         public int Count => _count;
         

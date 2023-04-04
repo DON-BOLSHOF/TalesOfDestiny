@@ -3,7 +3,7 @@ using Definitions.Creatures;
 using Definitions.Creatures.Enemies;
 using UnityEngine;
 using Utils;
-using View.EnemyCardView;
+using View.CreaturesCardView.EnemyCardView;
 
 namespace Widgets
 {
