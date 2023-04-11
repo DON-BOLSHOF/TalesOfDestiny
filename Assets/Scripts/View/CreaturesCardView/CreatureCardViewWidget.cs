@@ -48,13 +48,14 @@ namespace View.CreaturesCardView
         public override void SetViewData(CardView view)
         {
             _background.sprite = view.BackgroundView;
-            var enemyCardView = (CreatureCardView)view;
+            var creatureCardView = (CreatureCardView)view;
 
-            _itemIcon.sprite = enemyCardView.MainView;
-            _itemIcon.rectTransform.anchoredPosition = Vector3.zero + enemyCardView.IconOffset * widgetOffsetCorrection ; // Ну по идее это так же относится к дате, так что вроде нормально сюда вставлять
-
-            _nameBanner.text = enemyCardView.Id;
-            _descriptionBanner.text = enemyCardView.Wisecrack;
+            _itemIcon.sprite = creatureCardView.MainView;
+            _itemIcon.rectTransform.anchoredPosition = Vector3.zero + creatureCardView.IconOffset * widgetOffsetCorrection ; // Ну по идее это так же относится к дате, так что вроде нормально сюда вставлять
+            _itemIcon.rectTransform.localScale = creatureCardView.PortraitCorrection;
+            
+            _nameBanner.text = creatureCardView.Id;
+            _descriptionBanner.text = creatureCardView.Wisecrack;
         }
     }
 }

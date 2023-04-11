@@ -15,5 +15,6 @@ MonoBehaviour:
   _id: Militia
   _backgroundView: {fileID: 21300000, guid: 3c5f3b00e0ebcf541a94c5bd30ac9478, type: 3}
   _mainView: {fileID: 21300000, guid: aea8af4c462a0ae43a847bbea2f38b1a, type: 3}
-  _iconOffset: {x: 0, y: 0, z: 0}
+  _iconOffset: {x: -12.5, y: -100, z: 0}
+  _portraitCorrection: {x: 0.7, y: 0.7, z: 1}
   _wisecrack: Common People

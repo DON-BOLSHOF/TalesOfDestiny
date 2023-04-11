@@ -41,7 +41,13 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Folder Include="Assets\Plugins\NaughtyAttributes\Samples" />
      <Folder Include="Assets\Plugins" />
+     <Folder Include="Assets\Plugins\NaughtyAttributes\Samples\DemoScene\TestAssets" />
+     <Folder Include="Assets\Plugins\NaughtyAttributes\Scripts" />
+     <Folder Include="Assets\Plugins\NaughtyAttributes" />
+     <None Include="Assets\Plugins\NaughtyAttributes\package.json" />
+     <Folder Include="Assets\Plugins\NaughtyAttributes\Samples\DemoScene" />
      <Reference Include="UnityEngine">
      <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.43f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
      </Reference>

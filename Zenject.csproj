@@ -293,8 +293,8 @@
      <Compile Include="Assets\Plugins\Zenject\OptionalExtras\SampleGame2 (Advanced)\Scripts\Enemy\EnemyRegistry.cs" />
      <Compile Include="Assets\Plugins\Zenject\Source\Binding\Binders\CopyNonLazyBinder.cs" />
      <Compile Include="Assets\Plugins\Zenject\Source\Util\ActionInstaller.cs" />
-     <Compile Include="Assets\Plugins\Zenject\Source\Util\ExecutionOrderInstaller.cs" />
      <Compile Include="Assets\Plugins\Zenject\Source\Binding\BindInfo\MemoryPoolBindInfo.cs" />
+     <Compile Include="Assets\Plugins\Zenject\Source\Util\ExecutionOrderInstaller.cs" />
      <Compile Include="Assets\Plugins\Zenject\OptionalExtras\SampleGame2 (Advanced)\Scripts\Player\PlayerFacade.cs" />
      <Compile Include="Assets\Plugins\Zenject\Source\Binding\Binders\Factory\FactoryFromBinder\SubContainerBinder\FactorySubContainerBinder1.cs" />
      <Compile Include="Assets\Plugins\Zenject\Source\Injection\InjectUtil.cs" />

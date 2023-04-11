@@ -40,7 +40,8 @@ namespace View.SituationCardView
             _dataGroup ??= new PredefinedDataGroup<CardPropertyWidget, Sprite>(PropertiesPosition);
 
             _itemIcon.rectTransform.anchoredPosition = Vector3.zero + eventCardView.IconOffset * widgetOffsetCorrection ; // Ну по идее это так же относится к дате, так что вроде нормально сюда вставлять
-            
+            _itemIcon.rectTransform.localScale = eventCardView.PortraitCorrection;
+
             _dataGroup.SetData(eventCardView.PropertyIcons);
             NameBanner.text = cardView.Id;
             DescriptionBanner.text = eventCardView.Wisecrack;

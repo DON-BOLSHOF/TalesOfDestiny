@@ -817,6 +817,10 @@
       <Project>{4186f678-2488-04f6-deba-0099ae2069d6}</Project>
       <Name>Zenject-Editor</Name>
     </ProjectReference>
+    <ProjectReference Include="NaughtyAttributes.Editor.csproj">
+      <Project>{c047aefe-268c-9639-7e06-3b474edcd09d}</Project>
+      <Name>NaughtyAttributes.Editor</Name>
+    </ProjectReference>
     <ProjectReference Include="Zenject-ReflectionBaking-Editor.csproj">
       <Project>{36951c27-df58-4742-ff99-aea0e9f0a50a}</Project>
       <Name>Zenject-ReflectionBaking-Editor</Name>
@@ -825,9 +829,17 @@
       <Project>{0959ba13-b4b8-484f-f927-626ef18ea02d}</Project>
       <Name>Zenject</Name>
     </ProjectReference>
+    <ProjectReference Include="NaughtyAttributes.Test.csproj">
+      <Project>{1a6c2b3d-b465-6e46-a42a-411ac2d68691}</Project>
+      <Name>NaughtyAttributes.Test</Name>
+    </ProjectReference>
     <ProjectReference Include="Zenject-PoolMonitor-Editor.csproj">
       <Project>{022c7feb-a364-eadd-6cd1-613d72e69196}</Project>
       <Name>Zenject-PoolMonitor-Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="NaughtyAttributes.Core.csproj">
+      <Project>{e07aaaf5-8300-4381-fd4c-3dfc4ad2f98e}</Project>
+      <Name>NaughtyAttributes.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

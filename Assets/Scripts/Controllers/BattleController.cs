@@ -61,7 +61,7 @@ namespace Controllers
                 }
                 case BattleEndState.Lose:
                 {
-                    //Здесь обрисовать конец игры с точки зрения военного поражения
+                    //TODO Здесь обрисовать конец игры с точки зрения военного поражения
                     throw new NotImplementedException("Battle lose is not implemented!!!");
                     break;
                 }

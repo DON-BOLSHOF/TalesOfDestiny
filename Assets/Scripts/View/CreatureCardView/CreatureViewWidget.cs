@@ -64,7 +64,8 @@ namespace View.CreatureCardView
             _itemIcon.rectTransform.anchoredPosition =
                 Vector3.zero +
                 enemyCardView.IconOffset *
-                _widgetOffsetCorrection; // Ну по идее это так же относится к дате, так что вроде нормально сюда вставлять
+                _widgetOffsetCorrection ; // Ну по идее это так же относится к дате, так что вроде нормально сюда вставлять
+            _itemIcon.rectTransform.localScale = enemyCardView.PortraitCorrection;
         }
 
         public void SetState(CreatureViewWidgetStates state)

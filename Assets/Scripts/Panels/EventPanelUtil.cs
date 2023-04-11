@@ -32,7 +32,7 @@ namespace Panels
         private void Dissolve()
         {
             OnSkipText();
-
+            
             StartRoutine(OutLiningOff(), ref _shaderRoutine);
         }
 
@@ -40,7 +40,7 @@ namespace Panels
         {
             yield return DissolveAnimation.StartAnimation();
 
-            StartRoutine(OutLineAnimation.OutLiningOn(), ref _shaderRoutine);
+            StartRoutine(OutLineAnimation.StartAnimation(), ref _shaderRoutine);
             StartRoutine(_typingAnimation.TypeText(), ref _typingRoutine);
         }
 
@@ -57,7 +57,7 @@ namespace Panels
 
         private IEnumerator OutLiningOff()
         {
-            yield return OutLineAnimation.OutLiningOff();
+            yield return OutLineAnimation.EndAnimation();
 
             StartRoutine(Dissolving(), ref _shaderRoutine);
         }

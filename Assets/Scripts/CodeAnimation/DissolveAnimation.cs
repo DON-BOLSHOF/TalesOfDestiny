@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,12 +13,18 @@ namespace CodeAnimation
         
         [SerializeField] private Material _dissolve;
 
-        [SerializeField] private Material _specialDissolveMaterial; //Если какие-то инстансы отдельно задизолвить надо будет, понадобится это
+        [SerializeField] private DissolveState _dissolveState = DissolveState.Expanded;
 
-        [SerializeField] private List<Graphic> _changesGraphicElements; //Здесь все нужные для dissolv-a(Будет в дальнейшем заменяться поэтому нужны инстансы)
+        [ShowIf(nameof(_dissolveState), DissolveState.Expanded), SerializeField]
+        private Material _specialDissolveMaterial; //Если какие-то инстансы отдельно задизолвить надо будет, понадобится это
+
+        [ShowIf(nameof(_dissolveState), DissolveState.Expanded), SerializeField]
+        private List<Graphic> _changesGraphicElements; //Здесь все нужные для dissolv-a(Будет в дальнейшем заменяться поэтому нужны инстансы)
 
         public event Action OnEmerged;
         public event Action OnStartDissolving;
+
+        private float _currentDissolveValue = 0;
 
         private List<Graphic> _specialObjects;//Сейчас это пока кнопки. Задаются в скрипте. Ниже прокидываются из нижестоящих в йерархии элементов.
         private readonly List<Image>
@@ -40,9 +47,9 @@ namespace CodeAnimation
         private IEnumerator Emerging()
         {
             ChangeMaterial(_changesGraphicElements, _dissolve);
-            SetDeactiveDissolve();
+            //SetDeactiveDissolve();
 
-            for (float i = 0; i <= 1; i += 0.05f)
+            for (float i = _currentDissolveValue; i <= 1; i += 0.05f)
             {
                 SetDissolveValue(i);
                 yield return new WaitForSeconds(_dissolveTime);
@@ -55,9 +62,9 @@ namespace CodeAnimation
         {
             ChangeMaterial(_changesGraphicElements, _dissolve);
             OnStartDissolving?.Invoke();
-            SetActiveDissolve();
+            //SetActiveDissolve();
 
-            for (float i = 1; i >= 0; i -= 0.05f)
+            for (var i = _currentDissolveValue; i >= 0; i -= 0.05f)
             {
                 SetDissolveValue(i);
                 yield return new WaitForSeconds(_dissolveTime);
@@ -74,6 +81,7 @@ namespace CodeAnimation
             _dissolve.SetFloat(DissolveAmount, value);
             _dynamicMaskImages?.ForEach(image =>
                 image.GetModifiedMaterial(image.material).SetFloat(DissolveAmount, value));
+            _currentDissolveValue = value;
         }
 
         private static void ChangeMaterial(List<Graphic> images, Material material)
@@ -137,4 +145,10 @@ namespace CodeAnimation
             _dynamicMaskImages.Clear();
         }
     }
+}
+
+internal enum DissolveState
+{
+    Basic,
+    Expanded
 }

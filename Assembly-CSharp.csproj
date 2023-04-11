@@ -72,10 +72,12 @@
      <Compile Include="Assets\Scripts\CodeAnimation\SoundedAnimation.cs" />
      <Compile Include="Assets\Scripts\Utils\Interfaces\ISpawner.cs" />
      <Compile Include="Assets\Scripts\Components\SelectComponent\SelectedGameObject.cs" />
+     <Compile Include="Assets\Scripts\Panels\InventoryPanel.cs" />
      <Compile Include="Assets\Scripts\Utils\Interfaces\IZenjectSpawner.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
      <Compile Include="Assets\Scripts\Utils\Interfaces\IClickable.cs" />
      <Compile Include="Assets\Scripts\Utils\MathUtils.cs" />
+     <Compile Include="Assets\Scripts\UI\MagicScroll.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
      <Compile Include="Assets\Scripts\Cards\BattleCard.cs" />
      <Compile Include="Assets\Scripts\Utils\CellConverter.cs" />
@@ -161,6 +163,7 @@
      <Compile Include="Assets\Scripts\View\CreatureCardView\CreatureViewWidget.cs" />
      <Compile Include="Assets\Scripts\Components\Audio\PlaySoundComponent.cs" />
      <Compile Include="Assets\Scripts\Definitions\Creatures\Enemies\EnemyDefs.cs" />
+     <Compile Include="Assets\Scripts\CodeAnimation\AbstractMonoBehaviourCodeAnimation.cs" />
      <Compile Include="Assets\Scripts\LevelManipulation\EventLevelBoard.cs" />
      <Compile Include="Assets\Scripts\Utils\AudioUtils.cs" />
      <Compile Include="Assets\Scripts\CodeAnimation\RepetativeMovingObject.cs" />
@@ -197,6 +200,7 @@
      <Compile Include="Assets\Scripts\UI\HUDController.cs" />
      <Compile Include="Assets\Scripts\LevelManipulation\CreaturePanelManipulation.cs" />
      <Compile Include="Assets\Scripts\Utils\Interfaces\IDissolving.cs" />
+     <Compile Include="Assets\Scripts\Components\MouseEnterComponent.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs" />
      <Compile Include="Assets\Scripts\Panels\CrowdPanel.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_PhoneNumberValidator.cs" />
@@ -263,7 +267,8 @@
      <Folder Include="Assets\Sprites\River" />
      <Folder Include="Assets\Scripts\System" />
      <Folder Include="Assets\Scripts\Components\ZenjectSpawnComponents" />
-     <Folder Include="Assets\Sprites\Banners" />
+     <Folder Include="Assets\Prefabs\PrefabsAnimation\UIMagicScroll" />
+     <Folder Include="Assets\Sprites\UI" />
      <Folder Include="Assets\Sprites\Life Bars\Big Bars" />
      <Folder Include="Assets\Resources\Definitions\EnemyCards\Enemies\SkeletonSlinger" />
      <Folder Include="Assets\Scripts\Definitions\LevelDefs" />
@@ -1138,6 +1143,10 @@
       <Project>{4186f678-2488-04f6-deba-0099ae2069d6}</Project>
       <Name>Zenject-Editor</Name>
     </ProjectReference>
+    <ProjectReference Include="NaughtyAttributes.Editor.csproj">
+      <Project>{c047aefe-268c-9639-7e06-3b474edcd09d}</Project>
+      <Name>NaughtyAttributes.Editor</Name>
+    </ProjectReference>
     <ProjectReference Include="Zenject-ReflectionBaking-Editor.csproj">
       <Project>{36951c27-df58-4742-ff99-aea0e9f0a50a}</Project>
       <Name>Zenject-ReflectionBaking-Editor</Name>
@@ -1146,9 +1155,17 @@
       <Project>{0959ba13-b4b8-484f-f927-626ef18ea02d}</Project>
       <Name>Zenject</Name>
     </ProjectReference>
+    <ProjectReference Include="NaughtyAttributes.Test.csproj">
+      <Project>{1a6c2b3d-b465-6e46-a42a-411ac2d68691}</Project>
+      <Name>NaughtyAttributes.Test</Name>
+    </ProjectReference>
     <ProjectReference Include="Zenject-PoolMonitor-Editor.csproj">
       <Project>{022c7feb-a364-eadd-6cd1-613d72e69196}</Project>
       <Name>Zenject-PoolMonitor-Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="NaughtyAttributes.Core.csproj">
+      <Project>{e07aaaf5-8300-4381-fd4c-3dfc4ad2f98e}</Project>
+      <Name>NaughtyAttributes.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -5,7 +5,7 @@ using UnityEngine;
 namespace CodeAnimation
 {
     [RequireComponent(typeof(PlaySFXSound))]
-    public abstract class SoundedAnimation: MonoBehaviour
+    public abstract class SoundedAnimation: AbstractMonoBehaviourCodeAnimation
     {
         [SerializeField] private PlaySFXSound _sound;
         
@@ -14,13 +14,13 @@ namespace CodeAnimation
             _sound = GetComponent<PlaySFXSound>();
         }
 
-        public virtual IEnumerator StartAnimation()
+        public override IEnumerator StartAnimation()
         {
             PlayClip();
             yield return null;
         }
 
-        public virtual IEnumerator EndAnimation()
+        public override IEnumerator EndAnimation()
         {
             PlayClip();
             yield return null;
