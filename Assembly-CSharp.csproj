@@ -217,6 +217,10 @@
      <Compile Include="Assets\Scripts\GameSession.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
      <Compile Include="Assets\Scripts\Utils\Disposables\DisposeHolder.cs" />
+     <Compile Include="Assets\Scripts\System\Installers\InventoryInstaller.cs" />
+     <Compile Include="Assets\Scripts\Controllers\Inventory.cs" />
+     <Compile Include="Assets\Scripts\UI\Buttons\MagicScrollButton.cs" />
+     <Compile Include="Assets\Scripts\UI\Buttons\InventoryButton.cs" />
      <Folder Include="Assets" />
      <Folder Include="Assets\Scripts\Widgets" />
      <Folder Include="Assets\Sprites\Cards\CardAssets\Icons" />
@@ -309,6 +313,7 @@
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF.shader" />
      <Folder Include="Assets\UI\EventController\Container" />
      <Folder Include="Assets\Resources\Definitions\CompanyCards" />
+     <Folder Include="Assets\Scripts\UI\Buttons" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
      <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
      <Folder Include="Assets\Scripts\Cards\HeroCard" />

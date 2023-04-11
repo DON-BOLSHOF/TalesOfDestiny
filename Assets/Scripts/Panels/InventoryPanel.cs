@@ -11,7 +11,7 @@ namespace Panels
         
         private Camera _mainCamera;
 
-        private void Start()
+        private void Awake()
         {
             _mainCamera = Camera.main;
             if (_mainCamera == null) throw new ArgumentException("Camera not found");
