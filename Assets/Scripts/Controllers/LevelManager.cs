@@ -6,12 +6,11 @@ namespace Controllers
 {
     public abstract class LevelManager : MonoBehaviour
     {
-        [SerializeField] protected GameObject _container;
-        [SerializeField] protected AbstractTextPanelUtil textPanelUtil;
+        [SerializeField] protected AbstractTextPanelUtil _textPanelUtil;
 
         public virtual void ShowEventContainer(LevelCard card)
         {
-            _container.SetActive(true);
+            _textPanelUtil.gameObject.SetActive(true);
         }
     }
 }

@@ -9,7 +9,7 @@ public class LevelBoardSubscriber : MonoBehaviour //Чисто для связы
 {
     private Action<bool> OnChangeState;
 
-    public void BoundPanelsUtil(IEnumerable<AbstractTextPanelUtil> checks, List<ISubscriber> subscribers = null)//list нужен для динамических сабскрайберов.
+    public void BoundPanelsUtil(IEnumerable<AbstractStateUtil> checks, List<ISubscriber> subscribers = null)//list нужен для динамических сабскрайберов.
     {
         subscribers?.ForEach((s) => s.Subscribe());
 

@@ -6,6 +6,7 @@ using Definitions.Creatures.Enemies;
 using LevelManipulation;
 using Panels;
 using UnityEngine;
+using Utils;
 using Utils.Disposables;
 using Zenject;
 using EventType = Cards.SituationCards.Event.EventType;
@@ -39,10 +40,12 @@ namespace Controllers
 
         private async void StartBattle()
         {
+            _session.GameStateAnalyzer.Visit(this, Stage.Start);
+            
             _enemies = _eventManager.TakeEnemyPacks();//Take data
             _companions = _session.Data.CompanionsData.Companions;
             
-            _eventLevelBoard.PrepareToBattle();//Prepare others
+            _eventLevelBoard.PrepareCardsField();//Prepare others
             await _eventManager.PrepareToBattle(_battleBoard);//Передаем панель на уровень ниже для синхронизации с предыдущей панелькой.
             
             _battleBoard.StartBattle(_enemies, _companions);
@@ -55,7 +58,7 @@ namespace Controllers
                 case BattleEndState.Win:
                 {
                     _companions = companionPacks;
-                    _eventLevelBoard.EndBattle();
+                    _eventLevelBoard.ReturnCardsField();
                     _session.Visit(this);
                     break;
                 }
@@ -68,6 +71,8 @@ namespace Controllers
                 default:
                     throw new ArgumentOutOfRangeException(nameof(endState), endState, null);
             }
+            
+            _session.GameStateAnalyzer.Visit(this, Stage.End);
         }
         
         public void Visit(ButtonInteraction interaction)

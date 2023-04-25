@@ -1,4 +1,5 @@
-﻿using Components.ZenjectSpawnComponents;
+﻿using Behaviours;
+using Components.ZenjectSpawnComponents;
 using UnityEngine;
 using Zenject;
 

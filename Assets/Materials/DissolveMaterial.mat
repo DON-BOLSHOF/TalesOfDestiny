@@ -50,7 +50,7 @@ Material:
     m_Floats:
     - Vector1_9c02fb70c1af4ac3a5c37daf1511f509: 1
     - Vector1_fe78bfe4c54f4d1aa9910ad6501bd55c: 2
-    - _DissolveAmount: 1
+    - _DissolveAmount: 0.1
     - _EnableExternalAlpha: 0
     m_Colors:
     - Color_de73dd9654404bbab6ed0654319cd8fb: {r: 5.567438, g: 5.567438, b: 5.567438, a: 1}

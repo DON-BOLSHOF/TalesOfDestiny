@@ -11,7 +11,6 @@ using UnityEngine;
 using Utils;
 using View.CreaturesCardView.EnemyCardView;
 using Widgets;
-using Zenject;
 
 namespace Controllers
 {
@@ -23,9 +22,7 @@ namespace Controllers
         [SerializeField] private EnemyCrowdWidget _crowdWidget;
 
         [SerializeField] private float _cameraRotationTime;
-
-        [Inject] private GameSession _session;
-
+        
         private PredefinedDataGroup<EnemyCardViewWidget, EnemyPack> _dataGroup;
         private List<EnemyPack> _enemyPacks = new List<EnemyPack>();
 
@@ -35,7 +32,7 @@ namespace Controllers
         
         private void Awake()
         {
-            textPanelUtil = _eventPanelUtil;
+            _textPanelUtil = _eventPanelUtil;
             
             _dataGroup = new PredefinedDataGroup<EnemyCardViewWidget, EnemyPack>(_enemyCardContainer);
         }

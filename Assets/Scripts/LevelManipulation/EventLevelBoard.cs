@@ -43,7 +43,7 @@ namespace LevelManipulation
             SubscribeWidgets();
             _subscriber.BoundPanelsUtil(Resources
                 .FindObjectsOfTypeAll<
-                    AbstractTextPanelUtil>(),GetComponentsInChildren<ISubscriber>(true).ToList()); //Ну борд с контроллерами +- на одном уровне, так что он может о них знать
+                    AbstractStateUtil>(),GetComponentsInChildren<ISubscriber>(true).ToList()); //Ну борд с контроллерами +- на одном уровне, так что он может о них знать
 
             ChangeHeroPosition(FindHeroPosition());
 
@@ -56,12 +56,12 @@ namespace LevelManipulation
             OnNextTurn?.Invoke();
         }
 
-        public void PrepareToBattle()
+        public void PrepareCardsField()
         {
             TakeOutCards();
         }
 
-        public void EndBattle()
+        public void ReturnCardsField()
         {
             ReturnCards();
         }
