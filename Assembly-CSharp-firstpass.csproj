@@ -41,16 +41,16 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Plugins\AsyncAwaitUtil\Source\Internal\SyncContextUtil.cs" />
-     <Compile Include="Assets\Plugins\AsyncAwaitUtil\Source\WaitForBackgroundThread.cs" />
-     <Compile Include="Assets\Plugins\AsyncAwaitUtil\Source\TaskExtensions.cs" />
-     <Compile Include="Assets\Plugins\AsyncAwaitUtil\Tests\Util\TestButtonHandler.cs" />
-     <Compile Include="Assets\Plugins\AsyncAwaitUtil\Source\Internal\AsyncCoroutineRunner.cs" />
-     <Compile Include="Assets\Plugins\AsyncAwaitUtil\Source\AwaitExtensions.cs" />
      <Compile Include="Assets\Plugins\AsyncAwaitUtil\Tests\AsyncUtilTests.cs" />
+     <Compile Include="Assets\Plugins\AsyncAwaitUtil\Tests\Util\TestButtonHandler.cs" />
+     <Compile Include="Assets\Plugins\AsyncAwaitUtil\Source\WaitForBackgroundThread.cs" />
      <Compile Include="Assets\Plugins\AsyncAwaitUtil\Source\Awaiters.cs" />
-     <Compile Include="Assets\Plugins\AsyncAwaitUtil\Source\WaitForUpdate.cs" />
+     <Compile Include="Assets\Plugins\AsyncAwaitUtil\Source\AwaitExtensions.cs" />
+     <Compile Include="Assets\Plugins\AsyncAwaitUtil\Source\TaskExtensions.cs" />
+     <Compile Include="Assets\Plugins\AsyncAwaitUtil\Source\Internal\SyncContextUtil.cs" />
      <Compile Include="Assets\Plugins\AsyncAwaitUtil\Source\IEnumeratorAwaitExtensions.cs" />
+     <Compile Include="Assets\Plugins\AsyncAwaitUtil\Source\Internal\AsyncCoroutineRunner.cs" />
+     <Compile Include="Assets\Plugins\AsyncAwaitUtil\Source\WaitForUpdate.cs" />
      <Folder Include="Assets\Plugins\NaughtyAttributes\Samples" />
      <Folder Include="Assets\Plugins" />
      <Folder Include="Assets\Plugins\NaughtyAttributes\Samples\DemoScene\TestAssets" />

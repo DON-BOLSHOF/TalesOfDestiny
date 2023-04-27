@@ -11,9 +11,11 @@ namespace Model.Data
         [SerializeField] private HeroPropertyData _propertyData;
 
         [SerializeField] private HeroCompanionsData _companionsData;
+        [SerializeField] private HeroInventoryData _inventoryData;
 
         public HeroPropertyData PropertyData => _propertyData;
         public HeroCompanionsData CompanionsData => _companionsData;
+        public HeroInventoryData InventoryData => _inventoryData;
 
         public void Visit(ButtonInteraction interaction)
         {

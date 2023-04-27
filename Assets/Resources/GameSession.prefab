@@ -57,3 +57,31 @@ MonoBehaviour:
         creatureCard: {fileID: 11400000, guid: 38b58d4e38cf9e64ebd5e659fc729a5d, type: 2}
       - _count: 2
         creatureCard: {fileID: 11400000, guid: 339b828f57025e146817d73efd23fd84, type: 2}
+    _inventoryData:
+      _inventoryItems:
+      - _id: Hector's meals
+        _description: Last present of battle brother with good taste...
+        _buffs:
+        - _buffStateType: 0
+          _buffType: 0
+          _armyBuff:
+            _armyBuffType: 0
+            _attackBuff: 0
+            _healthBuff: 0
+          _propertyBuff:
+            _coins: 0
+            _prestige: 10
+            _food: 0
+      - _id: Meals
+        _description: Last present of battle brother with good taste...
+        _buffs:
+        - _buffStateType: 0
+          _buffType: 0
+          _armyBuff:
+            _armyBuffType: 0
+            _attackBuff: 0
+            _healthBuff: 0
+          _propertyBuff:
+            _coins: 0
+            _prestige: 10
+            _food: 0

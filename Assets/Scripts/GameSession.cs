@@ -18,6 +18,7 @@ public class GameSession : MonoBehaviour, IBattleControllerVisitor
 
     private void Awake()
     {
+        Debug.Log(_playerData.InventoryData.GetHashCode());
         _eventLevelBoard = FindObjectOfType<EventLevelBoard>();
 
         _eventLevelBoard.OnNextTurn += OnNextTurn;

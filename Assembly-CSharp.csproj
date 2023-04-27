@@ -41,6 +41,7 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Model\Data\HeroInventoryData.cs" />
      <Compile Include="Assets\Scripts\System\Installers\BattleBoardInstaller.cs" />
      <Compile Include="Assets\Scripts\Panels\BattleEventPanelUtil.cs" />
      <Compile Include="Assets\Scripts\View\CreaturesCardView\CreatureCardViewWidget.cs" />
@@ -67,6 +68,7 @@
      <Compile Include="Assets\Scripts\View\CreaturesCardView\EnemyCardView\EnemyCardViewWidget.cs" />
      <Compile Include="Assets\Scripts\Utils\Interfaces\IPropertyVisitor.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
+     <Compile Include="Assets\Scripts\Definitions\Inventory\BuffDef.cs" />
      <Compile Include="Assets\Scripts\Model\Properties\ObservableProperty.cs" />
      <Compile Include="Assets\Scripts\UI\View\PropertyView.cs" />
      <Compile Include="Assets\Scripts\Components\SceneLoadAdditiveComponent.cs" />
@@ -76,6 +78,7 @@
      <Compile Include="Assets\Scripts\Utils\Interfaces\ISpawner.cs" />
      <Compile Include="Assets\Scripts\Components\SelectComponent\SelectedGameObject.cs" />
      <Compile Include="Assets\Scripts\Panels\InventoryPanel.cs" />
+     <Compile Include="Assets\Scripts\Definitions\Inventory\InventoryItem.cs" />
      <Compile Include="Assets\Scripts\Utils\Interfaces\IZenjectSpawner.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
      <Compile Include="Assets\Scripts\Utils\Interfaces\IClickable.cs" />
@@ -299,6 +302,7 @@
      <Folder Include="Assets\Scripts\Model\Properties" />
      <Folder Include="Assets\Sprites\Creatures\Company" />
      <Folder Include="Assets\Scripts\Cards\EndJourneyCards" />
+     <Folder Include="Assets\Scripts\Definitions\Inventory" />
      <Folder Include="Assets\Sprites" />
      <Folder Include="Assets\Resources\Definitions\SituationCards" />
      <Folder Include="Assets\Scripts\UI\View" />

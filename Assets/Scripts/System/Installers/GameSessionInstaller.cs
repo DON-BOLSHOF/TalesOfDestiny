@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Model.Data;
+using UnityEngine;
 using Zenject;
 
 namespace System.Installers
@@ -13,6 +14,7 @@ namespace System.Installers
             
             Container.Bind<GameSession>().FromInstance(gameSessionInstance).AsSingle().NonLazy();
             Container.QueueForInject(gameSessionInstance);
+            Container.BindInterfacesTo<HeroInventoryData>().FromInstance(gameSessionInstance.Data.InventoryData).AsSingle();
         }
     }
 }
