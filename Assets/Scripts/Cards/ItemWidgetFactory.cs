@@ -1,9 +1,9 @@
 ﻿using System;
-using Cards.SituationCards.PhysicalCard;
 using LevelManipulation;
 using UnityEngine;
 using View;
 using Widgets;
+using Widgets.BoardWidgets;
 using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 

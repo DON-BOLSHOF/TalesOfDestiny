@@ -50,11 +50,6 @@ namespace Panels
 
         public abstract void ReloadSituation(Situation situation);
 
-        protected void UpdateStrings()
-        {
-            
-        }
-
         protected void ReloadStrings(string[] strings)
         {
             _typingAnimation.HideText();

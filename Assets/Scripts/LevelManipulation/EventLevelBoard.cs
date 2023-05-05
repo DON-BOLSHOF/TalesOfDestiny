@@ -11,6 +11,7 @@ using Utils;
 using Utils.Disposables;
 using Utils.Interfaces;
 using Widgets;
+using Widgets.BoardWidgets;
 using EventType = Cards.SituationCards.Event.EventType;
 
 namespace LevelManipulation
@@ -32,7 +33,7 @@ namespace LevelManipulation
 
         private readonly DisposeHolder _trash = new DisposeHolder();
 
-        private List<List<CellWidget>> Cells { get; set; } = new List<List<CellWidget>>();
+        private List<List<Cell>> Cells { get; set; } = new List<List<Cell>>();
 
         public event Action OnNextTurn;
 

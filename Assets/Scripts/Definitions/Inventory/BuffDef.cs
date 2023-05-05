@@ -1,5 +1,5 @@
 ﻿using System;
-using NaughtyAttributes;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Definitions.Inventory
@@ -7,7 +7,7 @@ namespace Definitions.Inventory
     [Serializable]
     public class BuffDef
     {
-        [SerializeField] private BuffStateType _buffStateType;
+        [SerializeField] private BuffState buffState;
         [SerializeField] private BuffType _buffType;
 
         [ShowIf(nameof(_buffType), BuffType.Army), SerializeField]
@@ -16,7 +16,7 @@ namespace Definitions.Inventory
         [ShowIf(nameof(_buffType), BuffType.Property), SerializeField]
         private PropertyBuff _propertyBuff;
 
-        public BuffStateType BuffStateType => _buffStateType;
+        public BuffState BuffState => buffState;
         public BuffType BuffType => _buffType;
         public ArmyBuff ArmyBuff => _armyBuff;
         public PropertyBuff PropertyBuff => _propertyBuff;
@@ -46,11 +46,10 @@ namespace Definitions.Inventory
         public int Food => _food;
     }
 
-    public enum
-        BuffStateType // Используется внутри инвенторя(условные кнопки пополняющие еду), Или чисто перетаскиваемые шмотки в армию/куда-нибудь еще мб понадобится 
+    public enum BuffState // Используется внутри инвенторя(условные кнопки пополняющие еду), Или чисто перетаскиваемые шмотки в армию/куда-нибудь еще мб понадобится 
     {
         Active,
-        Passive
+        Passive//На Army накидывается или мб чет еще будет
     }
 
     public enum BuffType

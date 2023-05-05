@@ -7,18 +7,20 @@ using Definitions.Inventory;
 using UI;
 using UnityEngine;
 using Utils;
+using Widgets.PanelWidgets;
 
 namespace Panels
 {
     [RequireComponent(typeof(Animator))]
     public class InventoryPanel : AbstractPanelUtil
     {
+        [SerializeField] private Transform _itemsContainer;
         [SerializeField] private float _approximation;
 
-        [SerializeField] private PopUpHint _hint;
+        [SerializeField] private PopUpHint _blockHint;
         
         private float _baseApproximation;
-        private List<InventoryItem> _inventoryPanelItems = new List<InventoryItem>();
+        private WidgetCollection<InventoryItemWidget, InventoryItem> _inventoryPanelItems;
 
         private Camera _mainCamera;
 
@@ -32,13 +34,13 @@ namespace Panels
 
         private void Awake()
         {
+            _inventoryPanelItems = new WidgetCollection<InventoryItemWidget, InventoryItem>(_itemsContainer);
+            
             _mainCamera = Camera.main;
             if (_mainCamera == null) throw new ArgumentException("Camera not found");
-
             _baseApproximation = _mainCamera.fieldOfView;
 
             _animator = GetComponent<Animator>();
-
             _cameraAnimations = new CameraAnimation(_baseApproximation, _approximation);
         }
 
@@ -58,14 +60,14 @@ namespace Panels
             StartRoutine(_cameraAnimations.Approximating(_mainCamera, ApproximationType.Estrange));
         }
 
-        public void ShowHint()
+        public void ShowBlockHint()
         {
-            _hint.Show();
+            _blockHint.Show();
         }
 
-        public void ForceHintExit(GameState state)
+        public void ForceBlockHintExit(GameState state)
         {
-            if(state == GameState.None && _hint.IsTimerRunning) _hint.ForceExit();
+            if(state == GameState.None && _blockHint.IsTimerRunning) _blockHint.ForceExit();
         }
 
         private void StartRoutine(IEnumerator coroutine)
@@ -78,7 +80,7 @@ namespace Panels
 
         public void InitializeItems(List<InventoryItem> inventoryItems)
         {
-            _inventoryPanelItems = inventoryItems;
+            _inventoryPanelItems.ReloadData(inventoryItems);
         }
         
         public void ReloadItems(object sender, NotifyCollectionChangedEventArgs e)
@@ -86,24 +88,26 @@ namespace Panels
             switch (e.Action)
             {
                 case NotifyCollectionChangedAction.Add: // если добавление
-                    _inventoryPanelItems.AddRange((IEnumerable<InventoryItem>)e.NewItems);
+                    _inventoryPanelItems.SetAdditionallyData((IList<InventoryItem>)e.NewItems);
                     break;
                 case NotifyCollectionChangedAction.Remove: // если удаление
-                    _inventoryPanelItems.RemoveAt(e.OldStartingIndex);
-                    break;
-                case NotifyCollectionChangedAction.Replace: // если замена
-                    for(var i = 0; i< e.NewItems.Count; i++){
-                        var inventoryItem = _inventoryPanelItems.FindIndex((Predicate<InventoryItem>)e.OldItems[i]);
-                        var item = e.NewItems[i] as InventoryItem;
-                        ReloadItem(item, inventoryItem);
+                    foreach (var items in e.OldItems)
+                    {
+                        var indexOld = _inventoryPanelItems.FindIndex((InventoryItem)items);
+                        _inventoryPanelItems.DisableAtIndex(indexOld);
                     }
                     break;
+                case NotifyCollectionChangedAction.Replace: // если замена
+                    for(var i = 0; i< e.NewItems.Count; i++)
+                    {
+                        var indexOld = _inventoryPanelItems.FindIndex((InventoryItem)e.OldItems[i]);
+                        _inventoryPanelItems.ChangeAtIndex((InventoryItem)e.NewItems[i],indexOld);
+                    }
+                    break;
+                default:
+                    throw new ApplicationException("InventoryPanel: Something unexpected has been done");
+                    break;
             }
-        }
-
-        private void ReloadItem(InventoryItem newItem, int inventoryItem)
-        {
-            _inventoryPanelItems[inventoryItem] = newItem;
         }
     }
 }

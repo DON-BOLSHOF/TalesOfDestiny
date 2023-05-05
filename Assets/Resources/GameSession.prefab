@@ -63,25 +63,25 @@ MonoBehaviour:
         _description: Last present of battle brother with good taste...
         _buffs:
         - _buffStateType: 0
-          _buffType: 0
+          _buffType: 1
           _armyBuff:
             _armyBuffType: 0
             _attackBuff: 0
             _healthBuff: 0
           _propertyBuff:
             _coins: 0
-            _prestige: 10
-            _food: 0
+            _prestige: 0
+            _food: 10
       - _id: Meals
         _description: Last present of battle brother with good taste...
         _buffs:
         - _buffStateType: 0
-          _buffType: 0
+          _buffType: 1
           _armyBuff:
             _armyBuffType: 0
             _attackBuff: 0
             _healthBuff: 0
           _propertyBuff:
             _coins: 0
-            _prestige: 10
-            _food: 0
+            _prestige: 0
+            _food: 5

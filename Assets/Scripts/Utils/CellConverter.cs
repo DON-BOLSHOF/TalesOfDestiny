@@ -2,25 +2,26 @@
 using System.Collections.Generic;
 using LevelManipulation;
 using Widgets;
+using Widgets.BoardWidgets;
 
 namespace Utils
 {
     public static class CellConverter
     {
-        public static List<List<CellWidget>> GenerateCellWidgets(List<List<CellInfo>> cellInfos, List<List<BoardItemWidget>> items)
+        public static List<List<Cell>> GenerateCell(List<List<CellInfo>> cellInfos, List<List<BoardItemWidget>> items)
         {
-            List<List<CellWidget>> list = new List<List<CellWidget>>();
+            var list = new List<List<Cell>>();
 
             if (cellInfos.Count != items.Count || cellInfos[0].Count != items[0].Count)
                 throw new ArgumentException("items and cells asynchronous");
 
             for (int i = 0; i < cellInfos.Count; i++)
             {
-                var row = new List<CellWidget>();
+                var row = new List<Cell>();
                 for (int j = 0; j < cellInfos[0].Count; j++)
                 {
-                    var cellWidget = new CellWidget(items[i][j], cellInfos[i][j]);
-                    row.Add(cellWidget);
+                    var cell = new Cell(items[i][j], cellInfos[i][j]);
+                    row.Add(cell);
                 }
 
                 list.Add(row);
@@ -29,9 +30,9 @@ namespace Utils
             return list;
         }
 
-        public static List<List<BoardItemWidget>> GetItemWidgets(List<List<CellWidget>> cells)
+        public static List<List<BoardItemWidget>> GetItemWidgets(List<List<Cell>> cells)
         {
-            List<List<BoardItemWidget>> result = new List<List<BoardItemWidget>>();
+            var result = new List<List<BoardItemWidget>>();
 
             foreach (var row in cells)
             {

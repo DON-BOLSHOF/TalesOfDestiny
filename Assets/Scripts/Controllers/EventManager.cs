@@ -1,11 +1,12 @@
 using System;
 using Cards;
 using Cards.SituationCards;
-using Cards.SituationCards.PhysicalCard;
 using UnityEngine;
 using UnityEngine.UI;
 using Utils;
 using Widgets;
+using Widgets.BoardWidgets;
+using Widgets.EventManagersWidgets;
 using Zenject;
 
 namespace Controllers

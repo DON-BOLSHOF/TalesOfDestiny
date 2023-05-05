@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Utils.Interfaces;
 using Widgets;
+using Widgets.EventManagersWidgets;
 
 namespace Panels
 {

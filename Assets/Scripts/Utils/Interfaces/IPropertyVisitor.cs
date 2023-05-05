@@ -4,7 +4,7 @@ namespace Utils.Interfaces
 {
     public interface IPropertyVisitor
     {
-        void VisitCommonPropEvent(CommonPropEvent propEvent);
+        void VisitCommonPropEvent(CommonPropertyEvent propertyEvent);
         void VisitPoisonEvent(PoisonEvent poisonEvent);
     }
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Widgets;
+using Widgets.BoardWidgets;
 using Random = UnityEngine.Random;
 
 namespace CodeAnimation

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Controllers;
 using LevelManipulation;
 using Model.Data;
@@ -12,13 +13,14 @@ public class GameSession : MonoBehaviour, IBattleControllerVisitor
 
     private EventLevelBoard _eventLevelBoard;
 
-    public GameStateAnalyzer GameStateAnalyzer { get; } = new GameStateAnalyzer(GameState.None); //Состояние игры для инвенторя и кэмпа, нельзя будет вызывать кроме None
+    public GameStateAnalyzer GameStateAnalyzer { get; } =
+        new GameStateAnalyzer(GameState.None); //Состояние игры для инвенторя и кэмпа, нельзя будет вызывать кроме None
+
     public PlayerData Data => _playerData;
     public ObservableProperty<int> LevelTurn { get; } = new ObservableProperty<int>(1);
 
     private void Awake()
     {
-        Debug.Log(_playerData.InventoryData.GetHashCode());
         _eventLevelBoard = FindObjectOfType<EventLevelBoard>();
 
         _eventLevelBoard.OnNextTurn += OnNextTurn;

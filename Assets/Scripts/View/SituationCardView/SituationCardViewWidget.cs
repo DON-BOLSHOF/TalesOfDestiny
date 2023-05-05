@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using Utils;
 using Widgets;
+using Widgets.EventManagersWidgets;
 
 namespace View.SituationCardView
 {

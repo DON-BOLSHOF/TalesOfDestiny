@@ -9,7 +9,6 @@ namespace Model.Data
     public class PlayerData : ICustomButtonVisitor
     {
         [SerializeField] private HeroPropertyData _propertyData;
-
         [SerializeField] private HeroCompanionsData _companionsData;
         [SerializeField] private HeroInventoryData _inventoryData;
 

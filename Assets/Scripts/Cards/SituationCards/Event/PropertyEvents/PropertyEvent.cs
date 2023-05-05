@@ -21,7 +21,7 @@ namespace Cards.SituationCards.Event.PropertyEvents
             }
             else
             {
-                var propEvent = new CommonPropEvent(_data);
+                var propEvent = new CommonPropertyEvent(_data);
                 propEvent.Accept(visitor);
             }
         }
@@ -34,13 +34,13 @@ namespace Cards.SituationCards.Event.PropertyEvents
         }
     }
 
-    public class CommonPropEvent
+    public class CommonPropertyEvent
     {
         private PropertyData _data;
 
         public PropertyData Data => _data;
 
-        public CommonPropEvent(PropertyData data)
+        public CommonPropertyEvent(PropertyData data)
         {
             _data = data;
         }

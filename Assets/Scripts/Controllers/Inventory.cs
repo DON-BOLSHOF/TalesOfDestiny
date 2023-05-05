@@ -30,7 +30,7 @@ namespace Controllers
                         _gameSession.Data.InventoryData.InventoryItems.CollectionChanged -=
                             _inventoryPanel.ReloadItems);
                 })());
-            _trash.Retain(_gameSession.GameStateAnalyzer.GameState.Subscribe(_inventoryPanel.ForceHintExit));
+            _trash.Retain(_gameSession.GameStateAnalyzer.GameState.Subscribe(_inventoryPanel.ForceBlockHintExit));
         }
 
         public void Show()
@@ -39,7 +39,7 @@ namespace Controllers
                 GameState.None) //Добавить всплывающий хинт для игроков
             {
                 _inventoryPanel
-                    .ShowHint(); //Сделай потом чтобы подписку на изм стейта, чтобы сразу выключалась при изм стейта на полож
+                    .ShowBlockHint(); //Сделай потом чтобы подписку на изм стейта, чтобы сразу выключалась при изм стейта на полож
             }
             else
             {

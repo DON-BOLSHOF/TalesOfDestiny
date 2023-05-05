@@ -5,6 +5,7 @@ using Components;
 using UnityEngine;
 using Utils;
 using Widgets;
+using Widgets.BoardWidgets;
 
 namespace LevelManipulation
 {
@@ -18,7 +19,7 @@ namespace LevelManipulation
         private readonly List<List<BoardItemWidget>> _fieldPull = new List<List<BoardItemWidget>>();
         private Vector2Int _tableSize;
 
-        public List<List<CellWidget>> FirstSpawn()
+        public List<List<Cell>> FirstSpawn()
         {
             InitializeField();
             _fieldBuilder = new FieldBuilder(_tableSize);
@@ -26,16 +27,16 @@ namespace LevelManipulation
             var fieldInfo = _fieldBuilder.FirstSpawn();
             FillField(fieldInfo);
 
-            return CellConverter.GenerateCellWidgets(fieldInfo, _fieldPull);
+            return CellConverter.GenerateCell(fieldInfo, _fieldPull);
         }
 
-        public List<List<CellWidget>> Reload()
+        public List<List<Cell>> Reload()
         {
             DeactivateLevelCard();
             var fieldInfo = _fieldBuilder.ReloadLevel();
             FillField(fieldInfo);
 
-            return CellConverter.GenerateCellWidgets(fieldInfo, _fieldPull);
+            return CellConverter.GenerateCell(fieldInfo, _fieldPull);
         }
 
         private void DeactivateLevelCard()

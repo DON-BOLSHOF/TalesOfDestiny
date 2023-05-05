@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Widgets;
+using Widgets.HUDWidgets;
 
 namespace UI.View
 {
