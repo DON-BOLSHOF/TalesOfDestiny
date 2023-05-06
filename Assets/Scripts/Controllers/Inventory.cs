@@ -22,24 +22,19 @@ namespace Controllers
         {
             _inventoryPanel.InitializeItems(_gameSession.Data.InventoryData.InventoryItems.ToList());
             
-            _trash.Retain(
-                new Func<IDisposable>(() =>
-                {
-                    _gameSession.Data.InventoryData.InventoryItems.CollectionChanged += _inventoryPanel.ReloadItems;
-                    return new ActionDisposable(() =>
-                        _gameSession.Data.InventoryData.InventoryItems.CollectionChanged -=
-                            _inventoryPanel.ReloadItems);
-                })());
             _trash.Retain(_gameSession.GameStateAnalyzer.GameState.Subscribe(_inventoryPanel.ForceBlockHintExit));
+            _trash.Retain(new Func<IDisposable>(() =>
+            {
+                _inventoryPanel.OnDisableItem += OnDisabledItem;
+                return new ActionDisposable(() => _inventoryPanel.OnDisableItem -= OnDisabledItem);
+            })());
         }
 
         public void Show()
         {
-            if (_gameSession.GameStateAnalyzer.GameState.Value !=
-                GameState.None) //Добавить всплывающий хинт для игроков
+            if (_gameSession.GameStateAnalyzer.GameState.Value != GameState.None) 
             {
-                _inventoryPanel
-                    .ShowBlockHint(); //Сделай потом чтобы подписку на изм стейта, чтобы сразу выключалась при изм стейта на полож
+                _inventoryPanel.ShowBlockHint(); 
             }
             else
             {
@@ -54,6 +49,11 @@ namespace Controllers
             _inventoryPanel.Exit();
             _eventLevelBoard.ReturnCardsField();
             _gameSession.GameStateAnalyzer.Visit(this, Stage.End);
+        }
+
+        private void OnDisabledItem(int index)
+        {
+            _gameSession.Data.InventoryData.Visit(this, index);
         }
 
         private void OnDestroy()

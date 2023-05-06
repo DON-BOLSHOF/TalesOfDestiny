@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Definitions.Inventory;
 using TMPro;
 using UI;
 using UnityEngine;
+using UnityEngine.UI;
+using Utils.Disposables;
 
 namespace Widgets.PanelWidgets
 {
@@ -15,12 +18,28 @@ namespace Widgets.PanelWidgets
         public Action OnThrownOut;
         public Action OnUsed;
 
+        public override void Show()
+        {
+            gameObject.SetActive(true);
+            StartRoutine(Show(_graphics), ref _graphicRoutine);
+        }
+        
         public void SetData(InventoryItem item)
         {
             _id.text = item.Id;
             _description.text = ConvertBuffsToString(item.Buffs);
         }
+        
+        public void OnThrowOutButtonClicked()
+        {
+            OnThrownOut?.Invoke();
+        }
 
+        public void OnUseButtonClicked()
+        {
+            OnUsed?.Invoke();
+        }
+        
         private string ConvertBuffsToString(List<BuffDef> itemBuffs)
         {
             var result = "Buff you ";
@@ -88,14 +107,31 @@ namespace Widgets.PanelWidgets
             return result;
         }
 
-        public void OnThrowOutButtonClicked()
+        public override void ForceExit()
         {
-            OnThrownOut?.Invoke();
+            _timer?.StopTimer();
+            
+            ChangeGraphicsAlphaTo(0);
+            
+            gameObject.SetActive(false);
         }
 
-        public void OnUseButtonClicked()
+        protected override IEnumerator Disappear(Graphic[] graphics)
         {
-            OnUsed?.Invoke();
+            yield return base.Disappear(graphics);
+            gameObject.SetActive(false);
+        }
+
+        public IDisposable SubscribeOnThrown(Action action)
+        {
+            OnThrownOut += action;
+            return new ActionDisposable(() => OnThrownOut -= action);
+        }
+        
+        public IDisposable SubscribeOnUsed(Action action)
+        {
+            OnUsed += action;
+            return new ActionDisposable(() => OnUsed -= action);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using Controllers;
 using Definitions.Inventory;
 using UnityEngine;
 using Zenject;
@@ -15,15 +16,14 @@ namespace Model.Data
 
         public ObservableCollection<InventoryItem>  InventoryItems => _observableInventoryItems;
         
-
-        public void AddItem(InventoryItem item)
-        {
-            _observableInventoryItems.Add(item);
-        }
-
         public void Initialize()
         {
             _observableInventoryItems = new ObservableCollection<InventoryItem>(_inventoryItems);
+        }
+
+        public void Visit(Inventory inventory, int index)
+        {
+            _observableInventoryItems.RemoveAt(index);
         }
     }
 }

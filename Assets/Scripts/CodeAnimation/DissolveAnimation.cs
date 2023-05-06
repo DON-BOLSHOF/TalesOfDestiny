@@ -47,7 +47,6 @@ namespace CodeAnimation
         private IEnumerator Emerging()
         {
             ChangeMaterial(_changesGraphicElements, _dissolve);
-            //SetDeactiveDissolve();
 
             for (float i = _currentDissolveValue; i <= 1; i += 0.05f)
             {
@@ -62,7 +61,6 @@ namespace CodeAnimation
         {
             ChangeMaterial(_changesGraphicElements, _dissolve);
             OnStartDissolving?.Invoke();
-            //SetActiveDissolve();
 
             for (var i = _currentDissolveValue; i >= 0; i -= 0.05f)
             {

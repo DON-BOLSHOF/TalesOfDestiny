@@ -1,4 +1,5 @@
 ﻿using Model;
+using Model.Data.StorageData;
 using Zenject;
 
 namespace System.Installers

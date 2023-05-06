@@ -42,13 +42,10 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Utils\Editor\SerializePropertyExtensions.cs" />
-     <Compile Include="Assets\Scripts\Cards\SituationCards\Event\Editor\ArmyEventDrawer.cs" />
      <Compile Include="Assets\Scripts\Cards\SituationCards\Event\Editor\PropertyEventDrawer.cs" />
-     <Compile Include="Assets\Scripts\Cards\SituationCards\Editor\SituationEditor.cs" />
      <Compile Include="Assets\Scripts\Cards\SituationCards\Event\Editor\ButtonInteractionDrawer.cs" />
      <Folder Include="Assets\Scripts\Utils\Editor" />
      <Folder Include="Assets\Editor" />
-     <Folder Include="Assets\Scripts\Cards\SituationCards\Editor" />
      <Folder Include="Assets\Scripts\Cards\SituationCards\Event\Editor" />
      <Folder Include="Assets\Editor\com.unity.mobile.notifications" />
      <Reference Include="UnityEngine">

@@ -33,14 +33,14 @@ namespace Utils
             GameState.Value = stage == Stage.End ? Utils.GameState.None : Utils.GameState.Battle;
         }
 
-        public void Visit(EventManager eventManagerController, Stage stage) // Аналог метода с доп. параметрами
+        public void Visit(EventManager eventManagerController, Stage stage)
         {
             GameState.Value = stage == Stage.End ? Utils.GameState.None : Utils.GameState.Event;
         }
 
         public void Visit(Inventory inventory, Stage stage)
         {
-            GameState.Value = stage == Stage.End ? Utils.GameState.None : Utils.GameState.Inventory; // Аналог метода с доп. параметрами
+            GameState.Value = stage == Stage.End ? Utils.GameState.None : Utils.GameState.Inventory;
         }
     }
 

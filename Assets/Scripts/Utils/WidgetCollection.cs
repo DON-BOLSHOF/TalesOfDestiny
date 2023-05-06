@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Utils.Disposables;
 
 namespace Utils
 {
-    public class WidgetCollection<TWidget, TItemData> where TWidget : MonoBehaviour, IWidgetInstance<TItemData>
+    public class WidgetCollection<TWidget, TItemData> where TWidget : WidgetInstance<TWidget, TItemData>
     {
         private readonly List<TWidget> _widgets;
 
@@ -27,9 +28,14 @@ namespace Utils
             }
         }
 
-        public int FindIndex(TItemData itemData)
+        public int FindIndex(TWidget widget)
         {
-            return _widgets.FindIndex(prefab=> prefab.GetData().Equals(itemData));
+            return _widgets.FindIndex(prefab=> prefab.Equals(widget));
+        }
+        
+        public int FindIndex(TItemData item)
+        {
+            return _widgets.FindIndex(prefab=> prefab.GetData().Equals(item));
         }
 
         public void ChangeAtIndex(TItemData itemData, int index)
@@ -54,13 +60,27 @@ namespace Utils
             
             _widgets[index].Disable();
         }
+
+        public List<IDisposable> SubscribeToAll(Action<TWidget> call)
+        {
+            var result = new List<IDisposable>();
+            foreach (var widget in _widgets)
+            {
+                widget.OnDisabled += call;
+                result.Add(new ActionDisposable(() => widget.OnDisabled-=call));
+            }
+
+            return result;
+        }
     }
 
-    public interface IWidgetInstance<ItemData> : IItemInstance<ItemData>
+    public abstract class WidgetInstance<TWidget, TItemData> : MonoBehaviour
     {
-        InstanceStage InstanceStage { get; }
-        ItemData GetData();
-        void Disable();
+        public Action<TWidget> OnDisabled;
+        public abstract void SetData(TItemData pack);
+        public abstract InstanceStage InstanceStage { get; set; }
+        public abstract TItemData GetData();
+        public abstract void Disable();
     }
 
     public enum InstanceStage

@@ -32,7 +32,7 @@ namespace Cards.SituationCards.Event.Editor
                         case PropertyEvent.PropertyMode.Bound:
                             var subProp = property.FindPropertyRelative("_data");
                             SetNewField(subProp.FindPropertyRelative("_food"), position, ref level);
-                            SetNewField(subProp.FindPropertyRelative("_coin"), position, ref level);
+                            SetNewField(subProp.FindPropertyRelative("_coins"), position, ref level);
                             SetNewField(subProp.FindPropertyRelative("_prestige"), position, ref level);
                             break;
                         case PropertyEvent.PropertyMode.External:
@@ -45,7 +45,7 @@ namespace Cards.SituationCards.Event.Editor
             EditorGUI.indentLevel -= 1;
             EditorGUI.EndProperty();
         }
-        
+
         private void SetNewField(SerializedProperty property, Rect position, ref int level)
         {
             var nameRect = new Rect(position.min.x,
@@ -67,10 +67,10 @@ namespace Cards.SituationCards.Event.Editor
                     switch (mode)
                     {
                         case PropertyEvent.PropertyMode.Bound:
-                            totalLines+=4;
+                            totalLines += 4;
                             break;
                         case PropertyEvent.PropertyMode.External:
-                            totalLines+=2;
+                            totalLines += 2;
                             break;
                     }
                 }

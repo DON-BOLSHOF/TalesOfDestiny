@@ -198,7 +198,7 @@
      <Compile Include="Assets\Scripts\CodeAnimation\RotateAnimation.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
      <Compile Include="Assets\Scripts\CodeAnimation\DissolveAnimation.cs" />
-     <Compile Include="Assets\Scripts\Model\StorageData.cs" />
+     <Compile Include="Assets\Scripts\Model\Data\StorageData\StorageData.cs" />
      <Compile Include="Assets\Scripts\Cards\SituationCards\SituationCard.cs" />
      <Compile Include="Assets\Scripts\Definitions\Creatures\CreatureCard.cs" />
      <Compile Include="Assets\Scripts\Utils\Interfaces\IBattleControllerVisitor.cs" />
@@ -208,6 +208,7 @@
      <Compile Include="Assets\Scripts\View\CreaturesCardView\CompanionCardView\CompanionCardView.cs" />
      <Compile Include="Assets\Scripts\LevelManipulation\FieldBuilder.cs" />
      <Compile Include="Assets\Scripts\Utils\ZenjectDataGroup.cs" />
+     <Compile Include="Assets\Scripts\Model\Data\StorageData\PropertyData.cs" />
      <Compile Include="Assets\Scripts\Utils\UnityUtils.cs" />
      <Compile Include="Assets\Scripts\View\HeroCardView\HeroCardViewWidget.cs" />
      <Compile Include="Assets\Scripts\Utils\Disposables\ActionDisposable.cs" />
@@ -277,6 +278,7 @@
      <Folder Include="Assets\TextMesh Pro\Resources" />
      <Folder Include="Assets\Scripts\LevelManipulation" />
      <Folder Include="Assets\Scripts\View\EndJourneyCardView" />
+     <Folder Include="Assets\Resources\ResourcesSprites" />
      <Folder Include="Assets\Scripts\Panels" />
      <Folder Include="Assets\Sprites\River\River_Top_Middle" />
      <Folder Include="Assets\Scripts\Definitions\Creatures\Company" />
@@ -304,7 +306,6 @@
      <Folder Include="Assets\Scripts\Utils" />
      <Folder Include="Assets\VFXAssets\Procedural fire\URP and HDRP" />
      <Folder Include="Assets\Prefabs\PrefabsAnimation\CardView" />
-     <Folder Include="Assets\Scripts\Cards\SituationCards\PhysicalCard" />
      <Folder Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts" />
      <Folder Include="Assets\TextMesh Pro\Examples &amp; Extras\Resources" />
      <Folder Include="Assets\Scripts\Model\Properties" />
@@ -347,6 +348,7 @@
      <Folder Include="Assets\Scripts\View\CreaturesCardView\CompanionCardView" />
      <Folder Include="Assets\Sprites\Creatures\Enemies" />
      <Folder Include="Assets\Scenes\HUD" />
+     <Folder Include="Assets\Scripts\Model\Data\StorageData" />
      <Folder Include="Assets\Sprites\Prefabs" />
      <Folder Include="Assets\Sprites\Life Bars\Colors" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />

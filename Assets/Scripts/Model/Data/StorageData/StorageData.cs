@@ -4,7 +4,7 @@ using LevelManipulation;
 using Panels;
 using Zenject;
 
-namespace Model
+namespace Model.Data.StorageData
 {
     public class StorageData//Прокидывает дату куда кому надо.
     {

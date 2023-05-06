@@ -1,6 +1,6 @@
 ﻿using System;
 using Definitions.EventDefs;
-using Model.Data;
+using Model.Data.StorageData;
 using UnityEngine;
 using Utils.Interfaces;
 
@@ -49,17 +49,5 @@ namespace Cards.SituationCards.Event.PropertyEvents
         {
             visitor.VisitCommonPropEvent(this);
         }
-    }
-
-    [Serializable]
-    public class PropertyData
-    {
-        [SerializeField] protected int _food;
-        [SerializeField] protected int _coin;
-        [SerializeField] protected int _prestige;
-
-        public int Food => _food;
-        public int Coin => _coin;
-        public int Prestige => _prestige;
     }
 }

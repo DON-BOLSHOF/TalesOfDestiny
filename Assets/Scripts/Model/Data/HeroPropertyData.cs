@@ -23,7 +23,7 @@ namespace Model.Data
         {
             Food.Value = Food.Value - propertyEvent.Data.Food >=0? Food.Value - propertyEvent.Data.Food: 0;
             Prestige.Value = Prestige.Value - propertyEvent.Data.Prestige >=0? Prestige.Value - propertyEvent.Data.Prestige: 0;
-            Coins.Value = Coins.Value - propertyEvent.Data.Coin >=0? Coins.Value - propertyEvent.Data.Coin: 0;
+            Coins.Value = Coins.Value - propertyEvent.Data.Coins >=0? Coins.Value - propertyEvent.Data.Coins: 0;
         }
 
         public void VisitPoisonEvent(PoisonEvent poisonEvent)

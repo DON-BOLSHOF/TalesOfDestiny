@@ -27,7 +27,7 @@ MonoBehaviour:
       - _mode: 0
         _data:
           _food: 3
-          _coin: 5
+          _coins: 0
           _prestige: 2
         _def: {fileID: 0}
       _armyEvents: []

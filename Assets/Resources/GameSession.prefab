@@ -60,28 +60,28 @@ MonoBehaviour:
     _inventoryData:
       _inventoryItems:
       - _id: Hector's meals
-        _description: Last present of battle brother with good taste...
         _buffs:
-        - _buffStateType: 0
+        - buffState: 0
           _buffType: 1
           _armyBuff:
             _armyBuffType: 0
             _attackBuff: 0
             _healthBuff: 0
           _propertyBuff:
-            _coins: 0
-            _prestige: 0
             _food: 10
+            _coins: 0
+            _prestige: 0
+        _icon: {fileID: 21300000, guid: 28eca65af90121e47bc0def463e5ea9c, type: 3}
       - _id: Meals
-        _description: Last present of battle brother with good taste...
         _buffs:
-        - _buffStateType: 0
+        - buffState: 0
           _buffType: 1
           _armyBuff:
             _armyBuffType: 0
             _attackBuff: 0
             _healthBuff: 0
           _propertyBuff:
+            _food: 5
             _coins: 0
             _prestige: 0
-            _food: 5
+        _icon: {fileID: 21300000, guid: 28eca65af90121e47bc0def463e5ea9c, type: 3}

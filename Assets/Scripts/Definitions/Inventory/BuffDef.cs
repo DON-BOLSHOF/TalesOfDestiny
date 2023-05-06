@@ -1,4 +1,5 @@
 ﻿using System;
+using Model.Data.StorageData;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -35,15 +36,8 @@ namespace Definitions.Inventory
     }
 
     [Serializable]
-    public class PropertyBuff
+    public class PropertyBuff : PropertyData
     {
-        [SerializeField] private int _coins;
-        [SerializeField] private int _prestige;
-        [SerializeField] private int _food;
-
-        public int Coins => _coins;
-        public int Prestige => _prestige;
-        public int Food => _food;
     }
 
     public enum BuffState // Используется внутри инвенторя(условные кнопки пополняющие еду), Или чисто перетаскиваемые шмотки в армию/куда-нибудь еще мб понадобится 

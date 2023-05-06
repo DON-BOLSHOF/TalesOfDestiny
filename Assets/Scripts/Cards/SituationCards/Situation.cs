@@ -1,7 +1,6 @@
 ﻿using System;
 using Cards.SituationCards.Event;
 using UnityEngine;
-using Widgets;
 
 namespace Cards.SituationCards
 {
