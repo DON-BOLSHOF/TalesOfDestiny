@@ -1,56 +1,44 @@
 ﻿using System;
 using Cards.SituationCards.Event.ArmyEvents;
 using Cards.SituationCards.Event.PropertyEvents;
+using Model.Data.StorageData;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Cards.SituationCards.Event
 {
     [Serializable]
-    public class ButtonInteraction
+    public class ButtonInteraction : IDataInteraction, IControllerInteraction
     {
-        [SerializeField] private EventType _type;
-        [SerializeField] private PropertyEvent[] _propertyEvents;
-        [SerializeField] private ArmyEvent[] _armyEvents;
-        [SerializeField] private Situation _futureSituation;
+        [SerializeField] private DataInteractionType _dataType;
+        public DataInteractionType DataType => _dataType;
 
-        public EventType Type => _type;
+        [ShowIf("@(this._dataType & DataInteractionType.PropertyVisitor) == DataInteractionType.PropertyVisitor"), SerializeField]
+        private PropertyEvent[] _propertyEvents;
         public PropertyEvent[] PropertyEvents => _propertyEvents;
+
+
+        [ShowIf("@(this._dataType & DataInteractionType.ArmyVisitor) == DataInteractionType.ArmyVisitor"), SerializeField]
+        private ArmyEvent[] _armyEvents;
+
         public ArmyEvent[] ArmyEvents => _armyEvents;
+
+        public void Accept(IDataInteractionVisitor dataInteractionVisitor)
+        {
+            dataInteractionVisitor.Visit(this);
+        }
+
+        [SerializeField] private ControllerInteractionType _controllerType;
+        public ControllerInteractionType ControllerType => _controllerType;
+
+        [ShowIf("@(this._controllerType & ControllerInteractionType.Continue) == ControllerInteractionType.Continue")] [SerializeField]
+        private Situation _futureSituation;
+
         public Situation FutureSituation => _futureSituation;
 
-        public ButtonVisitor SetButtonVisitor(ICustomButtonVisitor customButtonVisitor)
+        public void Accept(IControllerInteractionVisitor controllerInteractionVisitor)
         {
-            return new ButtonVisitor(customButtonVisitor, this);
+            controllerInteractionVisitor.Visit(this);
         }
-        
-        public class ButtonVisitor
-        {
-            private ButtonInteraction _interaction;
-            private ICustomButtonVisitor _customButtonVisitor;
-
-            public ButtonVisitor(ICustomButtonVisitor customButtonVisitor, ButtonInteraction interaction)
-            {
-                _customButtonVisitor = customButtonVisitor;
-                _interaction = interaction;
-            }
-
-            public void OnClick()
-            {
-                _customButtonVisitor.Visit(_interaction);
-            }
-        }
-    }
-
-    [Flags]
-    public enum EventType : short
-    {
-        None = 0,
-        ArmyVisitor = 1,
-        PropertyVisitor = 2,
-        EquipVisitor = 4,
-        Continue = 8,
-        ClosePanel = 16,
-        EndJourney = 32, 
-        Battle = 64
     }
 }
