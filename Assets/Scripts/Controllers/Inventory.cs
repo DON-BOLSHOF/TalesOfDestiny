@@ -7,11 +7,12 @@ using Panels;
 using UnityEngine;
 using Utils;
 using Utils.Disposables;
+using Utils.Interfaces;
 using Zenject;
 
 namespace Controllers
 {
-    public class Inventory : MonoBehaviour
+    public class Inventory : MonoBehaviour, IGameStateVisitor
     {
         [SerializeField] private InventoryPanel _inventoryPanel;
 
@@ -24,39 +25,26 @@ namespace Controllers
         {
             _inventoryPanel.InitializeItems(_gameSession.Data.InventoryData.InventoryItems.ToList());
 
-            _trash.Retain(_gameSession.GameStateAnalyzer.GameState.Subscribe(_inventoryPanel.ForceBlockHintExit));
-            _trash.Retain(new Func<IDisposable>(() =>
-            {
-                _inventoryPanel.OnDisableItem += OnDisabledItem;
-                return new ActionDisposable(() => _inventoryPanel.OnDisableItem -= OnDisabledItem);
-            })());
             _trash.Retain(new Func<IDisposable>(() =>
             {
                 _inventoryPanel.OnUseItem += OnUsedItem;
                 return new ActionDisposable(() => _inventoryPanel.OnUseItem -= OnUsedItem);
             })());
+            _trash.Retain(new Func<IDisposable>(() =>
+            {
+                _inventoryPanel.OnDisableItem += OnDisabledItem;
+                return new ActionDisposable(() => _inventoryPanel.OnDisableItem -= OnDisabledItem);
+            })()); 
         }
 
         public void Show()
         {
-            if (_gameSession.GameStateAnalyzer.GameState.Value != GameState.None)
-            {
-                _inventoryPanel.ShowBlockHint();
-            }
-            else
-            {
-                _gameSession.GameStateAnalyzer.Visit(this, Stage.Start);
-                _eventLevelBoard.PrepareCardsField();
-                _inventoryPanel.Show();
-            }
+            if (!_gameSession.GameStateAnalyzer.TryChangeState(this)) return;
+            
+            _eventLevelBoard.PrepareCardsField();
+            _inventoryPanel.Show();
         }
 
-        public void Exit()
-        {
-            _inventoryPanel.Exit();
-            _eventLevelBoard.ReturnCardsField();
-            _gameSession.GameStateAnalyzer.Visit(this, Stage.End);
-        }
 
         private void OnUsedItem(InventoryItem value)
         {
@@ -68,9 +56,21 @@ namespace Controllers
             }
         }
 
+        public void Exit()
+        {
+            _inventoryPanel.Exit();
+            _eventLevelBoard.ReturnCardsField();
+            VisitGameState(_gameSession.GameStateAnalyzer, Stage.End);
+        }
+
         private void OnDisabledItem(InventoryItem value)
         {
             _gameSession.Data.InventoryData.Visit(this, value);
+        }
+
+        public void VisitGameState(GameStateAnalyzer gameStateAnalyzer, Stage stage)
+        {
+            gameStateAnalyzer.Visit(this, stage);
         }
 
         private void OnDestroy()

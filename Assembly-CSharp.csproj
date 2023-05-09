@@ -45,6 +45,7 @@
      <Compile Include="Assets\Scripts\System\Installers\BattleBoardInstaller.cs" />
      <Compile Include="Assets\Scripts\Panels\BattleEventPanelUtil.cs" />
      <Compile Include="Assets\Scripts\View\CreaturesCardView\CreatureCardViewWidget.cs" />
+     <Compile Include="Assets\Scripts\Widgets\GameStageWidget.cs" />
      <Compile Include="Assets\Scripts\Definitions\DefsFacade.cs" />
      <Compile Include="Assets\Scripts\UI\Buttons\InventoryButton.cs" />
      <Compile Include="Assets\Scripts\Widgets\BoardWidgets\PanelUtilItemWidget.cs" />
@@ -152,7 +153,7 @@
      <Compile Include="Assets\Scripts\LevelManipulation\FieldFormer.cs" />
      <Compile Include="Assets\Scripts\Components\HealthComponent.cs" />
      <Compile Include="Assets\Scripts\Components\BehaviorsSwitcherComponent.cs" />
-     <Compile Include="Assets\Scripts\Cards\SituationCards\Event\IControllerInteractionVisitor.cs" />
+     <Compile Include="Assets\Scripts\Model\Data\ControllersData\IControllerInteractionVisitor.cs" />
      <Compile Include="Assets\Scripts\Definitions\Creatures\CreaturePack.cs" />
      <Compile Include="Assets\Scripts\CodeAnimation\LevelBoardAnimations.cs" />
      <Compile Include="Assets\Scripts\Definitions\Creatures\Enemies\EnemyPack.cs" />
@@ -161,6 +162,7 @@
      <Compile Include="Assets\Scripts\LevelManipulation\ClickBlocker.cs" />
      <Compile Include="Assets\Scripts\View\CardView.cs" />
      <Compile Include="Assets\Scripts\Cards\Card.cs" />
+     <Compile Include="Assets\Scripts\Model\Data\ControllersData\IControllerInteraction.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
      <Compile Include="Assets\Scripts\Components\TimerComponent.cs" />
      <Compile Include="Assets\Scripts\Definitions\LevelDefs\BattleCardDefs.cs" />
@@ -200,6 +202,7 @@
      <Compile Include="Assets\Scripts\CodeAnimation\RotateAnimation.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
      <Compile Include="Assets\Scripts\CodeAnimation\DissolveAnimation.cs" />
+     <Compile Include="Assets\Scripts\Utils\Interfaces\IGameStateVisitor.cs" />
      <Compile Include="Assets\Scripts\Model\Data\StorageData\StorageData.cs" />
      <Compile Include="Assets\Scripts\Cards\SituationCards\SituationCard.cs" />
      <Compile Include="Assets\Scripts\Definitions\Creatures\CreatureCard.cs" />
@@ -251,6 +254,7 @@
      <Folder Include="Assets\Resources\BoarderCardView" />
      <Folder Include="Assets\Resources\Definitions\EnemyCards\Enemies\RatWarrior" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
+     <Folder Include="Assets\Scripts\Model\Data\ControllersData" />
      <Folder Include="Assets\Scripts\Widgets\PanelWidgets" />
      <Folder Include="Assets\TextMesh Pro\Sprites" />
      <Folder Include="Assets\TextMesh Pro\Resources\Sprite Assets" />

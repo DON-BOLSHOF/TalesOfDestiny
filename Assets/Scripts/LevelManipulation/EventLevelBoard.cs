@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Cards.SituationCards.Event;
 using CodeAnimation;
+using Model.Data;
+using Model.Data.ControllersData;
 using Model.Properties;
 using Panels;
 using UnityEngine;

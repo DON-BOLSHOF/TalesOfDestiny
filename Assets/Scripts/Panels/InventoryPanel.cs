@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using CodeAnimation;
 using Definitions.Inventory;
-using UI;
 using UnityEngine;
 using Utils;
 using Utils.Disposables;
@@ -16,24 +15,23 @@ namespace Panels
     {
         [SerializeField] private Transform _itemsContainer;
         [SerializeField] private float _approximation;
-
-        [SerializeField] private PopUpHint _blockHint;
         
-        private float _baseApproximation;
         private WidgetCollection<InventoryItemWidget, InventoryItem> _inventoryPanelItems;
+        private InventoryItemWidget _currentDescriptionOpenWidget;
 
+        private float _baseApproximation;
         private Camera _mainCamera;
+        private CameraAnimation _cameraAnimations;
 
         private Animator _animator;
 
-        private CameraAnimation _cameraAnimations;
         private Coroutine _routine;
 
         private DisposeHolder _trash = new DisposeHolder();
-        
-        public event Action<InventoryItem> OnDisableItem;
+
         public event Action<InventoryItem> OnUseItem;
-        
+        public event Action<InventoryItem> OnDisableItem;
+
         private static readonly int Showing = Animator.StringToHash("Showing");
         private static readonly int Exiting = Animator.StringToHash("Exiting");
 
@@ -59,11 +57,35 @@ namespace Panels
         {
             foreach (var itemWidget in _inventoryPanelItems)
             {
+                itemWidget.OnItemUsed += UseItem;
+                itemWidget.OnWidgetClicked += HideOtherWidgetDescription;
                 itemWidget.OnDisabled += DisposeWidget;
-                itemWidget.OnUsed += UseItem;
+                _trash.Retain(new ActionDisposable(() => itemWidget.OnItemUsed -= UseItem));
+                _trash.Retain(new ActionDisposable(() => itemWidget.OnWidgetClicked -= HideOtherWidgetDescription));
                 _trash.Retain(new ActionDisposable(() => itemWidget.OnDisabled -= DisposeWidget));
-                _trash.Retain(new ActionDisposable(() => itemWidget.OnUsed -= UseItem));
             }
+        }
+
+        private void UseItem(InventoryItemWidget widget)
+        {
+            OnUseItem?.Invoke(widget.GetData());
+
+            var widgetIndex = _inventoryPanelItems.FindIndex(widget);
+            _inventoryPanelItems.DisableAtIndex(widgetIndex);
+        }
+
+        private void HideOtherWidgetDescription(InventoryItemWidget widget)
+        {
+            if (_currentDescriptionOpenWidget != null && !_currentDescriptionOpenWidget.Equals(widget) &&
+                _currentDescriptionOpenWidget.DescriptionStage == DescriptionStage.Open)
+                _currentDescriptionOpenWidget.ForceDescriptionExit();
+
+            _currentDescriptionOpenWidget = widget;
+        }
+
+        private void DisposeWidget(InventoryItemWidget widget)
+        {
+            OnDisableItem?.Invoke(widget.GetData());
         }
 
         public override void Show()
@@ -87,35 +109,17 @@ namespace Panels
             _inventoryPanelItems.ReloadData(inventoryItems);
         }
 
-        private void UseItem(InventoryItemWidget widget)
-        {
-            OnUseItem?.Invoke(widget.GetData());
-
-            var widgetIndex = _inventoryPanelItems.FindIndex(widget);
-            _inventoryPanelItems.DisableAtIndex(widgetIndex);
-        }
-
-        private void DisposeWidget(InventoryItemWidget widget)
-        {
-            OnDisableItem?.Invoke(widget.GetData());
-        }
-
-        public void ShowBlockHint()
-        {
-            _blockHint.Show();
-        }
-
-        public void ForceBlockHintExit(GameState state)
-        {
-            if(state == GameState.None && _blockHint.IsTimerRunning) _blockHint.ForceExit();
-        }
-
         private void StartRoutine(IEnumerator coroutine)
         {
             if (_routine != null)
                 StopCoroutine(_routine);
 
             _routine = StartCoroutine(coroutine);
+        }
+
+        private void OnDestroy()
+        {
+            _trash.Dispose();
         }
     }
 }

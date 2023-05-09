@@ -1,20 +1,15 @@
 ﻿using System;
+using Cards.SituationCards;
 
-namespace Cards.SituationCards.Event
+namespace Model.Data.ControllersData
 {
-    public interface IControllerInteractionVisitor // Да усложняет код, но так правильнее с точки зрения ООП.
-    {
-        void Visit(IControllerInteraction interaction);
-    }
-
     public interface IControllerInteraction
     {
         ControllerInteractionType ControllerType { get; }
         Situation FutureSituation { get; }
-
         void Accept(IControllerInteractionVisitor visitor);
     }
-
+    
     [Flags]
     public enum ControllerInteractionType : short
     {

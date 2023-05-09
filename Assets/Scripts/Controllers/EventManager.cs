@@ -4,7 +4,8 @@ using Cards.SituationCards;
 using UnityEngine;
 using UnityEngine.UI;
 using Utils;
-using Widgets;
+using Utils.Disposables;
+using Utils.Interfaces;
 using Widgets.BoardWidgets;
 using Widgets.EventManagersWidgets;
 using Zenject;
@@ -12,7 +13,7 @@ using Zenject;
 namespace Controllers
 {
     [Serializable]
-    public class EventManager : LevelManager //Чистая инициализация, так что свое ко-ко-ко о менеджере не надо мне тут
+    public class EventManager : LevelManager, IGameStateVisitor //Чистая инициализация, так что свое ко-ко-ко о менеджере не надо мне тут
     {
         [SerializeField] private Text _contents;
         [SerializeField] private Text _eventText;
@@ -25,6 +26,8 @@ namespace Controllers
 
         private ForwardDiDataGroup<CustomButtonWidget, CustomButton> _dataGroup;
 
+        protected readonly DisposeHolder _trash = new DisposeHolder();
+
         protected virtual void Start()
         {
             _dataGroup =
@@ -32,7 +35,8 @@ namespace Controllers
                     _diContainer);
 
             _textPanelUtil.OnReloadButtons += UpdateButtons;
-            _textPanelUtil.OnChangeState += delegate(bool b) {_session.GameStateAnalyzer.Visit(this, b ? Stage.Start : Stage.End); };
+            _trash.Retain(new ActionDisposable(()=> _textPanelUtil.OnReloadButtons += UpdateButtons));
+            _trash.Retain(_textPanelUtil.SubscribeOnChange(delegate(bool b) {VisitGameState(_session.GameStateAnalyzer, b ? Stage.Start : Stage.End); }));
         }
 
         public override void ShowEventContainer(LevelCard card)
@@ -58,6 +62,16 @@ namespace Controllers
         public void UpdateButtons(CustomButton[] buttons)
         {
             _dataGroup.SetData(buttons);
+        }
+
+        public void VisitGameState(GameStateAnalyzer gameStateAnalyzer, Stage stage)
+        {
+            gameStateAnalyzer.Visit(this, stage);
+        }
+
+        private void OnDestroy()
+        {
+            _trash.Dispose();
         }
     }
 }

@@ -44,7 +44,7 @@ namespace Controllers
             _mainCamera = Camera.main;
             if (_mainCamera == null) throw new NullReferenceException("Camera not found");
 
-            _eventPanelUtil.OnChangeState += CloseEventContainer;
+            _trash.Retain(_eventPanelUtil.SubscribeOnChange(CloseEventContainer));
         }
 
         public override void ShowEventContainer(LevelCard card)
@@ -116,11 +116,6 @@ namespace Controllers
                 var hiddenPacks = _enemyPacks.Skip(2).ToList();
                 _crowdWidget.SetEnemyData(hiddenPacks);
             }
-        }
-
-        private void OnDestroy()
-        {
-            _eventPanelUtil.OnChangeState -= CloseEventContainer;
         }
     }
 }

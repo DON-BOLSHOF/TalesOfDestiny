@@ -4,15 +4,18 @@ using Cards.SituationCards.Event;
 using Definitions.Creatures.Company;
 using Definitions.Creatures.Enemies;
 using LevelManipulation;
+using Model.Data;
+using Model.Data.ControllersData;
 using Panels;
 using UnityEngine;
 using Utils;
 using Utils.Disposables;
+using Utils.Interfaces;
 using Zenject;
 
 namespace Controllers
 {
-    public class BattleController : MonoBehaviour, IControllerInteractionVisitor
+    public class BattleController : MonoBehaviour, IControllerInteractionVisitor, IGameStateVisitor
     {
         [SerializeField] private BattleEventManager _eventManager; //Разделим обязанности
         
@@ -39,7 +42,7 @@ namespace Controllers
 
         private async void StartBattle()
         {
-            _session.GameStateAnalyzer.Visit(this, Stage.Start);
+            VisitGameState(_session.GameStateAnalyzer, Stage.Start);
             
             _enemies = _eventManager.TakeEnemyPacks();//Take data
             _companions = _session.Data.CompanionsData.Companions;
@@ -71,13 +74,18 @@ namespace Controllers
                     throw new ArgumentOutOfRangeException(nameof(endState), endState, null);
             }
             
-            _session.GameStateAnalyzer.Visit(this, Stage.End);
+            VisitGameState(_session.GameStateAnalyzer, Stage.End);
         }
         
         public void Visit(IControllerInteraction interaction)
         {
             if ((interaction.ControllerType & ControllerInteractionType.Battle) == ControllerInteractionType.Battle)
                 StartBattle();
+        }
+
+        public void VisitGameState(GameStateAnalyzer gameStateAnalyzer, Stage stage)
+        {
+            gameStateAnalyzer.Visit(this, stage);
         }
 
         private void OnDestroy()

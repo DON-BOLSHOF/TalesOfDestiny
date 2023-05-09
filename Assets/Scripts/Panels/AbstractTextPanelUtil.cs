@@ -3,6 +3,8 @@ using System.Collections;
 using Cards.SituationCards;
 using Cards.SituationCards.Event;
 using CodeAnimation;
+using Model.Data;
+using Model.Data.ControllersData;
 using UnityEngine;
 using UnityEngine.UI;
 using Utils;

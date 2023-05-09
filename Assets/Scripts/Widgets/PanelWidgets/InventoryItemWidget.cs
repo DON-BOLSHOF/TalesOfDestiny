@@ -17,34 +17,29 @@ namespace Widgets.PanelWidgets
 
         private InventoryItem _item;
 
-        private DescriptionStage _isDescriptionStage;
-
-        private DisposeHolder _trash = new DisposeHolder();
+        public DescriptionStage DescriptionStage { get; private set; }
         public override InstanceStage InstanceStage { get; set; }
 
-        public event Action<InventoryItemWidget> OnUsed;
-        
+        private DisposeHolder _trash = new DisposeHolder();
+        public event Action<InventoryItemWidget> OnWidgetClicked; 
+        public event Action<InventoryItemWidget> OnItemUsed;
+
         private void Awake()
         {
-            _trash.Retain(GetComponentInParent<InventoryPanel>().SubscribeOnChange(OnParentExit));
+            _trash.Retain(_descriptionPanel.SubscribeOnUsed(UseItem));
             _trash.Retain(_descriptionPanel.SubscribeOnThrown(Disable));
             _trash.Retain(_descriptionPanel.SubscribeOnDisappeared(() => SetDescriptionStage(DescriptionStage.Close)));
-            _trash.Retain(_descriptionPanel.SubscribeOnUsed(UseItem));
+            _trash.Retain(GetComponentInParent<InventoryPanel>().SubscribeOnChange(OnParentExit));
         }
 
-        private void UseItem()
+        public void OnWidgetClick()
         {
-            OnUsed?.Invoke(this);
-        }
-
-        public override void Disable()
-        {
-            if (InstanceStage == InstanceStage.Disabled) return;
+            if (InstanceStage != InstanceStage.Enabled) return;
             
-            InstanceStage = InstanceStage.Disabled;
-            _icon.sprite = UnityUtils.LoadEmptySprite();
-            _descriptionPanel.ForceExit();
-            OnDisabled?.Invoke(this);
+            _descriptionPanel.Show();
+            DescriptionStage = DescriptionStage.Open;
+            
+            OnWidgetClicked?.Invoke(this);
         }
 
         public override void SetData(InventoryItem item)
@@ -55,41 +50,53 @@ namespace Widgets.PanelWidgets
             InstanceStage = InstanceStage.Enabled;
         }
 
-        public override InventoryItem GetData()
+        private void UseItem()
         {
-            return _item;
+            OnItemUsed?.Invoke(this);
         }
 
-        public void ShowDescription()
+        public override void Disable()
         {
-            if (InstanceStage != InstanceStage.Enabled) return;
+            if (InstanceStage == InstanceStage.Disabled) return;
             
-            _descriptionPanel.Show();
-            _isDescriptionStage = DescriptionStage.Open;
+            InstanceStage = InstanceStage.Disabled;
+            _icon.sprite = UnityUtils.LoadEmptySprite();
+            ForceDescriptionExit();
+            OnDisabled?.Invoke(this);
         }
 
         private void SetDescriptionStage(DescriptionStage stage)
         {
-            _isDescriptionStage = stage;
+            DescriptionStage = stage;
         }
 
         private void OnParentExit(bool value)
         {
             if(!value)
             { 
-                _descriptionPanel.ForceExit();
+                ForceDescriptionExit();
             }
+        }
+
+        public void ForceDescriptionExit()
+        {
+            _descriptionPanel.ForceExit();
+        }
+
+        public override InventoryItem GetData()
+        {
+            return _item;
         }
 
         public void OnPointerEnter(PointerEventData eventData)
         {
-            if (_isDescriptionStage != DescriptionStage.Close && InstanceStage == InstanceStage.Enabled)
+            if (DescriptionStage != DescriptionStage.Close && InstanceStage == InstanceStage.Enabled)
                 _descriptionPanel.StopTimer();
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
-            if (_isDescriptionStage != DescriptionStage.Close && InstanceStage == InstanceStage.Enabled)
+            if (DescriptionStage != DescriptionStage.Close && InstanceStage == InstanceStage.Enabled)
                 _descriptionPanel.ReloadTimer();
         }
 
