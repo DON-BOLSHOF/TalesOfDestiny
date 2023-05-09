@@ -1,4 +1,5 @@
-﻿using Definitions.Inventory;
+﻿using System;
+using Definitions.Inventory;
 using Panels;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -20,13 +21,30 @@ namespace Widgets.PanelWidgets
 
         private DisposeHolder _trash = new DisposeHolder();
         public override InstanceStage InstanceStage { get; set; }
+
+        public event Action<InventoryItemWidget> OnUsed;
         
         private void Awake()
         {
             _trash.Retain(GetComponentInParent<InventoryPanel>().SubscribeOnChange(OnParentExit));
             _trash.Retain(_descriptionPanel.SubscribeOnThrown(Disable));
             _trash.Retain(_descriptionPanel.SubscribeOnDisappeared(() => SetDescriptionStage(DescriptionStage.Close)));
-            _trash.Retain(_descriptionPanel.SubscribeOnUsed(() => SetDescriptionStage(DescriptionStage.Open)));
+            _trash.Retain(_descriptionPanel.SubscribeOnUsed(UseItem));
+        }
+
+        private void UseItem()
+        {
+            OnUsed?.Invoke(this);
+        }
+
+        public override void Disable()
+        {
+            if (InstanceStage == InstanceStage.Disabled) return;
+            
+            InstanceStage = InstanceStage.Disabled;
+            _icon.sprite = UnityUtils.LoadEmptySprite();
+            _descriptionPanel.ForceExit();
+            OnDisabled?.Invoke(this);
         }
 
         public override void SetData(InventoryItem item)
@@ -47,7 +65,7 @@ namespace Widgets.PanelWidgets
             if (InstanceStage != InstanceStage.Enabled) return;
             
             _descriptionPanel.Show();
-            _isDescriptionStage = DescriptionStage.Intermediate;
+            _isDescriptionStage = DescriptionStage.Open;
         }
 
         private void SetDescriptionStage(DescriptionStage stage)
@@ -61,16 +79,6 @@ namespace Widgets.PanelWidgets
             { 
                 _descriptionPanel.ForceExit();
             }
-        }
-
-        public override void Disable()
-        {
-            if (InstanceStage == InstanceStage.Disabled) return;
-            
-            InstanceStage = InstanceStage.Disabled;
-            _icon.sprite = UnityUtils.LoadEmptySprite();
-            _descriptionPanel.ForceExit();
-            OnDisabled?.Invoke(this);
         }
 
         public void OnPointerEnter(PointerEventData eventData)
@@ -94,7 +102,6 @@ namespace Widgets.PanelWidgets
     public enum DescriptionStage
     {
         Close,
-        Intermediate,
-        Open
+        Open,
     }
 }

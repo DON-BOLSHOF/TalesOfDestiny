@@ -16,13 +16,15 @@ MonoBehaviour:
   _buttons:
   - _name: "\u041F\u043E\u043A\u0430"
     _buttonInteraction:
-      _type: 16
-      _propertyEvent: []
-      _armyEvent: []
+      _dataType: 0
+      _propertyEvents: []
+      _armyEvents: []
+      _controllerType: 2
       _futureSituation: {fileID: 0}
   - _name: Testing
     _buttonInteraction:
-      _type: 16
-      _propertyEvent: []
-      _armyEvent: []
+      _dataType: 0
+      _propertyEvents: []
+      _armyEvents: []
+      _controllerType: 2
       _futureSituation: {fileID: 0}

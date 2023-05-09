@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cards.SituationCards.Event.ArmyEvents;
 using Definitions.Inventory;
+using Model.Data.StorageData;
 using TMPro;
 using UI;
 using UnityEngine;
@@ -15,19 +17,13 @@ namespace Widgets.PanelWidgets
         [SerializeField] private TextMeshPro _id;
         [SerializeField] private TextMeshPro _description;
 
-        public Action OnThrownOut;
-        public Action OnUsed;
+        private event Action OnThrownOut;
+        private event Action OnUsed;
 
         public override void Show()
         {
             gameObject.SetActive(true);
             StartRoutine(Show(_graphics), ref _graphicRoutine);
-        }
-        
-        public void SetData(InventoryItem item)
-        {
-            _id.text = item.Id;
-            _description.text = ConvertBuffsToString(item.Buffs);
         }
         
         public void OnThrowOutButtonClicked()
@@ -39,68 +35,74 @@ namespace Widgets.PanelWidgets
         {
             OnUsed?.Invoke();
         }
-        
+
+        public void SetData(InventoryItem item)
+        {
+            _id.text = item.Id;
+            _description.text = ConvertBuffsToString(item.Buffs);
+        }
+
         private string ConvertBuffsToString(List<BuffDef> itemBuffs)
         {
             var result = "Buff you ";
 
             foreach (var buff in itemBuffs)
             {
-                switch (buff.BuffType)
+                if ((buff.DataType & DataInteractionType.ArmyVisitor) == DataInteractionType.ArmyVisitor)
                 {
-                    case BuffType.Army:
+                    foreach (var army in buff.ArmyEvents)
                     {
-                        var armyBuff = buff.ArmyBuff;
-                        result += armyBuff.ArmyBuffType switch
+                        var armyBuff = army.ArmyBuffType;
+                        result += armyBuff switch
                         {
                             ArmyBuffType.Melee => " <b>melee</b> army:",
                             ArmyBuffType.Range => " <b>range</b> army:",
                             ArmyBuffType.Magic => " <b>mage</b> army:",
                             _ => throw new ArgumentOutOfRangeException()
                         };
-                        if (armyBuff.AttackBuff != 0)
+                        if (army.AttackBuff != 0)
                         {
-                            if (armyBuff.AttackBuff > 0) result += " <b>+</b>";
-                            if (armyBuff.AttackBuff < 0) result += " <b>-</b>";
-                            result += $" <b>{armyBuff.AttackBuff} attack</b>\n";
+                            if (army.AttackBuff > 0) result += " <b>+</b>";
+                            if (army.AttackBuff < 0) result += " <b>-</b>";
+                            result += $" <b>{army.AttackBuff} attack</b>\n";
                         }
 
-                        if (armyBuff.HealthBuff != 0)
+                        if (army.HealthBuff != 0)
                         {
-                            if (armyBuff.HealthBuff > 0) result += " <b>+</b>";
-                            if (armyBuff.HealthBuff < 0) result += " <b>-</b>";
-                            result += $" <b>{armyBuff.HealthBuff} health</b>\n";
+                            if (army.HealthBuff > 0) result += " <b>+</b>";
+                            if (army.HealthBuff < 0) result += " <b>-</b>";
+                            result += $" <b>{army.HealthBuff} health</b>\n";
                         }
-
-                        break;
                     }
-                    case BuffType.Property:
+                }
+
+                if ((buff.DataType & DataInteractionType.PropertyVisitor) == DataInteractionType.PropertyVisitor)
+                {
                     {
-                        var propertyBuff = buff.PropertyBuff;
-                        if (propertyBuff.Coins != 0)
+                        foreach (var propertyBuff in buff.PropertyEvents)
                         {
-                            if (propertyBuff.Coins > 0) result += " <b>+</b>";
-                            if (propertyBuff.Coins < 0) result += " <b>-</b>";
-                            result += $" <b>{propertyBuff.Coins} gold</b>\n";
+                            if (propertyBuff.Data.Coins != 0)
+                            {
+                                if (propertyBuff.Data.Coins > 0) result += " <b>+</b>";
+                                if (propertyBuff.Data.Coins < 0) result += " <b>-</b>";
+                                result += $" <b>{propertyBuff.Data.Coins} gold</b>\n";
+                            }
+
+                            if (propertyBuff.Data.Prestige != 0)
+                            {
+                                if (propertyBuff.Data.Prestige > 0) result += " <b>+</b>";
+                                if (propertyBuff.Data.Prestige < 0) result += " <b>-</b>";
+                                result += $" <b>{propertyBuff.Data.Prestige} prestige</b>\n";
+                            }
+
+                            if (propertyBuff.Data.Food != 0)
+                            {
+                                if (propertyBuff.Data.Food > 0) result += " <b>+</b>";
+                                if (propertyBuff.Data.Food < 0) result += " <b>-</b>";
+                                result += $" <b>{propertyBuff.Data.Food} food</b>\n";
+                            }
                         }
-                        
-                        if (propertyBuff.Prestige != 0)
-                        {
-                            if (propertyBuff.Prestige > 0) result += " <b>+</b>";
-                            if (propertyBuff.Prestige < 0) result += " <b>-</b>";
-                            result += $" <b>{propertyBuff.Prestige} prestige</b>\n";
-                        }
-                        
-                        if (propertyBuff.Food != 0)
-                        {
-                            if (propertyBuff.Food > 0) result += " <b>+</b>";
-                            if (propertyBuff.Food < 0) result += " <b>-</b>";
-                            result += $" <b>{propertyBuff.Food} food</b>\n";
-                        }
-                        break;
                     }
-                    default:
-                        throw new ArgumentOutOfRangeException();
                 }
             }
 
@@ -110,9 +112,9 @@ namespace Widgets.PanelWidgets
         public override void ForceExit()
         {
             _timer?.StopTimer();
-            
+
             ChangeGraphicsAlphaTo(0);
-            
+
             gameObject.SetActive(false);
         }
 
@@ -127,7 +129,7 @@ namespace Widgets.PanelWidgets
             OnThrownOut += action;
             return new ActionDisposable(() => OnThrownOut -= action);
         }
-        
+
         public IDisposable SubscribeOnUsed(Action action)
         {
             OnUsed += action;

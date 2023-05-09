@@ -71,6 +71,7 @@
      <Compile Include="Assets\Scripts\Utils\WidgetCollection.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
      <Compile Include="Assets\Scripts\Definitions\Inventory\BuffDef.cs" />
+     <Compile Include="Assets\Scripts\Model\Data\StorageData\IDataInteraction.cs" />
      <Compile Include="Assets\Scripts\Model\Properties\ObservableProperty.cs" />
      <Compile Include="Assets\Scripts\UI\View\PropertyView.cs" />
      <Compile Include="Assets\Scripts\Components\SceneLoadAdditiveComponent.cs" />
@@ -151,9 +152,8 @@
      <Compile Include="Assets\Scripts\LevelManipulation\FieldFormer.cs" />
      <Compile Include="Assets\Scripts\Components\HealthComponent.cs" />
      <Compile Include="Assets\Scripts\Components\BehaviorsSwitcherComponent.cs" />
-     <Compile Include="Assets\Scripts\Cards\SituationCards\Event\ICustomButtonVisitor.cs" />
+     <Compile Include="Assets\Scripts\Cards\SituationCards\Event\IControllerInteractionVisitor.cs" />
      <Compile Include="Assets\Scripts\Definitions\Creatures\CreaturePack.cs" />
-     <Compile Include="Assets\Scripts\Cards\SituationCards\Event\ButtonInteraction.cs" />
      <Compile Include="Assets\Scripts\CodeAnimation\LevelBoardAnimations.cs" />
      <Compile Include="Assets\Scripts\Definitions\Creatures\Enemies\EnemyPack.cs" />
      <Compile Include="Assets\Scripts\Widgets\HUDWidgets\PropertyWidget.cs" />
@@ -168,6 +168,7 @@
      <Compile Include="Assets\Scripts\Model\Data\PlayerData.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshSpawner.cs" />
      <Compile Include="Assets\Scripts\System\Installers\GameSessionInstaller.cs" />
+     <Compile Include="Assets\Scripts\Model\Data\StorageData\IDataInteractionVisitor.cs" />
      <Compile Include="Assets\Scripts\View\PortraitCardView.cs" />
      <Compile Include="Assets\Scripts\Definitions\Creatures\Company\CompanionPack.cs" />
      <Compile Include="Assets\Scripts\Definitions\CardDefs.cs" />
@@ -182,6 +183,7 @@
      <Compile Include="Assets\Scripts\Utils\AudioUtils.cs" />
      <Compile Include="Assets\Scripts\CodeAnimation\RepetativeMovingObject.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
+     <Compile Include="Assets\Scripts\Cards\SituationCards\Event\ButtonInteraction.cs" />
      <Compile Include="Assets\Scripts\Cards\HeroCard\HeroCard.cs" />
      <Compile Include="Assets\Scripts\Panels\AbstractTextPanelUtil.cs" />
      <Compile Include="Assets\Scripts\Panels\BattleBoard.cs" />

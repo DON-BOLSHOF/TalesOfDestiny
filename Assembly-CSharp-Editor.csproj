@@ -42,11 +42,8 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Utils\Editor\SerializePropertyExtensions.cs" />
-     <Compile Include="Assets\Scripts\Cards\SituationCards\Event\Editor\PropertyEventDrawer.cs" />
-     <Compile Include="Assets\Scripts\Cards\SituationCards\Event\Editor\ButtonInteractionDrawer.cs" />
      <Folder Include="Assets\Scripts\Utils\Editor" />
      <Folder Include="Assets\Editor" />
-     <Folder Include="Assets\Scripts\Cards\SituationCards\Event\Editor" />
      <Folder Include="Assets\Editor\com.unity.mobile.notifications" />
      <Reference Include="UnityEngine">
      <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.43f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>

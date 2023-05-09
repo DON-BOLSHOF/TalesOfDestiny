@@ -7,11 +7,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using Utils;
 using Utils.Interfaces;
-using EventType = Cards.SituationCards.Event.EventType;
 
 namespace Panels
 {
-    public abstract class AbstractTextPanelUtil: AbstractPanelUtil, ITypingText, ICustomButtonVisitor
+    public abstract class AbstractTextPanelUtil: AbstractPanelUtil, ITypingText, IControllerInteractionVisitor
     {
         [field: SerializeField] public Text[] _texts { get; private set; } //Ебать я гени''й (Как в ребусе)
         [field: SerializeField] public AudioClip _typingClip { get; private set; }
@@ -57,11 +56,11 @@ namespace Panels
             StartRoutine(_typingAnimation.TypeText(), ref _typingRoutine);
         }
 
-        public void Visit(ButtonInteraction interaction)
+        public void Visit(IControllerInteraction interaction)
         {
-            if ((interaction.Type & EventType.Continue) == EventType.Continue)
+            if ((interaction.ControllerType & ControllerInteractionType.Continue) == ControllerInteractionType.Continue)
                 ReloadSituation(interaction.FutureSituation);
-            if ((interaction.Type & EventType.ClosePanel) == EventType.ClosePanel)
+            if ((interaction.ControllerType & ControllerInteractionType.ClosePanel) == ControllerInteractionType.ClosePanel)
                 Exit();
         }
     }

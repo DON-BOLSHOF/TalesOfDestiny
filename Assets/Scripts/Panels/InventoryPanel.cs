@@ -31,16 +31,21 @@ namespace Panels
 
         private DisposeHolder _trash = new DisposeHolder();
         
-        public event Action<int> OnDisableItem;
+        public event Action<InventoryItem> OnDisableItem;
+        public event Action<InventoryItem> OnUseItem;
         
         private static readonly int Showing = Animator.StringToHash("Showing");
         private static readonly int Exiting = Animator.StringToHash("Exiting");
 
         private void Awake()
         {
+            Initialize();
+            SubscribeItems();
+        }
+
+        private void Initialize()
+        {
             _inventoryPanelItems = new WidgetCollection<InventoryItemWidget, InventoryItem>(_itemsContainer);
-            var disposables = _inventoryPanelItems.SubscribeToAll(DisposeWidget);
-            foreach (var disposable in disposables) _trash.Retain(disposable);
 
             _mainCamera = Camera.main;
             if (_mainCamera == null) throw new ArgumentException("Camera not found");
@@ -50,10 +55,15 @@ namespace Panels
             _cameraAnimations = new CameraAnimation(_baseApproximation, _approximation);
         }
 
-        private void DisposeWidget(InventoryItemWidget widget)
+        private void SubscribeItems()
         {
-            var index = _inventoryPanelItems.FindIndex(widget);
-            OnDisableItem?.Invoke(index);
+            foreach (var itemWidget in _inventoryPanelItems)
+            {
+                itemWidget.OnDisabled += DisposeWidget;
+                itemWidget.OnUsed += UseItem;
+                _trash.Retain(new ActionDisposable(() => itemWidget.OnDisabled -= DisposeWidget));
+                _trash.Retain(new ActionDisposable(() => itemWidget.OnUsed -= UseItem));
+            }
         }
 
         public override void Show()
@@ -75,6 +85,19 @@ namespace Panels
         public void InitializeItems(List<InventoryItem> inventoryItems)
         {
             _inventoryPanelItems.ReloadData(inventoryItems);
+        }
+
+        private void UseItem(InventoryItemWidget widget)
+        {
+            OnUseItem?.Invoke(widget.GetData());
+
+            var widgetIndex = _inventoryPanelItems.FindIndex(widget);
+            _inventoryPanelItems.DisableAtIndex(widgetIndex);
+        }
+
+        private void DisposeWidget(InventoryItemWidget widget)
+        {
+            OnDisableItem?.Invoke(widget.GetData());
         }
 
         public void ShowBlockHint()

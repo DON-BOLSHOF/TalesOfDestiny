@@ -12,11 +12,10 @@ using Utils.Disposables;
 using Utils.Interfaces;
 using Widgets;
 using Widgets.BoardWidgets;
-using EventType = Cards.SituationCards.Event.EventType;
 
 namespace LevelManipulation
 {
-    public class EventLevelBoard : MonoBehaviour, ICustomButtonVisitor
+    public class EventLevelBoard : MonoBehaviour, IControllerInteractionVisitor
     {
         [SerializeField] private LevelBuilder _levelBuilder;
         [SerializeField] private LevelBoardAnimations _animations;
@@ -143,9 +142,9 @@ namespace LevelManipulation
             GlobalHeroPosition.Value = Cells[HeroPosition.Value.x][HeroPosition.Value.y].BoardItem.transform.position;
         }
 
-        public void Visit(ButtonInteraction interaction)
+        public void Visit(IControllerInteraction interaction)
         {
-            if ((interaction.Type & EventType.EndJourney) == EventType.EndJourney)
+            if ((interaction.ControllerType & ControllerInteractionType.EndJourney) == ControllerInteractionType.EndJourney)
                 Reload();
         }
 

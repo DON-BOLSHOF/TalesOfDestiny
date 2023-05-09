@@ -1,6 +1,5 @@
 ﻿using Cards.SituationCards;
 using Cards.SituationCards.Event;
-using Model;
 using Model.Data.StorageData;
 using Panels;
 using UnityEngine;
@@ -43,6 +42,7 @@ namespace Widgets.EventManagersWidgets
 
         private void OnButtonVisitorClick()
         {
+            _storageData.InteractData(_interaction as IDataInteraction);
             _storageData.InteractData(_interaction, textPanelUtil);
         }
 

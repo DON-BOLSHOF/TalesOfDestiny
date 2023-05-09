@@ -19,11 +19,15 @@ MonoBehaviour:
   _buttons:
   - _name: "\u041F\u043E\u0440\u0430 \u0438\u0434\u0442\u0438 \u0434\u0430\u043B\u044C\u0448\u0435"
     _buttonInteraction:
-      _type: 48
-      _propertyEvent: []
-      _armyEvent: []
+      _dataType: 0
+      _propertyEvents: []
+      _armyEvents: []
+      _controllerType: 6
+      _futureSituation: {fileID: 0}
   - _name: "\u0420\u0430\u043D\u043E"
     _buttonInteraction:
-      _type: 16
-      _propertyEvent: []
-      _armyEvent: []
+      _dataType: 0
+      _propertyEvents: []
+      _armyEvents: []
+      _controllerType: 2
+      _futureSituation: {fileID: 0}

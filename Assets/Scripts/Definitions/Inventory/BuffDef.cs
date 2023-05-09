@@ -1,4 +1,6 @@
 ﻿using System;
+using Cards.SituationCards.Event.ArmyEvents;
+using Cards.SituationCards.Event.PropertyEvents;
 using Model.Data.StorageData;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -6,56 +8,32 @@ using UnityEngine;
 namespace Definitions.Inventory
 {
     [Serializable]
-    public class BuffDef
+    public class BuffDef : IDataInteraction
     {
         [SerializeField] private BuffState buffState;
-        [SerializeField] private BuffType _buffType;
-
-        [ShowIf(nameof(_buffType), BuffType.Army), SerializeField]
-        private ArmyBuff _armyBuff;
-
-        [ShowIf(nameof(_buffType), BuffType.Property), SerializeField]
-        private PropertyBuff _propertyBuff;
-
         public BuffState BuffState => buffState;
-        public BuffType BuffType => _buffType;
-        public ArmyBuff ArmyBuff => _armyBuff;
-        public PropertyBuff PropertyBuff => _propertyBuff;
+
+        [SerializeField] private DataInteractionType _dataInteraction;
+        public DataInteractionType DataType => _dataInteraction;
+        
+        [ShowIf("@(this._dataInteraction & DataInteractionType.PropertyVisitor) == DataInteractionType.PropertyVisitor"), SerializeField]
+        private PropertyEvent[] _propertyEvents;
+        public PropertyEvent[] PropertyEvents => _propertyEvents;
+
+
+        [ShowIf("@(this._dataInteraction & DataInteractionType.ArmyVisitor) == DataInteractionType.ArmyVisitor"), SerializeField]
+        private ArmyEvent[] _armyEvents;
+
+        public ArmyEvent[] ArmyEvents => _armyEvents;
+
+        public void Accept(IDataInteractionVisitor visitor)
+        {
+            visitor.Visit(this);
+        }
     }
-
-    [Serializable]
-    public class ArmyBuff
-    {
-        [SerializeField] private ArmyBuffType _armyBuffType;
-        [SerializeField] private int _attackBuff;
-        [SerializeField] private int _healthBuff;
-
-        public ArmyBuffType ArmyBuffType => _armyBuffType;
-        public int AttackBuff => _attackBuff;
-        public int HealthBuff => _healthBuff;
-    }
-
-    [Serializable]
-    public class PropertyBuff : PropertyData
-    {
-    }
-
     public enum BuffState // Используется внутри инвенторя(условные кнопки пополняющие еду), Или чисто перетаскиваемые шмотки в армию/куда-нибудь еще мб понадобится 
     {
         Active,
         Passive//На Army накидывается или мб чет еще будет
-    }
-
-    public enum BuffType
-    {
-        Army,
-        Property
-    }
-
-    public enum ArmyBuffType
-    {
-        Melee,
-        Range,
-        Magic
     }
 }

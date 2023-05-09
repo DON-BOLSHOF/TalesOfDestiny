@@ -16,19 +16,21 @@ MonoBehaviour:
   _buttons:
   - _name: "\u0417\u0430\u0449\u0438\u0449\u0430\u0442\u044C\u0441\u044F"
     _buttonInteraction:
-      _type: 16
+      _dataType: 0
       _propertyEvents: []
       _armyEvents: []
+      _controllerType: 2
       _futureSituation: {fileID: 0}
   - _name: "\u041A\u043E\u043D\u0442\u0440\u0430\u0442\u0430\u043A\u043E\u0432\u0430\u0442\u044C"
     _buttonInteraction:
-      _type: 18
+      _dataType: 2
       _propertyEvents:
       - _mode: 0
         _data:
-          _food: 3
-          _coins: 0
-          _prestige: 2
+          _food: -3
+          _coins: -5
+          _prestige: -4
         _def: {fileID: 0}
       _armyEvents: []
+      _controllerType: 2
       _futureSituation: {fileID: 0}

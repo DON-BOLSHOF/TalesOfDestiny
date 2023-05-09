@@ -1,12 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using Utils.Disposables;
 
 namespace Utils
 {
-    public class WidgetCollection<TWidget, TItemData> where TWidget : WidgetInstance<TWidget, TItemData>
+    public class WidgetCollection<TWidget, TItemData> : IEnumerable<TWidget> where TWidget : WidgetInstance<TWidget, TItemData>
     {
         private readonly List<TWidget> _widgets;
 
@@ -43,17 +42,6 @@ namespace Utils
             _widgets[index].SetData(itemData);
         }
 
-        public void SetAdditionallyData(IList<TItemData> list)
-        {
-            var listIndex = 0;
-
-            foreach (var t in _widgets.Where(t => t.InstanceStage == InstanceStage.Disabled))
-            {
-                t.SetData(list[listIndex]);
-                listIndex++;
-            }
-        }
-
         public void DisableAtIndex(int index)
         {
             if (_widgets.Count <= index) throw new ArgumentException("Index above instances!!!");
@@ -61,16 +49,14 @@ namespace Utils
             _widgets[index].Disable();
         }
 
-        public List<IDisposable> SubscribeToAll(Action<TWidget> call)
+        public IEnumerator<TWidget> GetEnumerator()
         {
-            var result = new List<IDisposable>();
-            foreach (var widget in _widgets)
-            {
-                widget.OnDisabled += call;
-                result.Add(new ActionDisposable(() => widget.OnDisabled-=call));
-            }
+            return _widgets.GetEnumerator();
+        }
 
-            return result;
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
     }
 

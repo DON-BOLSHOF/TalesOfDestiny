@@ -1,6 +1,7 @@
 ﻿using System;
 using Definitions.EventDefs;
 using Model.Data.StorageData;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using Utils.Interfaces;
 
@@ -10,8 +11,14 @@ namespace Cards.SituationCards.Event.PropertyEvents
     public class PropertyEvent
     {
         [SerializeField] private PropertyMode _mode;
-        [SerializeField] private PropertyData _data;
-        [SerializeField] private PropertyEventDef _def;
+
+        [ShowIf(nameof(_mode), PropertyMode.Bound), SerializeField]
+        private PropertyData _data;
+
+        [ShowIf(nameof(_mode), PropertyMode.External), SerializeField]
+        private PropertyEventDef _def;
+
+        public PropertyData Data => _mode == PropertyMode.Bound ? _data : new CommonPropertyEvent(_data).Data;
 
         public void Accept(IPropertyVisitor visitor)
         {
@@ -25,7 +32,7 @@ namespace Cards.SituationCards.Event.PropertyEvents
                 propEvent.Accept(visitor);
             }
         }
-
+        
         [Serializable]
         public enum PropertyMode
         {

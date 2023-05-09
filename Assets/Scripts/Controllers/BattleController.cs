@@ -9,11 +9,10 @@ using UnityEngine;
 using Utils;
 using Utils.Disposables;
 using Zenject;
-using EventType = Cards.SituationCards.Event.EventType;
 
 namespace Controllers
 {
-    public class BattleController : MonoBehaviour, ICustomButtonVisitor
+    public class BattleController : MonoBehaviour, IControllerInteractionVisitor
     {
         [SerializeField] private BattleEventManager _eventManager; //Разделим обязанности
         
@@ -75,9 +74,9 @@ namespace Controllers
             _session.GameStateAnalyzer.Visit(this, Stage.End);
         }
         
-        public void Visit(ButtonInteraction interaction)
+        public void Visit(IControllerInteraction interaction)
         {
-            if ((interaction.Type & EventType.Battle) == EventType.Battle)
+            if ((interaction.ControllerType & ControllerInteractionType.Battle) == ControllerInteractionType.Battle)
                 StartBattle();
         }
 

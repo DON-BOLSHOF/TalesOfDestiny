@@ -19,13 +19,14 @@ MonoBehaviour:
   _buttons:
   - _name: "\u0413\u0440\u0443\u0441\u0442\u043D\u043E..."
     _buttonInteraction:
-      _type: 10
+      _dataType: 2
       _propertyEvents:
       - _mode: 1
         _data:
           _food: 0
-          _coin: 0
+          _coins: 0
           _prestige: 0
         _def: {fileID: 11400000, guid: add74ff5367cd8e4e96c9c814d1b2878, type: 2}
       _armyEvents: []
+      _controllerType: 1
       _futureSituation: {fileID: 11400000, guid: 8389ad4bbc57f014da872d56f22e8178, type: 2}

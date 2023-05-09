@@ -13,13 +13,13 @@ namespace UI
         [SerializeField] protected Graphic[] _graphics;
         [SerializeField] private int _popUpTime;
 
-        protected float _currentAlpha;
+        private float _currentAlpha;
         protected Coroutine _graphicRoutine;
 
         protected Timer _timer;
-        
-        public Action OnShown;
-        public Action OnDisappeared;
+
+        private event Action OnShown;
+        private event Action OnDisappeared;
 
         private DisposeHolder _trash = new DisposeHolder();
 

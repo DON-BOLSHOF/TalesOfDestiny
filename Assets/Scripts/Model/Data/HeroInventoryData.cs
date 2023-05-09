@@ -21,9 +21,9 @@ namespace Model.Data
             _observableInventoryItems = new ObservableCollection<InventoryItem>(_inventoryItems);
         }
 
-        public void Visit(Inventory inventory, int index)
+        public void Visit(Inventory inventory, InventoryItem item)
         {
-            _observableInventoryItems.RemoveAt(index);
+            _observableInventoryItems.Remove(item);
         }
     }
 }
