@@ -6,7 +6,7 @@ using Definitions.Inventory;
 using UnityEngine;
 using Utils;
 using Utils.Disposables;
-using Widgets.PanelWidgets;
+using Widgets.PanelWidgets.InventoryWidgets;
 
 namespace Panels
 {
@@ -15,9 +15,9 @@ namespace Panels
     {
         [SerializeField] private Transform _itemsContainer;
         [SerializeField] private float _approximation;
-        
-        private WidgetCollection<InventoryItemWidget, InventoryItem> _inventoryPanelItems;
-        private InventoryItemWidget _currentDescriptionOpenWidget;
+
+        private WidgetCollection<InventorySlotWidget, InventoryItem> _inventoryPanelSlots;
+        private InventorySlotWidget _lastClickedWidget;
 
         private float _baseApproximation;
         private Camera _mainCamera;
@@ -30,7 +30,7 @@ namespace Panels
         private DisposeHolder _trash = new DisposeHolder();
 
         public event Action<InventoryItem> OnUseItem;
-        public event Action<InventoryItem> OnDisableItem;
+        public event Action<InventoryItem> OnDeleteItem;
 
         private static readonly int Showing = Animator.StringToHash("Showing");
         private static readonly int Exiting = Animator.StringToHash("Exiting");
@@ -43,7 +43,7 @@ namespace Panels
 
         private void Initialize()
         {
-            _inventoryPanelItems = new WidgetCollection<InventoryItemWidget, InventoryItem>(_itemsContainer);
+            _inventoryPanelSlots = new WidgetCollection<InventorySlotWidget, InventoryItem>(_itemsContainer);
 
             _mainCamera = Camera.main;
             if (_mainCamera == null) throw new ArgumentException("Camera not found");
@@ -55,37 +55,46 @@ namespace Panels
 
         private void SubscribeItems()
         {
-            foreach (var itemWidget in _inventoryPanelItems)
+            foreach (var slotWidget in _inventoryPanelSlots)
             {
-                itemWidget.OnItemUsed += UseItem;
-                itemWidget.OnWidgetClicked += HideOtherWidgetDescription;
-                itemWidget.OnDisabled += DisposeWidget;
-                _trash.Retain(new ActionDisposable(() => itemWidget.OnItemUsed -= UseItem));
-                _trash.Retain(new ActionDisposable(() => itemWidget.OnWidgetClicked -= HideOtherWidgetDescription));
-                _trash.Retain(new ActionDisposable(() => itemWidget.OnDisabled -= DisposeWidget));
+                slotWidget.OnItemUsed += OnUsedItem;
+                slotWidget.OnWidgetClicked += HideOtherWidgetClickConsequences;
+                slotWidget.OnReloaded += ReloadDraggableItem;
+                slotWidget.OnDeletedData += OnDeleteItemData;
+                _trash.Retain(new ActionDisposable(() => slotWidget.OnItemUsed -= OnUsedItem));
+                _trash.Retain(new ActionDisposable(() => slotWidget.OnWidgetClicked -= HideOtherWidgetClickConsequences));
+                _trash.Retain(new ActionDisposable(() => slotWidget.OnReloaded -= ReloadDraggableItem));
+                _trash.Retain(new ActionDisposable(() => slotWidget.OnDeletedData -= OnDeleteItemData));
             }
         }
 
-        private void UseItem(InventoryItemWidget widget)
+        private void OnUsedItem(InventorySlotWidget widget)
         {
             OnUseItem?.Invoke(widget.GetData());
 
-            var widgetIndex = _inventoryPanelItems.FindIndex(widget);
-            _inventoryPanelItems.DisableAtIndex(widgetIndex);
+            var widgetIndex = _inventoryPanelSlots.FindIndex(widget);
+            _inventoryPanelSlots.DeleteDataAtIndex(widgetIndex);
         }
 
-        private void HideOtherWidgetDescription(InventoryItemWidget widget)
+        private void HideOtherWidgetClickConsequences(InventorySlotWidget widget)
         {
-            if (_currentDescriptionOpenWidget != null && !_currentDescriptionOpenWidget.Equals(widget) &&
-                _currentDescriptionOpenWidget.DescriptionStage == DescriptionStage.Open)
-                _currentDescriptionOpenWidget.ForceDescriptionExit();
+            if (_lastClickedWidget != null && !_lastClickedWidget.Equals(widget))
+                _lastClickedWidget.HideClickConsequences();
 
-            _currentDescriptionOpenWidget = widget;
+            _lastClickedWidget = widget;
         }
 
-        private void DisposeWidget(InventoryItemWidget widget)
+        private void ReloadDraggableItem(InventoryItem changingData, InventorySlotWidget slotToChange)
         {
-            OnDisableItem?.Invoke(widget.GetData());
+            var index = _inventoryPanelSlots.FindIndex(changingData);
+            _inventoryPanelSlots.DisableAtIndex(index);
+            
+            slotToChange.SetData(changingData);
+        }
+
+        private void OnDeleteItemData(InventoryItem widget)
+        {
+            OnDeleteItem?.Invoke(widget);
         }
 
         public override void Show()
@@ -104,9 +113,9 @@ namespace Panels
             StartRoutine(_cameraAnimations.Approximating(_mainCamera, ApproximationType.Estrange));
         }
 
-        public void InitializeItems(List<InventoryItem> inventoryItems)
+        public void InitializeSlots(List<InventoryItem> inventoryItems)
         {
-            _inventoryPanelItems.ReloadData(inventoryItems);
+            _inventoryPanelSlots.ReloadData(inventoryItems);
         }
 
         private void StartRoutine(IEnumerator coroutine)

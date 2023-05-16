@@ -59,3 +59,6 @@ TagManager:
   - name: HUD
     uniqueID: 2619973841
     locked: 0
+  - name: DraggableInventory
+    uniqueID: 709813569
+    locked: 0

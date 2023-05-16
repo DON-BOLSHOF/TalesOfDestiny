@@ -47,6 +47,7 @@
      <Compile Include="Assets\Scripts\View\CreaturesCardView\CreatureCardViewWidget.cs" />
      <Compile Include="Assets\Scripts\Widgets\GameStageWidget.cs" />
      <Compile Include="Assets\Scripts\Definitions\DefsFacade.cs" />
+     <Compile Include="Assets\Scripts\Widgets\PanelWidgets\InventoryWidgets\InventorySlotWidget.cs" />
      <Compile Include="Assets\Scripts\UI\Buttons\InventoryButton.cs" />
      <Compile Include="Assets\Scripts\Widgets\BoardWidgets\PanelUtilItemWidget.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs" />
@@ -76,6 +77,7 @@
      <Compile Include="Assets\Scripts\Model\Properties\ObservableProperty.cs" />
      <Compile Include="Assets\Scripts\UI\View\PropertyView.cs" />
      <Compile Include="Assets\Scripts\Components\SceneLoadAdditiveComponent.cs" />
+     <Compile Include="Assets\Scripts\Utils\ConverterUtils.cs" />
      <Compile Include="Assets\Scripts\Utils\DataGroup.cs" />
      <Compile Include="Assets\Scripts\View\BattleCardView\BattleCardView.cs" />
      <Compile Include="Assets\Scripts\CodeAnimation\SoundedAnimation.cs" />
@@ -104,6 +106,7 @@
      <Compile Include="Assets\Scripts\Cards\LevelCard.cs" />
      <Compile Include="Assets\Scripts\Widgets\BoardWidgets\ItemWidget.cs" />
      <Compile Include="Assets\Scripts\Controllers\EventManager.cs" />
+     <Compile Include="Assets\Scripts\UI\DraggableItem.cs" />
      <Compile Include="Assets\Scripts\System\Installers\EventLevelBoardInstaller.cs" />
      <Compile Include="Assets\Scripts\Components\SelectComponent\SelectionContainer.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
@@ -178,7 +181,7 @@
      <Compile Include="Assets\Scripts\Components\ZenjectSpawnComponents\HeroSpawnerComponent.cs" />
      <Compile Include="Assets\Scripts\View\CreatureCardView\CreatureViewWidget.cs" />
      <Compile Include="Assets\Scripts\Components\Audio\PlaySoundComponent.cs" />
-     <Compile Include="Assets\Scripts\Widgets\PanelWidgets\InventoryItemWidget.cs" />
+     <Compile Include="Assets\Scripts\Widgets\PanelWidgets\InventoryWidgets\InventoryItemWidget.cs" />
      <Compile Include="Assets\Scripts\Definitions\Creatures\Enemies\EnemyDefs.cs" />
      <Compile Include="Assets\Scripts\CodeAnimation\AbstractMonoBehaviourCodeAnimation.cs" />
      <Compile Include="Assets\Scripts\LevelManipulation\EventLevelBoard.cs" />
@@ -198,7 +201,7 @@
      <Compile Include="Assets\Scripts\System\Installers\HeroInstaller.cs" />
      <Compile Include="Assets\Scripts\CodeAnimation\BlightOnMouseCard.cs" />
      <Compile Include="Assets\Scripts\View\CreaturesCardView\CompanionCardView\CompanionCardViewWidget.cs" />
-     <Compile Include="Assets\Scripts\Widgets\PanelWidgets\InventoryItemDescriptionWidget.cs" />
+     <Compile Include="Assets\Scripts\Widgets\PanelWidgets\InventoryWidgets\InventoryItemDescriptionWidget.cs" />
      <Compile Include="Assets\Scripts\CodeAnimation\RotateAnimation.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
      <Compile Include="Assets\Scripts\CodeAnimation\DissolveAnimation.cs" />
@@ -318,6 +321,7 @@
      <Folder Include="Assets\Sprites\Creatures\Company" />
      <Folder Include="Assets\Scripts\Cards\EndJourneyCards" />
      <Folder Include="Assets\Scripts\Definitions\Inventory" />
+     <Folder Include="Assets\Scripts\Widgets\PanelWidgets\InventoryWidgets" />
      <Folder Include="Assets\Sprites" />
      <Folder Include="Assets\Resources\Definitions\SituationCards" />
      <Folder Include="Assets\Scripts\UI\View" />

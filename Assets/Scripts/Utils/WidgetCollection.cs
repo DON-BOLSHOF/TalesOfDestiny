@@ -34,7 +34,7 @@ namespace Utils
         
         public int FindIndex(TItemData item)
         {
-            return _widgets.FindIndex(prefab=> prefab.GetData().Equals(item));
+            return _widgets.FindIndex(prefab=> item.Equals(prefab.GetData()));
         }
 
         public void ChangeAtIndex(TItemData itemData, int index)
@@ -47,6 +47,13 @@ namespace Utils
             if (_widgets.Count <= index) throw new ArgumentException("Index above instances!!!");
             
             _widgets[index].Disable();
+        }  
+        
+        public void DeleteDataAtIndex(int index)
+        {
+            if (_widgets.Count <= index) throw new ArgumentException("Index above instances!!!");
+            
+            _widgets[index].DeleteData();
         }
 
         public IEnumerator<TWidget> GetEnumerator()
@@ -63,10 +70,11 @@ namespace Utils
     public abstract class WidgetInstance<TWidget, TItemData> : MonoBehaviour
     {
         public Action<TWidget> OnDisabled;
+        public Action<TItemData> OnDeletedData;
         public abstract void SetData(TItemData pack);
-        public abstract InstanceStage InstanceStage { get; set; }
         public abstract TItemData GetData();
         public abstract void Disable();
+        public abstract void DeleteData();
     }
 
     public enum InstanceStage

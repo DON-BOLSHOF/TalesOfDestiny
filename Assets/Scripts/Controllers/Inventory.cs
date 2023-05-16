@@ -12,7 +12,7 @@ using Zenject;
 
 namespace Controllers
 {
-    public class Inventory : MonoBehaviour, IGameStateVisitor
+    public class Inventory : AbstractPanelUtil, IGameStateVisitor
     {
         [SerializeField] private InventoryPanel _inventoryPanel;
 
@@ -23,7 +23,7 @@ namespace Controllers
 
         private void Start()
         {
-            _inventoryPanel.InitializeItems(_gameSession.Data.InventoryData.InventoryItems.ToList());
+            _inventoryPanel.InitializeSlots(_gameSession.Data.InventoryData.InventoryItems.ToList());
 
             _trash.Retain(new Func<IDisposable>(() =>
             {
@@ -32,19 +32,10 @@ namespace Controllers
             })());
             _trash.Retain(new Func<IDisposable>(() =>
             {
-                _inventoryPanel.OnDisableItem += OnDisabledItem;
-                return new ActionDisposable(() => _inventoryPanel.OnDisableItem -= OnDisabledItem);
+                _inventoryPanel.OnDeleteItem += OnDisabledItem;
+                return new ActionDisposable(() => _inventoryPanel.OnDeleteItem -= OnDisabledItem);
             })()); 
         }
-
-        public void Show()
-        {
-            if (!_gameSession.GameStateAnalyzer.TryChangeState(this)) return;
-            
-            _eventLevelBoard.PrepareCardsField();
-            _inventoryPanel.Show();
-        }
-
 
         private void OnUsedItem(InventoryItem value)
         {
@@ -56,16 +47,24 @@ namespace Controllers
             }
         }
 
-        public void Exit()
+        private void OnDisabledItem(InventoryItem value)
+        {
+            _gameSession.Data.InventoryData.Visit(this, value);
+        }
+
+        public override void Show()
+        {
+            if (!_gameSession.GameStateAnalyzer.TryChangeState(this)) return;
+            
+            _eventLevelBoard.PrepareCardsField();
+            _inventoryPanel.Show();
+        }
+
+        public override void Exit()
         {
             _inventoryPanel.Exit();
             _eventLevelBoard.ReturnCardsField();
             VisitGameState(_gameSession.GameStateAnalyzer, Stage.End);
-        }
-
-        private void OnDisabledItem(InventoryItem value)
-        {
-            _gameSession.Data.InventoryData.Visit(this, value);
         }
 
         public void VisitGameState(GameStateAnalyzer gameStateAnalyzer, Stage stage)
