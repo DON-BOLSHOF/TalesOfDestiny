@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using Cards.SituationCards.Event.ArmyEvents;
+﻿using System.Collections;
 using Definitions.Inventory;
-using Model.Data.StorageData;
 using TMPro;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
 using Utils;
-using Utils.Disposables;
 
 namespace Widgets.PanelWidgets.InventoryWidgets
 {
@@ -18,8 +13,8 @@ namespace Widgets.PanelWidgets.InventoryWidgets
         [SerializeField] private TextMeshPro _id;
         [SerializeField] private TextMeshPro _description;
 
-        private event Action OnThrownOut;
-        private event Action OnUsed;
+        public ReactiveEvent OnThrownOut = new ReactiveEvent();
+        public ReactiveEvent OnUsed = new ReactiveEvent();
 
         public override void Show()
         {
@@ -29,12 +24,12 @@ namespace Widgets.PanelWidgets.InventoryWidgets
         
         public void OnThrowOutButtonClicked()
         {
-            OnThrownOut?.Invoke();
+            OnThrownOut?.Execute();
         }
 
         public void OnUseButtonClicked()
         {
-            OnUsed?.Invoke();
+            OnUsed?.Execute();
         }
 
         public void SetData(InventoryItem item)
@@ -56,18 +51,6 @@ namespace Widgets.PanelWidgets.InventoryWidgets
         {
             yield return base.Disappear(graphics);
             gameObject.SetActive(false);
-        }
-
-        public IDisposable SubscribeOnThrown(Action action)
-        {
-            OnThrownOut += action;
-            return new ActionDisposable(() => OnThrownOut -= action);
-        }
-
-        public IDisposable SubscribeOnUsed(Action action)
-        {
-            OnUsed += action;
-            return new ActionDisposable(() => OnUsed -= action);
         }
     }
 }

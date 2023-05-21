@@ -48,7 +48,7 @@ namespace Panels
         private IEnumerator Dissolving()
         {
             _typingAnimation.HideText();
-            DissolveAnimation.SetBaseMaterials();
+            DissolveAnimation.SetBaseMaterialsForSpecials();
             
             yield return DissolveAnimation.EndAnimation();
 
@@ -68,20 +68,20 @@ namespace Panels
             Dissolve();
         }
 
-        public override void
-            ReloadSituation(Situation situation) //Код начинает в спагетти превращаться с кусочками говна...
+        protected override void ReloadRandomlySituation(Situation[] situations) //Код начинает в спагетти превращаться, с кусочками говна...
         {
+            var currentSituation = situations.ElementAt(Random.Range(0, situations.Length));
+
             var buttonWidgets = FindButtonWidgets();
 
             StartRoutine(
                 DissolveAnimation.ReloadSpecialObjects(buttonWidgets, () =>
                     {
                         GetComponentsInChildren<CustomButtonWidget>().ToList().ForEach(x => x.ActivateButton());
-                        return ReloadButton(situation.Buttons);
+                        return ReloadButton(currentSituation.Buttons);
                     },
                     FindButtonWidgets), ref _shaderRoutine); //Это или слишком тупо или гениально
-            ReloadStrings(new[]
-                { situation.name, situation.Description });
+            ReloadStrings(new[] { currentSituation.SituationName, currentSituation.Description });
         }
 
         private List<Graphic> FindButtonWidgets()

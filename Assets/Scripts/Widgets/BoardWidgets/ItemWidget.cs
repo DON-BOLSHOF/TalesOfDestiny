@@ -1,15 +1,18 @@
 ﻿using Cards;
+using Controllers;
 using UnityEngine;
 using View;
+using Zenject;
 
 namespace Widgets.BoardWidgets
 {
-    public abstract class ItemWidget : MonoBehaviour
+    public class ItemWidget : MonoBehaviour
     {
         protected CardViewWidget _view;
         protected LevelCard _card;
 
         public CardViewWidget View => _view;
+        public LevelCard LevelCard => _card;
         
         private void SetViewData(CardView cardView)
         {

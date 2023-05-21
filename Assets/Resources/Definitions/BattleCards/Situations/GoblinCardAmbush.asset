@@ -12,18 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59a4850e74da489abb75567cf7707987, type: 3}
   m_Name: GoblinCardAmbush
   m_EditorClassIdentifier: 
+  _situationName: Goblin Ambush
   _situationDescription: Forest ambush! Goblins attacking you!
   _buttons:
   - _name: Attack!
     _buttonInteraction:
       _dataType: 0
+      _controllerType: 8
       _propertyEvents: []
       _armyEvents: []
-      _controllerType: 8
-      _futureSituation: {fileID: 0}
+      _reactionSituations: []
   - _name: Flee.
     _buttonInteraction:
       _dataType: 2
+      _controllerType: 2
       _propertyEvents:
       - _mode: 0
         _data:
@@ -32,5 +34,4 @@ MonoBehaviour:
           _prestige: -10
         _def: {fileID: 0}
       _armyEvents: []
-      _controllerType: 2
-      _futureSituation: {fileID: 0}
+      _reactionSituations: []

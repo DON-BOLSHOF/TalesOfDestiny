@@ -1,25 +1,25 @@
 using System;
 using Cards;
-using Controllers;
 using UnityEngine;
 using UnityEngine.UI;
 using Utils.Interfaces;
+using Zenject;
 
 namespace Widgets.BoardWidgets
 {
     public sealed class BoardItemWidget : ItemWidget, IClickable<BoardItemWidget>
     {
         [SerializeField] private Image _backGroundImage;
+
+        [Inject] private BoardClickHandler _boardClickHandler;
+
         public Image BackGroundImage => _backGroundImage;
         
-        private LevelManager _manager;
-
         private Animator _viewAnimator;
+        private bool _clicked;
 
         public event Action<BoardItemWidget> IClicked;
         public event Action OnClick;
-        
-        private bool _clicked;
 
         private static readonly int Swap = Animator.StringToHash("Swap");
 
@@ -33,7 +33,7 @@ namespace Widgets.BoardWidgets
             if (!_clicked || isEndJourney)
             {
                 _viewAnimator.SetTrigger(Swap);
-                if (_manager != null) _manager.ShowEventContainer(_card); //Ну если этот контроллер нужен будет не нулл
+                _boardClickHandler.Click(_card);
                 _clicked = true;
             }
 
@@ -49,14 +49,6 @@ namespace Widgets.BoardWidgets
 
         private void DynamicalInitialization()
         {
-            _manager = _card.LevelCardType switch
-            {
-                LevelCardType.Situation=> GameObject.FindWithTag("EventManager").GetComponent<EventManager>(),
-                LevelCardType.EndJourney=> GameObject.FindWithTag("EventManager").GetComponent<EventManager>(),
-                LevelCardType.Battle => GameObject.FindWithTag("BattleController").GetComponent<BattleEventManager>(),
-                _ => _manager
-            };
-
             _viewAnimator = _view.GetComponent<Animator>();
             if (_viewAnimator == null) throw new ArgumentException("View hasn't got an animator!!!");
         }

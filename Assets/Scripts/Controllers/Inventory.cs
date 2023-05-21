@@ -1,9 +1,9 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Definitions.Inventory;
 using LevelManipulation;
 using Model.Data.StorageData;
 using Panels;
+using UniRx;
 using UnityEngine;
 using Utils;
 using Utils.Disposables;
@@ -25,16 +25,8 @@ namespace Controllers
         {
             _inventoryPanel.InitializeSlots(_gameSession.Data.InventoryData.InventoryItems.ToList());
 
-            _trash.Retain(new Func<IDisposable>(() =>
-            {
-                _inventoryPanel.OnUseItem += OnUsedItem;
-                return new ActionDisposable(() => _inventoryPanel.OnUseItem -= OnUsedItem);
-            })());
-            _trash.Retain(new Func<IDisposable>(() =>
-            {
-                _inventoryPanel.OnDeleteItem += OnDisabledItem;
-                return new ActionDisposable(() => _inventoryPanel.OnDeleteItem -= OnDisabledItem);
-            })()); 
+            _trash.Retain(_inventoryPanel.OnUseItem.Subscribe(OnUsedItem));
+            _trash.Retain(_inventoryPanel.OnDeleteItem.Subscribe(OnDisabledItem));
         }
 
         private void OnUsedItem(InventoryItem value)

@@ -1,7 +1,9 @@
-﻿using Cards.SituationCards;
+﻿using System.Linq;
+using Cards.SituationCards;
 using CodeAnimation;
 using UnityEngine;
 using Utils.Interfaces;
+using Random = UnityEngine.Random;
 
 namespace Panels
 {
@@ -11,7 +13,7 @@ namespace Panels
         [SerializeField] private Animator _animator;
 
         private Coroutine _shaderRoutine;
-        
+
         private static readonly int ExitKey = Animator.StringToHash("Exit");
         private static readonly int PrepareBattle = Animator.StringToHash("PrepareBattle");
 
@@ -33,11 +35,12 @@ namespace Panels
             OnChangeState?.Invoke(false);
         }
 
-        public override void ReloadSituation(Situation situation) //Пригодится может, иначе удали!
+        public void PrepareToBattle()
         {
-            ReloadStrings(new[]
-                { situation.name, situation.Description });
-            OnReloadButtons?.Invoke(situation.Buttons);
+            OnSkipText();
+            _typingAnimation.HideText();
+            _animator.SetTrigger(PrepareBattle);
+            StartRoutine(DissolveAnimation.EndAnimation(), ref _shaderRoutine);
         }
 
         public void OnExited() //В аниматоре вызовется
@@ -45,12 +48,13 @@ namespace Panels
             gameObject.SetActive(false);
         }
 
-        public void PrepareToBattle()
+        protected override void ReloadRandomlySituation(Situation[] situations) //Пригодится может, иначе удали!
         {
-            OnSkipText();
-            _typingAnimation.HideText();
-            _animator.SetTrigger(PrepareBattle);
-            StartRoutine(DissolveAnimation.EndAnimation(), ref _shaderRoutine);
+            var currentSituation = situations.ElementAt(Random.Range(0, situations.Length));
+
+            ReloadStrings(new[]
+                { currentSituation.SituationName, currentSituation.Description });
+            OnReloadButtons?.Invoke(currentSituation.Buttons);
         }
     }
 }

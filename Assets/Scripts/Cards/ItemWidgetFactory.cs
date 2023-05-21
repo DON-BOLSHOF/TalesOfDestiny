@@ -2,60 +2,56 @@
 using LevelManipulation;
 using UnityEngine;
 using View;
-using Widgets;
 using Widgets.BoardWidgets;
+using Zenject;
 using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 
 namespace Cards
 {
-    public static class ItemWidgetFactory
+    public class ItemWidgetFactory : IFactory<Object, ItemWidget>
     {
-        public static GameObject CreateInstance(GameObject prefab, Transform container, Vector2 position)
+        private readonly DiContainer _diContainer;
+
+        [Inject]
+        public ItemWidgetFactory(DiContainer diContainer)
         {
-            var instantiate = Object.Instantiate(prefab, container);
+            _diContainer = diContainer;
+        }
+
+        public ItemWidget Create(Object prefab)
+        {
+            return _diContainer.InstantiatePrefabForComponent<ItemWidget>(prefab);
+        }
+
+        private ItemWidget CreateInstance(GameObject prefab, Transform container, Vector2 position)
+        {
+            var instantiate = _diContainer.InstantiatePrefabForComponent<ItemWidget>(prefab, container);
             instantiate.GetComponent<RectTransform>().anchoredPosition = position;
 
             return instantiate;
         }
 
-        public static ItemWidget CreateItemWidgetInstance(GameObject prefab, Transform container, Vector2 position,
+        public ItemWidget CreateItemWidgetInstance(GameObject prefab, Transform container, Vector2 position,
             WidgetType type = WidgetType.None)
         {
             var go = CreateInstance(prefab, container, position);
 
-            ItemWidget widget = null;
-
-            switch (type) //Здесь я гарантирую взятие правильного виджета, а в коде потом явно преобразую в нужный
-            {
-                case WidgetType.None:
+            ItemWidget widget =
+                type switch //Здесь я гарантирую взятие правильного виджета, а в коде потом явно преобразую в нужный
                 {
-                    widget = go.GetComponent<ItemWidget>();
-                    break;
-                }
-                case WidgetType.Boarder:
-                {
-                    widget = go.GetComponent<BoardItemWidget>();
-                    break;
-                }
-                case WidgetType.PanelUtil:
-                {
-                    widget = go.GetComponent<PanelUtilItemWidget>();
-                    break;
-                }
-            }
+                    WidgetType.None => go.GetComponent<ItemWidget>(),
+                    WidgetType.Boarder => go.GetComponent<BoardItemWidget>(),
+                    WidgetType.PanelUtil => go.GetComponent<PanelUtilItemWidget>(),
+                    _ => null
+                };
 
             if (widget == null) throw new ArgumentException($"It is not a prefab of itemWidget or {type} was wrong!");
 
             return widget;
         }
 
-        public static LevelCard GetLevelCardRandomly()
-        {
-            return LevelCardFactory.GetLevelCardRandomly();
-        }
-
-        public static LevelCard GetLevelCardRandomlyFromDefs(LevelCardType type)
+        public LevelCard GetLevelCardRandomlyFromDefs(LevelCardType type)
         {
             LevelCard card;
             switch (type)
@@ -75,7 +71,7 @@ namespace Cards
             return card;
         }
 
-        public static LevelCard GetLevelCardRandomlyFromDefs(CellState type)
+        public LevelCard GetLevelCardRandomlyFromDefs(CellState type)
         {
             LevelCard card = null;
             switch (type)
@@ -104,7 +100,7 @@ namespace Cards
             return card;
         }
 
-        public static void FulFillItemWidget(ItemWidget cardWidget, WidgetType widgetType,
+        public void FulFillItemWidget(ItemWidget cardWidget, WidgetType widgetType,
             LevelCard card)
         {
             var path = GetPath(widgetType, card.LevelCardType);
@@ -120,46 +116,32 @@ namespace Cards
             cardWidget.GetComponent<ItemWidget>().SetData(card);
         }
 
-        private static string GetPath(WidgetType widgetType, LevelCardType cardType)
+        private string GetPath(WidgetType widgetType, LevelCardType cardType)
         {
             string path = null;
 
-            switch (widgetType)
+            path += widgetType switch
             {
-                case WidgetType.Boarder:
-                    path += "Boarder";
-                    break;
-                case WidgetType.PanelUtil:
-                    path += "PanelUtil";
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(widgetType), widgetType, null);
-            }
+                WidgetType.Boarder => "Boarder",
+                WidgetType.PanelUtil => "PanelUtil",
+                _ => throw new ArgumentOutOfRangeException(nameof(widgetType), widgetType, null)
+            };
 
             path += "CardView/";
 
-            switch (cardType)
+            path += cardType switch
             {
-                case LevelCardType.Situation:
-                    path+="SituationCardView";
-                    break;
-                case LevelCardType.EndJourney:
-                    path+="EndJourneyCardView";
-                    break;
-                case LevelCardType.HeroPosition:
-                    path += "HeroCardView";
-                    break;
-                case LevelCardType.Battle:
-                    path += "BattleCardView";
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(cardType), cardType, null);
-            }
+                LevelCardType.Situation => "SituationCardView",
+                LevelCardType.EndJourney => "EndJourneyCardView",
+                LevelCardType.HeroPosition => "HeroCardView",
+                LevelCardType.Battle => "BattleCardView",
+                _ => throw new ArgumentOutOfRangeException(nameof(cardType), cardType, null)
+            };
 
             return path;
         }
 
-        private static void DeactivatePossibleView(ItemWidget cardWidget)
+        private void DeactivatePossibleView(ItemWidget cardWidget)
         {
             var activeView = cardWidget.GetComponentInChildren<CardViewWidget>();
             if (activeView != null)

@@ -48,6 +48,7 @@
      <Compile Include="Assets\Scripts\Widgets\GameStageWidget.cs" />
      <Compile Include="Assets\Scripts\Definitions\DefsFacade.cs" />
      <Compile Include="Assets\Scripts\Widgets\PanelWidgets\InventoryWidgets\InventorySlotWidget.cs" />
+     <Compile Include="Assets\Scripts\System\Installers\BattleEventManagerInstaller.cs" />
      <Compile Include="Assets\Scripts\UI\Buttons\InventoryButton.cs" />
      <Compile Include="Assets\Scripts\Widgets\BoardWidgets\PanelUtilItemWidget.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs" />
@@ -118,6 +119,7 @@
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\Cards\EnemyCardFactory.cs" />
      <Compile Include="Assets\Scripts\Model\Data\HeroCompanionsData.cs" />
+     <Compile Include="Assets\Scripts\System\Installers\EventManagerInstaller.cs" />
      <Compile Include="Assets\Scripts\Widgets\BoardWidgets\BoardItemWidget.cs" />
      <Compile Include="Assets\Scripts\View\CreaturesCardView\EnemyCardView\EnemyCardView.cs" />
      <Compile Include="Assets\Scripts\System\Installers\BattleControllerInstaller.cs" />
@@ -145,6 +147,7 @@
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ShaderPropAnimator.cs" />
      <Compile Include="Assets\Scripts\UI\Buttons\MagicScrollButton.cs" />
      <Compile Include="Assets\Scripts\Controllers\BattleEventManager.cs" />
+     <Compile Include="Assets\Scripts\System\BoardClickHandler.cs" />
      <Compile Include="Assets\Scripts\LevelManipulation\Cell.cs" />
      <Compile Include="Assets\Scripts\Panels\EventPanelUtil.cs" />
      <Compile Include="Assets\Scripts\Definitions\Creatures\Company\CompanyDefs.cs" />
@@ -172,6 +175,7 @@
      <Compile Include="Assets\Scripts\View\EndJourneyCardView\EndJourneyCardView.cs" />
      <Compile Include="Assets\Scripts\Model\Data\PlayerData.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshSpawner.cs" />
+     <Compile Include="Assets\Scripts\System\Installers\SceneSystemInstaller.cs" />
      <Compile Include="Assets\Scripts\System\Installers\GameSessionInstaller.cs" />
      <Compile Include="Assets\Scripts\Model\Data\StorageData\IDataInteractionVisitor.cs" />
      <Compile Include="Assets\Scripts\View\PortraitCardView.cs" />
@@ -197,6 +201,7 @@
      <Compile Include="Assets\Scripts\CodeAnimation\SpriteFrameAnimation.cs" />
      <Compile Include="Assets\Scripts\Definitions\EventDefs\PropertyEventDef.cs" />
      <Compile Include="Assets\Scripts\View\BattleCardView\BattleCardViewWidget.cs" />
+     <Compile Include="Assets\Scripts\System\Installers\FactoriesInstaller.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
      <Compile Include="Assets\Scripts\System\Installers\HeroInstaller.cs" />
      <Compile Include="Assets\Scripts\CodeAnimation\BlightOnMouseCard.cs" />
@@ -223,6 +228,7 @@
      <Compile Include="Assets\Scripts\LevelManipulation\CellInfo.cs" />
      <Compile Include="Assets\Scripts\LevelManipulation\LevelBuilder.cs" />
      <Compile Include="Assets\Scripts\View\CreaturesCardView\CreatureCardView.cs" />
+     <Compile Include="Assets\Scripts\Utils\ReactiveEvent.cs" />
      <Compile Include="Assets\Scripts\UI\HUDController.cs" />
      <Compile Include="Assets\Scripts\LevelManipulation\CreaturePanelManipulation.cs" />
      <Compile Include="Assets\Scripts\Utils\Interfaces\IDissolving.cs" />
@@ -269,6 +275,7 @@
      <Folder Include="Assets\Resources\Definitions\SituationCards\Situations" />
      <Folder Include="Assets\Prefabs\PrefabsAnimation\UI\BattleController\EnemyEventContainer" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
+     <Folder Include="Assets\Sprites\SituationsSprites\BarbarianCamp" />
      <Folder Include="Assets\Prefabs\PrefabsAnimation\PhysicalCard\EndJourneyAnimation" />
      <Folder Include="Assets\Sprites\Cards\CardFrames" />
      <Folder Include="Assets\Resources\Definitions\EnemyCards\Enemies" />
@@ -344,6 +351,7 @@
      <Folder Include="Assets\Prefabs\PrefabsAnimation\UI\EventController\Container" />
      <Folder Include="Assets\Resources\Definitions\CompanyCards" />
      <Folder Include="Assets\Scripts\UI\Buttons" />
+     <Folder Include="Assets\Resources\Definitions\SituationCards\Situations\BarbarianCamp\Situation" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
      <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
      <Folder Include="Assets\Scripts\Cards\HeroCard" />
@@ -407,6 +415,7 @@
      <Folder Include="Assets\Prefabs\PrefabsAnimation\UI" />
      <Folder Include="Assets\Resources\Definitions\SituationCards\Situations\Poisoning\Situation" />
      <Folder Include="Assets\VFXAssets\Procedural fire" />
+     <Folder Include="Assets\Resources\Definitions\SituationCards\Situations\BarbarianCamp" />
      <Folder Include="Assets\Render" />
      <Folder Include="Assets\Scripts\View\CreatureCardView" />
      <None Include="Assets\VFXAssets\Procedural fire\Shaders\FireSphere.shader" />
@@ -1226,6 +1235,10 @@
     <ProjectReference Include="Zenject-PoolMonitor-Editor.csproj">
       <Project>{022c7feb-a364-eadd-6cd1-613d72e69196}</Project>
       <Name>Zenject-PoolMonitor-Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="UniRx.csproj">
+      <Project>{0523055a-65a1-4419-6c15-834111a0d989}</Project>
+      <Name>UniRx</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

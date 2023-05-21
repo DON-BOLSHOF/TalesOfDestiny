@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using CodeAnimation;
 using Definitions.Inventory;
+using UniRx;
 using UnityEngine;
 using Utils;
 using Utils.Disposables;
@@ -29,8 +30,8 @@ namespace Panels
 
         private DisposeHolder _trash = new DisposeHolder();
 
-        public event Action<InventoryItem> OnUseItem;
-        public event Action<InventoryItem> OnDeleteItem;
+        public ReactiveEvent<InventoryItem> OnUseItem = new ReactiveEvent<InventoryItem>();
+        public ReactiveEvent<InventoryItem> OnDeleteItem = new ReactiveEvent<InventoryItem>();
 
         private static readonly int Showing = Animator.StringToHash("Showing");
         private static readonly int Exiting = Animator.StringToHash("Exiting");
@@ -57,20 +58,17 @@ namespace Panels
         {
             foreach (var slotWidget in _inventoryPanelSlots)
             {
-                slotWidget.OnItemUsed += OnUsedItem;
-                slotWidget.OnWidgetClicked += HideOtherWidgetClickConsequences;
                 slotWidget.OnReloaded += ReloadDraggableItem;
-                slotWidget.OnDeletedData += OnDeleteItemData;
-                _trash.Retain(new ActionDisposable(() => slotWidget.OnItemUsed -= OnUsedItem));
-                _trash.Retain(new ActionDisposable(() => slotWidget.OnWidgetClicked -= HideOtherWidgetClickConsequences));
+                _trash.Retain(slotWidget.OnItemUsed.Subscribe(OnUsedItem));
+                _trash.Retain(slotWidget.OnWidgetClicked.Subscribe(HideOtherWidgetClickConsequences));
                 _trash.Retain(new ActionDisposable(() => slotWidget.OnReloaded -= ReloadDraggableItem));
-                _trash.Retain(new ActionDisposable(() => slotWidget.OnDeletedData -= OnDeleteItemData));
+                _trash.Retain(slotWidget.OnDeletedData.Subscribe(OnDeleteItemData));
             }
         }
 
         private void OnUsedItem(InventorySlotWidget widget)
         {
-            OnUseItem?.Invoke(widget.GetData());
+            OnUseItem?.Execute(widget.GetData());
 
             var widgetIndex = _inventoryPanelSlots.FindIndex(widget);
             _inventoryPanelSlots.DeleteDataAtIndex(widgetIndex);
@@ -94,7 +92,7 @@ namespace Panels
 
         private void OnDeleteItemData(InventoryItem widget)
         {
-            OnDeleteItem?.Invoke(widget);
+            OnDeleteItem?.Execute(widget);
         }
 
         public override void Show()

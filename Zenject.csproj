@@ -191,8 +191,8 @@
      <Compile Include="Assets\Plugins\Zenject\OptionalExtras\Signals\Internal\Binders\DeclareSignal\DeclareSignalIdRequireHandlerAsyncTickPriorityCopyBinder.cs" />
      <Compile Include="Assets\Plugins\Zenject\Source\Factories\Pooling\PoolableMemoryPool.cs" />
      <Compile Include="Assets\Plugins\Zenject\Source\Factories\Pooling\Util\PoolCleanupChecker.cs" />
-     <Compile Include="Assets\Plugins\Zenject\Source\Providers\MethodProviderMultiple.cs" />
      <Compile Include="Assets\Plugins\Zenject\Source\Install\InstallerBase.cs" />
+     <Compile Include="Assets\Plugins\Zenject\Source\Providers\MethodProviderMultiple.cs" />
      <Compile Include="Assets\Plugins\Zenject\Source\Factories\PlaceholderFactoryBase.cs" />
      <Compile Include="Assets\Plugins\Zenject\Source\Factories\PrefabFactory.cs" />
      <Compile Include="Assets\Plugins\Zenject\Source\Main\ZenjectSettings.cs" />

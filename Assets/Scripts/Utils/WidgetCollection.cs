@@ -69,8 +69,8 @@ namespace Utils
 
     public abstract class WidgetInstance<TWidget, TItemData> : MonoBehaviour
     {
-        public Action<TWidget> OnDisabled;
-        public Action<TItemData> OnDeletedData;
+        public ReactiveEvent<TWidget> OnDisabled = new ReactiveEvent<TWidget>();
+        public ReactiveEvent<TItemData> OnDeletedData = new ReactiveEvent<TItemData>();
         public abstract void SetData(TItemData pack);
         public abstract TItemData GetData();
         public abstract void Disable();

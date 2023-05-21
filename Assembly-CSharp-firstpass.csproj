@@ -54,6 +54,7 @@
      <Folder Include="Assets\Plugins\Sirenix" />
      <Folder Include="Assets\Plugins" />
      <Folder Include="Assets\Plugins\Sirenix\Odin Inspector\Assets" />
+     <None Include="Assets\Plugins\UniRx\ReadMe.txt" />
      <None Include="Assets\Plugins\Sirenix\Assemblies\Sirenix.Serialization.Config.xml" />
      <None Include="Assets\Plugins\Sirenix\Assemblies\Sirenix.OdinInspector.Editor.xml" />
      <Folder Include="Assets\Plugins\AsyncAwaitUtil\Tests" />
@@ -68,6 +69,7 @@
      <Folder Include="Assets\Plugins\Sirenix\Odin Inspector\Modules" />
      <Folder Include="Assets\Plugins\AsyncAwaitUtil" />
      <None Include="Assets\Plugins\Sirenix\Readme.txt" />
+     <Folder Include="Assets\Plugins\UniRx" />
      <None Include="Assets\Plugins\Sirenix\Assemblies\link.xml" />
      <Folder Include="Assets\Plugins\Sirenix\Odin Inspector\Config" />
      <Folder Include="Assets\Plugins\Sirenix\Demos" />
@@ -848,6 +850,10 @@
     <ProjectReference Include="Zenject-PoolMonitor-Editor.csproj">
       <Project>{022c7feb-a364-eadd-6cd1-613d72e69196}</Project>
       <Name>Zenject-PoolMonitor-Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="UniRx.csproj">
+      <Project>{0523055a-65a1-4419-6c15-834111a0d989}</Project>
+      <Name>UniRx</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

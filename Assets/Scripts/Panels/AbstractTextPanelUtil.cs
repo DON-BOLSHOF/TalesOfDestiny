@@ -29,6 +29,24 @@ namespace Panels
             _typingAnimation = new TypingAnimation(_sfxSource, _typingClip, _texts);
         }
 
+        public void OnSkipText()
+        {
+            if (_typingRoutine == null) return;
+            StopCoroutine(_typingRoutine);
+            _typingRoutine = null;
+
+            _typingAnimation.SkipText();
+        }
+
+        protected abstract void ReloadRandomlySituation(Situation[] situations);
+
+        protected void ReloadStrings(string[] strings)
+        {
+            _typingAnimation.HideText();
+            _typingAnimation.SetStrings(strings);
+            StartRoutine(_typingAnimation.TypeText(), ref _typingRoutine);
+        }
+
         protected void StartRoutine(IEnumerator routine, ref Coroutine coroutine)
         {
             if (coroutine != null)
@@ -40,28 +58,10 @@ namespace Panels
             coroutine = StartCoroutine(routine);
         }
 
-        public void OnSkipText()
-        {
-            if (_typingRoutine == null) return;
-            StopCoroutine(_typingRoutine);
-            _typingRoutine = null;
-
-            _typingAnimation.SkipText();
-        }
-
-        public abstract void ReloadSituation(Situation situation);
-
-        protected void ReloadStrings(string[] strings)
-        {
-            _typingAnimation.HideText();
-            _typingAnimation.SetStrings(strings);
-            StartRoutine(_typingAnimation.TypeText(), ref _typingRoutine);
-        }
-
         public void Visit(IControllerInteraction interaction)
         {
             if ((interaction.ControllerType & ControllerInteractionType.Continue) == ControllerInteractionType.Continue)
-                ReloadSituation(interaction.FutureSituation);
+                ReloadRandomlySituation(interaction.ReactionSituations);
             if ((interaction.ControllerType & ControllerInteractionType.ClosePanel) == ControllerInteractionType.ClosePanel)
                 Exit();
         }

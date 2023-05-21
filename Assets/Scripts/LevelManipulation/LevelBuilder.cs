@@ -4,16 +4,17 @@ using Cards;
 using Components;
 using UnityEngine;
 using Utils;
-using Widgets;
 using Widgets.BoardWidgets;
+using Zenject;
 
 namespace LevelManipulation
 {
-    [Serializable]
-    public sealed class LevelBuilder
+    public sealed class LevelBuilder : MonoBehaviour
     {
         [SerializeField] private FieldFormer _fieldFormer;
 
+        [Inject] private ItemWidgetFactory _itemWidgetFactory;
+        
         private FieldBuilder _fieldBuilder;
 
         private readonly List<List<BoardItemWidget>> _fieldPull = new List<List<BoardItemWidget>>();
@@ -71,7 +72,7 @@ namespace LevelManipulation
                 var rowInstance = new List<BoardItemWidget>();
                 foreach (var item in row)
                 {
-                    var instance =(BoardItemWidget)ItemWidgetFactory.CreateItemWidgetInstance(item.Prefab, _fieldFormer.Field, item.Position, WidgetType.Boarder);
+                    var instance =(BoardItemWidget)_itemWidgetFactory.CreateItemWidgetInstance(item.Prefab, _fieldFormer.Field, item.Position, WidgetType.Boarder);
                     rowInstance.Add(instance);
                 }
 
@@ -83,8 +84,8 @@ namespace LevelManipulation
 
         private void FulFillCard(CellInfo cardInfo, BoardItemWidget cardWidget, Vector2 position)
         {
-            var levelCard = ItemWidgetFactory.GetLevelCardRandomlyFromDefs(cardInfo.CurrentCellState);
-            ItemWidgetFactory.FulFillItemWidget(cardWidget, WidgetType.Boarder, levelCard);
+            var levelCard = _itemWidgetFactory.GetLevelCardRandomlyFromDefs(cardInfo.CurrentCellState);
+            _itemWidgetFactory.FulFillItemWidget(cardWidget, WidgetType.Boarder, levelCard);
 
             var heroBeholder = cardWidget.GetComponent<HeroPositionBeholderComponent>(); // Просто две строки в отдельную 
             heroBeholder.SetPosition(position);                                 //абстракцию выводить...

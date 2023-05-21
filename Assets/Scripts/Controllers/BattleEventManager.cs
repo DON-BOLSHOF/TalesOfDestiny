@@ -10,7 +10,6 @@ using Panels;
 using UnityEngine;
 using Utils;
 using View.CreaturesCardView.EnemyCardView;
-using Widgets;
 using Widgets.EventManagersWidgets;
 
 namespace Controllers

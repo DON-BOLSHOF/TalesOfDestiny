@@ -12,8 +12,7 @@ using Zenject;
 
 namespace Controllers
 {
-    [Serializable]
-    public class EventManager : LevelManager, IGameStateVisitor //Чистая инициализация, так что свое ко-ко-ко о менеджере не надо мне тут
+    public class EventManager : LevelManager, IGameStateVisitor //Чистая инициализация, так что свое ко-ко-ко о менеджере не надо мне тут, Уже обманщик получается
     {
         [SerializeField] private Text _contents;
         [SerializeField] private Text _eventText;
@@ -23,6 +22,7 @@ namespace Controllers
 
         [Inject] private DiContainer _diContainer;
         [Inject] protected GameSession _session;
+        [Inject] private ItemWidgetFactory _itemWidgetFactory;
 
         private ForwardDiDataGroup<CustomButtonWidget, CustomButton> _dataGroup;
 
@@ -51,9 +51,9 @@ namespace Controllers
             var eventCard = (EventCard)card;
             if (eventCard == null) throw new ArgumentException("Was sent not EventCard!!!");
 
-            ItemWidgetFactory.FulFillItemWidget(_panelUtilItemWidget, WidgetType.PanelUtil, card);
+            _itemWidgetFactory.FulFillItemWidget(_panelUtilItemWidget, WidgetType.PanelUtil, card);
 
-            _contents.text = eventCard.Id;
+            _contents.text = eventCard.Situation.SituationName;
             _eventText.text = eventCard.Situation.Description;
             _dataGroup.SetData(eventCard.Situation.Buttons);
             _panelUtilItemWidget.View.SetViewData(eventCard.View);

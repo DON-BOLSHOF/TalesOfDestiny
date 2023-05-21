@@ -6,7 +6,7 @@ namespace Model.Data.ControllersData
     public interface IControllerInteraction
     {
         ControllerInteractionType ControllerType { get; }
-        Situation FutureSituation { get; }
+        Situation[] ReactionSituations { get; }
         void Accept(IControllerInteractionVisitor visitor);
     }
     

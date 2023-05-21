@@ -2,6 +2,7 @@
 using Definitions.Inventory;
 using Model.Properties;
 using UI;
+using UniRx;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -22,9 +23,10 @@ namespace Widgets.PanelWidgets.InventoryWidgets
         private DescriptionStage _descriptionStage;
 
         private DisposeHolder _trash = new DisposeHolder();
-        public event Action<InventoryItemWidget> OnWidgetClicked;
-        public event Action<InventoryItemWidget> OnItemUsed;
-        public event Action<InventoryItem> OnItemDeleted; //Понадобится disable - сделаешь
+        
+        public ReactiveEvent<InventoryItemWidget> OnWidgetClicked = new ReactiveEvent<InventoryItemWidget>();
+        public ReactiveEvent<InventoryItemWidget> OnItemUsed = new ReactiveEvent<InventoryItemWidget>();
+        public ReactiveEvent<InventoryItem> OnItemDeleted = new ReactiveEvent<InventoryItem>();//Понадобится disable - сделаешь
 
         protected override void Awake()
         {
@@ -34,8 +36,8 @@ namespace Widgets.PanelWidgets.InventoryWidgets
 
         private void SubscribeItem()
         {
-            _trash.Retain(_descriptionPanel.SubscribeOnUsed(UseItem));
-            _trash.Retain(_descriptionPanel.SubscribeOnThrown(Disable));
+            _trash.Retain(_descriptionPanel.OnUsed.Subscribe(UseItem));
+            _trash.Retain(_descriptionPanel.OnThrownOut.Subscribe(Disable));
             _trash.Retain(_descriptionPanel.SubscribeOnDisappeared(() => _descriptionStage = DescriptionStage.Close));
             _trash.Retain(Stage.SubscribeAndInvoke(delegate(InstanceStage value) { ActivateBlockRaycast(value == InstanceStage.Enabled); }));
         }
@@ -47,7 +49,7 @@ namespace Widgets.PanelWidgets.InventoryWidgets
             _descriptionPanel.Show();
             _descriptionStage = DescriptionStage.Open;
 
-            OnWidgetClicked?.Invoke(this);
+            OnWidgetClicked?.Execute(this);
         }
 
         public void SetData(InventoryItem item)
@@ -60,7 +62,7 @@ namespace Widgets.PanelWidgets.InventoryWidgets
 
         private void UseItem()
         {
-            OnItemUsed?.Invoke(this);
+            OnItemUsed?.Execute(this);
         }
 
         public void Disable()
@@ -75,7 +77,7 @@ namespace Widgets.PanelWidgets.InventoryWidgets
 
         public void DeleteData()
         {
-            OnItemDeleted?.Invoke(Item);
+            OnItemDeleted?.Execute(Item);
             Disable();//Ну тут они идентичны
         }
 

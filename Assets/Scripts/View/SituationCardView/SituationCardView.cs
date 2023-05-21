@@ -2,7 +2,7 @@
 
 namespace View.SituationCardView
 {
-    [CreateAssetMenu(menuName = "CardView/EventCardView", fileName = "EventCardView")]
+    [CreateAssetMenu(menuName = "CardView/SituationCardView", fileName = "SituationCardView")]
     public class SituationCardView : PortraitCardView
     {
         [SerializeField] private Sprite[] _propertyIcons;

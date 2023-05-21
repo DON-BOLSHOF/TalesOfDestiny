@@ -261,7 +261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a908bcca8544eb88ecb432c75bc9a86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sound: {fileID: 0}
+  _sound: {fileID: 6941883170035310533}
   _dissolveTime: 0.07
   _dissolve: {fileID: 2100000, guid: 03a61d53209daf547bc2f761fff00620, type: 2}
   _dissolveState: 1
@@ -281,8 +281,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df8a49abd2654448aaa9f72b47565929, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _clip: {fileID: 0}
-  _volume: 0
+  _clip: {fileID: 8300000, guid: e9c14f20832ab5b4f91a703973c216af, type: 3}
+  _volume: 1
 --- !u!1 &929414585075731180
 GameObject:
   m_ObjectHideFlags: 0
@@ -913,7 +913,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 55
 --- !u!95 &929414585753522764
 Animator:
   serializedVersion: 5
@@ -964,10 +964,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a908bcca8544eb88ecb432c75bc9a86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sound: {fileID: 0}
+  _sound: {fileID: 2327522499122602532}
   _dissolveTime: 0.115
   _dissolve: {fileID: 2100000, guid: 03a61d53209daf547bc2f761fff00620, type: 2}
-  _dissolveState: 1
+  _dissolveState: 0
   _specialDissolveMaterial: {fileID: 2100000, guid: f6ab74c80a75f824ca01ffe8eef8500f, type: 2}
   _changesGraphicElements: []
 --- !u!114 &2327522499122602532
@@ -982,8 +982,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df8a49abd2654448aaa9f72b47565929, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _clip: {fileID: 0}
-  _volume: 0
+  _clip: {fileID: 8300000, guid: 3ce9ae2158af293419d0c8a7d98ee6db, type: 3}
+  _volume: 1
 --- !u!1 &929414585825092094
 GameObject:
   m_ObjectHideFlags: 0
@@ -1785,7 +1785,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 55
 --- !u!114 &929414586442840687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1811,7 +1811,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d53cd58fa7d4e0b8bacf55305f513dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _textPanelUtil: {fileID: 0}
+  _textPanelUtil: {fileID: 929414585753522767}
   _contents: {fileID: 929414584842517036}
   _eventText: {fileID: 929414586600007443}
   _customButtonPrefab: {fileID: 2010519843373405223}
@@ -2245,7 +2245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 675ec4c6796edd7478c50828bc412df1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _textPanelUtil: {fileID: 0}
+  _textPanelUtil: {fileID: 929414584868599178}
   _contents: {fileID: 929414586379594478}
   _eventText: {fileID: 929414585825092092}
   _customButtonPrefab: {fileID: 929414586621703407}
@@ -3636,7 +3636,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8153510408172971708, guid: 46f6bb2098ed8574b8a061647d04b7e2, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 5.6247864
+      value: 5.624817
       objectReference: {fileID: 0}
     - target: {fileID: 8275236529236763356, guid: 46f6bb2098ed8574b8a061647d04b7e2, type: 3}
       propertyPath: m_Pivot.x
@@ -3940,7 +3940,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8153510408172971708, guid: 46f6bb2098ed8574b8a061647d04b7e2, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 5.6270447
+      value: 5.627014
       objectReference: {fileID: 0}
     - target: {fileID: 8275236529236763356, guid: 46f6bb2098ed8574b8a061647d04b7e2, type: 3}
       propertyPath: m_Pivot.x

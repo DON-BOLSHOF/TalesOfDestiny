@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 namespace CodeAnimation
 {
-    public class DissolveAnimation : SoundedAnimation
+    public class DissolveAnimation : SoundedAnimation//Переработай потом весь класс, слишком громозский
     {
         [SerializeField] private float _dissolveTime = 0.07f;
         
@@ -114,7 +114,8 @@ namespace CodeAnimation
                 yield return new WaitForSeconds(_dissolveTime);
             }
 
-            SetBaseMaterials();
+            if (specialObjects.Count > _specialObjects.Count) _specialObjects = specialObjects;//Нужно отресетить помаксимуму инстансов материалов, Херня - не убедительно
+            SetBaseMaterialsForSpecials();
         }
 
         public void SetActiveDissolve()
@@ -131,7 +132,7 @@ namespace CodeAnimation
                 image.GetModifiedMaterial(image.material).SetFloat(DissolveAmount, 0f));
         }
 
-        public void SetBaseMaterials()
+        public void SetBaseMaterialsForSpecials()
         {
             if (_specialObjects == null) return;
             _specialDissolveMaterial.SetFloat(DissolveAmount, 1f);

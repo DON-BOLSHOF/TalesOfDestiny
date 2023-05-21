@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4163936144651830716}
   - component: {fileID: 4163936144651830719}
+  - component: {fileID: 722881466}
   - component: {fileID: 4163936144651830717}
   m_Layer: 0
   m_Name: EventCardBoard
@@ -45,11 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f00a3845d7d4f608a1f572ff78ce834, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _levelBuilder:
-    _fieldFormer:
-      _prefab: {fileID: 17940878376319565, guid: ddc212e51317f1e4faffe1dc5861e54d, type: 3}
-      _field: {fileID: 4163936144839334960}
-      _prefabOffset: 25
+  _levelBuilder: {fileID: 722881466}
   _animations:
     _outLevelOffset: 325
   _subscriber: {fileID: 4163936144651830717}
@@ -57,6 +54,22 @@ MonoBehaviour:
     _value: {x: 0, y: 0}
   GlobalHeroPosition:
     _value: {x: 0, y: 0}
+--- !u!114 &722881466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4163936144651830714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a363024cd8347ed4d98057820b694cd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _fieldFormer:
+    _prefab: {fileID: 7365474829784466468, guid: ddc212e51317f1e4faffe1dc5861e54d, type: 3}
+    _field: {fileID: 4163936144839334960}
+    _prefabOffset: 25
 --- !u!114 &4163936144651830717
 MonoBehaviour:
   m_ObjectHideFlags: 0

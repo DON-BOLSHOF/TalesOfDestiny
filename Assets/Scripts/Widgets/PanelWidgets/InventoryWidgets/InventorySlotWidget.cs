@@ -1,6 +1,7 @@
 ﻿using System;
 using Definitions.Inventory;
 using Panels;
+using UniRx;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using Utils;
@@ -13,11 +14,11 @@ namespace Widgets.PanelWidgets.InventoryWidgets
     {
         [SerializeField] private InventoryItemWidget _itemWidget;
 
-        public event Action<InventorySlotWidget> OnItemUsed;
-        public event Action<InventorySlotWidget> OnWidgetClicked;
-        public event Action<InventoryItem, InventorySlotWidget> OnReloaded;
+        public ReactiveEvent<InventorySlotWidget> OnItemUsed = new ReactiveEvent<InventorySlotWidget>();
+        public ReactiveEvent<InventorySlotWidget> OnWidgetClicked = new ReactiveEvent<InventorySlotWidget>();
+        public event Action<InventoryItem, InventorySlotWidget> OnReloaded;//Не заменен на react тк там нельзя более 1 параметра в дженерик добавлять...(
 
-        private DisposeHolder _trash = new DisposeHolder();
+        private readonly DisposeHolder _trash = new DisposeHolder();
 
         private void Awake()
         {
@@ -28,28 +29,25 @@ namespace Widgets.PanelWidgets.InventoryWidgets
 
         private void SubscribeItems()
         {
-            _itemWidget.OnWidgetClicked += OnWidgetClick;
-            _itemWidget.OnItemUsed += OnItemUse;
-            _itemWidget.OnItemDeleted += OnDeleteData;
-            _trash.Retain(new ActionDisposable(() => _itemWidget.OnWidgetClicked -= OnWidgetClick));
-            _trash.Retain(new ActionDisposable(() => _itemWidget.OnItemUsed -= OnItemUse));
-            _trash.Retain(new ActionDisposable(() => _itemWidget.OnItemDeleted -= OnDeleteData));
+            _trash.Retain(_itemWidget.OnWidgetClicked.Subscribe(OnWidgetClick));
+            _trash.Retain(_itemWidget.OnItemUsed.Subscribe(OnItemUse));
+            _trash.Retain(_itemWidget.OnItemDeleted.Subscribe(OnDeleteData));
             _trash.Retain(GetComponentInParent<InventoryPanel>().SubscribeOnChange(OnParentExit));
         }
 
         private void OnWidgetClick(InventoryItemWidget value)
         {
-            OnWidgetClicked?.Invoke(this);
+            OnWidgetClicked?.Execute(this);
         }
 
         private void OnItemUse(InventoryItemWidget value)
         {
-            OnItemUsed?.Invoke(this);
+            OnItemUsed?.Execute(this);
         }
 
         private void OnDeleteData(InventoryItem value)
         {
-            OnDeletedData?.Invoke(value);
+            OnDeletedData?.Execute(value);
         }
 
         private void OnParentExit(bool value)
@@ -62,7 +60,7 @@ namespace Widgets.PanelWidgets.InventoryWidgets
 
         public void OnDrop(PointerEventData eventData)
         {
-            if(_itemWidget.Item != null) return;//Не закидываем если заполнен
+            if (_itemWidget.Item != null) return; //Не закидываем если заполнен
 
             if (eventData.pointerDrag.TryGetComponent(out InventoryItemWidget widget))
             {
