@@ -32,11 +32,6 @@ namespace Cards
                 }
             }
 
-            foreach (var pack in result)
-            {
-                Debug.Log(pack);
-            }
-
             return result;
         }
 
@@ -45,7 +40,6 @@ namespace Cards
             if (turnThreshold < enemyCard.TurnThreshold) return false;
 
             var count = Random.Range(0, turnThreshold - enemyCard.TurnThreshold);
-            Debug.Log(count);
             if (count <= 0) return false;
             pack = new EnemyPack(enemyCard, count);
             return true;

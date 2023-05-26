@@ -1,10 +1,9 @@
-using Controllers;
+using Controllers.BattleControllers;
 using LevelManipulation;
 using Model.Data;
 using Model.Properties;
 using UnityEngine;
 using Utils;
-using Utils.Interfaces;
 
 public class GameSession : MonoBehaviour, IBattleControllerVisitor
 {

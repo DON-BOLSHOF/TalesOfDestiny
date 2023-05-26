@@ -1,4 +1,5 @@
 ﻿using Controllers;
+using Controllers.Inventories;
 using Zenject;
 
 namespace UI.Buttons

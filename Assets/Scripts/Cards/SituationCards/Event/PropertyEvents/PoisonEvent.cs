@@ -1,7 +1,7 @@
 ﻿using Definitions.EventDefs;
-using Model.Data;
 using UnityEngine;
 using Utils.Interfaces;
+using Utils.Interfaces.Visitors;
 
 namespace Cards.SituationCards.Event.PropertyEvents
 {
@@ -12,9 +12,9 @@ namespace Cards.SituationCards.Event.PropertyEvents
 
         public int PoisonModifier => _poisonModifier;
         
-        public override void Accept(IPropertyVisitor visitor)
+        public override void Accept(IPropertyEventVisitor eventVisitor)
         {
-            visitor.VisitPoisonEvent(this);
+            eventVisitor.VisitPoisonEvent(this);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Utils
@@ -17,13 +18,24 @@ namespace Utils
 
         public void ReloadData(IList<TItemData> data)//Сделай при подбирании предметов выборку какие взять, какие выкинуть взамен при слишком большом кол-ве даты 
         {
-            for(int i = 0; i<data.Count; i++) {
+            for(var i = 0; i<data.Count; i++) {
                 _widgets[i].SetData(data[i]);
             }
 
-            for (int i = data.Count; i < _widgets.Count; i++)
+            for (var i = data.Count; i < _widgets.Count; i++)
             {
                 _widgets[i].Disable();
+            }
+        }
+
+        public void SetAdditionallyData(IList<TItemData> eNewItems)
+        {
+            var index = 0;
+
+            foreach (var widget in _widgets.Where(widget => widget.Stage == InstanceStage.Disabled && index<eNewItems.Count))
+            {
+                widget.SetData(eNewItems[index]);
+                index++;
             }
         }
 
@@ -31,7 +43,7 @@ namespace Utils
         {
             return _widgets.FindIndex(prefab=> prefab.Equals(widget));
         }
-        
+
         public int FindIndex(TItemData item)
         {
             return _widgets.FindIndex(prefab=> item.Equals(prefab.GetData()));
@@ -47,13 +59,6 @@ namespace Utils
             if (_widgets.Count <= index) throw new ArgumentException("Index above instances!!!");
             
             _widgets[index].Disable();
-        }  
-        
-        public void DeleteDataAtIndex(int index)
-        {
-            if (_widgets.Count <= index) throw new ArgumentException("Index above instances!!!");
-            
-            _widgets[index].DeleteData();
         }
 
         public IEnumerator<TWidget> GetEnumerator()
@@ -70,16 +75,24 @@ namespace Utils
     public abstract class WidgetInstance<TWidget, TItemData> : MonoBehaviour
     {
         public ReactiveEvent<TWidget> OnDisabled = new ReactiveEvent<TWidget>();
-        public ReactiveEvent<TItemData> OnDeletedData = new ReactiveEvent<TItemData>();
-        public abstract void SetData(TItemData pack);
+        public InstanceStage Stage { get; private set; }
+
+        public virtual void SetData(TItemData pack)
+        {
+            Stage = InstanceStage.Activated;
+        }
+        
         public abstract TItemData GetData();
-        public abstract void Disable();
-        public abstract void DeleteData();
+
+        public virtual void Disable()
+        {
+            Stage = InstanceStage.Disabled;
+        }
     }
 
     public enum InstanceStage
     {
-        Enabled,
+        Activated,
         Disabled
     }
 }

@@ -17,10 +17,12 @@ MonoBehaviour:
   _buttons:
   - _name: "\u0417\u0430\u0449\u0438\u0449\u0430\u0442\u044C\u0441\u044F"
     _buttonInteraction:
-      _dataType: 0
+      _dataType: 4
       _controllerType: 2
       _propertyEvents: []
       _armyEvents: []
+      _inventoryEvents:
+      - _itemDef: {fileID: 11400000, guid: b7a1fdbd5ad68e84ba89376847400d0a, type: 2}
       _reactionSituations: []
   - _name: "\u041A\u043E\u043D\u0442\u0440\u0430\u0442\u0430\u043A\u043E\u0432\u0430\u0442\u044C"
     _buttonInteraction:
@@ -34,4 +36,5 @@ MonoBehaviour:
           _prestige: -4
         _def: {fileID: 0}
       _armyEvents: []
+      _inventoryEvents: []
       _reactionSituations: []

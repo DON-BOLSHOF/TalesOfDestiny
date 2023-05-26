@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Cards;
 using CodeAnimation;
+using Controllers.EventManagers;
 using Definitions.Creatures.Enemies;
 using Panels;
 using UnityEngine;

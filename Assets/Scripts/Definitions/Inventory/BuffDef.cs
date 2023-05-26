@@ -1,5 +1,6 @@
 ﻿using System;
 using Cards.SituationCards.Event.ArmyEvents;
+using Cards.SituationCards.Event.InventoryEvents;
 using Cards.SituationCards.Event.PropertyEvents;
 using Model.Data.StorageData;
 using Sirenix.OdinInspector;
@@ -23,8 +24,11 @@ namespace Definitions.Inventory
 
         [ShowIf("@(this._dataInteraction & DataInteractionType.ArmyVisitor) == DataInteractionType.ArmyVisitor"), SerializeField]
         private ArmyEvent[] _armyEvents;
-
         public ArmyEvent[] ArmyEvents => _armyEvents;
+        
+        [ShowIf("@(this._dataInteraction & DataInteractionType.InventoryVisitor) == DataInteractionType.InventoryVisitor"), SerializeField]
+        private InventoryEvent[] _inventoryEvents;
+        public InventoryEvent[] InventoryEvents => _inventoryEvents;
 
         public void Accept(IDataInteractionVisitor visitor)
         {
@@ -34,6 +38,6 @@ namespace Definitions.Inventory
     public enum BuffState // Используется внутри инвенторя(условные кнопки пополняющие еду), Или чисто перетаскиваемые шмотки в армию/куда-нибудь еще мб понадобится 
     {
         Active,
-        Passive//На Army накидывается или мб чет еще будет
+        Passive,//На Army накидывается или мб чет еще будет
     }
 }

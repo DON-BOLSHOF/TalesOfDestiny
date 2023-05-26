@@ -2,6 +2,7 @@
 using Cards.EndJourneyCards;
 using Cards.SituationCards;
 using Controllers;
+using Controllers.EventManagers;
 using Zenject;
 
 namespace System

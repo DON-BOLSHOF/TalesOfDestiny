@@ -1,5 +1,6 @@
 ﻿using System;
 using Cards.SituationCards.Event.ArmyEvents;
+using Cards.SituationCards.Event.InventoryEvents;
 using Cards.SituationCards.Event.PropertyEvents;
 
 namespace Model.Data.StorageData
@@ -9,6 +10,7 @@ namespace Model.Data.StorageData
         DataInteractionType DataType { get; }
         PropertyEvent[] PropertyEvents { get; }
         ArmyEvent[] ArmyEvents { get; }
+        InventoryEvent[] InventoryEvents{ get;}
 
         void Accept(IDataInteractionVisitor visitor);
     }
@@ -19,6 +21,6 @@ namespace Model.Data.StorageData
         None = 0,
         ArmyVisitor = 1,
         PropertyVisitor = 2,
-        EquipVisitor = 4,
+        InventoryVisitor = 4,
     }
 }

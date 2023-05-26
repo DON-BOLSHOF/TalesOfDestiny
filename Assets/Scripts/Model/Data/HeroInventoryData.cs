@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using Controllers;
+using Cards.SituationCards.Event.InventoryEvents;
+using Controllers.Inventories;
 using Definitions.Inventory;
 using UnityEngine;
 using Zenject;
@@ -8,9 +9,9 @@ using Zenject;
 namespace Model.Data
 {
     [Serializable]
-    public class HeroInventoryData : IInitializable
+    public class HeroInventoryData : IInitializable, IInventoryEventVisitor
     {
-        [SerializeField] private InventoryItem[] _inventoryItems;//Observable не сериализуем в инспекторе
+        [SerializeField] private InventoryItemDef[] _inventoryItems;//Observable не сериализуем в инспекторе
 
         private ObservableCollection<InventoryItem> _observableInventoryItems;
 
@@ -18,12 +19,30 @@ namespace Model.Data
         
         public void Initialize()
         {
-            _observableInventoryItems = new ObservableCollection<InventoryItem>(_inventoryItems);
+            var instantiatedItems = InstantiateItems();
+
+            _observableInventoryItems = new ObservableCollection<InventoryItem>(instantiatedItems);
+        }
+
+        private InventoryItem[] InstantiateItems()
+        {
+            var instantiatedItems = new InventoryItem[_inventoryItems.Length];
+            for (var i = 0; i < _inventoryItems.Length; i++)
+            {
+                instantiatedItems[i] = _inventoryItems[i].GetItem();
+            }
+
+            return instantiatedItems;
         }
 
         public void Visit(Inventory inventory, InventoryItem item)
         {
             _observableInventoryItems.Remove(item);
+        }
+
+        public void Accept(InventoryEvent inventoryEvent)
+        {
+            _observableInventoryItems.Add(inventoryEvent.Item);
         }
     }
 }

@@ -1,11 +1,10 @@
-﻿using Model.Data;
+﻿using Cards.SituationCards.Event.PropertyEvents;
 using UnityEngine;
-using Utils.Interfaces;
 
 namespace Definitions.EventDefs
 {
     public abstract class PropertyEventDef : ScriptableObject
     {
-        public abstract void Accept(IPropertyVisitor visitor);
+        public abstract void Accept(IPropertyEventVisitor eventVisitor);
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System;
 using Definitions.Inventory;
 using Panels;
-using UniRx;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using Utils;
@@ -16,6 +15,7 @@ namespace Widgets.PanelWidgets.InventoryWidgets
 
         public ReactiveEvent<InventorySlotWidget> OnItemUsed = new ReactiveEvent<InventorySlotWidget>();
         public ReactiveEvent<InventorySlotWidget> OnWidgetClicked = new ReactiveEvent<InventorySlotWidget>();
+        public ReactiveEvent<InventoryItem> OnThrownOut = new ReactiveEvent<InventoryItem>();
         public event Action<InventoryItem, InventorySlotWidget> OnReloaded;//Не заменен на react тк там нельзя более 1 параметра в дженерик добавлять...(
 
         private readonly DisposeHolder _trash = new DisposeHolder();
@@ -31,7 +31,7 @@ namespace Widgets.PanelWidgets.InventoryWidgets
         {
             _trash.Retain(_itemWidget.OnWidgetClicked.Subscribe(OnWidgetClick));
             _trash.Retain(_itemWidget.OnItemUsed.Subscribe(OnItemUse));
-            _trash.Retain(_itemWidget.OnItemDeleted.Subscribe(OnDeleteData));
+            _trash.Retain(_itemWidget.OnThrownOut.Subscribe(OnThrowOut));
             _trash.Retain(GetComponentInParent<InventoryPanel>().SubscribeOnChange(OnParentExit));
         }
 
@@ -45,9 +45,9 @@ namespace Widgets.PanelWidgets.InventoryWidgets
             OnItemUsed?.Execute(this);
         }
 
-        private void OnDeleteData(InventoryItem value)
+        private void OnThrowOut(InventoryItem item)
         {
-            OnDeletedData?.Execute(value);
+            OnThrownOut?.Execute(item);
         }
 
         private void OnParentExit(bool value)
@@ -81,17 +81,14 @@ namespace Widgets.PanelWidgets.InventoryWidgets
 
         public override void SetData(InventoryItem item)
         {
+            base.SetData(item);
             _itemWidget.SetData(item);
         }
 
         public override void Disable()
         {
+            base.Disable();
             _itemWidget.Disable();
-        }
-
-        public override void DeleteData()
-        {
-            _itemWidget.DeleteData();
         }
 
         public override InventoryItem GetData()

@@ -4,21 +4,24 @@ using UnityEngine;
 
 namespace Definitions.Inventory
 {
-    [Serializable]
     public class InventoryItem
     {
-        [SerializeField] private string _id;
-        [SerializeField] private List<BuffDef> _buffs;
-        [SerializeField] private Sprite _icon;
+        public string Id { get; }
+        public List<BuffDef> Buffs { get; }
 
-        public string Id => _id;
-        public List<BuffDef> Buffs => _buffs;
-        public Sprite Icon => _icon;
+        public Sprite Icon { get; }
 
-        public InventoryItemState ItemState => new Func<InventoryItemState>(() =>
+        public InventoryItem(string id, List<BuffDef> buffDefs, Sprite icon)
         {
-            var hasActive = _buffs.FindIndex(item => item.BuffState == BuffState.Active) > -1;
-            var hasPassive = _buffs.FindIndex(item => item.BuffState == BuffState.Passive) > -1;
+            Id = id;
+            Buffs = buffDefs;
+            Icon = icon;
+        }
+        
+        public InventoryItemState ItemState => new Func<InventoryItemState>(() => //Для дальнейшего расширения
+        {
+            var hasActive = Buffs.FindIndex(item => item.BuffState == BuffState.Active) > -1;
+            var hasPassive = Buffs.FindIndex(item => item.BuffState == BuffState.Passive) > -1;
 
             return hasActive switch
             {
@@ -29,7 +32,7 @@ namespace Definitions.Inventory
         })();
     }
 
-    public enum InventoryItemState//Один будем перетаскивать, другой юзать, третий и так, и так можно будет
+    public enum InventoryItemState //Один будем перетаскивать, другой юзать, третий и так, и так можно будет
     {
         Passive,
         Active,

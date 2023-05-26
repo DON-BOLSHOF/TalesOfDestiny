@@ -1,5 +1,6 @@
 ﻿using System;
 using Cards.SituationCards.Event.ArmyEvents;
+using Cards.SituationCards.Event.InventoryEvents;
 using Cards.SituationCards.Event.PropertyEvents;
 using Model.Data.ControllersData;
 using Model.Data.StorageData;
@@ -20,6 +21,9 @@ namespace Cards.SituationCards.Event
 
         [ShowIf("@(this._dataType & DataInteractionType.ArmyVisitor) == DataInteractionType.ArmyVisitor"), SerializeField]
         private ArmyEvent[] _armyEvents;
+        
+        [ShowIf("@(this._dataType & DataInteractionType.InventoryVisitor) == DataInteractionType.InventoryVisitor"), SerializeField]
+        private InventoryEvent[] _inventoryEvents;
 
         [ShowIf("@(this._controllerType & ControllerInteractionType.Continue) == ControllerInteractionType.Continue")] [SerializeField]
         private Situation[] _reactionSituations;
@@ -27,6 +31,7 @@ namespace Cards.SituationCards.Event
         public DataInteractionType DataType => _dataType;
         public PropertyEvent[] PropertyEvents => _propertyEvents;
         public ArmyEvent[] ArmyEvents => _armyEvents;
+        public InventoryEvent[] InventoryEvents => _inventoryEvents;
         public ControllerInteractionType ControllerType => _controllerType;
 
         public Situation[] ReactionSituations => _reactionSituations;

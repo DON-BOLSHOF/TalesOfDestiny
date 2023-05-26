@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c26faaff9d74238ae90c49ea3fabad4, type: 3}
+  m_Name: HuntingCardView
+  m_EditorClassIdentifier: 
+  _id: "\u041E\u0445\u043E\u0442\u0430"
+  _backgroundView: {fileID: -2911543735414889503, guid: 1923bcea0e5d7e04fb8d7cf84c1a97db, type: 3}
+  _mainView: {fileID: 21300000, guid: bdb55a18b1254bf40865b7c7630bd8f6, type: 3}
+  _iconOffset: {x: 0, y: 0, z: 0}
+  _portraitCorrection: {x: 1, y: 1, z: 1}
+  _propertyIcons:
+  - {fileID: 21300000, guid: 2a579ca4992e567498939208b582b0ae, type: 3}
+  _wisecrack: "\u041E\u0445\u043E\u0442\u0430 \u043A\u0440\u0435\u043F\u043A\u0430\u044F"

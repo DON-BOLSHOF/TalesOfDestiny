@@ -1,8 +1,12 @@
 ﻿using System;
 using Controllers;
+using Controllers.BattleControllers;
+using Controllers.EventManagers;
+using Controllers.Inventories;
 using Model.Properties;
 using Utils.Disposables;
 using Utils.Interfaces;
+using Utils.Interfaces.Visitors;
 
 namespace Utils
 {

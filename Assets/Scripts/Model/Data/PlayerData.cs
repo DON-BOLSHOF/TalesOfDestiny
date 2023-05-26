@@ -7,21 +7,28 @@ namespace Model.Data
     [Serializable]
     public class PlayerData : IDataInteractionVisitor
     {
-        [SerializeField] private HeroPropertyData _propertyData;
+        [SerializeField] private HeroPropertyEventData propertyEventData;
         [SerializeField] private HeroCompanionsData _companionsData;
         [SerializeField] private HeroInventoryData _inventoryData;
 
-        public HeroPropertyData PropertyData => _propertyData;
+        public HeroPropertyEventData PropertyEventData => propertyEventData;
         public HeroCompanionsData CompanionsData => _companionsData;
         public HeroInventoryData InventoryData => _inventoryData;
 
         public void Visit(IDataInteraction interaction)
         {
-            if ((interaction.DataType & DataInteractionType.PropertyVisitor) != DataInteractionType.PropertyVisitor) return;
-            foreach (var propertyEvent in interaction.PropertyEvents)
-            {
-                propertyEvent.Accept(PropertyData);
-            }
+            if ((interaction.DataType & DataInteractionType.PropertyVisitor) == DataInteractionType.PropertyVisitor)
+                foreach (var propertyEvent in interaction.PropertyEvents)
+                {
+                    propertyEvent.Accept(PropertyEventData);
+                }
+
+            if ((interaction.DataType & DataInteractionType.InventoryVisitor) ==
+                DataInteractionType.InventoryVisitor)
+                foreach (var inventoryEvent in interaction.InventoryEvents)
+                {
+                    inventoryEvent.Accept(InventoryData);
+                }
         }
     }
 }

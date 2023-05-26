@@ -3,41 +3,33 @@ using Definitions.EventDefs;
 using Model.Data.StorageData;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using Utils.Interfaces;
 
 namespace Cards.SituationCards.Event.PropertyEvents
 {
     [Serializable]
     public class PropertyEvent
     {
-        [SerializeField] private PropertyMode _mode;
+        [SerializeField] private EventMode _mode;
 
-        [ShowIf(nameof(_mode), PropertyMode.Bound), SerializeField]
+        [ShowIf(nameof(_mode), EventMode.Bound), SerializeField]
         private PropertyData _data;
 
-        [ShowIf(nameof(_mode), PropertyMode.External), SerializeField]
+        [ShowIf(nameof(_mode), EventMode.External), SerializeField]
         private PropertyEventDef _def;
 
-        public PropertyData Data => _mode == PropertyMode.Bound ? _data : new CommonPropertyEvent(_data).Data;
+        public PropertyData Data => _mode == EventMode.Bound ? _data : new CommonPropertyEvent(_data).Data;
 
-        public void Accept(IPropertyVisitor visitor)
+        public void Accept(IPropertyEventVisitor eventVisitor)
         {
-            if (_mode == PropertyMode.External)
+            if (_mode == EventMode.External)
             {
-                _def.Accept(visitor);
+                _def.Accept(eventVisitor);
             }
             else
             {
                 var propEvent = new CommonPropertyEvent(_data);
-                propEvent.Accept(visitor);
+                propEvent.Accept(eventVisitor);
             }
-        }
-        
-        [Serializable]
-        public enum PropertyMode
-        {
-            Bound,
-            External
         }
     }
 
@@ -52,9 +44,9 @@ namespace Cards.SituationCards.Event.PropertyEvents
             _data = data;
         }
 
-        public void Accept(IPropertyVisitor visitor)
+        public void Accept(IPropertyEventVisitor eventVisitor)
         {
-            visitor.VisitCommonPropEvent(this);
+            eventVisitor.VisitCommonPropEvent(this);
         }
     }
 }
