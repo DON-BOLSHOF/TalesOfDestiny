@@ -95,6 +95,50 @@ PrefabInstance:
       propertyPath: m_Name
       value: BattleCardView
       objectReference: {fileID: 0}
+    - target: {fileID: 6600559256991876798, guid: de265793d9f6a8545be2a1ab01e057ad, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.952452
+      objectReference: {fileID: 0}
+    - target: {fileID: 6600559256991876798, guid: de265793d9f6a8545be2a1ab01e057ad, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.89164704
+      objectReference: {fileID: 0}
+    - target: {fileID: 6600559256991876798, guid: de265793d9f6a8545be2a1ab01e057ad, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.036817327
+      objectReference: {fileID: 0}
+    - target: {fileID: 6600559256991876798, guid: de265793d9f6a8545be2a1ab01e057ad, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.2887942
+      objectReference: {fileID: 0}
+    - target: {fileID: 6600559256991876798, guid: de265793d9f6a8545be2a1ab01e057ad, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6600559256991876798, guid: de265793d9f6a8545be2a1ab01e057ad, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6600559256991876798, guid: de265793d9f6a8545be2a1ab01e057ad, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6600559256991876798, guid: de265793d9f6a8545be2a1ab01e057ad, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7289812468988721515, guid: de265793d9f6a8545be2a1ab01e057ad, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7289812468988721515, guid: de265793d9f6a8545be2a1ab01e057ad, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7289812468988721515, guid: de265793d9f6a8545be2a1ab01e057ad, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8534830113095075810, guid: de265793d9f6a8545be2a1ab01e057ad, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: de265793d9f6a8545be2a1ab01e057ad, type: 3}
@@ -165,8 +209,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _background: {fileID: 7534516456410746946}
-  _propertiesIconsPosition: {fileID: 1890816311978514526}
   _itemIcon: {fileID: 2334625419577389564}
   _nameBanner: {fileID: 5038603440019644055}
   _descriptionBanner: {fileID: 7377530132571097855}
   widgetOffsetCorrection: 0.3
+  _propertiesIconsPosition: {fileID: 1890816311978514526}

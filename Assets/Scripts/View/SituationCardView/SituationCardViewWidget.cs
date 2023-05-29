@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using Utils;
+using Utils.DataGroups;
 using Widgets;
 using Widgets.EventManagersWidgets;
 

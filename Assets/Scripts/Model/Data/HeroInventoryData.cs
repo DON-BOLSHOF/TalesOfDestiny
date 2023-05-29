@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using Cards.SituationCards.Event.InventoryEvents;
 using Controllers.Inventories;
 using Definitions.Inventory;
+using Model.Tributes;
 using UnityEngine;
 using Zenject;
 
@@ -33,6 +35,14 @@ namespace Model.Data
             }
 
             return instantiatedItems;
+        }
+
+        public void Visit(ITribute tribute)
+        {
+            foreach (var inventoryItem in tribute.TributeInventoryItems)
+            {
+                _observableInventoryItems.Remove(_observableInventoryItems.First(item => item.Id.Equals(inventoryItem.Id)));
+            }
         }
 
         public void Visit(Inventory inventory, InventoryItem item)

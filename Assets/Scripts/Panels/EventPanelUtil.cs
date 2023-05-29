@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using Cards.SituationCards;
 using CodeAnimation;
+using Model;
 using UnityEngine;
 using UnityEngine.UI;
 using Utils.Interfaces;
-using Widgets;
 using Widgets.EventManagersWidgets;
 
 namespace Panels
@@ -99,7 +99,7 @@ namespace Panels
 
         private int ReloadButton(CustomButton[] buttons)
         {
-            OnReloadButtons.Invoke(buttons);
+            OnReloadButtons.Execute(buttons);
 
             return 0; //Сделано лишь потому что Func<void> не берется... Нет времени щас разбираться, потом
         }

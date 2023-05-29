@@ -9,13 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1726129f445a45d99879957e6aa8367b, type: 3}
+  m_Script: {fileID: 11500000, guid: fd7eaa062eda4c1a9f50157235927502, type: 3}
   m_Name: EnemyDefs
   m_EditorClassIdentifier: 
-  _cards:
-  - {fileID: 11400000, guid: 92f5b8f4d6b56844290a0941ce0b11c2, type: 2}
-  - {fileID: 11400000, guid: 0959d4a4bdcfc5a49925769fbc92f733, type: 2}
-  - {fileID: 11400000, guid: a01ab5ee0de48064aa9c1b6fa48f4da2, type: 2}
-  - {fileID: 11400000, guid: 527a49402ef8d224d85499bb5c0bd1d1, type: 2}
-  - {fileID: 11400000, guid: 6a00f4fffa846924d8c9c8bb8e684386, type: 2}
-  - {fileID: 11400000, guid: e5b5d3797a0c91345aa71876c66d636a, type: 2}
+  _enemyPacksDefs:
+  - {fileID: 11400000, guid: 6df1f0c07833c2149b43200ef8702ea7, type: 2}
+  - {fileID: 11400000, guid: b41d1146cb8ff9049a55896a927bd7b9, type: 2}
+  - {fileID: 11400000, guid: 6e65459b6818e5a49a32247374ac7893, type: 2}
+  - {fileID: 11400000, guid: 822baff87678e9b4eacceb2e499666cb, type: 2}

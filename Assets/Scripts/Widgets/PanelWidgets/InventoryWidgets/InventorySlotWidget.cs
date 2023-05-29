@@ -4,6 +4,7 @@ using Panels;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using Utils;
+using Utils.DataGroups;
 using Utils.Disposables;
 
 namespace Widgets.PanelWidgets.InventoryWidgets

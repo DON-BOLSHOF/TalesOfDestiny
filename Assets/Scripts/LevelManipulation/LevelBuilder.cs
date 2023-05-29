@@ -85,7 +85,7 @@ namespace LevelManipulation
         private void FulFillCard(CellInfo cardInfo, BoardItemWidget cardWidget, Vector2 position)
         {
             var levelCard = _itemWidgetFactory.GetLevelCardRandomlyFromDefs(cardInfo.CurrentCellState);
-            _itemWidgetFactory.FulFillItemWidget(cardWidget, WidgetType.Boarder, levelCard);
+            _itemWidgetFactory.FulfillItemWidget(cardWidget, WidgetType.Boarder, levelCard);
 
             var heroBeholder = cardWidget.GetComponent<HeroPositionBeholderComponent>(); // Просто две строки в отдельную 
             heroBeholder.SetPosition(position);                                 //абстракцию выводить...

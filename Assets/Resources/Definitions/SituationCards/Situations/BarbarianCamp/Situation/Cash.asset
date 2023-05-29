@@ -21,7 +21,7 @@ MonoBehaviour:
   _buttons:
   - _name: "\u0417\u0430\u0431\u0440\u0430\u0442\u044C"
     _buttonInteraction:
-      _dataType: 2
+      _dataType: 4
       _controllerType: 2
       _propertyEvents:
       - _mode: 0
@@ -31,4 +31,7 @@ MonoBehaviour:
           _prestige: 0
         _def: {fileID: 0}
       _armyEvents: []
+      _inventoryEvents:
+      - _itemDef: {fileID: 11400000, guid: b7a1fdbd5ad68e84ba89376847400d0a, type: 2}
+      - _itemDef: {fileID: 11400000, guid: 6c9d2ef10c2c34148ad733b36beb69b0, type: 2}
       _reactionSituations: []

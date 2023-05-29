@@ -21,6 +21,8 @@ namespace Panels
         {
             OnChangeState?.Invoke(true);
             DissolveAnimation.SetActiveDissolve();
+            
+            _typingAnimation.TakeText();
             _typingAnimation.HideText();
 
             StartRoutine(_typingAnimation.TypeText(), ref _typingRoutine);
@@ -54,7 +56,7 @@ namespace Panels
 
             ReloadStrings(new[]
                 { currentSituation.SituationName, currentSituation.Description });
-            OnReloadButtons?.Invoke(currentSituation.Buttons);
+            OnReloadButtons?.Execute(currentSituation.Buttons);
         }
     }
 }

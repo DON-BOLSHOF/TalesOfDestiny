@@ -9,7 +9,7 @@ using Controllers.EventManagers;
 using Definitions.Creatures.Enemies;
 using Panels;
 using UnityEngine;
-using Utils;
+using Utils.DataGroups;
 using View.CreaturesCardView.EnemyCardView;
 using Widgets.EventManagersWidgets;
 
@@ -18,19 +18,21 @@ namespace Controllers
     public class BattleEventManager : EventManager //Чистая инициализация(+анимация)))
     {
         [SerializeField] private BattleEventPanelUtil _eventPanelUtil;
-        
+
         [SerializeField] private Transform _enemyCardContainer;
         [SerializeField] private EnemyCrowdWidget _crowdWidget;
 
         [SerializeField] private float _cameraRotationTime;
-        
+
         private PredefinedDataGroup<EnemyCardViewWidget, EnemyPack> _dataGroup;
         private List<EnemyPack> _enemyPacks = new List<EnemyPack>();
 
         private Camera _mainCamera;//Выдели анимацию...
         private Coroutine _routine;
 
-        
+        private const int ENEMIES_LIMIT = 6;
+        private const int CROWD_COUNTDOWN = 3;
+
         private void Awake()
         {
             _textPanelUtil = _eventPanelUtil;
@@ -51,7 +53,7 @@ namespace Controllers
         {
             base.ShowEventContainer(card);
 
-            _crowdWidget.Activate(_enemyPacks.Count > 3);
+            _crowdWidget.Activate(_enemyPacks.Count > ENEMIES_LIMIT);
             StartRoutine(RotateAnimation.Rotate(_mainCamera.gameObject, _mainCamera.transform.rotation,
                 Quaternion.Euler(-15, 0, 0), _cameraRotationTime)); //Подобную сексуальную анимацию не остановить...
         }
@@ -100,11 +102,9 @@ namespace Controllers
             var battleCard = (BattleCard)card;
             if (battleCard == null) throw new ArgumentException("Was sent not BattleCard!!! Something wrong");
 
-            _enemyPacks = EnemyCardFactory.GeneratePacks(_session.LevelTurn.Value, battleCard.EnemyPacks);
-
-            if (_enemyPacks.Count > 6) throw new ArgumentException("There are too many enemies in Battle!!!");
-
-            if (_enemyPacks.Count <= 3) // Здесь магическое число) - предельное количество отображаемых карт
+            _enemyPacks = EnemyCardFactory.GeneratePacks(battleCard.EnemiesType, ENEMIES_LIMIT, _session.LevelTurn.Value, battleCard.EnemyPacks);
+            
+            if (_enemyPacks.Count <= CROWD_COUNTDOWN)
             {
                 _dataGroup.SetData(_enemyPacks);
             }

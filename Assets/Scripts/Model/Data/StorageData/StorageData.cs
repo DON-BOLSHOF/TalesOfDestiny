@@ -1,10 +1,8 @@
-﻿using Cards.SituationCards.Event;
-using Controllers;
-using Controllers.BattleControllers;
+﻿using Controllers.BattleControllers;
 using LevelManipulation;
 using Model.Data.ControllersData;
+using Model.Tributes;
 using Panels;
-using Utils.Interfaces;
 using Zenject;
 
 namespace Model.Data.StorageData
@@ -24,12 +22,17 @@ namespace Model.Data.StorageData
         {
             interaction.Accept(_levelBoard);
             interaction.Accept(_battleController);
-        } 
-        
+        }
+
         public void InteractData(IControllerInteraction interaction, AbstractTextPanelUtil textPanelUtil) 
         {
             InteractData(interaction);
             interaction.Accept(textPanelUtil);
+        }
+
+        public void InteractData(ITribute tribute)
+        {
+            tribute.Accept(_session.Data);
         }
     }
 }

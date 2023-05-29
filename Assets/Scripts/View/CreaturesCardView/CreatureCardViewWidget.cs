@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using Utils;
+using Utils.DataGroups;
 
 namespace View.CreaturesCardView
 {
@@ -38,8 +39,8 @@ namespace View.CreaturesCardView
             SetViewData(packEnemyCard.View);
 
             _amountValue.text = pack.Count.ToString();
-            _attackValue.text = packEnemyCard.Attack.ToString();
-            _healthValue.text = packEnemyCard.Health.ToString();
+            _attackValue.text = (pack.Count * packEnemyCard.Attack).ToString();
+            _healthValue.text = (pack.Count *packEnemyCard.Health).ToString();
 
             _attackType.sprite = _attackSprites[(int)packEnemyCard.AttackType];
             _armorType.sprite = _armorSprites[(int)packEnemyCard.ArmorType];

@@ -1,6 +1,5 @@
 ﻿using System;
 using UnityEngine;
-using Utils.Disposables;
 
 namespace Utils
 {
@@ -22,12 +21,5 @@ namespace Utils
             var sprite = Resources.Load<Sprite>("ResourcesSprites/EmptySprite");
             return sprite;
         }
-
-        public static IDisposable Subscribe(this Action action, Action subscribeAction)
-        {
-            var a = action;
-            a += subscribeAction;
-            return new ActionDisposable(() =>  a -= subscribeAction);
-        } 
     }
 }

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 816a1b5b1cd74e1698ac394ca646d5e5, type: 3}
+  m_Name: RatWarrior
+  m_EditorClassIdentifier: 
+  _id: "\u041A\u0440\u044B\u0441\u044E\u043A\u0430-\u0412\u043E\u0438\u043D"
+  _cardView: {fileID: 11400000, guid: 5fb55fa484626d74e9c7bfce80c3899a, type: 2}
+  _armorType: 0
+  _attackType: 0
+  _attack: 2
+  _health: 1
+  _turnThreshold: 1

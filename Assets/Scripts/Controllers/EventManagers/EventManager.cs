@@ -1,9 +1,10 @@
 using System;
 using Cards;
-using Cards.SituationCards;
+using Model;
 using UnityEngine;
 using UnityEngine.UI;
 using Utils;
+using Utils.DataGroups;
 using Utils.Disposables;
 using Utils.Interfaces.Visitors;
 using Widgets.BoardWidgets;
@@ -12,7 +13,9 @@ using Zenject;
 
 namespace Controllers.EventManagers
 {
-    public class EventManager : LevelManager, IGameStateVisitor //Чистая инициализация, так что свое ко-ко-ко о менеджере не надо мне тут, Уже обманщик получается
+    public class
+        EventManager : LevelManager,
+            IGameStateVisitor //Чистая инициализация, так что свое ко-ко-ко о менеджере не надо мне тут, Уже обманщик получается
     {
         [SerializeField] private Text _contents;
         [SerializeField] private Text _eventText;
@@ -34,9 +37,11 @@ namespace Controllers.EventManagers
                 new ForwardDiDataGroup<CustomButtonWidget, CustomButton>(_customButtonPrefab, _buttonContainer,
                     _diContainer);
 
-            _textPanelUtil.OnReloadButtons += UpdateButtons;
-            _trash.Retain(new ActionDisposable(()=> _textPanelUtil.OnReloadButtons += UpdateButtons));
-            _trash.Retain(_textPanelUtil.SubscribeOnChange(delegate(bool b) {VisitGameState(_session.GameStateAnalyzer, b ? Stage.Start : Stage.End); }));
+            _trash.Retain(_textPanelUtil.OnReloadButtons.Subscribe(UpdateButtons));
+            _trash.Retain(_textPanelUtil.SubscribeOnChange(delegate(bool b)
+            {
+                VisitGameState(_session.GameStateAnalyzer, b ? Stage.Start : Stage.End);
+            }));
         }
 
         public override void ShowEventContainer(LevelCard card)
@@ -51,17 +56,20 @@ namespace Controllers.EventManagers
             var eventCard = (EventCard)card;
             if (eventCard == null) throw new ArgumentException("Was sent not EventCard!!!");
 
-            _itemWidgetFactory.FulFillItemWidget(_panelUtilItemWidget, WidgetType.PanelUtil, card);
+            _itemWidgetFactory.FulfillItemWidget(_panelUtilItemWidget, WidgetType.PanelUtil, card);
 
             _contents.text = eventCard.Situation.SituationName;
             _eventText.text = eventCard.Situation.Description;
-            _dataGroup.SetData(eventCard.Situation.Buttons);
+            UpdateButtons(eventCard.Situation.Buttons);
             _panelUtilItemWidget.View.SetViewData(eventCard.View);
         }
 
-        public void UpdateButtons(CustomButton[] buttons)
+        private void UpdateButtons(CustomButton[] buttons)
         {
-            _dataGroup.SetData(buttons);
+            var updateButtons = TributeChecker.GetFitsButtons(buttons, _session.Data.PropertyData, 
+                _session.Data.InventoryData);
+
+            _dataGroup.SetData(updateButtons);
         }
 
         public void VisitGameState(GameStateAnalyzer gameStateAnalyzer, Stage stage)

@@ -1,5 +1,4 @@
-﻿using System;
-using Cards.SituationCards.Event;
+﻿using Model;
 using UnityEngine;
 
 namespace Cards.SituationCards
@@ -14,15 +13,5 @@ namespace Cards.SituationCards
         public string SituationName => _situationName;
         public string Description => _situationDescription;
         public CustomButton[] Buttons => _buttons;
-    }
-
-    [Serializable]
-    public class CustomButton
-    {
-        [SerializeField] private string _name;
-        [SerializeField] private ButtonInteraction _buttonInteraction;
-
-        public string Name => _name;
-        public ButtonInteraction ButtonInteraction => _buttonInteraction;
     }
 }

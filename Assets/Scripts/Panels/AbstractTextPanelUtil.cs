@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using Cards.SituationCards;
-using Cards.SituationCards.Event;
 using CodeAnimation;
-using Model.Data;
+using Model;
 using Model.Data.ControllersData;
 using UnityEngine;
 using UnityEngine.UI;
@@ -20,7 +18,7 @@ namespace Panels
 
         protected Coroutine _typingRoutine;
         
-        public Action<CustomButton[]> OnReloadButtons;//В панели в любом случае будут кнопки(по крайней мере выхода)
+        public readonly ReactiveEvent<CustomButton[]> OnReloadButtons = new ReactiveEvent<CustomButton[]>();//В панели в любом случае будут кнопки(по крайней мере выхода)
 
         private void Start()
         {

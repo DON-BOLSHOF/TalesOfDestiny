@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Utils;
+using Utils.DataGroups;
 using Utils.Disposables;
 
 namespace Widgets.PanelWidgets.InventoryWidgets

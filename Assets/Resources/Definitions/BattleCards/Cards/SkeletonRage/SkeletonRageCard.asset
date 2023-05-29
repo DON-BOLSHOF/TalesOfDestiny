@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36118c93eab440948581e51c6a42e250, type: 3}
+  m_Name: SkeletonRageCard
+  m_EditorClassIdentifier: 
+  _id: "\u042F\u0440\u043E\u0441\u0442\u044C \u0441\u043A\u0435\u043B\u0435\u0442\u043E\u043D\u043E\u0432."
+  _cardView: {fileID: 11400000, guid: d4797c75af95eaa42aa7640d1cb736a0, type: 2}
+  _situation: {fileID: 11400000, guid: bd637a9302273864093e07f81ad03fa2, type: 2}
+  _enemyPacks:
+  - _count: 2
+    creatureCard: {fileID: 11400000, guid: 6a00f4fffa846924d8c9c8bb8e684386, type: 2}
+  - _count: 1
+    creatureCard: {fileID: 11400000, guid: e5b5d3797a0c91345aa71876c66d636a, type: 2}
+  _enemiesType: 1

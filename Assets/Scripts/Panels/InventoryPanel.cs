@@ -7,6 +7,7 @@ using CodeAnimation;
 using Definitions.Inventory;
 using UnityEngine;
 using Utils;
+using Utils.DataGroups;
 using Utils.Disposables;
 using Widgets.PanelWidgets.InventoryWidgets;
 

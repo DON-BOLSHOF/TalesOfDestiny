@@ -44,13 +44,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerData:
-    propertyEventData:
+    _propertyData:
       Food:
-        _value: 20
-      Coins:
         _value: 25
+      Coins:
+        _value: 50
       Prestige:
-        _value: 10
+        _value: 15
     _companionsData:
       _companionPacks:
       - _count: 30
@@ -60,4 +60,3 @@ MonoBehaviour:
     _inventoryData:
       _inventoryItems:
       - {fileID: 11400000, guid: 3a1f175cc85383c4fbba0ea4c03cf1e2, type: 2}
-      - {fileID: 11400000, guid: 6c9d2ef10c2c34148ad733b36beb69b0, type: 2}

@@ -468,6 +468,7 @@ MonoBehaviour:
   _popUpTime: 2
   _id: {fileID: 2928887255057388678}
   _description: {fileID: 6579078620983497646}
+  _activateButton: {fileID: 9022230566079176689}
 --- !u!223 &1848073572639467074
 Canvas:
   m_ObjectHideFlags: 0

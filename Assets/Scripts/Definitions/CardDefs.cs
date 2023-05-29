@@ -13,10 +13,7 @@ namespace Definitions
 
         public T Get(string id)
         {
-            if (id == null)
-                return default;
-
-            return _cards.FirstOrDefault(itemDef => itemDef.Id == id);
+            return id == null ? default : _cards.FirstOrDefault(itemDef => itemDef.Id == id);
         }
 
         public T Get(int id)

@@ -2,6 +2,11 @@
 using LevelManipulation;
 using UnityEngine;
 using View;
+using View.BattleCardView;
+using View.EndJourneyCardView;
+using View.EndJourneyView;
+using View.HeroCardView;
+using View.SituationCardView;
 using Widgets.BoardWidgets;
 using Zenject;
 using Object = UnityEngine.Object;
@@ -100,20 +105,48 @@ namespace Cards
             return card;
         }
 
-        public void FulFillItemWidget(ItemWidget cardWidget, WidgetType widgetType,
+        public void FulfillItemWidget(ItemWidget cardWidget, WidgetType widgetType,
             LevelCard card)
         {
-            var path = GetPath(widgetType, card.LevelCardType);
-
-            DeactivatePossibleView(cardWidget);
-
-            var cardView = Resources.Load<CardViewWidget>(path);
-            if (cardView == null) throw new ArgumentException($"Invalid path: {path}");
-
-            var instantiate = Object.Instantiate(cardView, cardWidget.transform, false);
-            instantiate.transform.SetSiblingIndex(1);
+            FulfillItemWidgetView(cardWidget, widgetType, card);
 
             cardWidget.GetComponent<ItemWidget>().SetData(card);
+        }
+
+        private void FulfillItemWidgetView(ItemWidget cardWidget, WidgetType widgetType, LevelCard card)//Че-то наподобие пул-а
+        {
+            DeactivatePossibleView(cardWidget);
+
+            CardViewWidget activeView = card.LevelCardType switch
+            {
+                LevelCardType.Situation => cardWidget.GetComponentInChildren<SituationCardViewWidget>(true),
+                LevelCardType.HeroPosition => cardWidget.GetComponentInChildren<HeroCardViewWidget>(true),
+                LevelCardType.Battle => cardWidget.GetComponentInChildren<BattleCardViewWidget>(true),
+                LevelCardType.EndJourney => cardWidget.GetComponentInChildren<EndJourneyCardViewWidget>(true),
+                _ => throw new ArgumentOutOfRangeException()
+            };
+
+            if (activeView == null)
+            {
+                var path = GetPath(widgetType, card.LevelCardType);
+
+                var cardView = Resources.Load<CardViewWidget>(path);
+                if (cardView == null) throw new ArgumentException($"Invalid path: {path}");
+
+                var instantiate = Object.Instantiate(cardView, cardWidget.transform, false);
+                instantiate.transform.SetSiblingIndex(1);
+            }
+            else
+            {
+                activeView.gameObject.SetActive(true);
+            }
+        }
+
+        private void DeactivatePossibleView(ItemWidget cardWidget)
+        {
+            var activeView = cardWidget.GetComponentInChildren<CardViewWidget>();
+            if (activeView != null)
+                activeView.gameObject.SetActive(false);
         }
 
         private string GetPath(WidgetType widgetType, LevelCardType cardType)
@@ -139,13 +172,6 @@ namespace Cards
             };
 
             return path;
-        }
-
-        private void DeactivatePossibleView(ItemWidget cardWidget)
-        {
-            var activeView = cardWidget.GetComponentInChildren<CardViewWidget>();
-            if (activeView != null)
-                activeView.gameObject.SetActive(false);
         }
     }
 

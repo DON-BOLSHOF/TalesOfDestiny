@@ -113,7 +113,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4439902644272536652, guid: 4da09e007e86e1144b1c515281e04076, type: 3}
       propertyPath: m_Name
-      value: EnemyCardView
+      value: BattleCardView
       objectReference: {fileID: 0}
     - target: {fileID: 5038603440019644055, guid: 4da09e007e86e1144b1c515281e04076, type: 3}
       propertyPath: m_FontData.m_MaxSize
@@ -126,6 +126,38 @@ PrefabInstance:
     - target: {fileID: 5038603440019644055, guid: 4da09e007e86e1144b1c515281e04076, type: 3}
       propertyPath: m_FontData.m_FontSize
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6893285173732983529, guid: 4da09e007e86e1144b1c515281e04076, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.95622605
+      objectReference: {fileID: 0}
+    - target: {fileID: 6893285173732983529, guid: 4da09e007e86e1144b1c515281e04076, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.9015589
+      objectReference: {fileID: 0}
+    - target: {fileID: 6893285173732983529, guid: 4da09e007e86e1144b1c515281e04076, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.041504715
+      objectReference: {fileID: 0}
+    - target: {fileID: 6893285173732983529, guid: 4da09e007e86e1144b1c515281e04076, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.29523534
+      objectReference: {fileID: 0}
+    - target: {fileID: 6893285173732983529, guid: 4da09e007e86e1144b1c515281e04076, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -2.7371979
+      objectReference: {fileID: 0}
+    - target: {fileID: 6893285173732983529, guid: 4da09e007e86e1144b1c515281e04076, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -0.05760193
+      objectReference: {fileID: 0}
+    - target: {fileID: 6893285173732983529, guid: 4da09e007e86e1144b1c515281e04076, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.8585205
+      objectReference: {fileID: 0}
+    - target: {fileID: 6893285173732983529, guid: 4da09e007e86e1144b1c515281e04076, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.46200562
       objectReference: {fileID: 0}
     - target: {fileID: 7377530132571097855, guid: 4da09e007e86e1144b1c515281e04076, type: 3}
       propertyPath: m_FontData.m_MaxSize

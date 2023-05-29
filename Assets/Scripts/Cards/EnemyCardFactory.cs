@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Definitions;
-using Definitions.Creatures;
 using Definitions.Creatures.Enemies;
 using UnityEngine;
 
@@ -9,30 +8,33 @@ namespace Cards
 {
     public static class EnemyCardFactory
     {
-        public static List<EnemyPack> GeneratePacks(int turnThreshold, IList<EnemyPack> obligatoryEnemies = null)
+        public static List<EnemyPack> GeneratePacks(EnemiesType enemiesType, int maximumPacks, int turnThreshold, IList<EnemyPack> obligatoryEnemies = null)
         {
-            var result = new List<EnemyPack>();
+            var resultPacks = new List<EnemyPack>();
 
-            if (obligatoryEnemies != null) result.AddRange(obligatoryEnemies.Select(pack => new EnemyPack(pack)));
+            if (obligatoryEnemies != null) resultPacks.AddRange(obligatoryEnemies.Select(pack => new EnemyPack(pack)));
+            var enemyCount = resultPacks.Count;
        
-            var enemies = DefsFacade.I.EnemyDefs.GetAllCardsDefs();
-            foreach (var enemy in enemies)
+            var enemies = DefsFacade.I.EnemyDefs.GetEnemyPack(enemiesType).GetAllCardsDefs();
+            foreach (var enemy in enemies.Where(t => enemyCount<=maximumPacks))
             {
                 EnemyPack creaturePack = null;
                 if (!GenerateRandomPack(enemy, turnThreshold, ref creaturePack)) continue;
 
-                var existedPack = result.Find(card => card.CreatureCard.Equals(enemy));
+                var existedPack = resultPacks.Find(card => card.CreatureCard.Equals(enemy));
                 if (existedPack != null)
                 {
                     existedPack.ModifyCount(creaturePack.Count);
                 }
                 else
                 {
-                    result.Add(creaturePack);
+                    resultPacks.Add(creaturePack);
                 }
+
+                enemyCount++;
             }
 
-            return result;
+            return resultPacks;
         }
 
         private static bool GenerateRandomPack(EnemyCard enemyCard, int turnThreshold, ref EnemyPack pack)

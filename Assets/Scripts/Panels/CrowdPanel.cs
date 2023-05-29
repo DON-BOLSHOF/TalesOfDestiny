@@ -2,6 +2,7 @@
 using Definitions.Creatures.Enemies;
 using UnityEngine;
 using Utils;
+using Utils.DataGroups;
 using View.CreaturesCardView.EnemyCardView;
 
 namespace Panels

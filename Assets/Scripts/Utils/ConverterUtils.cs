@@ -10,7 +10,7 @@ namespace Utils
     {
          public static string ConvertBuffsToString(List<BuffDef> itemBuffs)
         {
-            var result = "Buff you ";
+            var result = "Buff you: ";
 
             foreach (var buff in itemBuffs)
             {
@@ -74,6 +74,5 @@ namespace Utils
 
             return result;
         }
-
     }
 }

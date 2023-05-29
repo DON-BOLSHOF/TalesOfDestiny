@@ -7,13 +7,14 @@ namespace Definitions.Inventory
     public class InventoryItem
     {
         public string Id { get; }
+        public string Description { get; }
         public List<BuffDef> Buffs { get; }
-
         public Sprite Icon { get; }
 
-        public InventoryItem(string id, List<BuffDef> buffDefs, Sprite icon)
+        public InventoryItem(string id, string description, List<BuffDef> buffDefs, Sprite icon)
         {
             Id = id;
+            Description = description;
             Buffs = buffDefs;
             Icon = icon;
         }

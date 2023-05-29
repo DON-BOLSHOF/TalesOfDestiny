@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace View.HeroCardView
@@ -13,9 +14,13 @@ namespace View.HeroCardView
         private static readonly int Swap = Animator.StringToHash("Swap");
         private Animator _viewAnimator;
         
-        private void Start()
+        private void Awake()
         {
             _viewAnimator = GetComponent<Animator>();
+        }
+
+        private void OnEnable()
+        {
             _viewAnimator.SetTrigger(Swap);
         }
 
