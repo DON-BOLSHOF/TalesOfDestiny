@@ -15,5 +15,13 @@ namespace UI.View
         public PropertyWidget PrestigeValue => _prestigeValue;
         public PropertyWidget CoinValue => _coinValue;
         public PropertyWidget TurnValue => _turnValue;
+
+        public void SetBaseValue(int foodValue, int prestigeValue, int coinValue, int turnValue)
+        {
+            _foodValue.SetBaseValue(foodValue);
+            _prestigeValue.SetBaseValue(prestigeValue);
+            _coinValue.SetBaseValue(coinValue);
+            _turnValue.SetBaseValue(turnValue);
+        }
     }
 }

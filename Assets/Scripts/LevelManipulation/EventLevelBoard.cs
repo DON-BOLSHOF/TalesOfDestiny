@@ -2,18 +2,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Cards.SituationCards.Event;
 using CodeAnimation;
-using Model.Data;
+using Model;
 using Model.Data.ControllersData;
-using Model.Properties;
 using Panels;
 using UnityEngine;
 using Utils;
 using Utils.Disposables;
 using Utils.Interfaces;
-using Widgets;
-using Widgets.BoardWidgets;
+using Zenject;
 
 namespace LevelManipulation
 {
@@ -22,71 +19,76 @@ namespace LevelManipulation
         [SerializeField] private LevelBuilder _levelBuilder;
         [SerializeField] private LevelBoardAnimations _animations;
         [SerializeField] private LevelBoardSubscriber _subscriber;
-
-        [HideInInspector]
-        public ObservableProperty<Vector2Int> HeroPosition = new ObservableProperty<Vector2Int>(); //Локальное изменение
-
-        [HideInInspector] public ObservableProperty<Vector2>
-            GlobalHeroPosition =
-                new ObservableProperty<Vector2>(); //Честно не думал, что придется использовать этот атрибут
-
+        
         private Coroutine _coroutine;
 
         private readonly DisposeHolder _trash = new DisposeHolder();
 
         private List<List<Cell>> Cells { get; set; } = new List<List<Cell>>();
 
+        [Inject] public LocalHeroMover LocalHeroMover { get;} //Локальное изменение
         public event Action OnNextTurn;
 
-        private void Start()
+        private void Awake()
         {
             Cells = _levelBuilder.FirstSpawn();
 
+            LocalHeroMover.ReloadHeroPosition(Cells);
+            
             SubscribeWidgets();
             _subscriber.BoundPanelsUtil(Resources
                 .FindObjectsOfTypeAll<
-                    AbstractStateUtil>(),GetComponentsInChildren<ISubscriber>(true).ToList()); //Ну борд с контроллерами +- на одном уровне, так что он может о них знать
+                    AbstractStateUtil>(),GetComponentsInChildren<ISubscriber>(true).ToList());
+        }
 
-            ChangeHeroPosition(FindHeroPosition());
+        private void SubscribeWidgets()
+        {
+            foreach (var cell in Cells.SelectMany(row => row))
+            {
+                cell.BoardItem.IClicked += widget => LocalHeroMover.BoardHeroStep(widget, Cells);
+            }
+        }
 
+        private void Start()
+        {
             _coroutine = StartCoroutine(_animations.Appearance(CellConverter.GetItemWidgets(Cells)));
         }
 
-        private void Reload()
-        {
-            StartRoutine(ReloadCorotine());
-            OnNextTurn?.Invoke();
-        }
-
-        public void PrepareCardsField()
+        public void PrepareCardsToBattle()
         {
             TakeOutCards();
+            LocalHeroMover.MoveToBattlePosition();
         }
 
-        public void ReturnCardsField()
+        public void ReturnCardsFromBattle()
         {
             ReturnCards();
+            LocalHeroMover.MoveToCurrentPosition(Cells);
         }
 
-        private void TakeOutCards()
+        public void TakeOutCards()
         {
             StartRoutine(_animations.Exiting(CellConverter.GetItemWidgets(Cells)));
         }
 
-        private void ReturnCards()
+        public void ReturnCards()
         {
             StartRoutine(_animations.Appearance(CellConverter.GetItemWidgets(Cells)));
         }
 
-        private void StartRoutine(IEnumerator coroutine)
+        public void Visit(IControllerInteraction interaction)
         {
-            if (_coroutine != null)
-                StopCoroutine(_coroutine);
-
-            _coroutine = StartCoroutine(coroutine);
+            if ((interaction.ControllerType & ControllerInteractionType.EndJourney) == ControllerInteractionType.EndJourney)
+                Reload();
         }
 
-        private IEnumerator ReloadCorotine() //без анимаций код покрасивее выглядел, конечно...
+        private void Reload()
+        {
+            StartRoutine(ReloadField());
+            OnNextTurn?.Invoke();
+        }
+
+        private IEnumerator ReloadField() //без анимаций код покрасивее выглядел, конечно...
         {
             if (_coroutine != null)
                 StopCoroutine(_coroutine);
@@ -96,58 +98,17 @@ namespace LevelManipulation
 
             SubscribeWidgets();
 
-            ChangeHeroPosition(FindHeroPosition());
+            LocalHeroMover.ReloadHeroPosition(Cells);
 
             ReturnCards();
         }
 
-        private Vector2Int FindHeroPosition()
+        private void StartRoutine(IEnumerator coroutine)
         {
-            Vector2Int result = default;
-            foreach (var cell in from row in Cells
-                     from cell in row
-                     where cell.Info.CurrentCellState == CellState.HeroPosition
-                     select cell)
-            {
-                result = cell.Info.Position;
-            }
+            if (_coroutine != null)
+                StopCoroutine(_coroutine);
 
-            return result;
-        }
-
-        private void SubscribeWidgets()
-        {
-            foreach (var row in Cells)
-            {
-                foreach (var cell in row)
-                {
-                    cell.BoardItem.IClicked += HeroStep;
-                }
-            }
-        }
-
-        private void HeroStep(BoardItemWidget widgetStep)
-        {
-            for (var i = 0; i < Cells.Count; i++)
-            for (var j = 0; j < Cells[i].Count; j++)
-            {
-                if (Equals(Cells[i][j].BoardItem, widgetStep))
-                {
-                    ChangeHeroPosition(new Vector2Int(i, j));
-                }
-            }
-        }
-
-        private void ChangeHeroPosition(Vector2Int value)
-        {
-            HeroPosition.Value = value;
-            GlobalHeroPosition.Value = Cells[HeroPosition.Value.x][HeroPosition.Value.y].BoardItem.transform.position;
-        }
-
-        public void Visit(IControllerInteraction interaction)
-        {
-            if ((interaction.ControllerType & ControllerInteractionType.EndJourney) == ControllerInteractionType.EndJourney)
-                Reload();
+            _coroutine = StartCoroutine(coroutine);
         }
 
         private void OnDestroy()

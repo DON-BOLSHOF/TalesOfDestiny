@@ -14,6 +14,14 @@ namespace Components
 
         private readonly DisposeHolder _trash = new DisposeHolder();
 
+        private void OnEnable()
+        {
+            if (_board == null)
+                _board = GetComponentInParent<EventLevelBoard>();
+
+            _trash.Retain(_board.LocalHeroMover.BoardHeroPosition.Subscribe(OnHeroPositionChanged));
+        }
+
         public void SetPosition(Vector2 position)
         {
             _myPosition = position;
@@ -25,14 +33,6 @@ namespace Components
             var inside = Vector2.Dot(delta, delta) <= 1;
             
             OnPositionChanged?.Invoke(inside);
-        }
-
-        private void OnEnable()
-        {
-            if (_board == null)
-                _board = FindObjectOfType<EventLevelBoard>();
-
-            _trash.Retain(_board.HeroPosition.Subscribe(OnHeroPositionChanged));
         }
 
         private void OnDisable()

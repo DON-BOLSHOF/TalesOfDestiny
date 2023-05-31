@@ -58,14 +58,14 @@ namespace Controllers.Inventories
         {
             if (!_gameSession.GameStateAnalyzer.TryChangeState(this)) return;
             
-            _eventLevelBoard.PrepareCardsField();
+            _eventLevelBoard.TakeOutCards();
             _inventoryPanel.Show();
         }
 
         public override void Exit()
         {
             _inventoryPanel.Exit();
-            _eventLevelBoard.ReturnCardsField();
+            _eventLevelBoard.ReturnCards();
             VisitGameState(_gameSession.GameStateAnalyzer, Stage.End);
         }
 

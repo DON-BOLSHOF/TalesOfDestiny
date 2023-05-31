@@ -37,7 +37,7 @@ namespace Widgets.PanelWidgets.InventoryWidgets
         {
             _trash.Retain(_descriptionPanel.OnUsed.Subscribe(OnUseItem));
             _trash.Retain(_descriptionPanel.OnThrownOut.Subscribe(OnThrowOut));
-            _trash.Retain(_descriptionPanel.SubscribeOnDisappeared(() => _descriptionStage = DescriptionStage.Close));
+            _trash.Retain(_descriptionPanel.OnDisappeared.Subscribe(() => _descriptionStage = DescriptionStage.Close));
             _trash.Retain(Stage.SubscribeAndInvoke(delegate(InstanceStage value) { ActivateBlockRaycast(value == InstanceStage.Activated); }));
         }
 

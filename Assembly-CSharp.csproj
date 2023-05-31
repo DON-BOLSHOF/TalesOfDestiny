@@ -61,6 +61,7 @@
      <Compile Include="Assets\Scripts\Utils\Interfaces\ITypingText.cs" />
      <Compile Include="Assets\Scripts\Behaviours\CreatureBehaviour.cs" />
      <Compile Include="Assets\Scripts\System\Installers\StorageDataInstaller.cs" />
+     <Compile Include="Assets\Scripts\CodeAnimation\UpscaleAnimation.cs" />
      <Compile Include="Assets\Scripts\Cards\SituationCards\Event\EventMode.cs" />
      <Compile Include="Assets\Scripts\UI\PopUpHint.cs" />
      <Compile Include="Assets\Scripts\View\HeroCardView\HeroCardView.cs" />
@@ -80,6 +81,7 @@
      <Compile Include="Assets\Scripts\UI\View\PropertyView.cs" />
      <Compile Include="Assets\Scripts\Components\SceneLoadAdditiveComponent.cs" />
      <Compile Include="Assets\Scripts\Utils\ConverterUtils.cs" />
+     <Compile Include="Assets\Scripts\Model\Notification.cs" />
      <Compile Include="Assets\Scripts\Utils\DataGroups\DataGroup.cs" />
      <Compile Include="Assets\Scripts\View\BattleCardView\BattleCardView.cs" />
      <Compile Include="Assets\Scripts\CodeAnimation\SoundedAnimation.cs" />
@@ -116,6 +118,7 @@
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
      <Compile Include="Assets\Scripts\LevelManipulation\LevelBoardSubscriber.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
+     <Compile Include="Assets\Scripts\Definitions\Creatures\Enemies\EnemyDefs.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_UiFrameRateCounter.cs" />
      <Compile Include="Assets\Scripts\Definitions\Creatures\Company\CompanionCard.cs" />
      <Compile Include="Assets\Scripts\Components\HeroPositionBeholderComponent.cs" />
@@ -145,6 +148,7 @@
      <Compile Include="Assets\Scripts\Components\Audio\PlaySFXSound.cs" />
      <Compile Include="Assets\Scripts\View\EndJourneyCardView\EndJourneyPanelAnimation.cs" />
      <Compile Include="Assets\Scripts\View\SituationCardView\SituationCardView.cs" />
+     <Compile Include="Assets\Scripts\Widgets\HUDWidgets\NotificationWidget.cs" />
      <Compile Include="Assets\Scripts\Controllers\Inventories\IInventoryVisitor.cs" />
      <Compile Include="Assets\Scripts\CodeAnimation\CameraAnimation.cs" />
      <Compile Include="Assets\Scripts\Model\FightMechanism.cs" />
@@ -200,6 +204,7 @@
      <Compile Include="Assets\Scripts\Cards\SituationCards\Event\ButtonInteraction.cs" />
      <Compile Include="Assets\Scripts\Cards\HeroCard\HeroCard.cs" />
      <Compile Include="Assets\Scripts\Model\CustomButton.cs" />
+     <Compile Include="Assets\Scripts\UI\NotificationHandler.cs" />
      <Compile Include="Assets\Scripts\Panels\AbstractTextPanelUtil.cs" />
      <Compile Include="Assets\Scripts\Panels\BattleBoard.cs" />
      <Compile Include="Assets\Scripts\Components\SpawnObjectComponent.cs" />
@@ -208,6 +213,7 @@
      <Compile Include="Assets\Scripts\Definitions\EventDefs\PropertyEventDef.cs" />
      <Compile Include="Assets\Scripts\View\BattleCardView\BattleCardViewWidget.cs" />
      <Compile Include="Assets\Scripts\System\Installers\FactoriesInstaller.cs" />
+     <Compile Include="Assets\Scripts\CodeAnimation\RaiseAnimation.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
      <Compile Include="Assets\Scripts\System\Installers\HeroInstaller.cs" />
      <Compile Include="Assets\Scripts\Cards\SituationCards\Event\InventoryEvents\IInventoryEventVisitor.cs" />
@@ -229,6 +235,7 @@
      <Compile Include="Assets\Scripts\View\CreaturesCardView\CompanionCardView\CompanionCardView.cs" />
      <Compile Include="Assets\Scripts\LevelManipulation\FieldBuilder.cs" />
      <Compile Include="Assets\Scripts\Utils\DataGroups\ZenjectDataGroup.cs" />
+     <Compile Include="Assets\Scripts\Panels\NotificationPanel.cs" />
      <Compile Include="Assets\Scripts\Model\Data\StorageData\PropertyData.cs" />
      <Compile Include="Assets\Scripts\Definitions\Inventory\InventoryItemDef.cs" />
      <Compile Include="Assets\Scripts\Utils\UnityUtils.cs" />
@@ -260,7 +267,9 @@
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
      <Compile Include="Assets\Scripts\Utils\Disposables\DisposeHolder.cs" />
      <Compile Include="Assets\Scripts\Utils\GameStateAnalyzer.cs" />
-     <Compile Include="Assets\Scripts\Definitions\Creatures\Enemies\EnemyDefs.cs" />
+     <Compile Include="Assets\Scripts\Model\GlobalHeroMover.cs" />
+     <Compile Include="Assets\Scripts\Model\LocalHeroMover.cs" />
+     <Compile Include="Assets\Scripts\Definitions\GamePlay\GamePlayDefs.cs" />
      <Folder Include="Assets" />
      <Folder Include="Assets\Scripts\Widgets" />
      <Folder Include="Assets\Sprites\Cards\CardAssets\SituationsSprites\BurningCamp" />
@@ -335,6 +344,7 @@
      <Folder Include="Assets\Sprites\Life Bars" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
      <Folder Include="Assets\VFXAssets\Procedural fire\Shaders" />
+     <Folder Include="Assets\Resources\Definitions\GamePlay" />
      <Folder Include="Assets\Prefabs\PrefabsAnimation\Hero" />
      <Folder Include="Assets\Prefabs\PrefabsAnimation\PhysicalCard\EndJourneyAnimation\BorderAnimations" />
      <Folder Include="Assets\Resources\Definitions\CompanyCards\Companions\Militia" />
@@ -342,6 +352,7 @@
      <Folder Include="Assets\Resources\Definitions\EnemyCards\Enemies\Undead\Ghosts" />
      <Folder Include="Assets\TextMesh Pro" />
      <Folder Include="Assets\Resources\Definitions\BattleCards\Cards\WolfPackAttack\Situations" />
+     <Folder Include="Assets\Scripts\Definitions\GamePlay" />
      <Folder Include="Assets\Scripts\Utils" />
      <Folder Include="Assets\VFXAssets\Procedural fire\URP and HDRP" />
      <Folder Include="Assets\Scripts\Cards\SituationCards\Event\InventoryEvents" />
@@ -359,7 +370,7 @@
      <Folder Include="Assets\Scripts\UI\View" />
      <Folder Include="Assets\Resources\PanelUtilCardView" />
      <Folder Include="Assets\Resources\Definitions\SituationCards\Situations\BattleBrother\Situation" />
-     <Folder Include="Assets\Resources\Definitions\EnemyCards\Enemies\Goblins&amp;Orcs" />
+     <Folder Include="Assets\Resources\Definitions\EnemyCards\Enemies\Orcs" />
      <Folder Include="Assets\Sprites\Creatures\Enemies\Goblins" />
      <Folder Include="Assets\VFXAssets" />
      <Folder Include="Assets\Sprites\Cards\CardAssets\SituationsSprites\Hunting" />
@@ -472,7 +483,7 @@
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
      <Folder Include="Assets\Resources" />
      <Folder Include="Assets\Resources\Definitions\EnemyCards" />
-     <Folder Include="Assets\Resources\Definitions\EnemyCards\Enemies\Goblins&amp;Orcs\Goblin" />
+     <Folder Include="Assets\Resources\Definitions\EnemyCards\Enemies\Orcs\Goblin" />
      <Folder Include="Assets\Prefabs\PrefabsAnimation\Creature" />
      <Folder Include="Assets\Resources\Definitions\HeroCards\Cards" />
      <Folder Include="Assets\Sprites\Cards\CardAssets\SituationsSprites\Poisons\PoisonMagicEffect" />
@@ -490,7 +501,7 @@
      <Folder Include="Assets\Scripts\Cards" />
      <Folder Include="Assets\TextMesh Pro\Examples &amp; Extras" />
      <Folder Include="Assets\Scripts\View\SituationCardView" />
-     <Folder Include="Assets\Resources\Definitions\EnemyCards\Enemies\Goblins&amp;Orcs\OrcMagi" />
+     <Folder Include="Assets\Resources\Definitions\EnemyCards\Enemies\Orcs\OrcMagi" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
      <None Include="Assets\VFXAssets\Procedural fire\Demo scene\Readme.txt" />
      <Folder Include="Assets\Resources\Definitions\Items" />

@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
+using Utils;
 using Utils.Disposables;
 using Timer = Utils.Timer;
 
@@ -11,23 +11,25 @@ namespace UI
     public class PopUpHint : MonoBehaviour
     {
         [SerializeField] protected Graphic[] _graphics;
-        [SerializeField] private int _popUpTime;
+        [SerializeField] private int _popUpTimerTime;
+        [SerializeField] private float _popUpIntervalTime = 0.07f;
 
         private float _currentAlpha;
         protected Coroutine _graphicRoutine;
 
         protected Timer _timer;
 
-        private event Action OnShown;
-        private event Action OnDisappeared;
+        public readonly ReactiveEvent OnShown = new ReactiveEvent();
+        public readonly ReactiveEvent OnDisappeared = new ReactiveEvent();
 
         private DisposeHolder _trash = new DisposeHolder();
 
         public bool IsTimerRunning => _timer.IsRunning;
+        public int RemainingSeconds => _timer.RemainingSeconds;
 
         private void Awake()
         {
-            _timer = new Timer(_popUpTime);
+            _timer = new Timer(_popUpTimerTime);
             _trash.Retain(_timer.Subscribe(Exit));
         }
 
@@ -59,11 +61,11 @@ namespace UI
                     graphic.color = variableColor;
                 }
 
-                yield return new WaitForSeconds(0.07f);
+                yield return new WaitForSeconds(_popUpIntervalTime);
             }
 
             _currentAlpha = 1;
-            OnShown?.Invoke();
+            OnShown?.Execute();
         }
 
         protected virtual IEnumerator Disappear(Graphic[] graphics)
@@ -77,11 +79,11 @@ namespace UI
                     graphic.color = variableColor;
                 }
 
-                yield return new WaitForSeconds(0.07f);
+                yield return new WaitForSeconds(_popUpIntervalTime);
             }
 
             _currentAlpha = 0;
-            OnDisappeared?.Invoke();
+            OnDisappeared?.Execute();
         }
 
         protected void ChangeGraphicsAlphaTo(float value)
@@ -103,18 +105,6 @@ namespace UI
         public void StopTimer()
         {
             _timer?.StopTimer();
-        }
-        
-        public IDisposable SubscribeOnShown(Action action)
-        {
-            OnShown += action;
-            return new ActionDisposable(() => OnShown -= action);
-        }
-        
-        public IDisposable SubscribeOnDisappeared(Action action)
-        {
-            OnDisappeared += action;
-            return new ActionDisposable(() => OnDisappeared -= action);
         }
 
         protected void StartRoutine(IEnumerator coroutine, ref Coroutine routine)

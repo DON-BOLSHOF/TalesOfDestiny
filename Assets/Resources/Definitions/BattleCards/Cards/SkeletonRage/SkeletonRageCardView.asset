@@ -15,7 +15,7 @@ MonoBehaviour:
   _id: "\u042F\u0440\u043E\u0441\u0442\u044C \u0441\u043A\u0435\u043B\u0435\u0442\u043E\u043D\u043E\u0432"
   _backgroundView: {fileID: -32110578518799540, guid: 1923bcea0e5d7e04fb8d7cf84c1a97db, type: 3}
   _mainView: {fileID: 21300000, guid: 4a3fca80cebfb144599d2dce5e1fb667, type: 3}
-  _iconOffset: {x: 0, y: 0, z: 0}
+  _iconOffset: {x: 40, y: -36, z: -2}
   _portraitCorrection: {x: 1, y: 1, z: 1}
   _propertyIcons:
   - {fileID: 21300000, guid: 90efa78420f4241479fc157811be5672, type: 3}

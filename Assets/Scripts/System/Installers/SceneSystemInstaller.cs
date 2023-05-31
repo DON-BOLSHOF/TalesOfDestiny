@@ -1,4 +1,6 @@
-﻿using Zenject;
+﻿using Model;
+using UI;
+using Zenject;
 
 namespace System.Installers
 {
@@ -7,6 +9,9 @@ namespace System.Installers
         public override void InstallBindings()
         {
             Container.Bind<BoardClickHandler>().AsSingle().NonLazy();
+            Container.Bind<NotificationHandler>().AsSingle().NonLazy();
+            Container.Bind<GlobalHeroMover>().AsSingle().NonLazy();
+            Container.Bind<LocalHeroMover>().AsSingle().NonLazy();
         }
     }
 }

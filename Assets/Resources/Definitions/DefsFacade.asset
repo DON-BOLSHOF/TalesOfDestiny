@@ -18,3 +18,4 @@ MonoBehaviour:
   _endJourneyCards: {fileID: 11400000, guid: 097e5a37e23de1a4ea7e007eee2e8dc6, type: 2}
   _enemyDefs: {fileID: 11400000, guid: 28a44a2817de9764fbfe61d19a933435, type: 2}
   _companyDefs: {fileID: 11400000, guid: 40fd4db271b80f94bae15a478988322a, type: 2}
+  _gamePlayDefs: {fileID: 11400000, guid: 70b3995e330091e488e9335dc8569854, type: 2}

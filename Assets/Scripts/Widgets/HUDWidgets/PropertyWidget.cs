@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using CodeAnimation;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Widgets.HUDWidgets
@@ -7,9 +8,18 @@ namespace Widgets.HUDWidgets
     {
         [SerializeField] private Text _value;
 
-        public void OnValueChange(int value)
+        [SerializeField] private Graphic _ScalingProperty;
+        [SerializeField] private float _scaleFactor;
+
+        public void SetBaseValue(int value)
         {
             _value.text = value.ToString();
+        }
+
+        public void OnValueChange(int value)
+        {
+            StartCoroutine(UpscaleAnimation.ScaleGraphicElement(_ScalingProperty, 1, _scaleFactor,
+                () => _value.text = value.ToString()));
         }
     }
 }

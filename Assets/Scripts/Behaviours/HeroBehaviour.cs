@@ -1,5 +1,5 @@
 using System.Collections;
-using LevelManipulation;
+using Model;
 using UnityEngine;
 using Utils.Disposables;
 using Zenject;
@@ -15,8 +15,8 @@ namespace Behaviours
         [SerializeField] private Animator _animator;
 
         [SerializeField] private bool _inversed;
-    
-        [Inject] private EventLevelBoard _board;
+
+        [Inject] private GlobalHeroMover _mover;
         private Rigidbody2D _rigidbody;
 
         private Coroutine _routine;
@@ -29,7 +29,7 @@ namespace Behaviours
         private void Start()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
-            _trash.Retain(_board.GlobalHeroPosition.SubscribeAndInvoke(OnHeroPositionChanged));
+            _trash.Retain(_mover.GlobalHeroPosition.SubscribeAndInvoke(OnHeroPositionChanged));
         }
     
         private void OnHeroPositionChanged(Vector2 heroPosition)
@@ -65,6 +65,7 @@ namespace Behaviours
             _rigidbody.position = position;
         
             _animator.SetTrigger(Bow); // Не евойная ответственность, но из-за одной строчки перелопачивать корутины и менять Observable....
+            UpgradeSpriteDirection(new Vector2(1,1));
         }
 
         private void UpgradeSpriteDirection(Vector2 direction)

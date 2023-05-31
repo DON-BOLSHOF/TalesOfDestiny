@@ -48,7 +48,7 @@ namespace Controllers.BattleControllers
             _enemies = _eventManager.TakeEnemyPacks();//Take data
             _companions = _session.Data.CompanionsData.Companions;
             
-            _eventLevelBoard.PrepareCardsField();//Prepare others
+            _eventLevelBoard.PrepareCardsToBattle();//Prepare others
             await _eventManager.PrepareToBattle(_battleBoard);//Передаем панель на уровень ниже для синхронизации с предыдущей панелькой.
             
             _battleBoard.StartBattle(_enemies, _companions);
@@ -61,7 +61,7 @@ namespace Controllers.BattleControllers
                 case BattleEndState.Win:
                 {
                     _companions = companionPacks;
-                    _eventLevelBoard.ReturnCardsField();
+                    _eventLevelBoard.ReturnCardsFromBattle();
                     _session.Visit(this);
                     break;
                 }

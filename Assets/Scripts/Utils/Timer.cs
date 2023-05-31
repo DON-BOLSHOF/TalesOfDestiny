@@ -8,11 +8,13 @@ namespace Utils
     public class Timer
     {
         public bool IsRunning => _timerState == ActiveTimer.Active;
+        public int RemainingSeconds => IsRunning? _totalTime - _currentTime: 0;
         public event Action OnTimeExpired;
     
         private int _totalTime;
         private ActiveTimer _timerState = ActiveTimer.Deactive;
         private CancellationTokenSource _cancellationTokenSource;
+        private int _currentTime;
 
         public Timer(int time)
         {
@@ -26,13 +28,13 @@ namespace Utils
             _timerState = ActiveTimer.Active;
             _cancellationTokenSource = new CancellationTokenSource();
             var token = _cancellationTokenSource.Token;
-            var currentTime = 0;
+            _currentTime = 0;
 
-            while (currentTime < _totalTime)
+            while (_currentTime < _totalTime)
             {
                 await new WaitForSecondsRealtime(1);
                 if (token.IsCancellationRequested) return;
-                currentTime++;
+                _currentTime++;
             }
 
             OnTimeExpired?.Invoke();

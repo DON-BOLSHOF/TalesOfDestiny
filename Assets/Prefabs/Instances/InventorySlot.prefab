@@ -465,7 +465,8 @@ MonoBehaviour:
   - {fileID: 6579078620983497646}
   - {fileID: 5495927017306434335}
   - {fileID: 8196091105418737924}
-  _popUpTime: 2
+  _popUpTimerTime: 2
+  _popUpIntervalTime: 0.07
   _id: {fileID: 2928887255057388678}
   _description: {fileID: 6579078620983497646}
   _activateButton: {fileID: 9022230566079176689}
