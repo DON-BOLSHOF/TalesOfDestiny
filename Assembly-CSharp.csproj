@@ -74,12 +74,14 @@
      <Compile Include="Assets\Scripts\View\CreaturesCardView\EnemyCardView\EnemyCardViewWidget.cs" />
      <Compile Include="Assets\Scripts\Cards\SituationCards\Event\PropertyEvents\IPropertyEventVisitor.cs" />
      <Compile Include="Assets\Scripts\Utils\DataGroups\WidgetCollection.cs" />
+     <Compile Include="Assets\Scripts\Components\DontDestroyOnLoadComponent.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
      <Compile Include="Assets\Scripts\Definitions\Inventory\BuffDef.cs" />
      <Compile Include="Assets\Scripts\Model\Data\StorageData\IDataInteraction.cs" />
      <Compile Include="Assets\Scripts\Model\Properties\ObservableProperty.cs" />
      <Compile Include="Assets\Scripts\UI\View\PropertyView.cs" />
-     <Compile Include="Assets\Scripts\Components\SceneLoadAdditiveComponent.cs" />
+     <Compile Include="Assets\Scripts\Components\SceneLoaderComponent.cs" />
+     <Compile Include="Assets\Scripts\Model\GlobalHeroMover.cs" />
      <Compile Include="Assets\Scripts\Utils\ConverterUtils.cs" />
      <Compile Include="Assets\Scripts\Model\Notification.cs" />
      <Compile Include="Assets\Scripts\Utils\DataGroups\DataGroup.cs" />
@@ -122,6 +124,7 @@
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_UiFrameRateCounter.cs" />
      <Compile Include="Assets\Scripts\Definitions\Creatures\Company\CompanionCard.cs" />
      <Compile Include="Assets\Scripts\Components\HeroPositionBeholderComponent.cs" />
+     <Compile Include="Assets\Scripts\Model\LocalHeroMover.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\Cards\EnemyCardFactory.cs" />
      <Compile Include="Assets\Scripts\Model\Data\HeroCompanionsData.cs" />
@@ -154,6 +157,7 @@
      <Compile Include="Assets\Scripts\Model\FightMechanism.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ShaderPropAnimator.cs" />
      <Compile Include="Assets\Scripts\UI\Buttons\MagicScrollButton.cs" />
+     <Compile Include="Assets\Scripts\UI\Menu\SettingsMenu.cs" />
      <Compile Include="Assets\Scripts\Controllers\BattleEventManager.cs" />
      <Compile Include="Assets\Scripts\System\BoardClickHandler.cs" />
      <Compile Include="Assets\Scripts\LevelManipulation\Cell.cs" />
@@ -161,6 +165,7 @@
      <Compile Include="Assets\Scripts\Definitions\Creatures\Company\CompanyDefs.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
      <Compile Include="Assets\Scripts\Utils\Interfaces\IOutLining.cs" />
+     <Compile Include="Assets\Scripts\UI\Menu\MainMenu.cs" />
      <Compile Include="Assets\Scripts\Cards\SituationCards\Event\PropertyEvents\PropertyEvent.cs" />
      <Compile Include="Assets\Scripts\CodeAnimation\CreatureAnimations.cs" />
      <Compile Include="Assets\Scripts\Utils\TributeChecker.cs" />
@@ -190,6 +195,7 @@
      <Compile Include="Assets\Scripts\View\PortraitCardView.cs" />
      <Compile Include="Assets\Scripts\Definitions\Creatures\Company\CompanionPack.cs" />
      <Compile Include="Assets\Scripts\Definitions\CardDefs.cs" />
+     <Compile Include="Assets\Scripts\Definitions\GamePlay\GamePlayDefs.cs" />
      <Compile Include="Assets\Scripts\Cards\SituationCards\Event\ArmyEvents\ArmyEvent.cs" />
      <Compile Include="Assets\Scripts\Components\ZenjectSpawnComponents\HeroSpawnerComponent.cs" />
      <Compile Include="Assets\Scripts\View\CreatureCardView\CreatureViewWidget.cs" />
@@ -262,14 +268,12 @@
      <Compile Include="Assets\Scripts\Controllers\BattleControllers\BattleController.cs" />
      <Compile Include="Assets\Scripts\Widgets\EventManagersWidgets\EnemyCrowdWidget.cs" />
      <Compile Include="Assets\Scripts\Cards\SituationCards\Situation.cs" />
+     <Compile Include="Assets\Scripts\Model\GameStarter.cs" />
      <Compile Include="Assets\Scripts\Utils\Interfaces\ISubscriber.cs" />
      <Compile Include="Assets\Scripts\GameSession.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
      <Compile Include="Assets\Scripts\Utils\Disposables\DisposeHolder.cs" />
      <Compile Include="Assets\Scripts\Utils\GameStateAnalyzer.cs" />
-     <Compile Include="Assets\Scripts\Model\GlobalHeroMover.cs" />
-     <Compile Include="Assets\Scripts\Model\LocalHeroMover.cs" />
-     <Compile Include="Assets\Scripts\Definitions\GamePlay\GamePlayDefs.cs" />
      <Folder Include="Assets" />
      <Folder Include="Assets\Scripts\Widgets" />
      <Folder Include="Assets\Sprites\Cards\CardAssets\SituationsSprites\BurningCamp" />
@@ -290,6 +294,7 @@
      <Folder Include="Assets\Scripts\Widgets\PanelWidgets" />
      <Folder Include="Assets\TextMesh Pro\Sprites" />
      <Folder Include="Assets\Resources\Definitions\SituationCards\Situations\Altar" />
+     <Folder Include="Assets\Prefabs\PrefabsAnimation\UI\SettingsMenu" />
      <Folder Include="Assets\Resources\Definitions\SituationCards\Situations\Trader" />
      <Folder Include="Assets\TextMesh Pro\Resources\Sprite Assets" />
      <Folder Include="Assets\Resources\Definitions\EnemyCards\Enemies\Wolfs" />
@@ -509,6 +514,7 @@
      <Folder Include="Assets\TextMesh Pro\Examples &amp; Extras\Resources\Fonts &amp; Materials" />
      <Folder Include="Assets\Scripts\UI" />
      <Folder Include="Assets\Resources\Definitions\EnemyCards\Enemies\Undead\Ghosts\BlueGhost" />
+     <Folder Include="Assets\Scripts\UI\Menu" />
      <Folder Include="Assets\TextMesh Pro\Examples &amp; Extras\Resources\Color Gradient Presets" />
      <Folder Include="Assets\Resources\Definitions\SituationCards\Situations\Poisoning\Events" />
      <Folder Include="Assets\Prefabs\PrefabsAnimation\UI\EventController" />
